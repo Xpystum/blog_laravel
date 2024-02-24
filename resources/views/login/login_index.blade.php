@@ -1,14 +1,10 @@
-@extends('templates.base')
+@extends('templates.auth')
 
 @section('title.page', 'Страница Входа')
 
 
-@section('content')
+@section('auth.content')
 
-    <h1>
-
-        Страница Входа
-
-    </h1>
+    <x-login.card />
     
 @endsection
