@@ -1,12 +1,16 @@
-@extends('templates.base')
+@extends('templates.main')
 
 
-@section('content')
+@section('main.content')
 
-    <h1>
+    <div class="text-center">  
 
-       Главная Страницы
+        <h1>
 
-    </h1>
+            {{__('Главная страница')}}
+
+        </h1>
+
+</div>
     
 @endsection

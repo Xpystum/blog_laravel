@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 //user
 //CRUD (creat, read, update, delete)
-Route::prefix('user')->middleware('auth')->as('user')->group(function(){
+// Route::prefix('user')->middleware('auth')->as('user')->group(function(){
+    
+Route::prefix('user')->as('user.')->group(function(){
 
     Route::redirect('/', '/posts')->name('user');
 

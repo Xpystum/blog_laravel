@@ -1,72 +1,40 @@
-@extends('templates.base')
+@extends('templates.main')
 
 
-@section('content')
+@section('main.content')
 
-    <section>
-        <x-container>
+    <x-title>
 
-            <x-title>
+        <h1 class="h2 mb-5">
 
-                <h1 class="h2 mb-5">
+            {{ __('Список постов') }}
 
-                    {{ __('Список постов') }}
+        </h1>
 
-                </h1>
+    </x-title>
 
-            </x-title>
 
-            
-            @if(empty($posts))
+    @if(empty($posts))
 
-                {{ __('Нет ни одного поста') }}
+        {{ __('Нет ни одного поста') }}
 
-            @else
+    @else
 
-               <div class="row">
+    <div class="row">
 
-                @foreach ($posts as $post)
+        @foreach ($posts as $post)
 
-                <div class="col-12">
+        <div class="col-4">
 
-                   <x-card
-                   >
-                        <x-card-body> 
+            <x-post.card :post="$post" />
 
-                            <div class="mb-4">
+        </div>
 
-                                <h5>
-            
-                                    <a href=" {{ route('blog.show' , $post->id) }} ">
-            
-                                        {{ $post->title }}
-                    
-                                    </a>
-            
-                                </h5>
-                            
-                            </div>
-            
-                            <p>
-            
-                                {!! $post->content !!}
-                                
-                            </p>
+        @endforeach
 
-                        </x-card-body>
-                        
-                   </x-card>
-
-                </div>
-
-                @endforeach
-
-               </div>
-                
-            @endif
-
-        </x-container>
-    </section>
+    </div>
+        
+    @endif
     
 
     

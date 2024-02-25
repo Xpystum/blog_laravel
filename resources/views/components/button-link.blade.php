@@ -1,6 +1,6 @@
 @props(['color' => 'primary', 'size' => ''])
 
-    <button {{ $attributes->class([
+    <a {{ $attributes->class([
 
         "btn btn-{$color}", ($size ? 'btn-{$size}' : '')
 
@@ -8,9 +8,12 @@
     ->merge([
 
         'type' => 'button',
+        'href' => '#'
 
     ])  }}>
 
-    {{ $slot }}
+        {{ $slot }}
 
-</button>
+    </a>
+
+   

@@ -1,24 +1,22 @@
-@extends('templates.base')
+@extends('templates.main')
+
+@section('title.page', $post->title)
 
 
-@section('content')
+@section('main.content')
 
-    <a href=" {{route('blog') }} ">  
-    
-        Назад
-        
-    </a>
+    <x-title>
 
-    <h1 class="mb-5">
+        {{ $post->title }}
 
-        {!! $post->title !!}
+        <x-slot name="link">
+            <a href="{route('blog')}">
+                {{ __('Назад') }}
+            </a>
+        </x-slot>
 
-    </h1>
+    </x-title>
 
-    <p>
-        {!! $post->content !!}
-    </p>
-   
-    
-    
+    {!! $post->content !!}
+  
 @endsection
