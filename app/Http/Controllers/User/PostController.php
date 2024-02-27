@@ -31,8 +31,9 @@ class PostController extends Controller
 
     public function store(Request $request){
 
-        dd($request->all());
-        return 'Запрос создание поста';
+        // dd($request->all());
+
+        return redirect()->route('user.posts.show', 1);
     }
 
     public function show(int $IdPost){
@@ -73,15 +74,18 @@ class PostController extends Controller
         return view('user.posts.edit', compact('post'));
     }
 
-    public function update(){
+    public function update(Request $reqeust, $post){
 
-        dd(123);
 
-        return 'Запрос изменение поста';
+        // return redirect()->route('user.posts.show', $post);
+
+        return redirect()->back();
     }
 
-    public function delete(){
-        return 'Запрос удаление поста';
+    public function delete($post){
+
+
+        return redirect()->route('name.posts');
     }
 
     public function like(){

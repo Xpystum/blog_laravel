@@ -2,9 +2,11 @@
 
 <div class="form-check">
     
-    <x-input  type="checkbox"  {{ $attributes->merge([
+    <x-input type="checkbox"  {{ $attributes->merge([
 
         'value' => 1,
+
+        'checked' => !! old($attributes->get('name')),
 
     ]) }}  
     class="form-check-input" id='{{ $id }}' />

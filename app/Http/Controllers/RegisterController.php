@@ -42,7 +42,8 @@ class RegisterController extends Controller
 
         // dd(compact($name, $email, $password, $agreement));
 
-
-        return compact("name", "email");
+        return redirect()->back()->withInput();
+        
+        return redirect()->route('user.user');
     }
 }

@@ -48,7 +48,7 @@
                     {{__('Email')}}
                 </x-label>
 
-                <x-input type="email" name="email" />
+                <x-input type="email" name="email"/>
 
             </x-form-item>
 
@@ -58,7 +58,7 @@
                     {{__('Пароль')}}
                 </x-label>
 
-                <x-input type="password" name="password" />
+                <x-input type="password" name="password" :value="null" />
         
             </x-form-item>
 
@@ -68,13 +68,13 @@
                     {{__('Введите пароль ещё раз')}}
                 </x-label>
 
-                <x-input type="password" name="password_confirmation" />
+                <x-input type="password" name="password_confirmation" :value="null"/>
         
             </x-form-item>
 
             <x-form-item>
 
-                <x-chexbox name="agreement" value="1">
+                <x-chexbox type="checkbox" name="agreement">
                     
                     {{ __('Я согласен на обработку пользовательских данных') }}
 

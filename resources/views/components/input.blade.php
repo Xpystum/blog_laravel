@@ -11,9 +11,13 @@
 @endphp
 
 
-<input {{ $attributes->merge([
+<input {{ $attributes->class([
+
+    $classAttribute,
+
+])->merge([
 
     'type' => 'text',
-    'class' => $classAttribute
+    'value' => old($attributes->get('name'))
 
 ])  }} >

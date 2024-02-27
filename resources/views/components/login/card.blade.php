@@ -32,7 +32,7 @@
                     {{__('Email')}}
                 </x-label>
 
-                <x-input type="email" name="email" autofocus />
+                <x-input type="email" name="email" autofocus/>
 
             </x-form-item>
 
@@ -42,7 +42,7 @@
                     {{__('Password')}}
                 </x-label>
 
-                <x-input type="password" name="password" />
+                <x-input type="password" name="password" :value="null"/>
         
             </x-form-item>
 
