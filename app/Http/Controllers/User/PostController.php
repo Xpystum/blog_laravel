@@ -29,7 +29,9 @@ class PostController extends Controller
         return view('user.posts.create');
     } 
 
-    public function store(){
+    public function store(Request $request){
+
+        dd($request->all());
         return 'Запрос создание поста';
     }
 
@@ -72,6 +74,9 @@ class PostController extends Controller
     }
 
     public function update(){
+
+        dd(123);
+
         return 'Запрос изменение поста';
     }
 

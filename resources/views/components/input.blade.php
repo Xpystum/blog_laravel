@@ -11,10 +11,7 @@
 @endphp
 
 
-<input {{ $attributes->class([
-
-
-])->merge([
+<input {{ $attributes->merge([
 
     'type' => 'text',
     'class' => $classAttribute

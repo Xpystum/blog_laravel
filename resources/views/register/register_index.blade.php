@@ -58,7 +58,7 @@
                     {{__('Пароль')}}
                 </x-label>
 
-                <x-input type="Password" name="Password" />
+                <x-input type="password" name="password" />
         
             </x-form-item>
 
@@ -68,13 +68,13 @@
                     {{__('Введите пароль ещё раз')}}
                 </x-label>
 
-                <x-input type="Password" name="password_confirmation" />
+                <x-input type="password" name="password_confirmation" />
         
             </x-form-item>
 
             <x-form-item>
 
-                <x-chexbox name="remember" value="1">
+                <x-chexbox name="agreement" value="1">
                     
                     {{ __('Я согласен на обработку пользовательских данных') }}
 

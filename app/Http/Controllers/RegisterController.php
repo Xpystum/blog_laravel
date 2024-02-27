@@ -11,8 +11,38 @@ class RegisterController extends Controller
         return view('register.register_index');
     }
 
-    public function store(){
+    public function store(Request $request){
 
-        return 'Запрос на Регистрацию';
+        // //Способы получние Request
+        // app()->make('request');
+
+        // app('request');
+
+        // app('request');
+
+        // //Получить все поля
+        // $data = $request->all();
+
+        // //Опеределённые поля
+        // $data = $request->only(['name', 'email']); 
+
+        // //Исключить поля
+        // $data = $request->except(['name', 'email']);
+
+        // //Определённое поле по имени (возрват null, если пусто)
+        // $data = $request->input('name');
+
+        $name = $request->input('name');
+
+        $email = $request->input('email');
+
+        $password = $request->input('password');
+
+        $agreement = $request->input('agreement');
+
+        // dd(compact($name, $email, $password, $agreement));
+
+
+        return compact("name", "email");
     }
 }

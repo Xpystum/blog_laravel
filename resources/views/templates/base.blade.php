@@ -23,6 +23,10 @@
         .container {
             max-width: 1024px;
         }
+        
+        .trix-editor{
+            height: 350px ;
+        }
 
         @media (max-width: 768px) {
 

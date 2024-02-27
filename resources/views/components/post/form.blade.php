@@ -1,4 +1,4 @@
-@props(['post' => null])
+@props(['post' => null ])
 
 <x-form {{ $attributes }}>
 
@@ -22,6 +22,9 @@
         <x-trix value="{{ $post->title ?? '' }}" name='content'></x-trix>
 
     </x-form-item>
-
+    
+    {{ $slot }}
 </x-form>
+
+
 

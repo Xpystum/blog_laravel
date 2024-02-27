@@ -14,6 +14,9 @@
     </x-title>
 
 
+    @include('blog.filter')
+
+
     @if(empty($posts))
 
         {{ __('Нет ни одного поста') }}

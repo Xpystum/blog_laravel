@@ -15,6 +15,8 @@ class BlogController extends Controller
             'title' => "Lorem ipsum dolor sit amet.",
 
             'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
+
+            'caregory_id' => 1,
         ];
 
         $posts = array_fill(0, 10, $post);
@@ -33,6 +35,8 @@ class BlogController extends Controller
             'title' => "Lorem ipsum dolor sit amet.",
 
             'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
+
+            'caregory_id' => 1,
         ];
 
         return view('blog.blog_show', compact('post'));

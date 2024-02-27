@@ -26,7 +26,13 @@
         
     </x-title>
 
-    <x-post.form :post="$post" action="{{ route('user.posts.update', $post->id) }}" method="POST"/>
+    <x-post.form :post="$post" action="{{ route('user.posts.update', $post->id) }}" method="PUT" >
+        <x-button type="submit">
+
+            {{ __('Изменить пост') }}
+
+        </x-button>
+    </x-post.form>
 
 @endsection
 

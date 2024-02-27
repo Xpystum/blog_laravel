@@ -10,7 +10,7 @@
         {{ $post->title }}
 
         <x-slot name="link">
-            <a href="{route('blog')}">
+            <a href="{{ route('blog') }}">
                 {{ __('Назад') }}
             </a>
         </x-slot>

@@ -42,7 +42,7 @@
                     {{__('Password')}}
                 </x-label>
 
-                <x-input type="Password" name="Password" />
+                <x-input type="password" name="password" />
         
             </x-form-item>
 
