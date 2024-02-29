@@ -18,6 +18,7 @@
 ])->merge([
 
     'type' => 'text',
+    //Возврат старых введёных данных
     'value' => old($attributes->get('name'))
 
 ])  }} >

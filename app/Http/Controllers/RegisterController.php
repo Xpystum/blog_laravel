@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
         $agreement = $request->input('agreement');
 
-        // dd(compact($name, $email, $password, $agreement));
+        // dd(compact($name, $email, $password, $agreement));   
 
         return redirect()->back()->withInput();
         
