@@ -44,6 +44,10 @@
     <div class="d-flex flex-column justify-content-between min vh-100">
 
         @include('includes.header')
+
+        @include('includes.alert')
+
+    
         
         <main class="flex-grow-1 py-3">
            
@@ -58,5 +62,20 @@
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js" ></script>
+    
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+          // Установить таймер для автоматического закрытия уведомления
+          window.setTimeout(function() {
+            const alert = document.querySelector('.alert');
+            if (alert) {
+              // Закрыть уведомление
+              new bootstrap.Alert(alert).close();
+            }
+          }, 3000); // Задержка в миллисекундах (3000 мс = 3 секунды)
+        });
+
+    </script>
 </body>
 </html>

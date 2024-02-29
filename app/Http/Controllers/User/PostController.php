@@ -26,12 +26,16 @@ class PostController extends Controller
     }
 
     public function create(){
+
+
         return view('user.posts.create');
     } 
 
     public function store(Request $request){
 
         // dd($request->all());
+
+        alert('Сохранено!');
 
         return redirect()->route('user.posts.show', 1);
     }
