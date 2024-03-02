@@ -1,6 +1,5 @@
 @extends('templates.main')
 
-
 @section('main.content')
 
     <div class="text-center">  

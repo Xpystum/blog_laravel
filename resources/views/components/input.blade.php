@@ -1,3 +1,6 @@
+@props(['value'  => ''])
+
+
 @php
 
     $hasCustomClass = $attributes->get('class') !== null;
@@ -19,6 +22,6 @@
 
     'type' => 'text',
     //Возврат старых введёных данных
-    'value' => old($attributes->get('name'))
+    'value' => ( (old($attributes->get('name'))) ?: $value),
 
 ])  }} >

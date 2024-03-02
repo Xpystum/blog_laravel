@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StorePostRequest;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PostController extends Controller
 {
@@ -31,9 +34,25 @@ class PostController extends Controller
         return view('user.posts.create');
     } 
 
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
 
-        // dd($request->all());
+        $validated = $request->validated();
+
+        // $validator = validator($request->all(), [
+        //     'title' => ['required', 'string', 'max:100'],
+        //     'content' => ['required', 'string', 'max:1000']
+        // ])->validate();
+
+        // if(true){
+
+        //     throw ValidationException::withMessages([
+
+        //         'account' => __('Недостаточно Средств'),
+
+        //     ]);
+
+        // }
+
 
         alert('Сохранено!');
 
@@ -78,7 +97,7 @@ class PostController extends Controller
         return view('user.posts.edit', compact('post'));
     }
 
-    public function update(Request $reqeust, $post){
+    public function update(StorePostRequest $reqeust, $post){
 
 
         // return redirect()->route('user.posts.show', $post);
