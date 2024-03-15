@@ -11,15 +11,8 @@
     @endisset
 
     <div class="d-flex justify-content-between align-items-center">
-        <div>
 
-            <h1 class="mb-3">
-
-                {{ $slot }}
-            
-            </h1>
-
-        </div>
+        {{ $slot }}
 
         @isset($right)
 

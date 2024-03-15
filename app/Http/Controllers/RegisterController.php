@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -13,36 +14,31 @@ class RegisterController extends Controller
 
     public function store(Request $request){
 
-        // //Способы получние Request
-        // app()->make('request');
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
 
-        // app('request');
+            'email' => ['required', 'string', 'max:50', 'email', 'unique:users'],
 
-        // app('request');
+            'password' => ['required', 'string', 'min:7', 'max:50', 'confirmed'],
 
-        // //Получить все поля
-        // $data = $request->all();
+            'agreement' => ['accepted'],
+        ]);
 
-        // //Опеределённые поля
-        // $data = $request->only(['name', 'email']); 
+        // $user = new User;
 
-        // //Исключить поля
-        // $data = $request->except(['name', 'email']);
+        // $user->name = $validated['name'];
+        // $user->email = $validated['email'];
+        // $user->password = bcrypt($validated['password']);
+        // $user->save();
 
-        // //Определённое поле по имени (возрват null, если пусто)
-        // $data = $request->input('name');
+        $user = User::query()->create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
+        
 
-        $name = $request->input('name');
-
-        $email = $request->input('email');
-
-        $password = $request->input('password');
-
-        $agreement = $request->input('agreement');
-
-        // dd(compact($name, $email, $password, $agreement));   
-
-        return redirect()->back()->withInput();
+     
         
         return redirect()->route('user.user');
     }

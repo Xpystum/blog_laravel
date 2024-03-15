@@ -9,7 +9,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
     
-    @stack('trix')
+    @stack('trix') 
+    {{-- wsefwe --}}
 
     <style>
 
@@ -68,14 +69,16 @@
         document.addEventListener("DOMContentLoaded", function() {
           // Установить таймер для автоматического закрытия уведомления
           window.setTimeout(function() {
-            const alert = document.querySelector('.alert');
+            const alert = document.querySelector('.custom-alert');
             if (alert) {
               // Закрыть уведомление
               new bootstrap.Alert(alert).close();
             }
           }, 3000); // Задержка в миллисекундах (3000 мс = 3 секунды)
         });
+        
 
     </script>
+    @stack('Quill') 
 </body>
 </html>

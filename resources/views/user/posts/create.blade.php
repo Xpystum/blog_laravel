@@ -7,7 +7,7 @@
 
     <x-title>
 
-        <h1 class="h2 mb-5">
+        <h1 class="h2 mb-4">
 
             {{ __('Создать Пост') }}
 
@@ -24,15 +24,52 @@
         
     </x-title>
 
-    <x-post.form action="{{ route('user.posts.store') }}" method="POST">
-    
-        <x-button type="submit">
 
-            {{ __('Создать пост') }}
+    <x-form action="{{ route('user.posts.store') }}" method="POST" enctype="multipart/form-data">
 
+        <x-form-item>
+
+            <x-label required>
+                {{ __('Название поста') }}
+            </x-label>
+
+            <x-input name="title" value="{{ $post->title ?? '' }}" autofocus />
+            <x-error name='title' />
+        
+
+        </x-form-item>
+
+        <x-form-item>
+
+            <x-label required>
+                {{ __('Фотография Поста') }}
+            </x-label>
+
+            <x-error name='imgMain' />
+            <x-input name="imgMain" type='file'/>
+
+        </x-form-item>
+
+        <x-form-item>
+
+            <x-label required>
+                {{ __('Содержание поста') }}
+            </x-label>
+
+            <x-error name='content' />
+            <x-quill name='content'></x-quill>
+
+        </x-form-item>
+
+
+        {{-- submitFormQuill - Для отправки текст редактора --}}
+        <x-button onclick="submitFormQuill()">
+            {{__('Создать пост')}} 
         </x-button>
+        
+    </x-form>
 
-    </x-post.form>
+    
 
 @endsection
 

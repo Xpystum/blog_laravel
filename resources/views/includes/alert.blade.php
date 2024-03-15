@@ -5,7 +5,7 @@
         A simple warning alert—check it out!
     </div> --}}
 
-    <div class="alert alert-warning alert-dismissible fade show mb-0 text-center" role="alert">
+    <div class="alert custom-alert alert-warning alert-dismissible fade show mb-0 text-center" role="alert">
         <strong>Holy guacamole!</strong> <span>{{ $alert  }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

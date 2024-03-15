@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\PostController;
+use App\Http\Controllers\User\DonateController;
 
 //user
 //CRUD (creat, read, update, delete)
@@ -25,7 +26,9 @@ Route::prefix('user')->as('user.')->group(function(){
 
     Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('posts.delete');
 
-    Route::put('/posts/{post}/like', [PostController::class, 'like'])->name('photos.like');
+    Route::put('/posts/{post}/like', [PostController::class, 'like'])->name('photos.like'); 
 
 });
+
+Route::get('/donates', DonateController ::class)->name('user.donates');
 

@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StorePostRequest;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class PostController extends Controller
 {
     public function index(){
 
-        $post = (object) [
-
-            'id' => 1,
-
-            'title' => "Lorem ipsum dolor sit amet.",
-
-            'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
-        ];
-
-        $posts = array_fill(0, 10, $post);
+        $posts = Post::query()
+            ->latest()
+            ->paginate(12, ['id', 'title' , 'published_at']);
 
 
         return view('user.posts.index', compact('posts'));
@@ -36,22 +30,31 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request){
 
+        // StorePostRequest $request
+
+        // dd($request->all());
+
+        dd($request->all());
+
+        return redirect()->route('user.posts.create')->withInput();
+
         $validated = $request->validated();
 
-        // $validator = validator($request->all(), [
-        //     'title' => ['required', 'string', 'max:100'],
-        //     'content' => ['required', 'string', 'max:1000']
-        // ])->validate();
 
-        // if(true){
+        $post = Post::query()->create([
 
-        //     throw ValidationException::withMessages([
+            'user_id' => User::query()->value('id'),
 
-        //         'account' => __('Недостаточно Средств'),
+            'title' => $validated['title'],
 
-        //     ]);
+            'content' => $validated['content'],
 
-        // }
+            'published_at' => new Carbon($validated['published_at'] ?? null),
+
+            'published' => $validated['published'] ?? false,
+        ]);
+
+        dd($post);
 
 
         alert('Сохранено!');

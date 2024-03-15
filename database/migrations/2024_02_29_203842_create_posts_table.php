@@ -36,7 +36,7 @@ return new class extends Migration
 
             $table->boolean('published')->default(true);
 
-            $table->timestamp('publisher_at')->nullable();
+            $table->timestamp('published_at')->nullable();
 
 
         });

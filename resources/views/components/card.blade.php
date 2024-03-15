@@ -1,6 +1,10 @@
+@props(['padding' => 'p-3'])
+
 <div {{ $attributes->merge([
-    'class' => 'mb-4 border p-3'
-]) }}>
+    'class' => 'mb-4 border',
+])->class([
+    $padding,
+])}}>
 
     {{ $slot }}
 

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -19,23 +21,29 @@ class Post extends Model
         'content',
         
     
-    
         'published',
     
-        'publisher_at',
+        'published_at',
 
     ];
 
-    protected $cats = [
--
-        'publisher' => 'boolean',
+    protected $casts = [
+
+        'published' => 'boolean',
+        'published_at' => 'datetime',
 
     ];
 
-    protected $dates = [
 
-        'publisher_at',
-
-    ];
+    public function isPublished(): bool
+    {
+        return $this->published
+            && $this->published_at;
+    }
+    
+    protected function SerializeDate(DateTimeInterface $date): string
+    {
+        return Carbon::parse($date);
+    }
    
 }

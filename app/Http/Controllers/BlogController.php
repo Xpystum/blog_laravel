@@ -2,42 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $post = (object) [
+        $validated = $request->validate([
 
-            'id' => 1,
+            'search' => ['nullable', 'string', 'max:50'],
 
-            'title' => "Lorem ipsum dolor sit amet.",
+            'from_date' => ['nullable', 'string', 'date'],
 
-            'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
+            'to_date' => ['nullable', 'string', 'date',  'after:from_date'],
 
-            'caregory_id' => 1,
-        ];
+        ]);
 
-        $posts = array_fill(0, 10, $post);
+        $query = Post::query();
+
+        if($search = $validated['search'] ?? null)
+        {
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        if($fromDate = $validated['from_date'] ?? null)
+        {
+            $query->where('published_at', '>=', new Carbon($fromDate) );
+        }
+
+        if($toDate = $validated['to_date'] ?? null)
+        {
+            $query->where('published_at', '<=', new Carbon($toDate) );
+        }
+
+
+       
+        $posts = $query
+            ->latest('published_at')
+            ->paginate(15, ['id', 'title', 'published_at']);
 
 
         return view('blog.blog_index', compact('posts'));
-
     }
     
-    public function show(){
+    public function show(Request $request, Post $post){
 
-        $post = (object) [
 
-            'id' => 1,
+        //закидываем первые самые актулизированные посты в cache
+        $post = cache()->remember(
 
-            'title' => "Lorem ipsum dolor sit amet.",
+            key: "posts.{$post}", 
 
-            'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
+            ttl: now()->addHour(), 
 
-            'caregory_id' => 1,
-        ];
+            callback: function () use ($post) {
+
+                return Post::query()->findOrFail($post->id);
+
+            }
+
+        );
+
+        
+        // $post = Post::query()->findOrFail(1);
+        // $post = Post::query()->oldest('id')->firstOrFail();
+
 
         return view('blog.blog_show', compact('post'));
 

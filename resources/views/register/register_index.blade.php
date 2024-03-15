@@ -30,6 +30,8 @@
 
     <x-card-body>
 
+        <x-errors /> 
+
         <x-form action="{{ route('register.store') }}" method="POST">
             
             <x-form-item>

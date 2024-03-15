@@ -30,3 +30,14 @@ if( ! function_exists('validate') ){
     
 }
 
+if( ! function_exists('money') ){
+
+    function money(string $amount, string $currency_id): string
+    {   
+        $value = number_format($amount, 2 , '.', ' ');
+
+        return "{$value} {$currency_id}";
+    }
+    
+}
+
