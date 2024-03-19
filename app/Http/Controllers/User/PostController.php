@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
+use SplFileInfo;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\PostImg;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Post\StorePostRequest;
+
 use Illuminate\Database\Eloquent\Collection;
 
 class PostController extends Controller
@@ -26,19 +32,52 @@ class PostController extends Controller
 
 
         return view('user.posts.create');
-    } 
+    }
 
     public function store(StorePostRequest $request){
 
-        // StorePostRequest $request
+        $validated = $request->validated();
+        dd('after validation');
 
-        // dd($request->all());
+        #TODO добавление img в бд в формате base64 плохой подход, лучше это делать через storage (посмотреть логику как вернуть изображение в редактор в точное место на фронте во view)
+        //добавление изображение в storage
+        $path = Storage::putFile('images/post/main', $request['imgMain']);
 
-        dd($request->all());
+        //получение информации о файле
+        // $infoFile = new SplFileInfo($path);
+
+        if( !isset($validated['imgAlt']) )
+        {
+            $validated['imgAlt'] = $validated['imgMain']->getClientOriginalName();
+        }
+
+        $img = PostImg::query()->create([
+            'pathImg' => $path,
+            'alt' => $validated['imgAlt'],
+        ]);
+
+        abort_unless($img, 404);
+
+        $post = Post::query()->create([
+
+            'user_id' => User::query()->value('id'),
+
+            'title' => $validated['title'],
+
+            'content' => $validated['content'],
+
+            'published_at' => new Carbon($validated['published_at'] ?? null),
+
+            'published' => $validated['published'] ?? false,
+
+            'pathImg_id' => $img->id,
+        ]);
+
+        abort_unless($post, 404);
+
+        dd($post);
 
         return redirect()->route('user.posts.create')->withInput();
-
-        $validated = $request->validated();
 
 
         $post = Post::query()->create([
@@ -54,8 +93,6 @@ class PostController extends Controller
             'published' => $validated['published'] ?? false,
         ]);
 
-        dd($post);
-
 
         alert('Сохранено!');
 
@@ -64,7 +101,7 @@ class PostController extends Controller
 
     public function show(int $IdPost){
 
-        
+
         $post = (object) [
 
             'id' => 1,
@@ -96,7 +133,7 @@ class PostController extends Controller
 
             'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
         ];
-      
+
         return view('user.posts.edit', compact('post'));
     }
 

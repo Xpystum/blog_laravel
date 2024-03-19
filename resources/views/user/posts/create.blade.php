@@ -2,12 +2,11 @@
 
 @section('title.page', 'Создать Пост')
 
-
 @section('main.content')
 
     <x-title>
 
-        <h1 class="h2 mb-4">
+        <h1 class="h2 mb-3">
 
             {{ __('Создать Пост') }}
 
@@ -21,7 +20,6 @@
 
         </x-slot>
 
-        
     </x-title>
 
 
@@ -35,7 +33,7 @@
 
             <x-input name="title" value="{{ $post->title ?? '' }}" autofocus />
             <x-error name='title' />
-        
+
 
         </x-form-item>
 
@@ -47,6 +45,20 @@
 
             <x-error name='imgMain' />
             <x-input name="imgMain" type='file'/>
+
+        </x-form-item>
+
+        <x-form-item>
+
+            <x-error name='imgAlt' />
+            <x-input
+                class="form-control"
+                name="imgAlt"
+                type='text'
+                minlength="8"
+                maxlength="200"
+                placeholder="Введите описание картинки"
+            />
 
         </x-form-item>
 
@@ -64,12 +76,13 @@
 
         {{-- submitFormQuill - Для отправки текст редактора --}}
         <x-button onclick="submitFormQuill()">
-            {{__('Создать пост')}} 
+            {{__('Создать пост')}}
         </x-button>
-        
+
     </x-form>
 
-    
+
 
 @endsection
+
 

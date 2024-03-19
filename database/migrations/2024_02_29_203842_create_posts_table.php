@@ -27,17 +27,15 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
 
 
-            
+
             $table->string('title');
 
-            $table->text('content');
-            
+            $table->longText('content');
 
 
             $table->boolean('published')->default(true);
 
             $table->timestamp('published_at')->nullable();
-
 
         });
     }
