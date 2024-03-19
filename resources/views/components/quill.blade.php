@@ -20,7 +20,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
 
         <script>
-
+            //  #TODO Убрать в отдельный файл JS
             const key = 'quillContent';
             const toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -52,20 +52,18 @@
             };
 
             //  #TODO Сохранять не больше 5 мб в local_storage от редактора.
+
             const quill = new Quill('#editorQuill', options);
 
             function saveDeletedContent() {
 
-                if(!localStorage.getItem(key))
-                {
-                    const content = quill.getContents(); // Получение содержимого редактора в формате Delta
-                    const json = JSON.stringify(content);
+                const content = quill.getContents(); // Получение содержимого редактора в формате Delta
+                const json = JSON.stringify(content);
 
-                    const compressed = LZString.compressToUTF16(json);
+                const compressed = LZString.compressToUTF16(json);
 
-                    localStorage.setItem(key, compressed);
-                    return true;
-                }
+                localStorage.setItem(key, compressed);
+                return true;
 
             }
 
