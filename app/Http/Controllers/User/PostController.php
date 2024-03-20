@@ -37,7 +37,6 @@ class PostController extends Controller
     public function store(StorePostRequest $request){
 
         $validated = $request->validated();
-        dd('after validation');
 
         #TODO добавление img в бд в формате base64 плохой подход, лучше это делать через storage (посмотреть логику как вернуть изображение в редактор в точное место на фронте во view)
         //добавление изображение в storage
@@ -75,53 +74,15 @@ class PostController extends Controller
 
         abort_unless($post, 404);
 
-        dd($post);
-
-        return redirect()->route('user.posts.create')->withInput();
-
-
-        $post = Post::query()->create([
-
-            'user_id' => User::query()->value('id'),
-
-            'title' => $validated['title'],
-
-            'content' => $validated['content'],
-
-            'published_at' => new Carbon($validated['published_at'] ?? null),
-
-            'published' => $validated['published'] ?? false,
-        ]);
-
-
-        alert('Сохранено!');
-
-        return redirect()->route('user.posts.show', 1);
+        return redirect()->route('user.posts.show', $post->id);
     }
 
     public function show(int $IdPost){
 
+        $post = Post::query()->findOrFail($IdPost);
 
-        $post = (object) [
-
-            'id' => 1,
-
-            'title' => "Lorem ipsum dolor sit amet.",
-
-            'content' => "Lorem <strong>ipsum dolor</strong> sit amet consectetur adipisicing elit. Doloremque nobis recusandae earum? Perferendis, praesentium distinctio?",
-        ];
-
-        $posts = array_fill(0, 10, $post);
-
-
-        $posts = new Collection($posts);
-        $post = $posts->first(function ($post) use($IdPost) {
-
-            return $post->id == $IdPost;
-
-        });
-
-        return view('user.posts.show', compact('post'));
+        //quillContent - значение key localstorage
+        return view('user.posts.show', compact('post'))->with('localstorage' , 'quillContent');
     }
 
     public function edit(Request $request, $post){

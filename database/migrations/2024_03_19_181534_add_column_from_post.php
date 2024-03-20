@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
 
-            $table->foreignId('pathImg_id')->constrained('post_img');
+            $table->foreignId('pathImg_id')->constrained('post_img')->onDelete('cascade');;
 
         });
     }

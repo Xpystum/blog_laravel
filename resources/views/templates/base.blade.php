@@ -8,8 +8,8 @@
     <title>@yield('title.page', config('app.name'))</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-    
-    @stack('trix') 
+
+    @stack('trix')
     {{-- wsefwe --}}
 
     <style>
@@ -24,7 +24,7 @@
         .container {
             max-width: 1024px;
         }
-        
+
         .trix-editor{
             height: 350px ;
         }
@@ -48,22 +48,22 @@
 
         @include('includes.alert')
 
-    
-        
+
+
         <main class="flex-grow-1 py-3">
-           
+
             @yield('content')
 
         </main>
-        
+
         @include('includes.footer')
-       
-        
+
+
     </div>
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js" ></script>
-    
+
     <script>
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -76,9 +76,10 @@
             }
           }, 3000); // Задержка в миллисекундах (3000 мс = 3 секунды)
         });
-        
+
 
     </script>
-    @stack('Quill') 
+    
+    @stack('jsAfter')
 </body>
 </html>

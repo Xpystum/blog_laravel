@@ -12,7 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
     @endpush
 
-    @push('Quill')
+    @push('jsAfter')
         <!-- Initialize Quill editor -->
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
 
@@ -22,6 +22,7 @@
         <script>
             //  #TODO Убрать в отдельный файл JS
             const key = 'quillContent';
+
             const toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
                 ['blockquote', 'code-block'],
@@ -84,11 +85,7 @@
             (function setContainerQuill(){
 
                 let compressed = localStorage.getItem(key);
-                console.log(compressed, 'compressed')
-
                 const decompressed = LZString.decompressFromUTF16(compressed);
-
-                console.log(decompressed, 'decompressed')
 
                 if(compressed)
                 {
@@ -101,8 +98,7 @@
             })();
 
 
-
-    </script>
+        </script>
 
     @endpush
 @endonce
