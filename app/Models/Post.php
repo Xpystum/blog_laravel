@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
@@ -20,6 +21,8 @@ class Post extends Model
         'title',
 
         'content',
+
+        'info_post',
 
         'published',
 
@@ -48,9 +51,9 @@ class Post extends Model
         return Carbon::parse($date);
     }
 
-    public function img(): HasOne
+    public function img(): BelongsTo
     {
-        return $this->hasOne(PostImg::class, 'pathImg_id');
+        return $this->belongsTo(PostImg::class, 'pathImg_id');
     }
 
 }

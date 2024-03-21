@@ -51,6 +51,8 @@ class StorePostRequest extends FormRequest
 
             'content' => ['required', 'string', 'min:100'],
 
+            'info_post' => ['required', 'string', 'min:30', 'max:350'],
+
             'imgMain' => ['required', 'image', 'max:2048'],
 
             'imgAlt' => ['nullable', 'string', 'max:200'],

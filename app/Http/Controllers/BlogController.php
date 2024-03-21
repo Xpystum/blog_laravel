@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 
 class BlogController extends Controller
@@ -40,24 +39,27 @@ class BlogController extends Controller
         }
 
 
-       
         $posts = $query
+            ->with(['img' => function ($query) {
+                $query->select('id', 'pathImg' , 'alt'); // Обязательно указываем 'post_id', чтобы сохранить связь
+            }])
+            ->select('id', 'title', 'pathImg_id', 'published_at', 'info_post')
             ->latest('published_at')
-            ->paginate(15, ['id', 'title', 'published_at']);
+            ->paginate(6);
 
 
         return view('blog.blog_index', compact('posts'));
     }
-    
+
     public function show(Request $request, Post $post){
 
 
         //закидываем первые самые актулизированные посты в cache
         $post = cache()->remember(
 
-            key: "posts.{$post}", 
+            key: "posts.{$post}",
 
-            ttl: now()->addHour(), 
+            ttl: now()->addHour(),
 
             callback: function () use ($post) {
 
@@ -67,7 +69,7 @@ class BlogController extends Controller
 
         );
 
-        
+
         // $post = Post::query()->findOrFail(1);
         // $post = Post::query()->oldest('id')->firstOrFail();
 
@@ -79,7 +81,7 @@ class BlogController extends Controller
     public function like(){
 
         return 'поставить лайк';
-        
+
     }
 
 }

@@ -23,26 +23,31 @@
 
     @else
 
-    <div class="row">
+
 
         @foreach ($posts as $post)
 
-        <div class="col-4">
+        <article class="row">
 
-            <x-post.card :post="$post" />
+            <div class="col-12">
 
-        </div>
+                <x-post.card :post="$post" />
+
+            </div>
+
+        </article>
 
         @endforeach
 
-    </div>
+
 
 
         {{ $posts->links() }}
-        
-    @endif
-    
 
-    
-  
+    @endif
+
+
+
+
 @endsection
+

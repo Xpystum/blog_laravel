@@ -40,6 +40,25 @@
         <x-form-item>
 
             <x-label required>
+                {{ __('Информация поста') }}
+            </x-label>
+
+            <textarea
+                class="form-control"
+                aria-label="With textarea"
+                rows="3"
+                name="info_post"
+                value="{{ $post->post_info ?? '' }}"
+            ></textarea>
+            {{-- <x-input type="text" name="post_info" value="{{ $post->post_info ?? '' }}" autofocus /> --}}
+            <x-error name='info_post'/>
+
+
+        </x-form-item>
+
+        <x-form-item>
+
+            <x-label required>
                 {{ __('Фотография Поста') }}
             </x-label>
 

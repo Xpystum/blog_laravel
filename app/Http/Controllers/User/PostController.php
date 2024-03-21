@@ -40,7 +40,13 @@ class PostController extends Controller
 
         #TODO добавление img в бд в формате base64 плохой подход, лучше это делать через storage (посмотреть логику как вернуть изображение в редактор в точное место на фронте во view)
         //добавление изображение в storage
-        $path = Storage::putFile('images/post/main', $request['imgMain']);
+
+        /**
+         * @var Filesystem $path
+         */
+        $path = Storage::disk('public');
+        $path = $path->putFile('images', $validated['imgMain']);
+
 
         //получение информации о файле
         // $infoFile = new SplFileInfo($path);
@@ -64,6 +70,8 @@ class PostController extends Controller
             'title' => $validated['title'],
 
             'content' => $validated['content'],
+
+            'info_post' => $validated['info_post'],
 
             'published_at' => new Carbon($validated['published_at'] ?? null),
 

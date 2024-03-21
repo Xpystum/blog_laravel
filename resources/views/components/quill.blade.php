@@ -8,7 +8,7 @@
 </div>
 
 @once
-    @push('trix')
+    @push('header')
         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
     @endpush
 

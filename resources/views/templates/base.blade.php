@@ -7,9 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title.page', config('app.name'))</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css
+    ">
 
-    @stack('trix')
+
+
+    @vite(['resources/css/app.sass', 'resources/js/app.js'])
+
+    @stack('header')
     {{-- wsefwe --}}
 
     <style>
@@ -62,8 +67,6 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js" ></script>
-
     <script>
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -79,7 +82,7 @@
 
 
     </script>
-    
+
     @stack('jsAfter')
 </body>
 </html>

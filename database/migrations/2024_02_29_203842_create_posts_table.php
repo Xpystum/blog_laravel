@@ -30,7 +30,10 @@ return new class extends Migration
 
             $table->string('title');
 
+            $table->text('info_post');
+
             $table->longText('content');
+
 
 
             $table->boolean('published')->default(true);
