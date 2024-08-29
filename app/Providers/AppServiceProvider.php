@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Dflydev\DotAccessData\Data;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //расшарить переменную на все шаблоны блейда
+        View::share('date', date('Y'));
+
+        //расшарить переменную только на маршруты начинающийся с user 
+        View::composer('user*', function($view){
+            $view->with('balance', 12345);
+        });
     }
 }
