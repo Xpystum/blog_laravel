@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index(){
-
+        
+        dd(1);
         // dd(session()->all());
         // dd(session()->has('df'));
         // return session()->get('foo');
@@ -20,11 +21,9 @@ class LoginController extends Controller
         // session()->forget('foo');
 
         alert(__('Добро пожаловать'));
-       
-        
 
         //Опеределённые поля
-        $data = $request->only(['email', 'password', 'remember']); 
+        $data = $request->only(['email', 'password', 'remember']);
 
         return redirect()->route('user.user');
     }
