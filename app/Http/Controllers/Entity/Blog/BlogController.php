@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity\Blog;
 
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entry;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class RegisterController extends Controller
     }
 
     public function store(Request $request){
+
+        dd(1);
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:50'],
@@ -36,10 +39,10 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
         ]);
-        
 
-     
-        
+
+
+
         return redirect()->route('user.user');
     }
 }

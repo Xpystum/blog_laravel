@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entry;
 
+use App\Http\Controllers\Controller;
+use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -15,16 +17,13 @@ class LoginController extends Controller
         return view('login.login_index');
     }
 
-    public function store(Request $request){
+    public function store(Request $request, AdapterSanctumCookie $authServ){
 
-        // session()->forget('foo');
-
+        dd($request);
         alert(__('Добро пожаловать'));
-       
-        
 
         //Опеределённые поля
-        $data = $request->only(['email', 'password', 'remember']); 
+        $data = $request->only(['email', 'password', 'remember']);
 
         return redirect()->route('user.user');
     }
