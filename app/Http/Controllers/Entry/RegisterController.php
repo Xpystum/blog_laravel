@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Entry;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
+use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
+use App\Modules\User\Common\Requests\UserRegisterRequest;
+use App\Modules\User\Domain\IRepository\IUserRepository;
+
+use function App\Modules\User\Common\Helpers\responseError;
 
 class RegisterController extends Controller
 {
@@ -13,35 +17,26 @@ class RegisterController extends Controller
         return view('register.register_index');
     }
 
-    public function store(Request $request){
+    public function store(
+        UserRegisterRequest $request,
+        IUserRepository $rep,
+        AdapterSanctumCookie $auth,
+    ) {
 
-        dd(1);
+        $validated = $request->validated();
 
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:50'],
+        $status = $rep->create(UserCreateDTO::make(
+            login: $validated['login'],
+            email: $validated['email'],
+            type: $validated['type'],
+            password: $validated['password'],
+        ));
 
-            'email' => ['required', 'string', 'max:50', 'email', 'unique:users'],
+        //Если будет ошибка при создании user - выкидываем с ошибкой обратно в blade
+        if(!$status) { responseError("Такой пользователь уже существует."); }
 
-            'password' => ['required', 'string', 'min:7', 'max:50', 'confirmed'],
-
-            'agreement' => ['accepted'],
-        ]);
-
-        // $user = new User;
-
-        // $user->name = $validated['name'];
-        // $user->email = $validated['email'];
-        // $user->password = bcrypt($validated['password']);
-        // $user->save();
-
-        $user = User::query()->create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
-
-
-
+        //Регистрируем user в приложении.
+        $auth->loginUser($status);
 
         return redirect()->route('user.user');
     }

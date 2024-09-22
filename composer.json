@@ -31,7 +31,8 @@
         },
 
         "files" : [
-            "app/Helpers/helpers.php"
+            "app/Helpers/helpers.php",
+            "App/Modules/User/Common/Helpers/helpers.php"
         ]
 
     },

@@ -26,5 +26,3 @@ Route::prefix('user')->as('user.')->group(function(){
 
 });
 
-// Route::get('/donates', DonateController ::class)->name('user.donates');
-

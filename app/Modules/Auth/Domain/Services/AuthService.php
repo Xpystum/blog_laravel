@@ -11,7 +11,7 @@ use App\Modules\Auth\App\Data\DTO\UserAttemptDTO;
 use App\Modules\Auth\Domain\Interface\AuthInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class AuthService 
+class AuthService
 {
     public function __construct(
 

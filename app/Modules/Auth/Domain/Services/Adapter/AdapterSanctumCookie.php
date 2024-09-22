@@ -10,7 +10,9 @@ class AdapterSanctumCookie
 {
     public function __construct(
         public AuthService $serv
-    ) {}
+    ) {
+        $serv = app(AuthService::class);
+    }
 
     public function attemptUser(UserAttemptDTO $data)
     {

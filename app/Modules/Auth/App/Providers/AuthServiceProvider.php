@@ -17,11 +17,12 @@ class AuthServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+
         //Указываем config при guard web при использовании sanctum cookie
         $this->app->singleton(AuthConfig::class, function (Application $app) {
             return AuthConfig::make('web');
         });
-        
+
         $this->app->singleton(AuthSanctumCookie::class, function (Application $app) {
             return new AuthSanctumCookie($app->make(AuthConfig::class));
         });
@@ -29,5 +30,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->singleton(AuthService::class, function (Application $app) {
             return new AuthService($app->make(AuthSanctumCookie::class));
         });
+
     }
 }
