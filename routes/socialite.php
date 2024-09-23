@@ -14,5 +14,5 @@ use Laravel\Socialite\Facades\Socialite;
 //     // $user->token
 // });
 
-Route::get('/auth/redirect', [GitHubController::class, 'redirect']);
-Route::get('/auth/callback', [GitHubController::class, 'callback']);
+Route::get('/social/github/redirect', [GitHubController::class, 'redirect']);
+Route::get('/social/github/callback', [GitHubController::class, 'callback']);

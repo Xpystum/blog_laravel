@@ -2,106 +2,106 @@
 
 @section('title.page', 'Страница Регистрации')
 
-
 @section('auth.content')
+    <x-card class="card bg-white shadow sm:rounded-lg">
 
-<x-card class="card p-4">
+        <x-card-header>
 
-    <x-card-header>
+        <x-card-title>
 
-       <x-card-title>
+            {{ __('Регистрация') }}
 
-        {{ __('Регистрация') }}
-
-       </x-card-title>
+        </x-card-title>
 
 
-       <x-slot name="right">
+        <x-slot name="right">
 
-        <a href=" {{route('login')}} " >
+            <a href=" {{route('login')}} " >
 
-            {{ __('Вход') }}
+                {{ __('Вход') }}
 
-        </a>
+            </a>
 
-   </x-slot>
+            </x-slot>
 
-    </x-card-header>
+        </x-card-header>
 
-    <x-card-body>
+        <x-card-body>
 
-        <x-errors />
+            <x-errors />
 
-        <x-form action="{{ route('register.store') }}" method="POST">
+            <x-form action="{{ route('register.store') }}" method="POST">
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-label required>
-                    {{__('Логин')}}
-                </x-label>
+                    <x-label required>
+                        {{__('Логин')}}
+                    </x-label>
 
-                <x-input name="login" autofocus />
+                    <x-input name="login" autofocus />
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-label required>
-                    {{__('Email')}}
-                </x-label>
+                    <x-label required>
+                        {{__('Email')}}
+                    </x-label>
 
-                <x-input type="email" name="email"/>
+                    <x-input type="email" name="email"/>
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-label required>
-                    {{__('Сфера деятельности:')}}
-                </x-label>
+                    <x-label required>
+                        {{__('Сфера деятельности:')}}
+                    </x-label>
 
-                <x-select name="type" :options="['Разработчик' => 'Разработчик', 'Дизайнер' => 'Дизайнер']" />
+                    <x-select name="type" :options="['Разработчик' => 'Разработчик', 'Дизайнер' => 'Дизайнер']" />
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-label required>
-                    {{__('Пароль')}}
-                </x-label>
+                    <x-label required>
+                        {{__('Пароль')}}
+                    </x-label>
 
-                <x-input type="password" name="password" :value="null" />
+                    <x-input type="password" name="password" :value="null" />
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-label required>
-                    {{__('Введите пароль ещё раз')}}
-                </x-label>
+                    <x-label required>
+                        {{__('Введите пароль ещё раз')}}
+                    </x-label>
 
-                <x-input type="password" name="password_confirmation" :value="null"/>
+                    <x-input type="password" name="password_confirmation" :value="null"/>
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-form-item>
+                <x-form-item>
 
-                <x-chexbox type="checkbox" name="agreement">
+                    <x-chexbox type="checkbox" name="agreement">
 
-                    {{ __('Я согласен на обработку пользовательских данных') }}
+                        {{ __('Я согласен на обработку пользовательских данных') }}
 
-                </x-chexbox>
+                    </x-chexbox>
 
-            </x-form-item>
+                </x-form-item>
 
-            <x-button type="submit">
-                {{ __('Войти') }}
-            </x-button>
+                <x-button type="submit">
+                    {{ __('Войти') }}
+                </x-button>
 
-        </x-form>
+            </x-form>
 
-    </x-card-body>
 
-</x-card>
+            @include('includes.social.social')
 
+        </x-card-body>
+
+    </x-card>
 @endsection

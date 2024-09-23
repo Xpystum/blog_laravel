@@ -11,11 +11,9 @@
     ">
 
 
-
     @vite(['resources/css/app.sass', 'resources/js/app.js'])
 
     @stack('header')
-    {{-- wsefwe --}}
 
     <style>
 

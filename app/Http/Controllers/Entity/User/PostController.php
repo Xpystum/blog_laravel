@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Entity\User;
 
 use App\Models\Post;
-use App\Models\User;
 use App\Models\PostImg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Post\StorePostRequest;
-
-use Illuminate\Database\Eloquent\Collection;
+use App\Modules\User\Domain\Models\User;
 
 class PostController extends Controller
 {
