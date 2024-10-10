@@ -2,7 +2,7 @@
 
 @section('title.page', 'Страница Регистрации')
 
-@section('auth.content')
+@section('auth.content1')
     <x-card class="card bg-white shadow sm:rounded-lg">
 
         <x-card-header>
@@ -97,7 +97,6 @@
                 </x-button>
 
             </x-form>
-
 
             @include('includes.social.social')
 

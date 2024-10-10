@@ -13,12 +13,12 @@
             <a href=" {{route('register')}} " >
 
                 {{ __('Регистрация') }}
-        
+
             </a>
 
        </x-slot>
 
-       
+
 
     </x-card-header>
 
@@ -27,7 +27,7 @@
         <x-form action="{{ route('login.store') }}" method="POST">
 
             <x-form-item>
-                
+
                 <x-label required>
                     {{__('Email')}}
                 </x-label>
@@ -43,13 +43,13 @@
                 </x-label>
 
                 <x-input type="password" name="password" :value="null"/>
-        
+
             </x-form-item>
 
             <x-form-item>
 
                 <x-chexbox name="remember" value="1">
-                    
+
                     {{ __('Запомнить меня') }}
 
                 </x-chexbox>
@@ -61,6 +61,8 @@
             </x-button>
 
         </x-form>
+
+        @include('includes.social.social')
 
     </x-card-body>
 

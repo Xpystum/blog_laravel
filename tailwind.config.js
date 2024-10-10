@@ -1,12 +1,24 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
+
+    darkMode: 'class',
     content: [
-        "./resources/views/**/*.{blade.php,js,vue}",
-        "./resources/js/**/*.{js,vue}",
+       "./resources/**/*.{blade.php,js,vue}",
+        "./node_modules/flowbite/**/*.js"
     ],
     theme: {
-        extend: {},
+        extend: {
+            height: {
+                'custom-height': '74px',
+            },
+            backgroundOpacity: ['active'],
+            colors: {
+                'dark-gray-opacity': 'rgba(31, 41, 55, 0.5)', // Добавьте этот цвет
+            },
+        },
     },
-    plugins: [],
+    plugins: [
+        require('flowbite/plugin')
+    ],
 }
-
