@@ -5,8 +5,6 @@
 @section('auth.content')
     <x-card class="card sm:rounded-lg">
 
-        <x-errors />
-
         <x-form class="w-1/2 mx-auto" action="{{ route('register.store') }}" method="POST">
 
             @include('includes.register.register_form')
