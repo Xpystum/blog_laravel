@@ -18,7 +18,7 @@
 
     <div class="flex flex-col min-h-screen m-0 p-0">
 
-        @include('includes.header2')
+        @include('includes.header')
 
         @include('includes.alert')
 

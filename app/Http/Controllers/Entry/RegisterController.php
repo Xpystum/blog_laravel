@@ -22,9 +22,9 @@ class RegisterController extends Controller
         IUserRepository $rep,
         AdapterSanctumCookie $auth,
     ) {
-
         $validated = $request->validated();
 
+        
         $status = $rep->create(UserCreateDTO::make(
             login: $validated['login'],
             email: $validated['email'],
@@ -37,6 +37,8 @@ class RegisterController extends Controller
 
         //Регистрируем user в приложении.
         $auth->loginUser($status);
+
+        dd(1);
 
         return redirect()->route('user.user');
     }

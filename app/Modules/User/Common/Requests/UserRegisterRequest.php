@@ -15,6 +15,7 @@ class UserRegisterRequest extends FormRequest
 
     public function rules(): array
     {
+        // dd($this);
         return [
             'login' => ['required', 'string', 'max:50', 'unique:users,login'],
             'email' => ['required', 'string', 'max:50', 'email', 'unique:users,email'],

@@ -8,6 +8,8 @@
 
     @foreach($options as $key => $_value)
 
+        <option value="" disabled selected hidden>Кто вы?</option>
+        
         <option value="{{ $key }}" {{ ($key == $value) ? 'selected' : null }}>
 
             {{ $_value }}
