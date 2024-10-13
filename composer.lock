@@ -6183,19 +6183,6 @@
     ],
     "packages-dev": [
         {
-            "name": "barryvdh/laravel-debugbar",
-<<<<<<< HEAD
-            "version": "v3.12.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "43555503052443964ce2c1c1f3b0378e58219eb8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/43555503052443964ce2c1c1f3b0378e58219eb8",
-                "reference": "43555503052443964ce2c1c1f3b0378e58219eb8",
-=======
             "version": "v3.13.5",
             "source": {
                 "type": "git",
@@ -6206,18 +6193,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/92d86be45ee54edff735e46856f64f14b6a8bb07",
                 "reference": "92d86be45ee54edff735e46856f64f14b6a8bb07",
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
                 "shasum": ""
             },
             "require": {
                 "illuminate/routing": "^9|^10|^11",
                 "illuminate/session": "^9|^10|^11",
                 "illuminate/support": "^9|^10|^11",
-<<<<<<< HEAD
-                "maximebf/debugbar": "~1.21.0",
-=======
                 "maximebf/debugbar": "~1.22.0",
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
                 "php": "^8.0",
                 "symfony/finder": "^6|^7"
             },
@@ -6230,11 +6212,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "3.10-dev"
-=======
                     "dev-master": "3.13-dev"
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
                 },
                 "laravel": {
                     "providers": [
@@ -6273,11 +6251,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.12.2"
-=======
                 "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.13.5"
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
             },
             "funding": [
                 {
@@ -6289,11 +6263,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
             "time": "2024-03-13T09:50:34+00:00"
-=======
-            "time": "2024-04-12T11:20:37+00:00"
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
         },
         {
             "name": "fakerphp/faker",
@@ -6611,7 +6581,6 @@
         },
         {
             "name": "maximebf/debugbar",
-<<<<<<< HEAD
             "version": "v1.21.3",
             "source": {
                 "type": "git",
@@ -6679,9 +6648,6 @@
         {
             "name": "mockery/mockery",
             "version": "1.6.7",
-=======
-            "version": "v1.22.3",
->>>>>>> b460f8be455849e8d84cc1a237a2102ffc196ccb
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
