@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index(){
-
+        
+        dd(1);
         // dd(session()->all());
         // dd(session()->has('df'));
         // return session()->get('foo');
