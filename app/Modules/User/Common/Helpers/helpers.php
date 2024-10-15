@@ -3,7 +3,7 @@ namespace App\Modules\User\Common\Helpers;
 
 use Illuminate\Http\RedirectResponse;
 
-if (function_exists('responseError'))
+if ( ! function_exists('responseError'))
 {
     function responseError(string $message) : RedirectResponse
     {
