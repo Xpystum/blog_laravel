@@ -2,7 +2,7 @@
 
 <label {{ $attributes->class([
 
-     'mb-1' , ($required ? 'required' : ''),
+    'mb-1' , ($required ? 'required' : ''),
 
 ]) }} >
 

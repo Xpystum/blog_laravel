@@ -8,18 +8,16 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function index(){
-        
-        dd(1);
-        // dd(session()->all());
-        // dd(session()->has('df'));
-        // return session()->get('foo');
+    public function index()
+    {
 
         return view('login.login_index');
     }
 
     public function store(Request $request, AdapterSanctumCookie $authServ){
 
+
+        dd('hello IVAN');
         dd($request);
         alert(__('Добро пожаловать'));
 

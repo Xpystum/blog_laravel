@@ -14,7 +14,7 @@ class RegisterController extends Controller
 {
     public function index(){
 
-        return view('register.register_index2');
+        return view('register.register_index');
     }
 
     public function store(
@@ -24,7 +24,7 @@ class RegisterController extends Controller
     ) {
         $validated = $request->validated();
 
-        
+
         $status = $rep->create(UserCreateDTO::make(
             login: $validated['login'],
             email: $validated['email'],
