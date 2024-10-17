@@ -9,7 +9,11 @@ export default {
     ],
     theme: {
         extend: {
+            width:{
+                'custom-width-button-link' : '114px',
+            },
             height: {
+
                 'custom-height': '74px',
                 '85vh': '85vh', // 90% высоты видимой области экрана
             },
