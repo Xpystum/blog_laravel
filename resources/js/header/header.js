@@ -26,7 +26,7 @@ function updateMenu(mediaQuery) {
         if (savedMenu) {
             // Добавляем меню обратно в DOM
 
-            navdiv.appendChild(savedMenuEmptyClass);
+            navdiv.appendChild(savedMenu);
         }
 
     }
