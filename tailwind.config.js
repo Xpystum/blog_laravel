@@ -16,6 +16,9 @@ export default {
                 'mob-l': '425px',
                 'mob-m': '375px',
                 'mob-s': '320px',
+                'max-mob-l': {'max': '425px'}, // добавьте этот ключ
+                'max-mob-m': {'max': '375px'}, // добавьте этот ключ
+                'max-mob-s': {'max': '320px'}, // добавьте этот ключ
             },
             height: {
 
