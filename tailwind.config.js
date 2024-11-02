@@ -19,7 +19,16 @@ export default {
                 'max-mob-l': {'max': '425px'}, // добавьте этот ключ
                 'max-mob-m': {'max': '375px'}, // добавьте этот ключ
                 'max-mob-s': {'max': '320px'}, // добавьте этот ключ
+                'max-mob-s-not-equally': {'max': '319px'}, // добавьте этот ключ
+
+
+                'max-md': {'max': '768px'},
             },
+            variants: {
+                extend: {
+                  overflow: ['max-mob-s-not-equally'],
+                },
+              },
             height: {
 
                 'custom-height': '74px',

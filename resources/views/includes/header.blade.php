@@ -18,7 +18,10 @@
             </div>
 
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 lg:p-0 mt-5 max-lg:hover:text-blue-700 max-lg:dark:bg-dark-black-opacity font-medium border-gray-100 rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0">
+                <ul class="flex flex-col p-4 lg:p-0 mt-5
+                    max-md:hover:text-blue-700
+                    max-md:bg-dark-black-opacity
+                lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 font-medium border-gray-100 rounded-lg  rtl:space-x-reverse">
                     <li>
                         {{-- {{ active_link('home') }}  --}}
                         <a href="{{ route('home') }}" class=" {{ active_link('home', 'bg-gray-700') }} block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 max-lg:hover:bg-transparent max-lg:hover:text-blue-700 max-lg:p-0 max-lg:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white max-lg:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">

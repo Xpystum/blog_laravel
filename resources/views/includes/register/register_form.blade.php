@@ -4,7 +4,7 @@
         Flowbite
     </a>
 
-    <div class="w-full max-mob-s:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         {{-- TODO Расположить errors по inputs --}}
         <x-errors />
         <fieldset class="w-full  p-2 space-y-4 md:space-y-6 sm:p-8">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="ml-3 text-sm">
                         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">Я Принимаю
-                            <a class="text-md max-sm:text-xs break-words font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Пользовательское соглашение</a>
+                            <a class="text-md max-mob-l:text-xs break-words font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Пользовательское соглашение</a>
                         </label>
                     </div>
                 </div>
