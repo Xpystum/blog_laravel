@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 </head>
-<body class="dark min-h-screen">
+<body class="dark flex flex-col h-screen">
 
     <div class="flex flex-col min-h-screen m-0 p-0">
 
@@ -22,9 +22,10 @@
 
         @include('includes.alert')
 
+        {{-- flex-1 flex items-center justify-center flex-grow bg-gray-700 flex-grow-1 py-3 --}}
+        {{-- flex-1 flex items-center justify-center --}}
 
-
-        <main class="flex-grow bg-gray-700 flex-grow-1 py-3">
+        <main class="flex-1 flex items-center justify-center bg-gray-700 w-full ">
 
             @yield('content')
 
