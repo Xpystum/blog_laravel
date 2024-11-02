@@ -22,10 +22,7 @@
 
         @include('includes.alert')
 
-        {{-- flex-1 flex items-center justify-center flex-grow bg-gray-700 flex-grow-1 py-3 --}}
-        {{-- flex-1 flex items-center justify-center --}}
-
-        <main class="flex-1 flex items-center justify-center bg-gray-700 w-full ">
+        <main class="flex-1 pt-2 pb-2 flex items-center justify-center bg-gray-700 w-full ">
 
             @yield('content')
 
