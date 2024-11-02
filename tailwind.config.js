@@ -12,6 +12,11 @@ export default {
             width:{
                 'custom-width-button-link' : '114px',
             },
+            screens: {
+                'mob-l': '425px',
+                'mob-m': '375px',
+                'mob-s': '320px',
+            },
             height: {
 
                 'custom-height': '74px',
