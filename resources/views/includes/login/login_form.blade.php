@@ -8,8 +8,8 @@
     <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <fieldset class="w-full p-3 max-mob-l:p-1 space-y-4 md:space-y-6 ">
 
-            <h1 class="text-center text-md mob-l:text-lg sm:text-2xl font-bold text-gray-900 leading-tight tracking-tight dark:text-white">
-                Войти в Аккаунт
+            <h1 class="text-center xl:text-xl max-lg:text-xl max-md:text-md max-sm:text-md font-bold text-gray-900 leading-tight tracking-tight dark:text-white">
+                Вход в Аккаунт
             </h1>
                 <x-errors />
                 {{-- <div>

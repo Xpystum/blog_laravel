@@ -22,7 +22,10 @@ export default {
                 'max-mob-s-not-equally': {'max': '319px'}, // добавьте этот ключ
 
                 'max-xl': {'max': '1280px'},
+
                 'max-lg': {'max': '1024px'},
+                'max-lg-not-equally': {'max': '1023px'}, // добавьте этот ключ
+
                 'max-md': {'max': '768px'},
                 'max-sm': {'max': '640px'},
             },

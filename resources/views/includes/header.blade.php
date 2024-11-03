@@ -19,8 +19,8 @@
 
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
                 <ul class="max-mob-s-not-equally:overflow-auto flex flex-col p-4 lg:p-0 mt-5
-                    max-lg:hover:text-blue-700
-                    max-lg:bg-dark-black-opacity
+                    max-lg-not-equally:hover:text-blue-700
+                    max-lg-not-equally:bg-dark-black-opacity
                 lg:space-x-3 xl:space-x-6 2xl:space-x-12 lg:flex-row lg:mt-0 lg:border-0 font-medium border-gray-100 rounded-lg  rtl:space-x-reverse">
                     <li>
                         {{-- {{ active_link('home') }}  --}}
