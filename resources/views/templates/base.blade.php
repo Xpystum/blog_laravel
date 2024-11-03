@@ -32,24 +32,6 @@
 
     </div>
 
-
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function() {
-          // Установить таймер для автоматического закрытия уведомления
-          window.setTimeout(function() {
-            const alert = document.querySelector('.custom-alert');
-            if (alert) {
-              // Закрыть уведомление
-              new bootstrap.Alert(alert).close();
-            }
-          }, 3000); // Задержка в миллисекундах (3000 мс = 3 секунды)
-        });
-
-
-    </script>
-
-    @stack('jsAfter')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 </html>

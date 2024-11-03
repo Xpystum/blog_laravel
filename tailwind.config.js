@@ -21,7 +21,8 @@ export default {
                 'max-mob-s': {'max': '320px'}, // добавьте этот ключ
                 'max-mob-s-not-equally': {'max': '319px'}, // добавьте этот ключ
 
-
+                'max-xl': {'max': '1280px'},
+                'max-lg': {'max': '1024px'},
                 'max-md': {'max': '768px'},
                 'max-sm': {'max': '640px'},
             },
