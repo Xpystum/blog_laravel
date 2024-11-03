@@ -18,7 +18,7 @@
             </div>
 
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 lg:p-0 mt-5
+                <ul class="max-mob-s-not-equally:overflow-auto flex flex-col p-4 lg:p-0 mt-5
                     max-md:hover:text-blue-700
                     max-md:bg-dark-black-opacity
                 lg:space-x-3 xl:space-x-6 2xl:space-x-12 lg:flex-row lg:mt-0 lg:border-0 font-medium border-gray-100 rounded-lg  rtl:space-x-reverse">

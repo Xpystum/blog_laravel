@@ -23,12 +23,13 @@ export default {
 
 
                 'max-md': {'max': '768px'},
+                'max-sm': {'max': '640px'},
             },
             variants: {
                 extend: {
                   overflow: ['max-mob-s-not-equally'],
                 },
-              },
+            },
             height: {
 
                 'custom-height': '74px',
