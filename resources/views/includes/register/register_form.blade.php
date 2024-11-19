@@ -5,16 +5,28 @@
     </a>
 
     <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-        <x-errors />
+
+
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->keys() as $field)
+                    <li>{{ $field }}</li>
+                @endforeach
+            </ul>
+        @endif
+
         <fieldset class="w-full  p-2 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Регистрация
             </h1>
 
-            <div class="w-full  box-border space-y-4 md:space-y-6">
+            <div class="w-full box-border space-y-4 md:space-y-6">
 
-                <x-union.form.union-label-input placeholder="Ваш Логин" type="text" label="Логин" name="login"/>
-                <x-union.form.union-label-input placeholder="Ваш email" name="email" type="email" label="Email"/>
+                <x-union.form.union-label-input placeholder="Ваш Логин" name="login" type="text" label="Логин"/>
+                <x-errors.error name="login" />
+
+                <x-union.form.union-label-input placeholder="Ваш Email" name="email" type="email" label="Email"/>
+                <x-errors.error name="email" />
 
                 <div>
                     <x-label for="typeSelectActivities" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -22,9 +34,12 @@
                     </x-label>
 
                     <x-select id="typeSelectActivities" placeholder="Кто вы?" name="type" :options="['Разработчик' => 'Разработчик', 'Дизайнер' => 'Дизайнер', 'Другое' => 'Другое']" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                    <x-errors.error name="type" />
                 </div>
 
                 <x-union.form.union-label-input placeholder="••••••••" name="password" type="password" label="Пароль"/>
+                <x-errors.error name="password" />
+
                 <x-union.form.union-label-input placeholder="••••••••" name="password_confirmation" type="password" label="Повторите пароль"/>
 
                 <div class="w-full flex items-start">

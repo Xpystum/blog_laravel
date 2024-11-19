@@ -22,6 +22,7 @@ class RegisterController extends Controller
         IUserRepository $rep,
         AdapterSanctumCookie $auth,
     ) {
+
         $validated = $request->validated();
 
 

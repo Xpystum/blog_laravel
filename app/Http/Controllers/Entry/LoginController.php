@@ -14,12 +14,18 @@ class LoginController extends Controller
         return view('login.login_index');
     }
 
-    public function store(Request $request, AdapterSanctumCookie $authServ){
+    public function store(
+        Request $request,
+        AdapterSanctumCookie $authServ
+    ) {
 
+        $validated = $request->validated();
 
-        dd('hello IVAN');
-        dd($request);
-        alert(__('Добро пожаловать'));
+        // return back()->withErrors([
+        //     'password' => 'Неверный пароль.',
+        // ])->withInput($request->only('email'));
+
+        dd($validated);
 
         //Опеределённые поля
         $data = $request->only(['email', 'password', 'remember']);

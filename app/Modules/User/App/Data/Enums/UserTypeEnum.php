@@ -8,11 +8,14 @@ enum UserTypeEnum : string
 
    case developer = "Разработчик";
 
+   case other = "Другое";
+
    public static function stringToEnum(string $type)
    {
         return match ($type) {
             "Дизайнер" => UserTypeEnum::designer,
             "Разработчик" => UserTypeEnum::developer,
+            "Другое" => UserTypeEnum::other,
         };
    }
 

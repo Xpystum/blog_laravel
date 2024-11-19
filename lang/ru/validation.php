@@ -30,7 +30,7 @@ return [
         'array'   => 'Поле :attribute должно содержать :min - :max элементов.',
     ],
     'boolean'              => 'Поле :attribute должно быть логической истинной или ложью.',
-    'confirmed'            => 'Поле :attribute не совпадает с подтверждением.',
+    'confirmed'            => 'Ошибка в повторении пароля',
     'date'                 => 'Поле :attribute не является датой.',
     'date_format'          => 'Поле :attribute не соответствует формату :format.',
     'different'            => 'Поля :attribute и :other должны различаться.',
@@ -84,7 +84,7 @@ return [
     ],
     'string'               => 'Поде :attribute должно быть строкой.',
     'timezone'             => 'Поле :attribute должнобыть валидной временной зоной.',
-    'unique'               => 'Такое значение поля :attribute уже существует.',
+    'unique'               => 'Такой :attribute уже существует.',
     'uploaded'             => 'Загрузка поля :attribute не удалась.',
     'url'                  => 'Поле :attribute имеет ошибочный формат.',
 
@@ -125,7 +125,13 @@ return [
         'title' => 'Заголовок',
 
         'content' => 'Содержание',
-            
+
+        'email' => 'Почта',
+
+        'login' => 'Логин',
+
+        'password' => 'Пароль',
+
     ],
 
 ];
