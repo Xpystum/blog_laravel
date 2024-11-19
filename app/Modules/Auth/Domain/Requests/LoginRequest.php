@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Modules\Auth\Domain\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            "email_login" => ['required', 'string', 'min:2', 'max:255'],
+            "password" => ['required', 'min:2', 'max:255'],
+            "remember" => ['nullable', 'boolean'],
         ];
     }
 }
