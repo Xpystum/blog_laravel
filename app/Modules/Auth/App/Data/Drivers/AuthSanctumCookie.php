@@ -25,7 +25,15 @@ class AuthSanctumCookie implements AuthInterfaceCookie
     */
     public function attemptUser(BaseDTO $data)
     {
-       $status = auth($this->config->UrlExpiresConfig)->attempt($data->toArray());
+
+        $status = auth($this->config->guard)->attempt($data->toArrayNotNull());
+
+        #TODO Проблема проверить
+        dd(auth($this->config->guard)->attempt([
+            'email' => $data->email,
+            'password' => $data->password,
+        ]));
+
        return $status ? true : false;
     }
 

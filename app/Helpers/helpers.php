@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use Illuminate\Support\Facades\Route;
 
 if( ! function_exists('active_link') ){
