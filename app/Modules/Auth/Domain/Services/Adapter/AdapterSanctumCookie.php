@@ -14,7 +14,7 @@ class AdapterSanctumCookie
         $serv = app(AuthService::class);
     }
 
-    public function attemptUser(UserAttemptDTO $data)
+    public function attemptUser(UserAttemptDTO $data) : bool
     {
         return $this->serv->attemptUserAuth($data);
     }

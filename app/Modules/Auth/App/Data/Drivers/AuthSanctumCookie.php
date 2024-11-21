@@ -8,6 +8,8 @@ use App\Modules\Auth\Common\Config\AuthConfig;
 use App\Modules\Auth\Domain\Interface\AuthInterfaceCookie;
 use App\Modules\User\Domain\Models\User;
 use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthSanctumCookie implements AuthInterfaceCookie
 {
@@ -25,16 +27,9 @@ class AuthSanctumCookie implements AuthInterfaceCookie
     */
     public function attemptUser(BaseDTO $data)
     {
+        $status = $this->checkUserAuth($data);
 
-        $status = auth($this->config->guard)->attempt($data->toArrayNotNull());
-
-        #TODO Проблема проверить
-        dd(auth($this->config->guard)->attempt([
-            'email' => $data->email,
-            'password' => $data->password,
-        ]));
-
-       return $status ? true : false;
+        return $status ? true : false;
     }
 
     /**
@@ -56,6 +51,28 @@ class AuthSanctumCookie implements AuthInterfaceCookie
         $status = auth($this->config->guard)->logout();
 
         return $status ? true : false;
+    }
+
+    /**
+    * @param UserAttemptDTO $credentials
+    *
+    * @return bool
+    */
+    private function checkUserAuth(BaseDTO $credentials) : bool
+    {
+
+        $user = User::where('email', $credentials->email)
+                ->orWhere('login', $credentials->login)
+                ->first();
+
+
+        if (! $user || ! Hash::check($credentials->password, $user->password)) {
+            return false;
+        }
+
+        auth($this->config->guard)->login($user, $credentials->remember);
+
+        return Auth::check();
     }
 
 }

@@ -16,12 +16,15 @@ class UserAttemptDTO extends BaseDTO
 
         public readonly ?string $login,
 
+        public readonly ?bool $remember,
+
         public readonly string $password,
 
     ) { }
 
     public static function make(
         string $password,
+        bool $remember = false,
         ?string $phone = null,
         ?string $email = null,
         ?string $login = null,
@@ -30,6 +33,7 @@ class UserAttemptDTO extends BaseDTO
             phone : $phone,
             email : $email,
             login : $login,
+            remember : $remember,
             password : $password,
         );
     }
@@ -41,6 +45,7 @@ class UserAttemptDTO extends BaseDTO
             'email' => $this->email,
             'login' => $this->login,
             'phone' => $this->phone,
+            'remember' => $this->remember,
             'password' => $this->password,
         ];
 

@@ -5,17 +5,14 @@
         Flowbite
     </a>
 
-    <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border  md:mt-1 md:max-w-xl xl:p-1 dark:bg-gray-800 dark:border-gray-700">
         <fieldset class="w-full p-3 max-mob-l:p-1 space-y-4 md:space-y-6 ">
 
             <h1 class="text-center xl:text-xl max-lg:text-xl max-md:text-md max-sm:text-md font-bold text-gray-900 leading-tight tracking-tight dark:text-white">
                 Вход в Аккаунт
             </h1>
-                <x-errors />
-                {{-- <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
-                </div> --}}
+                <x-errors.alert-errors />
+
                 <x-union.form.union-label-input placeholder="Почта или логин" type="text" label="Почта" name="email_login"/>
                 <x-errors.error name="email_login" />
 

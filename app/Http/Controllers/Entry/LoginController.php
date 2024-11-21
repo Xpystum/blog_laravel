@@ -7,6 +7,7 @@ use App\Modules\Auth\App\Data\DTO\UserAttemptDTO;
 use App\Modules\Auth\Domain\Requests\LoginRequest;
 use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,29 +24,18 @@ class LoginController extends Controller
     ) {
 
         $validated = $request->validated();
-        // $validated = $request->all();
 
-        // return back()->withErrors([
-        //     'password' => 'Неверный пароль.',
-        // ])->withInput($request->only('email'));
-
-        $user = $authServ->attemptUser(
+        $status = $authServ->attemptUser(
             UserAttemptDTO::make(
                 email: $validated['email_login'],
                 login: $validated['email_login'],
+                remember: $validated['remember'] ?? false,
                 password: $validated['password'],
             )
         );
 
-        dd($user);
-
-
-        dd($validated);
-
-        //Опеределённые поля
-        $data = $request->only(['email', 'password', 'remember']);
-
-        return redirect()->route('user.user');
+        return $status ? redirect()->route('home')
+        : redirect()->back()->withErrors(['error' => 'Не правильный Логин/Почта или пароль.']);
     }
 
 }
