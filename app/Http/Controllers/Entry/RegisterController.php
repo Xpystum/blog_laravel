@@ -7,6 +7,7 @@ use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
 use App\Modules\User\Common\Requests\UserRegisterRequest;
 use App\Modules\User\Domain\IRepository\IUserRepository;
+use Illuminate\Support\Facades\Auth;
 
 use function App\Modules\User\Common\Helpers\responseError;
 
@@ -38,8 +39,6 @@ class RegisterController extends Controller
 
         //Регистрируем user в приложении.
         $auth->loginUser($status);
-
-        dd(1);
 
         return redirect()->route('user.user');
     }
