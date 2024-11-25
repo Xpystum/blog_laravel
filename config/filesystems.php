@@ -44,6 +44,13 @@ return [
             'throw' => false,
         ],
 
+        'avatars' => [
+            'driver' => 'local', // Устанавливаем драйвер на `local`
+            'root' => public_path('storage/avatars/svg'), // Указываем полный путь к папке
+            'url' => env('APP_URL') . '/storage/avatars/svg', // URL доступа к файлам
+            'visibility' => 'public', // Делаем файлы публичными
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
