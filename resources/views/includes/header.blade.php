@@ -11,7 +11,7 @@
 
             @if (auth()->check())
 
-                <div class="max-mob-l:w-full flex max-mob-l:justify-evenly gap-3">
+                <div class="max-mob-l:w-full flex max-mob-l:justify-evenly lg:order-2 gap-3">
                     <x-dropdown.user-menu-dropdown />
                     <x-buttons.burger-button />
                 </div>
