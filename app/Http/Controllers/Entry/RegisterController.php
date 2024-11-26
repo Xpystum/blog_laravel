@@ -7,6 +7,7 @@ use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
 use App\Modules\User\Common\Requests\UserRegisterRequest;
 use App\Modules\User\Domain\IRepository\IUserRepository;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 use function App\Modules\User\Common\Helpers\responseError;
@@ -25,6 +26,8 @@ class RegisterController extends Controller
     ) {
 
         $validated = $request->validated();
+
+        throw new Exception(code: 500);
 
 
         $status = $rep->create(UserCreateDTO::make(

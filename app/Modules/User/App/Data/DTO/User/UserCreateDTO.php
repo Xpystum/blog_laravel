@@ -2,10 +2,15 @@
 
 namespace App\Modules\User\App\Data\DTO\User;
 
+use App\Modules\Base\Traits\FilterArrayTrait;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
+use Illuminate\Contracts\Support\Arrayable;
 
-class UserCreateDTO
+final readonly class UserCreateDTO implements Arrayable
 {
+
+    use FilterArrayTrait;
+
     public function __construct(
         public string $login,
         public string $email,
@@ -21,6 +26,16 @@ class UserCreateDTO
             type: UserTypeEnum::stringToEnum($type),
             password: $password,
         );
+    }
+
+    public function toArray() : array
+    {
+        return [
+            "login" => $this->login,
+            "email" => $this->email,
+            "type" =>  $this->type?->value,
+            "password" => $this->password,
+        ];
     }
 
 }

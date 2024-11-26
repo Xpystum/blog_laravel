@@ -18,7 +18,7 @@
 
 
             @else
-                <div class="max-mob-l:w-full flex max-mob-l:justify-center gap-3">
+                <div class="max-mob-l:w-full flex max-mob-l:justify-center gap-3 order-3">
                     <a href="{{ route('register') }}" class="{{ active_link('register', 'dark:bg-blue-700') }} flex items-center justify-cente  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Регистрация</a>
                     <a href="{{ route('login') }}" class="{{ active_link('login', 'dark:bg-blue-700') }} flex items-center justify-cente text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Вход</a>
                     <x-buttons.burger-button />
@@ -26,7 +26,7 @@
             @endif
 
 
-            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto order-4 lg:order-2" id="navbar-sticky">
                 <ul class="max-mob-s-not-equally:overflow-auto flex flex-col p-4 lg:p-0 mt-5
                     max-lg-not-equally:hover:text-blue-700
                     max-lg-not-equally:bg-dark-black-opacity
