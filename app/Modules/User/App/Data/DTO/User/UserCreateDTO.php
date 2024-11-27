@@ -16,15 +16,35 @@ final readonly class UserCreateDTO implements Arrayable
         public string $email,
         public UserTypeEnum $type,
         public string $password,
+        public ?string $url_avatar,
     ) {}
 
-    public static function make(string $login, string $type , string $email, string $password) : self
-    {
+    public static function make(
+        string $login,
+        string $type ,
+        string $email,
+        string $password,
+        ?string $url_avatar = null,
+    ) : self {
+
         return new self(
             login: $login,
             email: $email,
             type: UserTypeEnum::stringToEnum($type),
             password: $password,
+            url_avatar: $url_avatar,
+        );
+
+    }
+
+    public function setUrlAvatar(string $url_avatar) : self
+    {
+        return self::make(
+            login: $this->login,
+            type: $this->type->value,
+            email: $this->email,
+            password: $this->password,
+            url_avatar: $url_avatar,
         );
     }
 
@@ -35,6 +55,7 @@ final readonly class UserCreateDTO implements Arrayable
             "email" => $this->email,
             "type" =>  $this->type?->value,
             "password" => $this->password,
+            "url_avatar" => $this->url_avatar,
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Modules\User\Domain\Models;
 
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
+use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'email',
         'type',
         'password',
+        'url_avatar',
     ];
 
     protected $hidden = [
@@ -35,4 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (User $user) {
+
+            //устанавливаем аватар для пользователя поумолчанию
+            $user->url_avatar = GetAvatarAction::make();
+
+        });
+    }
 }

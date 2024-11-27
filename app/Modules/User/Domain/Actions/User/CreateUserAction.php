@@ -14,7 +14,7 @@ class CreateUserAction
      *
      * @return User
      */
-    public function make(UserCreateDTO $dto) : ?User
+    public static function make(UserCreateDTO $dto) : ?User
     {
         return (new self)->run($dto);
     }
@@ -26,7 +26,6 @@ class CreateUserAction
      */
     public static function run(UserCreateDTO $data) : ?User
     {
-
         try {
 
             $user = User::query()->create($data->toArrayNotNull());
@@ -39,7 +38,6 @@ class CreateUserAction
             throw new Exception('Ошибка при создании User в CreateUserAction.', 500);
 
         }
-
     }
 
 }

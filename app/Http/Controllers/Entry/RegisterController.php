@@ -7,6 +7,7 @@ use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
 use App\Modules\User\Common\Requests\UserRegisterRequest;
 use App\Modules\User\Domain\IRepository\IUserRepository;
+use App\Modules\User\Domain\Services\UserService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,28 +22,23 @@ class RegisterController extends Controller
 
     public function store(
         UserRegisterRequest $request,
-        IUserRepository $rep,
+        UserService $serviceUser,
         AdapterSanctumCookie $auth,
     ) {
 
         $validated = $request->validated();
 
-        throw new Exception(code: 500);
-
-
-        $status = $rep->create(UserCreateDTO::make(
+        $user = $serviceUser->registrationUser(UserCreateDTO::make(
             login: $validated['login'],
             email: $validated['email'],
             type: $validated['type'],
             password: $validated['password'],
         ));
 
-        //Если будет ошибка при создании user - выкидываем с ошибкой обратно в blade
-        if(!$status) { responseError("Такой пользователь уже существует."); }
 
         //Регистрируем user в приложении.
-        $auth->loginUser($status);
+        $auth->loginUser($user);
 
-        return redirect()->route('user.user');
+        return redirect()->route('home');
     }
 }
