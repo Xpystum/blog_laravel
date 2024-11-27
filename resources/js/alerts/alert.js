@@ -29,8 +29,7 @@ const instanceOptions = {
 
 const dismiss = new Dismiss($targetEl, $triggerEl, options, instanceOptions);
 
-// hide the target element
-
+//спрятать элемент через 5 секунд
 setTimeout(() => {
     dismiss.hide(); // Вызываем метод `hide()` для скрытия
 }, 5000);

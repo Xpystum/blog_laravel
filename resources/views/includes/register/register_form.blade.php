@@ -6,7 +6,7 @@
 
     <div class="w-full max-mob-s-not-equally:overflow-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
 
-        
+
 
         <fieldset class="w-full  p-2 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -48,7 +48,7 @@
 
                 <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800">Создать Аккаунт</button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                    У вас уже есть аккаунт? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Войти</a>
+                    У вас уже есть аккаунт? <a href="{{ route('login') }}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Войти</a>
                 </p>
             </div>
 

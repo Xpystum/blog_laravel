@@ -29,14 +29,11 @@ class Handler extends ExceptionHandler
             // Проверяем, если это ошибка 500
             if ($exception instanceof Exception && $exception->getCode() === 500) {
 
-                $error = 'Произошла непредвиденная ошибка. Мы уже разбираемся с этим. Напишите поддержке для быстрой решении проблемы.';
+                $error = 'Произошла непредвиденная ошибка.';
 
                 // Перенаправляем пользователя назад с ошибками и данными
                 return redirect()->back()
                     ->withInput() // Возвращает предыдущие данные (если форма есть)
-                    ->withErrors([
-                        'error' => $error, // Кастомное сообщение для пользователей
-                    ])
                     ->with('alert_error', [
                         'code' => 500,
                         'exception_message' => $error, // Сообщение из исключения (для отладки)
