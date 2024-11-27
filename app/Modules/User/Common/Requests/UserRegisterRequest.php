@@ -15,7 +15,6 @@ class UserRegisterRequest extends FormRequest
 
     public function rules(): array
     {
-        // dd($this);
         return [
             'login' => ['required', 'string', 'max:50', 'unique:users,login'],
             'email' => ['required', 'string', 'max:50', 'email', 'unique:users,email'],
@@ -24,4 +23,14 @@ class UserRegisterRequest extends FormRequest
             'agreement' => ['accepted'],
         ];
     }
+
+    public function messages()
+{
+    return [
+        'email.required' => 'Поле "Эл. почта" обязательно для заполнения.',
+        'email.email' => 'Поле "Эл. почта" должно быть корректным email-адресом.',
+        'email.unique' => 'Такая почта уже зарегистрирован.',
+        'login.unique' => 'Такой Логин уже зарегистрирован.',
+    ];
+}
 }
