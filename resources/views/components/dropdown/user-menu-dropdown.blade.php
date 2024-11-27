@@ -1,7 +1,9 @@
 <div class="flex items-center space-x-3 md:space-x-0 rtl:space-x-reverse">
     <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span class="sr-only">Open user menu</span>
-        <img class="w-10 h-10 md:w-12 md:h-12 rounded-full" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
+
+        <img class="w-10 h-10 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
+        {{-- <img class="w-10 h-10 md:w-12 md:h-12 rounded-full" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя"> --}}
     </button>
     <!-- Dropdown menu -->
     <div class="w-auto z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
