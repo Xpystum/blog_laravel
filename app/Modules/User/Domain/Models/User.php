@@ -5,12 +5,13 @@ namespace App\Modules\User\Domain\Models;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 

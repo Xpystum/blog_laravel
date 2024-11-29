@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
+use Str;
 
 class MakeModules extends Command
 {
@@ -18,7 +19,7 @@ class MakeModules extends Command
     public const COMMONFOLDER = ['Config', 'Database', 'Helpers', 'Requests', 'Tests'];
 
     //В папке Domain
-    public const DOMAINFOLDER = ['Actions', 'Exceptions', 'Interactor', 'Interface', 'Models', 'Rule', 'Services'];
+    public const DOMAINFOLDER = ['Actions', 'Exceptions', 'Interactor', 'Interface', 'Models', 'Rule', 'Services', 'Factories'];
 
     //В папке Common
     public const PRESINTATIONFOLDER = ['CLI', 'API', 'HTTP'];
@@ -39,7 +40,7 @@ class MakeModules extends Command
 
     public function createModule(string $nameModule)
     {
-        $path = ("app/Modules/" . $nameModule);
+        $path = ("App\\Modules\\" . $nameModule);
 
         File::makeDirectory($path, 0777, true);
 
@@ -55,6 +56,8 @@ class MakeModules extends Command
                 case 'Common':
                 {
                     $this->createInnerFolder($path, $folder, self::COMMONFOLDER);
+                    $this->createMigration($path, $folder, $nameModule);
+
                     break;
                 }
 
@@ -65,7 +68,7 @@ class MakeModules extends Command
                     // Выполняет команду artisan make:model
                     Artisan::call('make:model', [
                         'name' => 'App\\Modules\\' . $nameModule . '\\' . 'Domain' . "\\" . 'Models' . '\\' . $nameModule,
-                        '--migration' => true,
+                        // '--migration' => true,
                     ]);
 
                     break;
@@ -90,6 +93,28 @@ class MakeModules extends Command
 
     }
 
+    /**
+     * Создание миграции в папке \\Database\\Migrations
+     * @param string $path
+     * @param string $folder
+     * @param string $nameModule
+     *
+     * @return [type]
+     */
+    private function createMigration(string $path, string $folder, string $nameModule)
+    {
+
+        $timestamp = date('Y_m_d_His', time());
+        $migrationPath = $path . '\\' . $folder . '\\Database' . '\\Migrations';
+        $migrationName = 'create_' . Str::snake(Str::plural($nameModule)) . '_table';
+
+        Artisan::call('make:migration', [
+            'name' => $migrationName,
+            '--path' => $migrationPath,
+        ]);
+
+    }
+
     private function createInnerFolder(string $path, string $folder, array $static)
     {
         $pathIn = $path . '/' . $folder;
@@ -97,6 +122,9 @@ class MakeModules extends Command
 
         foreach ($static as $value) {
             File::makeDirectory($pathIn . '/' . $value , 0777, true);
+            if($value == "Database") {
+                File::makeDirectory($pathIn . '/' . $value . '/Migrations' , 0777, true);
+            }
         }
     }
 }
