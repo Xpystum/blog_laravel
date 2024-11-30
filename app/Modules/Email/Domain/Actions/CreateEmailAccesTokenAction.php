@@ -22,6 +22,7 @@ class CreateEmailAccesTokenAction
 
     private function run(int $user_id, string $email_value) : EmailAccesToken
     {
+
         try {
 
             return EmailAccesToken::create([

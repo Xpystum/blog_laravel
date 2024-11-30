@@ -2,7 +2,7 @@
 
 namespace App\Modules\Email\App\Providers;
 
-use App\Modules\Email\Domain\Async\Events\SendEmailVerif;
+use App\Modules\Email\Domain\Async\Events\SendEmailVerifEvent;
 use App\Modules\Email\Domain\Async\Listeners\EmailVerifListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class EmailServiceProvider extends ServiceProvider
 
         //События - Слушатели
         Event::listen(
-            SendEmailVerif::class,
+            SendEmailVerifEvent::class,
             EmailVerifListener::class,
         );
 

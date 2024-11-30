@@ -3,7 +3,6 @@
 namespace App\Modules\Base\Traits;
 
 use Illuminate\Database\Eloquent\Model;
-use function App\Modules\Notification\Helpers\uuid;
 
 trait HasUuid
 {

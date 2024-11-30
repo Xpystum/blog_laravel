@@ -20,7 +20,6 @@ class EmailService
         private EmailAccesTokenRepository $repEmail,
     ) { }
 
-
     /**
      * Отправить уведомление на почту для подтверждения user
      * @return bool

@@ -14,15 +14,15 @@ use Illuminate\Queue\InteractsWithQueue;
 class EmailVerifListener implements ShouldQueue
 {
 
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private EmailAccesTokenRepository $rep,
+    ) { }
+
 
     public function handle(
 
         SendEmailVerifEvent $event,
-        EmailAccesTokenRepository $rep,
+
 
     ): void {
 
@@ -39,7 +39,7 @@ class EmailVerifListener implements ShouldQueue
         /**
         * @var EmailAccesToken
         */
-        $emailAccesToken = $rep->create($user->id, $user->email);
+        $emailAccesToken = $this->rep->create($user->id, $user->email);
 
         //Вызываем нотификацию (нету смысл это вызывать в очереди)
         $user->notify(new EmailConfirmationNotification($emailAccesToken));
