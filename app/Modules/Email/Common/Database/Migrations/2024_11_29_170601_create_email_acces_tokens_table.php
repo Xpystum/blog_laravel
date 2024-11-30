@@ -24,6 +24,8 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users');
 
+            $table->timestamp('expires_at')->default(now()->addMinutes(15));
+
             $table->timestamps();
 
         });

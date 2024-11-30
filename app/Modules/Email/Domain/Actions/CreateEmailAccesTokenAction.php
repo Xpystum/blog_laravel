@@ -7,23 +7,31 @@ use Exception;
 
 class CreateEmailAccesTokenAction
 {
+    /**
+     * Получаем user_id и email
+     * @param int $user_id
+     * @param string $email_value
+     *
+     * @return EmailAccesToken
+     */
     public static function make(int $user_id, string $email_value) : EmailAccesToken
     {
-        return (new self)->run();
+        return (new self)->run($user_id, $email_value);
     }
 
 
-    public function run() : EmailAccesToken
+    private function run(int $user_id, string $email_value) : EmailAccesToken
     {
         try {
 
-            $emailAccesToken = EmailAccesToken::create([
-
+            return EmailAccesToken::create([
+                'value' => $email_value,
+                'user_id' => $user_id,
             ]);
 
         } catch (\Throwable $th) {
 
-            throw new Exception('Ошибка при создании EmailAccesToken в CreateEmailAccesTokenAction', 500);
+            logError($th, ['Ошибка при создании EmailAccesToken в CreateEmailAccesTokenAction']);
             throw new Exception('Ошибка при создании EmailAccesToken в CreateEmailAccesTokenAction', 500);
 
         }

@@ -92,5 +92,23 @@ if (!function_exists('uuid')) {
 
 }
 
+if (!function_exists('app_url')) {
+
+    /**
+     * Начинать кастомный путь нужно без слеша "/"
+     * @param string $path
+     *
+     * @return string
+     */
+    function app_url(string $path = '') : string
+    {
+        return implode('/', [
+            trim(config('app.url'), '/'),
+            trim($path),
+        ]);
+    }
+
+}
+
 
 
