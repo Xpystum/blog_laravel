@@ -8,7 +8,7 @@
 
         <x-form class="w-1/2 mx-auto" action="{{ route('login.store') }}" method="POST">
 
-            @include('includes.login.login_form')
+            @include('includes.auth.login.login_form')
 
         </x-form>
 

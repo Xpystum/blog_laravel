@@ -5,10 +5,10 @@
 @section('auth.content')
     <x-card class="card sm:rounded-lg">
 
-        <x-form class="w-1/2 mx-auto" action="{{ route('register.store') }}" method="POST">
+        <x-form class="w-auto mx-auto" action="{{ route('register.store') }}" method="POST">
 
-            @include('includes.register.register_form')
-            
+            @include('includes.auth.register.register_form')
+
         </x-form>
 
     </x-card>

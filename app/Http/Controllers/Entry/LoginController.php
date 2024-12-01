@@ -6,15 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Modules\Auth\App\Data\DTO\UserAttemptDTO;
 use App\Modules\Auth\Domain\Requests\LoginRequest;
 use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
 
     public function index()
     {
-        return view('login.login_index');
+        return view('auth.login.login_index');
     }
 
     public function store(

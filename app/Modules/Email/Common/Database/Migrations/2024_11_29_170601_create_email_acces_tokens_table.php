@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->id();
 
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
 
             $table->string('value')->comment('Значение email');
 

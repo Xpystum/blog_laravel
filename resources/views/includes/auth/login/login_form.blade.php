@@ -19,8 +19,9 @@
                 <x-union.form.union-label-input placeholder="••••••••" name="password" type="password" label="Пароль"/>
                 <x-errors.error name="password"/>
 
-                <div class="max-sm:flex-col flex items-center justify-between">
-                    <div class="flex items-start">
+                {{-- max-sm:flex-col flex items-center justify-between --}}
+                <div class="flex items-center justify-between">
+                    <div class="flex justify-start items-start">
                         <div class="flex items-center h-5">
                             <input id="remember" name="remember" aria-describedby="remember" value="1" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
                         </div>
@@ -28,7 +29,7 @@
                             <label for="remember" class="text-gray-500 dark:text-gray-300">Запомнить меня</label>
                         </div>
                     </div>
-                    <a href="#" class="max-sm:w-full text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Забыли Пароль?</a>
+                    <a href="#" class="max-sm:w-full text-sm max-sm:text-right font-medium text-primary-600 hover:underline dark:text-primary-500">Забыли Пароль?</a>
                 </div>
                 <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Войти</button>
                 <p class="text-sm max-mob-m:text-center font-light text-gray-500 dark:text-gray-400">

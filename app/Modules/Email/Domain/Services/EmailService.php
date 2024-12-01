@@ -9,7 +9,6 @@ use App\Modules\Email\Domain\Async\Events\SendEmailVerifEvent;
 use App\Modules\Email\Domain\Models\EmailAccesToken;
 use App\Modules\Email\Domain\Repositories\EmailAccesTokenRepository;
 use App\Modules\User\Domain\Models\User;
-use Exception;
 use FunctionResult;
 use Illuminate\Support\Facades\DB;
 
@@ -51,7 +50,10 @@ class EmailService
         */
         $user = $token->user;
 
-        $emailAcces = EmailAccesToken::where( 'user_id', $user->id )->latest()->first();
+        $emailAcces = EmailAccesToken::where( 'user_id', $user->id )
+                        ->latest()
+                        ->lockForUpdate()
+                        ->first();
 
         //провереям акутальность ссылки
         if($emailAcces->id !== $token->id) { return FunctionResult::error("Данная ссылка для подтверждения уже не актуальна."); }

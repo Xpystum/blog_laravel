@@ -7,13 +7,9 @@
 
         <x-container>
 
-            <div class="row">
+            <div class="w-full md:mx-auto">
 
-                <div class="col-12 col-md-6 offset-md-3">
-
-                    @yield('auth.content')
-
-                </div>
+                @yield('auth.content')
 
             </div>
 
