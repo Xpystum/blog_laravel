@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Entity\Blog\BlogController;
 use App\Http\Controllers\Entity\Posts\CommentController;
 use App\Http\Controllers\Entry\LoginController;
@@ -23,6 +24,16 @@ Route::middleware('guest')->group(function() {
 
 });
 
+Route::prefix('/email')->group(function() {
+
+    Route::get('email/confirmation', [EmailController::class, 'index'])->name('email.confirmation')->middleware('auth');
+    Route::any('email/{email:uuid}/confirm', [EmailController::class, 'confirmation'])->name('email.confirm')->whereUuid('email');
+
+
+    Route::post('email/{email:uuid}/send', [EmailController::class, 'send'])->name('email.send')->whereUuid('email'); //  ?
+
+});
+
 
 // Route::get('/register', [RegisterController::class, 'index'])->name('register');
 // Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
@@ -39,8 +50,4 @@ Route::post('/blog/{post}/like', [BlogController::class , 'like'])->name('blog.l
 
 Route::resource('/posts/{post}/comments', CommentController::class);
 
-Route::get('/test', function () {
 
-    return (new EmailConfirmationNotification)->toMail(User::query()->first());
-
-});
