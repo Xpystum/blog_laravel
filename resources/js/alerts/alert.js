@@ -6,8 +6,6 @@ const $targetEl = document.getElementById('alert-border-2');
 // optional trigger element
 const $triggerEl = document.getElementById('triggerElement_alert');
 
-console.log(`${$targetEl}`, `${$triggerEl}`, '1234');
-
 // options object
 const options = {
     transition: 'transition-opacity',

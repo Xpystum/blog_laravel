@@ -16,10 +16,18 @@
         <div class="w-full flex justify-center">
 
             @if( session('email-confirmation-sent') )
-                <x-button disabled type="button" x-data x-on:click="$refs.form_email_send.submit()">
+
+                <x-button x-data="{ isButtonDisabled: true }" x-bind:disabled="isButtonDisabled" type="button" x-on:click="$refs.form_email_send.submit()" x-bind:class="isButtonDisabled ? 'disabled cursor-not-allowed' : ''" >
                     Отправить еще раз
+                    <div x-data="timerComponent()" x-show="showTimer">
+                        <!-- Отображение оставшегося времени -->
+                        <span x-text="timeLeft"></span> секунд(ы)
+                    </div>
+
                     <x-form class="d-none" x-ref="form_email_send" action="{{ route('email.send') }}" method="post" />
                 </x-button>
+            </div>
+
 
             @else
 
@@ -33,3 +41,37 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function timerComponent() {
+        return {
+            // Начальные значения
+            timer: null,
+            timeLeft: Number(@json( session()->get('email-confirmation-sent', 10)['disabled'] )), // Время в секундах
+            showTimer: true, // Свойство для управления показом таймера
+
+            // Монтируем таймер при загрузке
+            init() {
+                this.startTimer();
+            },
+
+            // Функция запуска таймера
+            startTimer() {
+                this.timer = setInterval(() => {
+
+                    if (this.timeLeft > 0) {
+                        this.timeLeft -= 1; // Уменьшаем время
+                    } else {
+                        this.isButtonDisabled = false; // Разблокируем кнопку
+                        this.showTimer = false;
+                        clearInterval(this.timer); // Останавливаем таймер
+                    }
+
+                }, 1000); // Интервал: 1 секунда
+            },
+
+        };
+    }
+
+</script>

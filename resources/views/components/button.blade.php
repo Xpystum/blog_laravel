@@ -11,7 +11,7 @@
     ->merge([
 
         'type' => 'button',
-        'class' => $attributes->has('disabled') ? "disabled cursor-not-allowed" : "",
+        'class' => ( $attributes->has('disabled') || $attributes->get('disabled') === 'true' ) ? "disabled cursor-not-allowed" : "",
 
     ])  }}>
 
