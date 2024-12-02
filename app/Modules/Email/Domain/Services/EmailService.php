@@ -25,6 +25,9 @@ class EmailService
      */
     public function sendEmailConfirmationUser(int $user_id, string $email_value) : bool
     {
+
+        
+
         /**
         * @var EmailAccesToken
         */
