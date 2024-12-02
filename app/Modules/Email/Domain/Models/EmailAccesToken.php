@@ -12,6 +12,11 @@ class EmailAccesToken extends Model
 {
     use HasUuid;
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected $fillable = [
         'uuid',
         'value',

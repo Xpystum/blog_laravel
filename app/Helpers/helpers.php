@@ -1,5 +1,7 @@
 <?php
 
+use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
+use App\Modules\User\Domain\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -108,6 +110,26 @@ if (!function_exists('app_url')) {
         ]);
     }
 
+}
+
+if (!function_exists('isAuthorized'))
+{
+    function isAuthorized() : User
+    {
+
+        $authService = app(AdapterSanctumCookie::class);
+
+        /**
+        * получаем авторизированного user
+        * @var User
+        */
+
+        $user = $authService->user();
+
+        abort_unless( (bool) $user, 401, "Не авторизован");
+
+        return $user;
+    }
 }
 
 

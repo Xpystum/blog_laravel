@@ -14,7 +14,6 @@ const options = {
 
     // callback functions
     onHide: (context, targetEl) => {
-        console.log('Элемент был закрыт!')
         targetEl.remove(); // Удаляем элемент из DOM
     }
 };
@@ -27,9 +26,14 @@ const instanceOptions = {
 
 const dismiss = new Dismiss($targetEl, $triggerEl, options, instanceOptions);
 
-//спрятать элемент через 5 секунд
-setTimeout(() => {
-    dismiss.hide(); // Вызываем метод `hide()` для скрытия
-}, 5000);
+
+if($targetEl)
+{
+    //спрятать элемент через 5 секунд
+    setTimeout(() => {
+        dismiss.hide(); // Вызываем метод `hide()` для скрытия
+    }, 5000);
+}
+
 
 

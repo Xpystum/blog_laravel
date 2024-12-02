@@ -26,6 +26,7 @@
 
                     <x-form class="d-none" x-ref="form_email_send" action="{{ route('email.send') }}" method="post" />
                 </x-button>
+
             </div>
 
 
@@ -44,11 +45,13 @@
 
 <script>
 
+
     function timerComponent() {
+
         return {
-            // Начальные значения
+
             timer: null,
-            timeLeft: Number(@json( session()->get('email-confirmation-sent', 10)['disabled'] )), // Время в секундах
+            timeLeft: parseInt(@json( session()->get('email-confirmation-sent', 10)['disabled'] ?? 0 )), // Время в секундах
             showTimer: true, // Свойство для управления показом таймера
 
             // Монтируем таймер при загрузке
@@ -56,22 +59,33 @@
                 this.startTimer();
             },
 
+
+
             // Функция запуска таймера
             startTimer() {
-                this.timer = setInterval(() => {
 
-                    if (this.timeLeft > 0) {
-                        this.timeLeft -= 1; // Уменьшаем время
-                    } else {
-                        this.isButtonDisabled = false; // Разблокируем кнопку
-                        this.showTimer = false;
-                        clearInterval(this.timer); // Останавливаем таймер
-                    }
+                if(this.timeLeft !== null) {
 
-                }, 1000); // Интервал: 1 секунда
-            },
+                    this.timer = setInterval(() => {
+
+                        if (this.timeLeft > 0) {
+                            this.timeLeft -= 1; // Уменьшаем время
+                        } else {
+                            this.isButtonDisabled = false; // Разблокируем кнопку
+                            this.showTimer = false;
+                            clearInterval(this.timer); // Останавливаем таймер
+                        }
+
+                    }, 1000); // Интервал: 1 секунда
+
+                }
+            }
+
 
         };
     }
+
+
+
 
 </script>

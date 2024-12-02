@@ -22,7 +22,6 @@ class LoginController extends Controller
         AdapterSanctumCookie $authServ,
     ) {
 
-        throw new Exception('', 500);
 
         $validated = $request->validated();
 
@@ -36,7 +35,7 @@ class LoginController extends Controller
         );
 
         return $status ? redirect()->route('home')
-        : redirect()->back()->withErrors(['error' => 'Не правильный Логин/Почта или пароль.']);
+            : redirect()->back()->withErrors(['error' => 'Не правильный Логин/Почта или пароль.']);
     }
 
 }

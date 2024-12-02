@@ -50,13 +50,13 @@ class EmailService
         */
         $user = $token->user;
 
-        $emailAcces = EmailAccesToken::where( 'user_id', $user->id )
+        $emailAcces = EmailAccesToken::where('user_id', $user->id)
                         ->latest()
                         ->lockForUpdate()
                         ->first();
 
         //провереям акутальность ссылки
-        if($emailAcces->id !== $token->id) { return FunctionResult::error("Данная ссылка для подтверждения уже не актуальна."); }
+        if($emailAcces->id !== $token->id) { return FunctionResult::error("Данная ссылка для подтвреждения уже не актуальна."); }
 
         //проверяем актуальное время для подтверждения почты
         if($emailAcces->expires_at < $token->expires_at) {

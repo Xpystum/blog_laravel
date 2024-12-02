@@ -25,8 +25,7 @@ class EmailConfirmationNotification extends Notification implements ShouldQueue
 
     public function toMail(User $notifiable): MailMessage
     {
-
-        $url = app_url("email/{$this->email->uuid}");
+        $url = route("email.confirm", ['emailAccesToken' => $this->email->uuid]);
 
         return (new MailMessage)
             ->subject('Изменение проля')

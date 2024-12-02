@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function() {
 Route::prefix('/email')->group(function() {
 
     Route::get('/confirmation', [EmailController::class, 'index'])->name('email.confirmation');
-    Route::any('/{emailaccestoken:uuid}/confirm', [EmailController::class, 'confirmation'])->name('email.confirm')->whereUuid('email');
+    Route::any('/{emailAccesToken:uuid}/confirm', [EmailController::class, 'confirmation'])->name('email.confirm')->whereUuid('emailAccesToken');
     Route::post('/confirmation/send', [EmailController::class, 'send'])->name('email.send')->whereUuid('email');
 
 });
