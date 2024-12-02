@@ -69,6 +69,7 @@
                     this.timer = setInterval(() => {
 
                         if (this.timeLeft > 0) {
+
                             this.timeLeft -= 1; // Уменьшаем время
                         } else {
                             this.isButtonDisabled = false; // Разблокируем кнопку

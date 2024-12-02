@@ -2,14 +2,13 @@
 
 namespace App\Modules\Email\Domain\Services;
 
-use App\Modules\Base\Errors\BusinessException;
+use App\Modules\Base\Response\FunctionResult;
 use App\Modules\Email\App\Data\Enums\EmailStatusEnum;
 use App\Modules\Email\Domain\Actions\CreateEmailAccesTokenAction;
 use App\Modules\Email\Domain\Async\Events\SendEmailVerifEvent;
 use App\Modules\Email\Domain\Models\EmailAccesToken;
 use App\Modules\Email\Domain\Repositories\EmailAccesTokenRepository;
 use App\Modules\User\Domain\Models\User;
-use FunctionResult;
 use Illuminate\Support\Facades\DB;
 
 class EmailService
@@ -25,15 +24,6 @@ class EmailService
      */
     public function sendEmailConfirmationUser(int $user_id, string $email_value) : bool
     {
-
-        
-
-        /**
-        * @var EmailAccesToken
-        */
-        $emailAccesToken = CreateEmailAccesTokenAction::make($user_id, $email_value);
-
-        if(is_null($emailAccesToken)) { return false; }
 
         //отправляем логику работы отправки в событие
         SendEmailVerifEvent::dispatch($user_id);
@@ -53,13 +43,15 @@ class EmailService
         */
         $user = $token->user;
 
+        if(!is_null($user->email_verified_at)) { return FunctionResult::error("Email пользователя - уже был подтверждён!"); }
+
         $emailAcces = EmailAccesToken::where('user_id', $user->id)
                         ->latest()
                         ->lockForUpdate()
                         ->first();
 
         //провереям акутальность ссылки
-        if($emailAcces->id !== $token->id) { return FunctionResult::error("Данная ссылка для подтвреждения уже не актуальна."); }
+        if($emailAcces->id !== $token->id) { return FunctionResult::error("Данная ссылка для подтверждения уже не актуальна!"); }
 
         //проверяем актуальное время для подтверждения почты
         if($emailAcces->expires_at < $token->expires_at) {
@@ -67,7 +59,7 @@ class EmailService
             $token->status = EmailStatusEnum::expired;
             $token->save();
 
-            return FunctionResult::error("Время подтверждения данной ссылки истекло.");
+            return FunctionResult::error("Время подтверждения данной ссылки истекло!");
         }
 
         try {
@@ -87,7 +79,7 @@ class EmailService
 
         } catch (\Exception $e) {
 
-           logError($e , ['Ошибка в сервисе EmailService в методе confirmEmailRegistration']);
+            logError($e , ['Ошибка в сервисе EmailService в методе confirmEmailRegistration']);
             throw new \Exception('Произошла ошибка при подтверждении почты.', 500, $e);
         }
 

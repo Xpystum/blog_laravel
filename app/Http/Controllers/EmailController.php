@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Modules\Auth\Domain\Services\AuthService;
+use App\Modules\Base\Response\FunctionResult;
 use App\Modules\Email\Domain\Models\EmailAccesToken;
 use App\Modules\Email\Domain\Services\EmailService;
 use App\Modules\User\Domain\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EmailController extends Controller
 {
     public function index()
     {
-
         /**
         * @var User
         */
@@ -67,8 +65,18 @@ class EmailController extends Controller
 
     }
 
-    public function confirmation(EmailAccesToken $emailAccesToken)
-    {
-        dd($emailAccesToken);
+    public function confirmation(
+        EmailAccesToken $emailAccesToken,
+        EmailService $emailService,
+    ) {
+
+        /**
+        * @var FunctionResult
+        */
+        $status = $emailService->confirmEmailRegistration($emailAccesToken);
+
+        $alert = $status->success ? ['alert_success' => $status->returnValue]  : ['alert_danger' => $status->errorMessage];
+
+        return redirect()->intended($default = '/')->with($alert);
     }
 }

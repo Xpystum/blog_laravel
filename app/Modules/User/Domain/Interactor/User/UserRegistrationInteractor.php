@@ -31,38 +31,27 @@ class UserRegistrationInteractor
     private function run(UserCreateDTO $dto) : User
     {
 
-        $user = DB::transaction(function () use ($dto) {
-            /**
-            * @var User
-            */
-            $user = $this->createUser($dto);
-            //отправляем подтрвждения на почту через очередь
-            $this->emailService->sendEmailConfirmationUser($user->id, $user->email);
-
-            return $user;
-        });
-
         #TODO Использовать паттерн handler
-        // try {
+        try {
 
-        //     $user = DB::transaction(function () use ($dto) {
-        //         /**
-        //         * @var User
-        //         */
-        //         $user = $this->createUser($dto);
-        //         //отправляем подтрвждения на почту через очередь
-        //         $this->emailService->sendEmailConfirmationUser($user->id, $user->email);
+            $user = DB::transaction(function () use ($dto) {
+                /**
+                * @var User
+                */
+                $user = $this->createUser($dto);
+                //отправляем подтрвждения на почту через очередь
+                $this->emailService->sendEmailConfirmationUser($user->id, $user->email);
 
-        //         return $user;
-        //     });
+                return $user;
+            });
 
 
-        // } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
 
-        //     logError($th);
-        //     throw new Exception('Ошибка в UserRegistrationInteractor.' , 500);
+            logError($th);
+            throw new Exception('Ошибка в UserRegistrationInteractor.' , 500);
 
-        // }
+        }
 
         return $user;
     }

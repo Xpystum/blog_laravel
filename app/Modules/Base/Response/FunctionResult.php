@@ -1,4 +1,5 @@
 <?php
+namespace App\Modules\Base\Response;
 
 final class FunctionResult
 {
