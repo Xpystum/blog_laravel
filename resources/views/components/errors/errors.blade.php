@@ -1,5 +1,4 @@
-{{ $errors->any() }}
-segfwerg
+
 @if($errors->any())
 
 

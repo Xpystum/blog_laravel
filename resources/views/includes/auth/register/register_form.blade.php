@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center justify-center h-full">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+    <a href="{{ route('home') }}" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
         Flowbite
     </a>
@@ -10,6 +10,7 @@
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Регистрация
             </h1>
+            <x-errors.alert-errors />
 
             <div class="w-full box-border space-y-4 md:space-y-6">
 

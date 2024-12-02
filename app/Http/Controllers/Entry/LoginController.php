@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Auth\App\Data\DTO\UserAttemptDTO;
 use App\Modules\Auth\Domain\Requests\LoginRequest;
 use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
-
+use Exception;
 
 class LoginController extends Controller
 {
@@ -21,6 +21,8 @@ class LoginController extends Controller
         LoginRequest $request,
         AdapterSanctumCookie $authServ,
     ) {
+
+        throw new Exception('', 500);
 
         $validated = $request->validated();
 

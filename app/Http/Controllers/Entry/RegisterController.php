@@ -22,6 +22,8 @@ class RegisterController extends Controller
         AdapterSanctumCookie $auth,
     ) {
 
+        throw new \Exception('', 500);
+
         $validated = $request->validated();
 
         $user = $serviceUser->registrationUser(UserCreateDTO::make(
