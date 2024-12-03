@@ -9,7 +9,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EmailConfirmationNotification extends Notification implements ShouldQueue
+/**
+ * Отправка почты для подтврждения email
+ */
+class EmailAccesTokenSendNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -28,7 +31,7 @@ class EmailConfirmationNotification extends Notification implements ShouldQueue
         $url = route("email.confirm", ['emailAccesToken' => $this->email->uuid]);
 
         return (new MailMessage)
-            ->subject('Изменение проля')
+            ->subject('Подтверждения Почты')
             ->greeting('Здравствуйте!')
             ->line('Для подтверждения почты, перейдите по ссылке снизу:')
             ->action('Подтвердить почту', $url);

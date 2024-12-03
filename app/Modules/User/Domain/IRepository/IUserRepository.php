@@ -8,7 +8,7 @@ interface IUserRepository
 {
 
     public function create($data);
-    public function get($id);
+    public function find($id);
     public function update($data);
     public function delete($id);
 

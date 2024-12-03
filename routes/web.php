@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\Entry\LoginController;
-use App\Http\Controllers\Entry\RegisterController;
+
 use App\Http\Controllers\Logout\LogoutController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -19,13 +21,18 @@ Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
+    Route::view('/password', 'auth.password.index.password_wrapp')->name('password');
+    Route::post('/password', [PasswordController::class, 'store'])->name('password.store');
+    Route::any('/password/{passwordReset:uuid}/confirm', [PasswordController::class, 'confirm'])->name('password.confirm')->whereUuid('passwordReset');
+
 });
 
 Route::prefix('/email')->group(function() {
 
     Route::get('/confirmation', [EmailController::class, 'index'])->name('email.confirmation');
-    Route::any('/{emailAccesToken:uuid}/confirm', [EmailController::class, 'confirmation'])->name('email.confirm')->whereUuid('emailAccesToken');
     Route::post('/confirmation/send', [EmailController::class, 'send'])->name('email.send')->whereUuid('email');
+    Route::any('/{emailAccesToken:uuid}/confirm', [EmailController::class, 'confirm'])->name('email.confirm')->whereUuid('emailAccesToken');
+
 
 });
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entry;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
@@ -13,7 +13,7 @@ class RegisterController extends Controller
 {
     public function index(){
 
-        return view('auth.register.register_index');
+        return view('auth.register.register_wrapp');
     }
 
     public function store(

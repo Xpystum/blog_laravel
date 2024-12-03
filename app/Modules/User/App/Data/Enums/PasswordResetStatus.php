@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Email\App\Data\Enums;
+namespace App\Modules\User\App\Data\Enums;
 
 enum PasswordResetStatus : string
 {

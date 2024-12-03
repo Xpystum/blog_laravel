@@ -25,6 +25,11 @@ class UserRepository extends CoreRepository implements IUserRepository
         return CreateUserAction::run($data);
     }
 
+    public function find($id)
+    {
+        return $this->query()->find($id);
+    }
+
     public function get($id)
     {
         return 1;

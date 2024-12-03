@@ -170,7 +170,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Modules\Auth\App\Providers\AuthServiceProvider::class,
+
+
         App\Modules\User\App\Providers\UserServiceProvider::class,
+        App\Modules\User\App\Providers\PasswordServiceProvider::class,
+
         App\Modules\Email\App\Providers\EmailServiceProvider::class,
     ])->toArray(),
 

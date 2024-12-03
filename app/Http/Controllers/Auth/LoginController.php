@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entry;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Auth\App\Data\DTO\UserAttemptDTO;
@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('auth.login.login_index');
+        return view('auth.login.login_wrapp');
     }
 
     public function store(

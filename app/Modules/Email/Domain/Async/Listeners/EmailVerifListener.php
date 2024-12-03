@@ -4,7 +4,7 @@ namespace App\Modules\Email\Domain\Async\Listeners;
 
 use App\Modules\Email\Domain\Async\Events\SendEmailVerifEvent;
 use App\Modules\Email\Domain\Models\EmailAccesToken;
-use App\Modules\Email\Domain\Notifications\EmailConfirmationNotification;
+use App\Modules\Email\Domain\Notifications\EmailAccesTokenSendNotification;
 use App\Modules\Email\Domain\Repositories\EmailAccesTokenRepository;
 use App\Modules\User\Domain\Models\User;
 use Exception;
@@ -36,12 +36,13 @@ class EmailVerifListener implements ShouldQueue
             throw new Exception('Ошибка в EmailVerifListener', 500);
         }
 
+
         /**
         * @var EmailAccesToken
         */
         $emailAccesToken = $this->rep->create($user->id, $user->email);
 
         //Вызываем нотификацию (нету смысл это вызывать в очереди)
-        $user->notify(new EmailConfirmationNotification($emailAccesToken));
+        $user->notify(new EmailAccesTokenSendNotification($emailAccesToken));
     }
 }

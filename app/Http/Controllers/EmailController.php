@@ -17,6 +17,7 @@ class EmailController extends Controller
         */
         $user = isAuthorized();
 
+        //TODO Вынести в middleware
         if($user->email_verified_at) {
             return redirect()->back()->with(['alert_danger' => 'Email пользователя - уже был подтверждён!']);
         }
@@ -65,7 +66,7 @@ class EmailController extends Controller
 
     }
 
-    public function confirmation(
+    public function confirm(
         EmailAccesToken $emailAccesToken,
         EmailService $emailService,
     ) {
