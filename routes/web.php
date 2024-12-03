@@ -1,10 +1,9 @@
 <?php
 
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\Entity\Blog\BlogController;
-use App\Http\Controllers\Entity\Posts\CommentController;
 use App\Http\Controllers\Entry\LoginController;
 use App\Http\Controllers\Entry\RegisterController;
+use App\Http\Controllers\Logout\LogoutController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,12 +29,12 @@ Route::prefix('/email')->group(function() {
 
 });
 
-Route::prefix('user')->group(function() {
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 
-    Route::get('/confirmation', [EmailController::class, 'index'])->name('email.confirmation');
-    
+// Route::prefix('user')->group(function() {
 
-});
+
+// });
 
 
 

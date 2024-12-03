@@ -51,7 +51,7 @@ class AuthSanctumCookie implements AuthInterfaceCookie
         $status = auth($this->config->guard)->logout();
 
         // Инвалидируем текущую сессию
-        request()->ssession()->invalidate();
+        request()->session()->invalidate();
 
         // Генерируем новый CSRF токен для безопасности
         request()->session()->regenerateToken();

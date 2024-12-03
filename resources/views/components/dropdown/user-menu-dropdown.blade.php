@@ -21,7 +21,12 @@
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
         </li>
         <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+
+            <button type="button" x-data x-on:click="$refs.logout_form.submit()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                Выйти из Аккаунта
+                <x-form class="d-none" x-ref="logout_form" action="{{ route('logout') }}" method="post" />
+            </button>
+
         </li>
         </ul>
     </div>

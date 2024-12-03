@@ -28,6 +28,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'url_avatar',
     ];
 
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',

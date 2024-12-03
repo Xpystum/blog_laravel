@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Modules\Email\Domain\Models;
+namespace App\Modules\User\Domain\Models;
 
 use App\Modules\Base\Traits\HasUuid;
-use App\Modules\Email\App\Data\Enums\EmailStatusEnum;
+use App\Modules\Email\App\Data\Enums\PasswordResetStatus;
 use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class EmailAccesToken extends Model
+class PasswordReset extends Model
 {
     use HasUuid;
+
+    protected $table = 'password_resets';
 
     public function getRouteKeyName()
     {
@@ -19,7 +21,7 @@ class EmailAccesToken extends Model
 
     protected $fillable = [
         'uuid',
-        'value',
+        'value_email',
         'status',
         'user_id',
         'expires_at',
@@ -36,7 +38,7 @@ class EmailAccesToken extends Model
     ];
 
     protected $casts = [
-        'status' => EmailStatusEnum::class,
+        'status' => PasswordResetStatus::class,
     ];
 
     public function user() : BelongsTo
