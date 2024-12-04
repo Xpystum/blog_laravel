@@ -27,4 +27,15 @@ class EmailAccesTokenRepository extends CoreRepository implements IEmailAccesTok
         ]);
     }
 
+    /**
+     * Найти модель по массиву условий
+     * @param array $array
+     *
+     * @return Model
+     */
+    public function findModelForArray(array $array) : Model
+    {
+        return $this->query()->where($array)->first();
+    }
+
 }

@@ -29,7 +29,7 @@ class PasswordController extends Controller
         */
         $user = User::query()->where('email', $email)->first();
 
-        $status = $passService->send($user->id);
+        if($user) { $status = $passService->send($user->id); }
 
         return view('includes.auth.password.password_info');
     }

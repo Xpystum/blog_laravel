@@ -14,9 +14,16 @@ use Illuminate\Queue\InteractsWithQueue;
 class EmailVerifListener implements ShouldQueue
 {
 
+    use InteractsWithQueue;
+
+    public $tries = 2;
+
+    public $backoff = 3;
+
     public function __construct(
         private EmailAccesTokenRepository $rep,
     ) { }
+
 
 
     public function handle(
@@ -36,11 +43,27 @@ class EmailVerifListener implements ShouldQueue
             throw new Exception('Ошибка в EmailVerifListener', 500);
         }
 
+        $emailAccesToken = null;
 
-        /**
-        * @var EmailAccesToken
-        */
-        $emailAccesToken = $this->rep->create($user->id, $user->email);
+        //Проверяем для того, что бы не создавать дополнительные записи при ошибке listener
+        if($this->attempts() <= 1)
+        {
+            /**
+            * @var EmailAccesToken
+            */
+            $emailAccesToken = $this->rep->create($user->id, $user->email);
+
+        } else {
+
+            //если listener упал в ошибку - на повторном запуске получаем уже созданную запись
+            $emailAccesToken = $this->rep->findModelForArray([
+                'user_id' => $user->id,
+                'email_value' => $user->email,
+            ]);
+
+            is_null($emailAccesToken) ?: $this->fail('emailAccesToken при получении оказался пустым.');
+        }
+
 
         //Вызываем нотификацию (нету смысл это вызывать в очереди)
         $user->notify(new EmailAccesTokenSendNotification($emailAccesToken));
