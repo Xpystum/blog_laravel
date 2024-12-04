@@ -7,7 +7,7 @@
 
         <x-form class="w-auto mx-auto" action="{{ route('register.store') }}" method="POST">
 
-            @include('includes.auth.register.register_index')
+            {{ $slot }}
 
         </x-form>
 

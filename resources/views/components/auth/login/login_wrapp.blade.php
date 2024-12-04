@@ -8,7 +8,7 @@
 
         <x-form class="w-auto mx-auto" action="{{ route('login.store') }}" method="POST">
 
-            @include('includes.auth.login.login_index')
+            {{ $slot }}
 
         </x-form>
 

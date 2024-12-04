@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class PasswordController extends Controller
 {
+
+    public function index()
+    {
+        return view('includes.auth.password.password_index');
+    }
+
     public function store(
         Request $request,
         PasswordService $passService,
@@ -25,7 +31,7 @@ class PasswordController extends Controller
 
         $status = $passService->send($user->id);
 
-        return redirect()->intended();
+        return view('includes.auth.password.password_info');
     }
 
     public function confirm(PasswordReset $passwordReset)

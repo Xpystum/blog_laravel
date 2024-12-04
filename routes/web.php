@@ -21,7 +21,7 @@ Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
-    Route::view('/password', 'auth.password.index.password_wrapp')->name('password');
+    Route::get('/password', [PasswordController::class, 'index'])->name('password');
     Route::post('/password', [PasswordController::class, 'store'])->name('password.store');
     Route::any('/password/{passwordReset:uuid}/confirm', [PasswordController::class, 'confirm'])->name('password.confirm')->whereUuid('passwordReset');
 
