@@ -9,4 +9,9 @@ enum PasswordResetStatusEnum : string
     case completed = 'completed';
 
     case expired = 'expired';
+
+    public function is(PasswordResetStatusEnum $enum) : bool
+    {
+        return $this === $enum ? true : false;
+    }
 }

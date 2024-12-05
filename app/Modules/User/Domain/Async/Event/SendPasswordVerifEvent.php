@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\User\Async\Event;
+namespace App\Modules\User\Domain\Async\Event;
 
 
 use Illuminate\Broadcasting\InteractsWithSockets;

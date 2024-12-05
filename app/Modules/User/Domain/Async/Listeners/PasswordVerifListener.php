@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Modules\User\Async\Listeners;
+namespace App\Modules\User\Domain\Async\Listeners;
 
 use App\Modules\User\App\Repositories\PasswordRepository;
 use App\Modules\User\App\Repositories\UserRepository;
-use App\Modules\User\Async\Event\SendPasswordVerifEvent;
+use App\Modules\User\Domain\Async\Event\SendPasswordVerifEvent;
+use App\Modules\User\Domain\Models\PasswordReset;
 use App\Modules\User\Domain\Models\User;
 use App\Modules\User\Domain\Notifications\PasswordSendNotification;
 use Exception;
@@ -45,7 +46,7 @@ class PasswordVerifListener implements ShouldQueue
         if($this->attempts() <= 1)
         {
             /**
-            * @var EmailAccesToken
+            * @var PasswordReset
             */
             $passwordReset = $this->passRep->create($user);
 

@@ -2,8 +2,8 @@
 
 namespace App\Modules\User\App\Providers;
 
-use App\Modules\User\Async\Event\SendPasswordVerifEvent;
-use App\Modules\User\Async\Listeners\PasswordVerifListener;
+use App\Modules\User\Domain\Async\Event\SendPasswordVerifEvent;
+use App\Modules\User\Domain\Async\Listeners\PasswordVerifListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 

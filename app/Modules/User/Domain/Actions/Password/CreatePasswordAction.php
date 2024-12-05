@@ -28,9 +28,13 @@ class CreatePasswordAction
     {
         try {
 
+            #TODO Перенести в config (устанавливаем сразу через код, т.к миграция если через миграцию будет браться время сервера а не приложения.)
+            $expires_at = now()->addMinutes(15);
+
             $passwordReset = PasswordReset::query()->create([
                 'value_email' => $user->email,
                 'user_id' => $user->id,
+                'expires_at' => $expires_at,
             ]);
 
             return $passwordReset;

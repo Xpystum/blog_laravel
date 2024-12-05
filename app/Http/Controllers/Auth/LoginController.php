@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('auth.login.login_wrapp');
+        return view('includes.auth.login.login_index');
     }
 
     public function store(

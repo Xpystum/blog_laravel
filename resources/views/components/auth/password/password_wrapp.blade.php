@@ -4,8 +4,11 @@
 
 @section('main.content')
 
+    <x-form
 
-    <x-form class="w-auto mx-auto" action="{{ route('password.store') }}" method="POST">
+        {{ $attributes }}
+        method="POST"
+    >
 
         {{ $slot }}
 

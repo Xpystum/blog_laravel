@@ -13,7 +13,7 @@ class RegisterController extends Controller
 {
     public function index(){
 
-        return view('auth.register.register_wrapp');
+        return view('includes.auth.register.register_index');
     }
 
     public function store(

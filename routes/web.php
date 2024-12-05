@@ -21,9 +21,15 @@ Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
-    Route::get('/password', [PasswordController::class, 'index'])->name('password');
-    Route::post('/password', [PasswordController::class, 'store'])->name('password.store');
-    Route::any('/password/{passwordReset:uuid}/confirm', [PasswordController::class, 'confirm'])->name('password.confirm')->whereUuid('passwordReset');
+    //password
+    Route::prefix('/password')->group(function() {
+
+        Route::view('/', 'includes.auth.password.password_index')->name('password');
+        Route::post('/', [PasswordController::class, 'store'])->name('password.store');
+        Route::get('/{passwordReset:uuid}/edit', [PasswordController::class, 'edit'])->name('password.edit')->whereUuid('passwordReset');
+        Route::post('/{passwordReset:uuid}/update', [PasswordController::class, 'update'])->name('password.update')->whereUuid('passwordReset');
+
+    });
 
 });
 

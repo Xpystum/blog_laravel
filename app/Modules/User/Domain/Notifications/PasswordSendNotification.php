@@ -29,7 +29,7 @@ class PasswordSendNotification extends Notification implements ShouldQueue
 
     public function toMail(User $notifiable): MailMessage
     {
-        $url = route("password.confirm", ['passwordReset' => $this->passReset->uuid]);
+        $url = route("password.edit", ['passwordReset' => $this->passReset->uuid]);
 
         return (new MailMessage)
             ->subject('Изменение пароля')
