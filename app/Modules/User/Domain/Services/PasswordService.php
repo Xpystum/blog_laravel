@@ -19,4 +19,9 @@ class PasswordService
 
         return true;
     }
+
+    public function confirmReset()
+    {
+        
+    }
 }

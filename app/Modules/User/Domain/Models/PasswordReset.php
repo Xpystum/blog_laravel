@@ -3,7 +3,7 @@
 namespace App\Modules\User\Domain\Models;
 
 use App\Modules\Base\Traits\HasUuid;
-use App\Modules\Email\App\Data\Enums\PasswordResetStatus;
+use App\Modules\User\App\Data\Enums\PasswordResetStatusEnum;
 use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,7 +38,7 @@ class PasswordReset extends Model
     ];
 
     protected $casts = [
-        'status' => PasswordResetStatus::class,
+        'status' => PasswordResetStatusEnum::class,
     ];
 
     public function user() : BelongsTo

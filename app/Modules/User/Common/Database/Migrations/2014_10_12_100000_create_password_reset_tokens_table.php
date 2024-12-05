@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\User\App\Data\Enums\PasswordResetStatus;
+use App\Modules\User\App\Data\Enums\PasswordResetStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('value_email')->comment('Значение email');
-            $table->string('status')->default(PasswordResetStatus::pending->value)->comment('Статус заявки');
+            $table->string('status')->default(PasswordResetStatusEnum::pending->value)->comment('Статус заявки');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamp('expires_at')->default(now()->addMinutes(15));
             $table->timestamps();

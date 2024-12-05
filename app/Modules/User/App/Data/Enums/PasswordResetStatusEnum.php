@@ -2,7 +2,7 @@
 
 namespace App\Modules\User\App\Data\Enums;
 
-enum PasswordResetStatus : string
+enum PasswordResetStatusEnum : string
 {
     case pending = 'pending';
 

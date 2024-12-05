@@ -24,4 +24,15 @@ class PasswordRepository extends CoreRepository
         return CreatePasswordAction::make($user);
     }
 
+    /**
+     * возвращаем последнию созданную запись
+     * @param array $array
+     *
+     * @return ?Model
+     */
+    public function findModelForArray(int $user_id) : ?Model
+    {
+        return $this->query()->where('user_id', $user_id)->latest()->first();
+    }
+
 }

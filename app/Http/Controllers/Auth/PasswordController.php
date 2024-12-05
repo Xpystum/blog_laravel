@@ -34,8 +34,9 @@ class PasswordController extends Controller
         return view('includes.auth.password.password_info');
     }
 
-    public function confirm(PasswordReset $passwordReset)
-    {
-        dd($passwordReset);
+    public function confirm(
+        PasswordReset $passwordReset
+    ) {
+
     }
 }
