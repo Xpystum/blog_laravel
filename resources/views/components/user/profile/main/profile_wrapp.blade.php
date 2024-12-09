@@ -5,9 +5,8 @@
 
 @section('auth.content')
 
-<div class="flex justify-end">
-    {{ $slot }}
-</div>
-
+    <div class="w-full flex flex-row">
+        {{ $slot }}
+    </div>
 
 @endsection

@@ -3,17 +3,9 @@
 
 @section('content')
 
-    <div class="max-w-screen-xl">
+    <div class="max-w-screen-xl w-full">
 
-        <x-container>
-
-            <div class="w-full md:mx-auto">
-
-                @yield('auth.content')
-
-            </div>
-
-        </x-container>
+        @yield('auth.content')
 
     </div>
 

@@ -21,7 +21,7 @@
 
         @include('includes.alert')
 
-        <main class="flex-1 mt-[74px] pt-2 pb-2 flex items-center justify-center bg-gray-700 w-full">
+        <main class="flex-1 py-5 pb-2 flex items-center justify-center bg-gray-700 w-full">
 
             @yield('content')
 
