@@ -15,13 +15,13 @@
 </head>
 <body class="dark flex flex-col h-screen">
 
-    <div class="flex flex-col min-h-screen m-0 p-0">
+    <div class="flex flex-col min-h-screen m-0 p-0 bg-gray-800">
 
         @include('includes.header')
 
         @include('includes.alert')
 
-        <main class="flex-1 pt-2 pb-2 flex items-center justify-center bg-gray-700 w-full ">
+        <main class="flex-1 mt-[74px] pt-2 pb-2 flex items-center justify-center bg-gray-700 w-full">
 
             @yield('content')
 

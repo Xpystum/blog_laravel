@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <section class="w-full">
+    <div class="max-w-screen-xl">
 
         <x-container>
 
@@ -15,6 +15,6 @@
 
         </x-container>
 
-    </section>
+    </div>
 
 @endsection

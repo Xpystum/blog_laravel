@@ -66,7 +66,7 @@ class AuthSanctumCookie implements AuthInterfaceCookie
     */
     private function checkUserAuth(BaseDTO $credentials) : bool
     {
-
+        
         $user = User::where('email', $credentials->email)
                 ->orWhere('login', $credentials->login)
                 ->first();

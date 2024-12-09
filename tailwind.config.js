@@ -9,6 +9,9 @@ export default {
     ],
     theme: {
         extend: {
+            maxWidth: {
+                'screen-xl': '1320px', // Пример изменения стандартного значения
+            },
             width:{
                 'custom-width-button-link' : '114px',
             },

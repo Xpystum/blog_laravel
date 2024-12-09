@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section>
+    <div>
 
         <x-container>
 
@@ -10,7 +10,7 @@
 
         </x-container>
 
-    </section>
+    </div>
 
 @endsection
 
