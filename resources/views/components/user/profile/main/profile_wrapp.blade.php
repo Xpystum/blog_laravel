@@ -5,7 +5,7 @@
 
 @section('auth.content')
 
-    <div class="w-full flex flex-row">
+    <div class="w-full flex flex-row mt-20">
         {{ $slot }}
     </div>
 

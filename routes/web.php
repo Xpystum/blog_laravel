@@ -44,10 +44,12 @@ Route::prefix('/email')->group(function() {
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Route::prefix('user')->group(function() {
+
+Route::get('/tinymce', function () {
+    return view('tinymce');
+});
 
 
-// });
 
 
 

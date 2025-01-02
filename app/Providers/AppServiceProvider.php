@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Modules\User\App\Repositories\UserRepository;
 use App\Modules\User\Domain\IRepository\IUserRepository;
-use Dflydev\DotAccessData\Data;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
