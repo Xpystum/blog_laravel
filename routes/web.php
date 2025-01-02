@@ -45,8 +45,8 @@ Route::prefix('/email')->group(function() {
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/tinymce', function () {
-    return view('tinymce');
+Route::get('/text', function () {
+    return view('text-area');
 });
 
 
