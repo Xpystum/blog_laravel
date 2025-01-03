@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.home.index')->name('home');
 
-Route::get('/test', [TestController::class, 'index'])->name('test');
+Route::post('/test', [TestController::class, 'index'])->name('test');
 
 Route::middleware('guest')->group(function() {
 
@@ -41,6 +41,8 @@ Route::prefix('/email')->group(function() {
 
 
 });
+
+
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 

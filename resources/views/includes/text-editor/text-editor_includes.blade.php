@@ -1,5 +1,11 @@
 <div>
-    <div class="w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+
+    <x-input name="title" placeholder="Заголовок Cтатьи" class="w-full p-3 mb-2 bg-gray-50 border border-gray-300 text-gray-900
+        text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required autofocus/>
+
+    <div class="flex flex-col w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+
         <div class="px-3 py-2 border-b dark:border-gray-600">
             <div class="flex flex-wrap items-center">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse flex-wrap">
@@ -10,11 +16,11 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 5h4.5a3.5 3.5 0 1 1 0 7H8m0-7v7m0-7H6m2 7h6.5a3.5 3.5 0 1 1 0 7H8m0-7v7m0 0H6" />
                         </svg>
-                        <span class="sr-only">Bold</span>
+                        <span class="sr-only">{{ __('Жирный') }}</span>
                     </button>
                     <div id="tooltip-bold" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Toggle bold
+                        {{ __('Переключить жирный шрифт') }}
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleItalicButton" data-tooltip-target="tooltip-italic" type="button"
@@ -24,11 +30,11 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m8.874 19 6.143-14M6 19h6.33m-.66-14H18" />
                         </svg>
-                        <span class="sr-only">Italic</span>
+                        <span class="sr-only">{{ __('Курсив') }}</span>
                     </button>
                     <div id="tooltip-italic" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Toggle italic
+                        {{ __('Переключить курсив') }}
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleUnderlineButton" data-tooltip-target="tooltip-underline" type="button"
@@ -38,11 +44,11 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
                                 d="M6 19h12M8 5v9a4 4 0 0 0 8 0V5M6 5h4m4 0h4" />
                         </svg>
-                        <span class="sr-only">Underline</span>
+                        <span class="sr-only">{{ __('Подчёркивание') }}</span>
                     </button>
                     <div id="tooltip-underline" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Toggle underline
+                        {{ __('Переключит подчёркивание') }}
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleStrikeButton" data-tooltip-target="tooltip-strike" type="button"
@@ -52,11 +58,11 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M7 6.2V5h12v1.2M7 19h6m.2-14-1.677 6.523M9.6 19l1.029-4M5 5l6.523 6.523M19 19l-7.477-7.477" />
                         </svg>
-                        <span class="sr-only">Strike</span>
+                        <span class="sr-only">{{ __('Зачеркивание') }}</span>
                     </button>
                     <div id="tooltip-strike" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Toggle strike
+                        {{ __('Переключить зачеркивание') }}
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleHighlightButton" data-tooltip-target="tooltip-highlight" type="button"
@@ -520,11 +526,11 @@
                             d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12c0 .556-.227 1.06-.593 1.422A.999.999 0 0 1 20.5 20H4a2.002 2.002 0 0 1-2-2V6Zm6.892 12 3.833-5.356-3.99-4.322a1 1 0 0 0-1.549.097L4 12.879V6h16v9.95l-3.257-3.619a1 1 0 0 0-1.557.088L11.2 18H8.892Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="sr-only">Add image</span>
+                    <span class="sr-only">{{ __('Добавить картинку') }}</span>
                 </button>
                 <div id="tooltip-image" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Add image
+                    {{ __('Добавить картинку') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="addVideoButton" type="button" data-tooltip-target="tooltip-video"
@@ -535,11 +541,11 @@
                             d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-2 4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H9Zm0 2h2v2H9v-2Zm7.965-.557a1 1 0 0 0-1.692-.72l-1.268 1.218a1 1 0 0 0-.308.721v.733a1 1 0 0 0 .37.776l1.267 1.032a1 1 0 0 0 1.631-.776v-2.984Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="sr-only">Add video</span>
+                    <span class="sr-only">{{ __('Добавить видео') }}</span>
                 </button>
                 <div id="tooltip-video" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Add video
+                    {{ __('Добавить видео') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="toggleListButton" type="button" data-tooltip-target="tooltip-list"
@@ -601,12 +607,23 @@
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
             </div>
+
         </div>
-        <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
-            <label for="wysiwyg-example" class="sr-only">Publish post</label>
+
+        <div class="px-4 py-2 h-[50vh] bg-white rounded-b-lg dark:bg-gray-800 overflow-y-auto">
+            <label for="wysiwyg-example" class="sr-only">Статья публикации</label>
             <div
                 id="wysiwyg-example"class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
             </div>
         </div>
+
+        <button id="text-editor__tiptap-button" type="submit" class="ml-auto m-3 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
+                focus:ring-gray-100
+                dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                Сохранить
+        </button>
+
     </div>
 </div>
+
