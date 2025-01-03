@@ -88,12 +88,6 @@ window.addEventListener('load', function() {
         }
     });
 
-    // Кнопка для очистки форматирования
-    document.getElementById('clearFormatButton').addEventListener('click', () => {
-        editor.commands.clearContent();
-    });
-
-
 
     // set up custom event listeners for the buttons
     document.getElementById('toggleBoldButton').addEventListener('click', () => editor.chain().focus().toggleBold().run());
@@ -228,4 +222,4 @@ window.addEventListener('load', function() {
 })
 
 
-console.log(1);
+console.log('Вызов tiptap');

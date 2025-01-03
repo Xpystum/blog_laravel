@@ -46,7 +46,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->mid
 
 
 Route::get('/text', function () {
-    return view('text-area');
+    return view('pages.text-editor.text-editor_includes');
 });
 
 
