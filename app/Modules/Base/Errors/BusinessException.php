@@ -1,8 +1,6 @@
 <?php
 namespace App\Modules\Base\Errors;
 
-use Illuminate\Http\Request;
-
 class BusinessException extends \RuntimeException
 {
     /**

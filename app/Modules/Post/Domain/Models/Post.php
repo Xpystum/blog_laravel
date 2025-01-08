@@ -2,9 +2,9 @@
 
 namespace App\Modules\Post\Domain\Models;
 
-use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mews\Purifier\Casts\CleanHtmlInput;
 
 class Post extends Model
 {
@@ -16,11 +16,16 @@ class Post extends Model
     // }
 
     protected $fillable = [
-
+        "title",
+        "content",
+        "path_img_cover_post",
+        "user_id",
     ];
 
     protected $guarded = [
-
+        'id',
+        'created_at',
+        'updated_at',
     ];
 
     protected $hidden = [
@@ -28,7 +33,7 @@ class Post extends Model
     ];
 
     protected $casts = [
-
+        'content'=> CleanHtmlInput::class, //очищаем от потенциального опасного кода от xss атак
     ];
 
 }
