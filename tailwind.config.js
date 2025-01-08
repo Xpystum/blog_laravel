@@ -39,9 +39,11 @@ export default {
                 },
             },
             height: {
-
-                'custom-height': '74px',
-                '85vh': '85vh', // 90% высоты видимой области экрана
+                'custom-height': 'var(--custom-height)',
+                '85vh': '85vh', // 85% высоты видимой области экрана
+            },
+            margin: {
+                'custom-top-header': 'var(--custom-height)', // используем переменную CSS
             },
             backgroundOpacity: ['active'],
             colors: {

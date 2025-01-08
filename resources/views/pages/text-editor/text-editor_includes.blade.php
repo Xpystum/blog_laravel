@@ -4,7 +4,7 @@
 
 @section('auth.content')
 
-    <x-form class="w-auto mx-auto" method="POST" action=" {{ route('user.posts.store') }} ">
+    <x-form class="w-auto mx-auto" enctype="multipart/form-data" method="POST" action=" {{ route('user.posts.store') }} ">
 
         <input type="hidden" name="content" id="hiddenContent_input_tiptap">
         @include('includes.text-editor.text-editor_includes')

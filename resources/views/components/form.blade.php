@@ -1,11 +1,17 @@
-@props(['method' => 'GET'])
+@props(['method' => 'GET', 'enctype' => null])
 
 @php
     $method = strtoupper($method);
     $_method = in_array($method , ['GET' , 'POST' ]);
 @endphp
 
-<form {{ $attributes }} method="{{  $_method ? $method : "POST"  }}">
+<form {{ $attributes }}
+
+    @isset($enctype)
+        enctype="{{ $enctype }}"
+    @endisset
+
+    method="{{  $_method ? $method : "POST"  }}">
 
     @unless($_method)
 
@@ -16,7 +22,7 @@
     @if($method !== 'GET')
 
         @csrf
-        
+
     @endif
 
     {{ $slot }}
@@ -24,7 +30,7 @@
 </form>
 
 
- 
+
 
 
 
