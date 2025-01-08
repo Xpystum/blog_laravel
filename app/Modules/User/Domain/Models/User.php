@@ -16,9 +16,9 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     protected static function newFactory()
-{
-    return UserFactory::new();
-}
+    {
+        return UserFactory::new();
+    }
 
     protected $fillable = [
         'login',

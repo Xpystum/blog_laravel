@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -176,6 +177,10 @@ return [
         App\Modules\User\App\Providers\PasswordServiceProvider::class,
 
         App\Modules\Email\App\Providers\EmailServiceProvider::class,
+
+        App\Modules\StorageFile\App\Providers\StorageFileServiceProvider::class, //сервес для работы с файловой системой приложения
+        App\Modules\Post\App\Providers\PostServiceProvider::class, //сервес для работы с статьями блога
+        
     ])->toArray(),
 
     /*

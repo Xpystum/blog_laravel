@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 Image,
                 YouTube,
             ],
-            content: '<p><strong>Начни писать статью, ведь великое начинается с малого</strong></p>',
+            content: '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
             editorProps: {
                 attributes: {
                     class: 'format lg:format-lg dark:format-invert focus:outline-none format-blue max-w-none',

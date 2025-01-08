@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -18,8 +19,8 @@ class PostController extends Controller
     // }
 
 
-    public function store()
+    public function store(Request $request)
     {
-        dd(1);
+        dd($request->all());
     }
 }

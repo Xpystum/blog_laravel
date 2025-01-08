@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->string('title', 150)->comment('Заголовок статьи');
-            $table->string('path_img_post', 150)->nullable()->comment('Путь к картинке - для заголовка статьи');
-            $table->string('path_img_post', 150)->nullable()->comment('Путь к картинке - для заголовка статьи');
+            $table->text('content')->comment('Контент статьи содержащий html разметку');
+            $table->string('path_img_cover_post', 150)->nullable()->comment('Путь к картинке - для обложки статьи');
 
             $table->timestamps();
         });
