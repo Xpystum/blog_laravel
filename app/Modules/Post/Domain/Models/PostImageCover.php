@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PostImageCover extends Model
 {
+    protected $table = 'post_img_covers';
+
     use HasFactory;
 
     // protected static function newFactory()
@@ -16,6 +18,7 @@ class PostImageCover extends Model
     // }
 
     protected $fillable = [
+        "post_id",
         "path_url",
         "original_name",
         "formed_name",

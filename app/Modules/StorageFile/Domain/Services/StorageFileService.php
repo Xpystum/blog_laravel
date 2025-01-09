@@ -20,18 +20,28 @@ class StorageFileService
      *
      * @return string возвращает путь к файлу
      */
-    public function saveFile(UploadedFile $file, string $nameKeyDocument, string $disk) : string
+    public function saveFile(UploadedFile $file, string $nameKey, string $disk) : array
     {
 
         //получаем из const таблицы значение папки для сохранения
-        $nameDocument = Setting::get($nameKeyDocument); #TODO пересмотреть логику работы
+        $nameDocument = Setting::get($nameKey); #TODO пересмотреть логику работы
 
-        $this->saveStorageFile($file, $nameDocument, $disk); //сохраняем файл в папку по пути из config -> disk
+        if(is_null($nameDocument)) {
+
+
+            $nameClass = self::class;
+
+            logError("Ошибка в {$nameClass} при сохранения файла в storage: не найден ключ из setting const таблицы");
+            throw new Exception('Ошибка в классе: ' . $nameClass, 500);
+
+        }
+
+        return $this->saveStorageFile($file, $nameDocument, $disk); //сохраняем файл в папку по пути из config -> disk
 
     }
 
 
-    private function saveStorageFile(UploadedFile $file, string $nameDocument, string $disk) : string
+    private function saveStorageFile(UploadedFile $file, string $nameDocument, string $disk) : array
     {
         $originalName = $file->getClientOriginalName(); // Например, "document.pdf"
 
@@ -46,9 +56,22 @@ class StorageFileService
 
         try {
 
-            $status = $file->storeAs($nameDocument, $uniqueName , $disk);
+            $path = $file->storeAs($nameDocument, $uniqueName , $disk);
 
-            if($status == false) { throw new Exception(); }
+            // Полный путь к сохраненному файлу
+            $fullPath = Storage::disk($disk)->path($path);
+
+            // Создаем объект UploadedFile для файла
+            $savedFile = new UploadedFile(
+                $fullPath,                   // Абсолютный путь к файлу
+                basename($fullPath),         // Имя файла
+                mime_content_type($fullPath), // MIME-тип файла (определяем вручную)
+                null,                        // Код ошибки (null, т.к. файла ошибок уже нет)
+                true                         // Установить как test-файл, чтобы избежать проблем с валидацией
+            );
+
+
+            if($savedFile == false) { throw new Exception(); }
 
         } catch (\Throwable $th) {
 
@@ -59,7 +82,15 @@ class StorageFileService
 
         }
 
-        return $status;
+        return $this->getArray($savedFile, $path);
+    }
+
+    private function getArray(UploadedFile $file, string $path) : array
+    {
+        return [
+            'file' => $file,
+            'path' => $path,
+        ];
     }
 
     /**

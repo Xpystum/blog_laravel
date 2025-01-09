@@ -6,16 +6,16 @@ use App\Modules\Post\App\Data\ValueObject\PostVO;
 use App\Modules\Post\Domain\Models\Post;
 use Exception;
 
-class CreatePostAcetion
+class CreatePostAction
 {
 
-    public static function make(PostVO $vo)
+    public static function make(PostVO $vo) : Post
     {
         return (new self())->run($vo);
     }
 
 
-    private function run(PostVO $vo)
+    private function run(PostVO $vo) : Post
     {
 
         try {

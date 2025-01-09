@@ -45,25 +45,7 @@ if( ! function_exists('money') ){
 
 }
 
-if (!function_exists('logError')) {
-    /**
-     * Логирование ошибок с минимально необходимой информацией.
-     *
-     * @param Exception|Throwable $exception
-     * @param array $context Дополнительный контекст
-     * @return void
-     */
-    function logError($exception, array $context = []): void
-    {
-        Log::error('Произошла ошибка:', array_merge($context, [
-            'message' => $exception->getMessage(),
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine(),
-            // Если нужен один уровень стека, добавьте только конкретный вызов
-            'trace' => collect($exception->getTrace())->take(1)
-        ]));
-    }
-}
+
 
 if (!function_exists('logError')) {
     /**
