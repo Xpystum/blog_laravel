@@ -2,8 +2,10 @@
 
 namespace App\Modules\StorageFile\Domain\Services;
 
+use App\Modules\Setting\Domain\Models\Setting;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Сервес для работы с файловой системой приложения пример: сохранения файлов, аватаров
@@ -13,43 +15,18 @@ class StorageFileService
     /**
      * Сохраяем файл по указанным параметрам
      * @param UploadedFile $file - сохраняемый файл
-     * @param string $nameDocument - название папки сохранения
+     * @param string $nameKeyDocument - значение consts из Setting таблицы
      * @param string $disk - указание диска сохранения
      *
      * @return string возвращает путь к файлу
      */
-    public function saveFile(UploadedFile $file, string $nameDocument, string $disk) : string
+    public function saveFile(UploadedFile $file, string $nameKeyDocument, string $disk) : string
     {
-        switch ($nameDocument) {
 
-            case 'agreements':
-            {
-                return $this->saveStorageFile($file, $nameDocument, $disk);
-                break;
-            }
-            case 'applications':
-            {
-                return $this->saveStorageFile($file, $nameDocument, $disk);
-                break;
-            }
-            default:
-            {
+        //получаем из const таблицы значение папки для сохранения
+        $nameDocument = Setting::get($nameKeyDocument); #TODO пересмотреть логику работы
 
-                $nameClass = self::class;
-
-                try {
-
-                    throw new Exception('Ошибка в классе: ' . $nameClass, 500);
-
-                } catch (\Throwable $th) {
-
-                    logError("Ошибка в {$nameClass} при выборе правильного storage в switch для сохранения файлов Tender : " . $th);
-
-                }
-
-                break;
-            }
-        }
+        $this->saveStorageFile($file, $nameDocument, $disk); //сохраняем файл в папку по пути из config -> disk
 
     }
 
