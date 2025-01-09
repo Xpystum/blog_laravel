@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title', 150)->comment('Заголовок статьи');
-            $table->text('content')->comment('Контент статьи содержащий html разметку');
-
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('key')->unique();
+            $table->string('value', 255)->nullable();
 
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('settings');
     }
 };

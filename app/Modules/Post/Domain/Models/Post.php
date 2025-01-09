@@ -4,6 +4,7 @@ namespace App\Modules\Post\Domain\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Mews\Purifier\Casts\CleanHtmlInput;
 
 class Post extends Model
@@ -35,5 +36,14 @@ class Post extends Model
     protected $casts = [
         'content'=> CleanHtmlInput::class, //очищаем от потенциального опасного кода от xss атак
     ];
+
+    /**
+    * Ссылка на обложку статьи
+    * @return HasOne
+    */
+    public function cover_img(): HasOne
+    {
+        return $this->hasOne(PostImageCover::class);
+    }
 
 }

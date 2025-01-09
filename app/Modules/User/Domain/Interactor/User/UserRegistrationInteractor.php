@@ -4,7 +4,6 @@ namespace App\Modules\User\Domain\Interactor\User;
 
 use App\Modules\Email\Domain\Services\EmailService;
 use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
-use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use App\Modules\User\Domain\Actions\User\CreateUserAction;
 use App\Modules\User\Domain\Models\User;
 use Exception;
@@ -35,11 +34,12 @@ class UserRegistrationInteractor
         try {
 
             $user = DB::transaction(function () use ($dto) {
+
                 /**
                 * @var User
                 */
                 $user = $this->createUser($dto);
-                //отправляем подтрвждения на почту через очередь
+                //отправляем подтвреждения на почту через очередь
                 $this->emailService->sendEmailConfirmationUser($user->id, $user->email);
 
                 return $user;

@@ -25,7 +25,7 @@ class GetAvatarAction
     }
 
     /**
-     * Полдучаем url случайного аватара из storage
+     * Получаем url случайного аватара из storage
      * @return string
      */
     private function getUrlAvatar() : string
