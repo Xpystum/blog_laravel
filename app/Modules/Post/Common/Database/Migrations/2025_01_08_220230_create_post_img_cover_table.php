@@ -11,7 +11,7 @@ return new class extends Migration
     { //Таблица с картинкой обложки
         Schema::create('post_img_covers', function (Blueprint $table) {
 
-            $table->id();
+            $table->id()->primary();
 
             $table->foreignId('post_id')->constrained('posts')->unique()->comment('Изображение которое принадлежит статье');
             $table->string('path_url')->comment('Путь к картинке');
@@ -26,7 +26,7 @@ return new class extends Migration
         });
     }
 
-  
+
     public function down(): void
     {
         Schema::dropIfExists('post_img_cover');

@@ -39,8 +39,10 @@ class UserRegistrationInteractor
                 * @var User
                 */
                 $user = $this->createUser($dto);
+
                 //отправляем подтвреждения на почту через очередь
-                $this->emailService->sendEmailConfirmationUser($user->id, $user->email);
+                // $this->emailService->sendEmailConfirmationUser($user->id, $user->email); #TODO временно убрали отправку подвтреждения
+
 
                 return $user;
             });
