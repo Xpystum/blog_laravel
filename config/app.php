@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -180,7 +179,8 @@ return [
 
         App\Modules\StorageFile\App\Providers\StorageFileServiceProvider::class, //сервес для работы с файловой системой приложения
         App\Modules\Post\App\Providers\PostServiceProvider::class, //сервес для работы с статьями блога
-        
+        App\Modules\Setting\App\Providers\SettingServiceProvider::class, //сервес для работы с константыми значениями настроек
+
     ])->toArray(),
 
     /*
