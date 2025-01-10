@@ -1,81 +1,43 @@
-<x-card @class(["mb-5 border"]) padding="p-0">
-    <x-card-body>
-        {{-- justify-content-between --}}
-        <div class="d-flex flex-row">
+@props([])
 
-            <div class="post-wrapp_left">
+<div class="flex h-[500px] items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+    <div class="flex flex-row justify-between p-5 h-full w-full">
 
-                <i class="fa-solid fa-6x fa-arrow-up "></i>
-                <div class="wrapp-icon"></div>
+        <div class="flex flex-col justify-between h-full w-1/2 pr-3">
+            <h2 class="line-clamp-3 text-xl text-white dark:text-white mb-2 overflow-hidden text-ellipsis">Lorem ipsum dolor,  sit amet consectetur adipisicing elit. Temporibus, odio. Commodi enim sequi voluptatem repellat.</h2>
 
-                <a href="#">
-                    <div class="post-wrapp__background_black"></div>
-                    <img class="post-img_left" src="{{ asset("storage/" . $post->img->pathImg) }}" />
-                </a>
-            </div>
+            <p class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos tenetur repellat odio dolor reprehenderit facilis aperiam officiis vero repellendus dignissimos doloremque a ad explicabo, sequi voluptatum. Excepturi nostrum, laborum eaque error saepe provident, autem suscipit, quisquam possimus corporis perferendis perspiciatis deserunt! Praesentium nam non minus saepe consequuntur dolor quidem! Unde incidunt fugiat sunt hic vel ex voluptas, earum quasi nulla quis, enim magni a exercitationem magnam. Ad sequi nulla fugiat cum fuga distinctio omnis sed quas reiciendis repellendus? Laboriosam nobis necessitatibus eaque accusamus mollitia voluptatum consectetur architecto veniam numquam iure expedita asperiores facere accusantium dolores, animi a sapiente dicta aut.
+            </p>
 
-
-
-            <div class="d-flex flex-column justify-content-center align-items-center mw-65 overflow-hidden">
-                <header class="card-title w-75 text-left mb-3 mt-3">
-
-                    <h1 class="h4">
-
-                        <a class="link-no-underline font-weight-bold" href=" {{ route('blog.show' , $post->id) }} ">
-
-                            {{ $post->title }}
-
-                        </a>
-
-                    </h1>
-
-                </header>
-
-                <p class="w-75 mb-2 font-weight-normal text-wrap overflow-hidden">
-                    {{ $post->info_post }}
-                </p>
-
-                <div class="d-flex flex-row align-items-center w-75 text-muted small">
-
-                    <span class class="small">
-                        {{ __('Статья №')}} {{ $post->id }}
-                    </span>
-
-                    <div class="small ms-2">
-                        {{ $post->published_at?->diffForHumans() }}
-                    </div>
+            <span class="mb-2 block text-white dark:text-white text-sm">{{ now('Y') }}</span>
+            <div class="flex flex-row justify-between">
+                <div class="flex flex-row">
+                    <img class="w-10 h-10 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя" />
+                    <span class="flex items-center text-white dark:text-white justify-center text-center pl-2 w-full">Евгения Красова</span>
                 </div>
 
+                <div class="flex flex-row">
+                    <a href="#" class="p-1 ml-2">
+                        <x-icon-heart class="svg-icon-heart"/>
+                    </a>
+                    <a href="#" class="p-1 ml-2">
+                        <x-icon-message class="svg-icon-message" />
+                    </a>
 
-
+                    <a href="#" class="p-1 ml-2">
+                        <x-icon-observ class="svg-icon-observ"/>
+                    </a>
+                </div>
             </div>
-
         </div>
 
-
-    </x-card-body>
-</x-card>
-{{--
-<div class="card mb-3" >
-    <div class="row g-0">
-      <div class="col-md-4">
-        <a href="#">
-            <img src="{{asset("storage/" . $post->img->pathImg)}}" class="img-fluid rounded-start" alt="...">
-        </a>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wiThis is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.der card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="w-1/2 h-full">
+            <img
+            src="https://png.pngtree.com/thumb_back/fw800/background/20230610/pngtree-picture-of-a-blue-bird-on-a-black-background-image_2937385.jpg"
+            alt="Картинка"
+            class="w-full h-full object-cover rounded-lg"
+            />
         </div>
-      </div>
     </div>
-</div> --}}
-
-@once
-    @push('header')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    @endpush
-@endonce
-
+</div>

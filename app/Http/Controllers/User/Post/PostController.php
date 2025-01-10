@@ -32,7 +32,11 @@ class PostController extends Controller
             )
         );
 
-        dd($model, 1);
+        // dd($model, 1);
+
+        $alert = 'Статья успешно создана.';
+
+        return redirect()->intended($default = '/')->with($alert);
 
     }
 
