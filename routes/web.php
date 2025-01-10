@@ -9,7 +9,17 @@ use App\Http\Controllers\Logout\LogoutController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'pages.home.index')->name('home');
+// Route::view('/', 'pages.home.index')->name('home');
+
+
+Route::get('/', function() {
+
+    ob_clean();
+    // $output = ob_get_clean();
+    // dd($output);
+
+    return 1;
+})->name('home');
 
 Route::post('/test', [TestController::class, 'index'])->name('test');
 
