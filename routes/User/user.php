@@ -1,4 +1,4 @@
-\<?php
+<?php
 
 use App\Http\Controllers\User\Post\PostController;
 use App\Http\Controllers\User\Profile\ProfileController;
