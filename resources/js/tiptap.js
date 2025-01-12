@@ -14,6 +14,7 @@ import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'; // Import the Bo
 import { initFlowbite } from 'flowbite'
 
 
+
 window.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById("wysiwyg-example")) {
@@ -55,6 +56,9 @@ window.addEventListener('DOMContentLoaded', function () {
             },
         });
 
+        const dataElement = document.getElementById('hiddenContent_input_tiptap');
+        const content = dataElement.getAttribute('data-content');
+
         // tip tap editor setup
         const editor = new Editor({
             element: document.querySelector('#wysiwyg-example'),
@@ -84,7 +88,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 Image,
                 YouTube,
             ],
-            content: '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
+            content: content ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
             editorProps: {
                 attributes: {
                     class: 'format lg:format-lg dark:format-invert focus:outline-none format-blue max-w-none',

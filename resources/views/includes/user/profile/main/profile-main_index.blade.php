@@ -11,7 +11,12 @@
     <div class="w-full pl-2">
         <div class="px-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
 
-            <x-post.card />
+            @forelse (auth()->user()->posts as $post)
+                <x-post.card :post="$post" />
+            @empty
+                <p>Нет данных для отображения</p>
+            @endforelse
+
 
 
             {{-- <div class="grid grid-cols-3 gap-4 mb-4">

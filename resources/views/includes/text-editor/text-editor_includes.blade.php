@@ -1,13 +1,25 @@
 <div>
 
-
+    @php
+        //получаме результат картинки - без этго isset не будет работать
+        $fileUrl = isset($post) && $post?->cover_img ? Storage::disk('post_image_cover')->url($post->cover_img->path_url) : null;
+    @endphp
+    
     <x-errors.errors />
 
-    <x-input.input name="title" placeholder="Заголовок Cтатьи" class="w-full p-3 mb-2 bg-gray-50 border border-gray-300 text-gray-900
+    <x-input.input :value="isset($post) && isset($post['title']) ? $post['title'] : null" name="title" placeholder="Заголовок Cтатьи" class="w-full p-3 mb-2 bg-gray-50 border border-gray-300 text-gray-900
         text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required autofocus/>
 
-    <x-input.input-file class="mb-2" accept="image/*" name="cover_img_post"/>
+    @isset( $fileUrl )
+        <div class="flex flex-row">
+            <x-input.input-file :value_text="'Изменить файл обложки'" class="mb-2" accept="image/*" name="cover_img_post"/>
+            <a href="{{ $fileUrl }}" target="_blank" class="ml-2 text-center mb-2 text-blue-500 underline">Посмотреть загруженный файл</a>
+        </div>
+    @else
+        <x-input.input-file :value_text="'Загрзуить файл обложки'" class="mb-2" accept="image/*" name="cover_img_post"/>
+    @endisset
+
 
     <div class="flex flex-col w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
 

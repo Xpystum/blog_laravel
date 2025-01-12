@@ -11,7 +11,10 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
 
     Route::prefix('/posts')->group(function() {
 
-        Route::get('/create', function () { return view('pages.text-editor.text-editor_includes');});
+            /** PAGES START */
+        Route::get('/create', [PostController::class, 'create'] )->name('user.posts.view.create');
+        Route::get('/update/{id}', [PostController::class, 'update'])->name('user.posts.view.update');
+            /** PAGES END */
 
         Route::post('/', [PostController::class, 'store'])->name('user.posts.store');
 

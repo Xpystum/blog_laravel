@@ -22,6 +22,6 @@
 
     'type' => 'text',
     //Возврат старых введёных данных
-    'value' => ( (old($attributes->get('name'))) ?: $value),
+    'value' => ( $value ? $value : (old($attributes->get('name'))) ),
 
 ])  }} {{ $autofocus ? 'autofocus' : '' }}>

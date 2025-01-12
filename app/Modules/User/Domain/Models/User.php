@@ -2,11 +2,14 @@
 
 namespace App\Modules\User\Domain\Models;
 
+use App\Modules\Post\Domain\Models\Post;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,5 +56,10 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->url_avatar = GetAvatarAction::make();
 
         });
+    }
+
+    public function posts() : HasMany
+    {
+        return $this->hasMany(Post::class, 'user_id');
     }
 }

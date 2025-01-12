@@ -17,6 +17,7 @@ return new class extends Migration
 
             $table->string('title', 150)->comment('Заголовок статьи');
             $table->text('content')->comment('Контент статьи содержащий html разметку');
+            $table->text('content_cover')->comment('Очищенный текст от html для обложки статьи');
 
             $table->foreignId('user_id')->constrained('users');
 

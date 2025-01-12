@@ -28,8 +28,8 @@ class CreatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => ['required', 'string', 'min:4', 'max:65000'],
-            "content" => ['required', 'string' , 'min:100', 'max:125'],
+            "title" => ['required', 'string' , 'min:4', 'max:125'],
+            "content" => ['required', 'string', 'min:100', 'max:65000'],
             "cover_img_post" => ['nullable', File::types(['jpeg' , 'png', 'jpg', 'gif', 'svg', 'WebP'])->max(8192)],
         ];
     }

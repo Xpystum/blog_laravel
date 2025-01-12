@@ -15,6 +15,7 @@ class PostVO implements Arrayable
     public function __construct(
         public string $title,
         public string $content,
+        public string $content_cover,
         public ?string $post_img_cover_id,
         public int $user_id,
     ) {}
@@ -24,17 +25,18 @@ class PostVO implements Arrayable
         string $title,
         string $content,
         int $user_id,
+        string $content_cover,
         ?string $post_img_cover_id = null,
-
 
     ) : self {
 
-        //очищаем контент из редактора от опасных значений от xss атаки
-        $content = Purifier::clean($content);
+        $content = Purifier::clean($content); //очищаем контент из редактора от опасных значений от xss атаки
+        $content_cover = Purifier::clean($content, 'custom_not_html'); //полностью очищаем контент от html
 
         return new self(
             title: $title,
             content: $content,
+            content_cover: $content_cover,
             post_img_cover_id: $post_img_cover_id,
             user_id: $user_id,
         );
@@ -45,6 +47,7 @@ class PostVO implements Arrayable
     {
         return self::make(
             title: $this->title,
+            content_cover: $this->content_cover,
             content: $this->content,
             post_img_cover_id: $post_img_cover_id,
             user_id: $this->user_id,
@@ -56,6 +59,7 @@ class PostVO implements Arrayable
         return [
             "title" => $this->title,
             "content" => $this->content,
+            "content_cover" => $this->content_cover,
             "post_img_cover_id" => $this->post_img_cover_id,
             "user_id" => $this->user_id,
         ];
@@ -66,6 +70,7 @@ class PostVO implements Arrayable
         return self::make(
             title: Arr::get($data, 'title'),
             content: Arr::get($data, 'content'),
+            content_cover: '',
             user_id: Arr::get($data, 'user_id'),
             post_img_cover_id: Arr::get($data, 'post_img_cover_id' , null),
         );
