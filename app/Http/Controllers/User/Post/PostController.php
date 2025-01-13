@@ -46,6 +46,8 @@ class PostController extends Controller
     {
         $post = Post::with('cover_img')->find($idPost);
 
+        abort_unless($post, 404);
+
         return view('pages.text-editor.text-editor-update_includes', compact('post'));
     }
 
@@ -54,15 +56,14 @@ class PostController extends Controller
         return view('pages.text-editor.text-editor_includes');
     }
 
-    // public function index()
-    // {
 
-    // }
+    public function show(int $idPost)
+    {
+        $post = Post::with('cover_img')->find($idPost);
 
+        abort_unless($post, 404);
 
-    // public function show()
-    // {
-
-    // }
+        return view('pages.user.post.preview', compact('post'));
+    }
 
 }
