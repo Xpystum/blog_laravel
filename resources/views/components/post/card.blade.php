@@ -8,14 +8,14 @@
 
         <div class="flex flex-col justify-between h-full w-1/2 pr-3">
 
-            <a href="#" class="no-underline hover:underline hover:text-white">
+            <a href="{{ route('users.posts.view.preview', $post->id) }}" class="no-underline hover:underline hover:text-white">
                 <h2 class="text-xl text-white dark:text-white pb-3 overflow-hidden whitespace-nowrap text-ellipsis max-w-full">
                     {{ $post->title }}
                 </h2>
             </a>
 
 
-            <a href='{{ route('users.posts.view.update', $post->id) }}' class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
+            <a href="{{ route('users.posts.view.preview', $post->id) }}" class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
                 {!! $post->content_cover !!}
             </a>
 
