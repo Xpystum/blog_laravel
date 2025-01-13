@@ -16,10 +16,11 @@
             </div>
         </div>
 
-        <div>
-            <img path_img="{{ $path_img }}">
-        </div>
-        <div class="px-4 py-2 h-[50vh] bg-white text-white rounded-b-lg dark:bg-gray-800 overflow-y-auto ">
+        {{-- <x-img path_img="{{ $path_img }}" alt="Обложка Статьи"> --}}
+
+        <x-img path_img="{{ $path_img }}" alt="Обложка Статьи" class="flex self-center h-1/2 w-1/2 mt-3"/>
+
+        <div class="p-3 bg-white text-white rounded-b-lg dark:bg-gray-800 overflow-y-auto ">
             {!! $post->content !!}
         </div>
 
