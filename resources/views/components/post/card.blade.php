@@ -1,7 +1,7 @@
 @props(['post' => null])
 
 @php
-    $path_img = Storage::disk('post_image_cover')->url($post?->cover_img->path_url);
+    $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
 @endphp
 
 <div class="flex h-[500px] p-5 items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
@@ -99,5 +99,4 @@
     </div>
     {{-- END MODAL WINDOW --}}
 
-</div>
 </div>

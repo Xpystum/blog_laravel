@@ -2,8 +2,11 @@
 
 namespace App\Modules\Post\Domain\Models;
 
+use App\Modules\Post\Domain\Factories\PostFactory;
+use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Mews\Purifier\Casts\CleanHtmlInput;
 
@@ -11,16 +14,16 @@ class Post extends Model
 {
     use HasFactory;
 
-    // protected static function newFactory()
-    // {
-    //     return UserFactory::new();
-    // }
+    protected static function newFactory()
+    {
+        return PostFactory::new();
+    }
 
     protected $fillable = [
         "title",
         "content",
         "content_cover",
-        "path_img_cover_post",
+        // "path_img_cover_post",
         "user_id",
     ];
 
@@ -45,6 +48,11 @@ class Post extends Model
     public function cover_img(): HasOne
     {
         return $this->hasOne(PostImageCover::class);
+    }
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
