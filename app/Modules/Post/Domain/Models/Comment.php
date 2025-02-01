@@ -2,6 +2,7 @@
 
 namespace App\Modules\Post\Domain\Models;
 
+use App\Modules\Post\Domain\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Modules\Post\Domain\Factories\PostFactory;
 use App\Modules\User\Domain\Models\User;
@@ -12,10 +13,10 @@ class Comment extends Model
 {
     use HasFactory;
 
-    // protected static function newFactory()
-    // {
-    //     return PostFactory::new();
-    // }
+    protected static function newFactory()
+    {
+        return CommentFactory::new();
+    }
 
     protected $fillable = [
         "post_id",

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Post\Common\Database\Seeders;
 
+use App\Modules\Post\Domain\Models\Comment;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,10 +20,24 @@ class PostCreateSeed extends Seeder
             "password" => Hash::make('password'),
         ]);
 
+        for ($i = 0; $i < 4; $i++) {
 
-        $status = Post::factory()->count(4)
-            ->for($user)
-            ->create();
+            $post = Post::factory()
+                ->for($user)
+                ->create();
+
+            for ($о=0; $о < 6; $о++) {
+
+                $comments = Comment::factory()
+                    ->for(User::factory()->create(), 'user')
+                    ->for($post, 'post')
+                    ->create();
+
+            }
+
+
+        }
+
 
     }
 }
