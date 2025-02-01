@@ -1,4 +1,4 @@
-@props(['orientation' => 'left', 'post' => null, 'dropdownDotsNumber' => null])
+@props(['orientation' => 'left', 'comment' => null, 'dropdownDotsNumber' => null])
 
 @php
     $status = 'Отправлено';
@@ -16,8 +16,8 @@
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
         </div>
         <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-            That's awesome. I think our users will really appreciate the improvements.
-            </p>
+            {{ $comment->value }}
+        </p>
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{ $status }} </span>
         </div>
         <button id="dropdownMenuIconButton" data-dropdown-toggle={{ "dropdownDots" . $dropdownDotsNumber }} data-dropdown-placement="bottom-start" class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600" type="button">
@@ -41,7 +41,12 @@
             </li>
         </ul>
         </div>
+
+        <div class="self-center w-2/4 h-1 border-b border-gray-500 opacity-50">
+        </div>
+
     </div>
+
 
 @elseif ($orientation === 'right')
 

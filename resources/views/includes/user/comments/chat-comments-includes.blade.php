@@ -6,7 +6,7 @@
 
     @foreach ($post->comments as $comment)
         <x-comments.card-comment
-            :post="$post"
+            :comment="$comment"
             :dropdownDotsNumber="$comment->id"
             :orientation="$loop->even ? 'right' : 'left' "
         />
