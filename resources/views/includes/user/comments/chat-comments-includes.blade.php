@@ -4,11 +4,8 @@
         <span class="text-white text-2md">Комментарии</span>
     </div >
 
-    @php
-        $accum = 1;
-    @endphp
 
-    @foreach ($post->comments as $comment)
+    {{-- @foreach ($post->comments as $comment)
 
         @if($accum % 2)
             @php $accum++ @endphp
@@ -18,7 +15,15 @@
             <x-comments.card-comment orientation="right" post="$post" dropdownDotsNumber="2"/>
         @endif
 
-        {{-- {{ $comment->post_id; }} --}}
+    @endforeach --}}
+
+
+    @foreach ($post->comments as $comment)
+        <x-comments.card-comment
+            :post="$post"
+            :dropdownDotsNumber="$comment->id"
+            :orientation="$loop->even ? 'right' : 'left' "
+        />
     @endforeach
 
 
