@@ -7,6 +7,7 @@ use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Mews\Purifier\Casts\CleanHtmlInput;
 
@@ -23,7 +24,6 @@ class Post extends Model
         "title",
         "content",
         "content_cover",
-        // "path_img_cover_post",
         "user_id",
     ];
 
@@ -53,6 +53,11 @@ class Post extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments() : HasMany
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
     }
 
 }

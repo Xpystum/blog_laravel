@@ -24,8 +24,6 @@ class PostCreateSeed extends Seeder
             ->for($user)
             ->create();
 
-        dd($status->path_img_cover_post);
-
     }
 }
 

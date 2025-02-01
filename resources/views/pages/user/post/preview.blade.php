@@ -5,5 +5,6 @@
 @section('main.content')
 
     @include('includes.user.post.card-preview')
+    @include('includes.user.comments.chat-comments-includes')
 
 @endsection
