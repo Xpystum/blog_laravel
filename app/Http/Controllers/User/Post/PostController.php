@@ -59,7 +59,7 @@ class PostController extends Controller
 
     public function show(int $idPost)
     {
-        $post = Post::with('cover_img')->find($idPost);
+        $post = Post::with('cover_img', 'comments')->find($idPost);
 
         abort_unless($post, 404);
 

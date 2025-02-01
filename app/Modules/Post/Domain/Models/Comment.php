@@ -2,12 +2,11 @@
 
 namespace App\Modules\Post\Domain\Models;
 
-use App\Modules\Post\Domain\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\Post\Domain\Factories\PostFactory;
 use App\Modules\User\Domain\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Modules\Post\Domain\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
