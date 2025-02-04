@@ -1,4 +1,4 @@
-@props(['orientation' => 'left', 'comment' => null, 'dropdownDotsNumber' => null])
+@props(['orientation' => 'left', 'comment' => null, 'dropdownDotsNumber' => null, 'last' => false])
 
 @php
     $status = 'Отправлено';
@@ -42,8 +42,14 @@
         </ul>
         </div>
 
-        <div class="self-center w-2/4 h-1 border-b border-gray-500 opacity-50">
-        </div>
+        @if (!$last)
+            <div class="relative self-center w-5/6">
+                <div class="relative w-full h-1 border-b border-gray-500 opacity-50">
+                </div>
+
+                <div class="absolute right-0 top-1 w-1 h-10 border-r border-gray-500 opacity-50"></div>
+            </div>
+        @endif
 
     </div>
 
@@ -85,6 +91,16 @@
             </li>
         </ul>
         </div>
+
+        @if (!$last)
+            <div class="relative self-center w-5/6">
+                <div class="relative w-full h-1 border-b border-gray-500 opacity-50">
+                </div>
+
+                <div class="absolute left-0 top-1 w-1 h-10 border-l border-gray-500 opacity-50"></div>
+            </div>
+        @endif
+
     </div>
 
 @endif

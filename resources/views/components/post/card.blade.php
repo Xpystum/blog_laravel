@@ -47,7 +47,6 @@
 
     <div class="rounded-lg overflow-hidden w-1/2 h-full">
         <button data-modal-target="large-modal" data-modal-toggle="large-modal" class="w-full h-full" type="button">
-
             <x-img path_img="{{ $path_img }}" alt="Обложка Статьи" class="hover:scale-105 w-full h-full object-cover" />
 
             {{-- <img
