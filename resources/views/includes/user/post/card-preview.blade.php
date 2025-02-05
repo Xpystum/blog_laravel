@@ -17,10 +17,10 @@
             <div class="flex flex-row justify-end">
                 <div class="flex flex-row">
                     <a href="#" class="p-1 ml-2">
-                        <x-icon-heart class="svg-icon-heart" />
+                        <x-icon-heart class="svg-icon-heart custom-icon-blade-heart" />
                     </a>
                     <a href="#" class="p-1 ml-2">
-                        <x-icon-message class="svg-icon-message" />
+                        <x-icon-message class="svg-icon-message"/>
                     </a>
                 </div>
             </div>
@@ -36,10 +36,22 @@
 
             <div class="flex flex-row items-center justify-between">
                 <div class="flex flex-row">
-                    <a href="#" class="p-1 ml-2">
-                        <x-icon-observ class="svg-icon-observ" />
-                    </a>
-                    <span class="flex items-center ml-1 text-white">950</span>
+
+                    <div class="flex flex-row">
+                        <x-icon-observ class="svg-icon-observ icon-blade-disable-hover"/>
+                        <span class="flex items-center ml-1 text-white">950</span>
+                    </div>
+
+                    <div class="flex flex-row ml-2">
+                        <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/>
+                        <span class="flex items-center ml-1 text-white">35</span>
+                    </div>
+
+                    <div class="flex flex-row ml-2">
+                        <x-icon-message class="svg-icon-message icon-blade-disable-hover"/>
+                        <span class="flex items-center ml-1 text-white">10+</span>
+                    </div>
+
                 </div>
                 <button type="button" class="ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Редактировать</button>
             </div>
