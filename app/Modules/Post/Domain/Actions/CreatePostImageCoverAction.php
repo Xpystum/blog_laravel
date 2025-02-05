@@ -19,9 +19,6 @@ class CreatePostImageCoverAction
     private function run(PostImageCoverVO $vo) : PostImageCover
     {
 
-
-
-
         try {
 
             $model = PostImageCover::create($vo->toArrayNotNull());
@@ -30,7 +27,7 @@ class CreatePostImageCoverAction
 
             $nameClass = self::class;
 
-            logError($th);
+            logError('Ошибка в классе: ' . $nameClass, $th);
             throw new Exception('Ошибка в классе: ' . $nameClass, 500);
 
         }

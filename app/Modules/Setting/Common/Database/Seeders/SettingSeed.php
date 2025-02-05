@@ -2,8 +2,8 @@
 
 namespace App\Modules\Setting\Common\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Modules\Post\Common\Database\Seeders\PostImgCoverSeed;
+use Illuminate\Database\Seeder;
 
 
 

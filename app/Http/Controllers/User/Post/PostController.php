@@ -34,7 +34,6 @@ class PostController extends Controller
             )
         );
 
-        // dd($model, 1);
 
         $alert = 'Статья успешно создана.';
 
@@ -43,20 +42,20 @@ class PostController extends Controller
     }
 
     /** PAGES GET */
-    public function update(int $idPost)
+    public function update(int $postId)
     {
-        $post = Post::with('cover_img')->find($idPost);
+        /** @var ?Post */
+        $post = Post::find($postId)->where('user_id', Auth::user()->id)
+            ->first();
 
-        abort_unless($post, 404);
+        abort_unless($post, 403, 'У вас нету доступа для редактирование этой статьи.');
 
         return view('pages.text-editor.text-editor-update_includes', compact('post'));
     }
 
     public function create(?int $postId = null) {
 
-        // /** @var ?Post */
-        // $post = Post::find($postId)->where('user_id', Auth::user()->id)
-        //     ->first();
+
 
         /** @var ?Post */
         $post = Post::find($postId);

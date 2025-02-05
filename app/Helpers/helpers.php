@@ -55,14 +55,15 @@ if (!function_exists('logError')) {
      * @param array $context Дополнительный контекст
      * @return void
      */
-    function logError($exception, array $context = []): void
+    function logError(string $message, $exception = null, array $context = []): void
     {
+
         Log::error('Произошла ошибка:', array_merge($context, [
-            'message' => $exception->getMessage(),
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine(),
+            'message' => $message,
+            'file' => $exception?->getFile(),
+            'line' => $exception?->getLine(),
             // Если нужен один уровень стека, добавьте только конкретный вызов
-            'trace' => collect($exception->getTrace())->take(1)
+            'trace' => collect($exception?->getTrace())->take(1) ?? null
         ]));
     }
 }

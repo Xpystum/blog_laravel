@@ -52,6 +52,9 @@ final class StorageFile
 
     private function saveStorageFile(UploadedFile $file, string $nameDocument, string $disk) : string
     {
+
+        dd($disk);
+
         $originalName = $file->getClientOriginalName(); // Например, "document.pdf"
 
         //Получение Расширения Файла:
@@ -67,11 +70,15 @@ final class StorageFile
 
             $status = $file->storeAs($nameDocument, $uniqueName , $disk);
 
+            dd($status);
+
             if($status == false) { throw new Exception(); }
 
         } catch (\Throwable $th) {
 
             $nameClass = self::class;
+
+            dd(1);
 
             logError("Ошибка в {$nameClass} при сохранения файла в storage: " . $th);
             throw new Exception('Ошибка в классе: ' . $nameClass, 500);
