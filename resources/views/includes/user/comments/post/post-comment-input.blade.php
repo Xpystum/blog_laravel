@@ -1,4 +1,4 @@
-<x-form class="w-full mt-8" enctype="multipart/form-data" method="POST" action=" {{ route('user.posts.store') }} ">
+<x-form class="w-full mt-8" method="POST" action="{{ route('users.posts.comments.store', ['post' => $post->id]) }}">
 
     <x-comments.post.post-comment-input />
 

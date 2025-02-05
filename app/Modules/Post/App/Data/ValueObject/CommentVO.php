@@ -26,7 +26,7 @@ readonly class CommentVO implements Arrayable
 
     ) : self {
 
-        $value = Purifier::clean($value); //очищаем контент из редактора от опасных значений от xss атаки
+        // $value = Purifier::clean($value); //очищаем контент из редактора от опасных значений от xss атаки
 
         return new self(
             post_id: $post_id,

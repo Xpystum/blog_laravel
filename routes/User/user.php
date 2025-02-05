@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Comment\PostCommentController;
+use App\Http\Controllers\User\Post\Comment\PostCommentController;
 use App\Http\Controllers\User\Post\PostController;
 use App\Http\Controllers\User\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +25,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
             Route::post('/', [PostController::class, 'store'])->name('user.posts.store');
         }
 
-        Route::post('/{post:id}/comments', [PostCommentController::class, 'store'])->name('post.comments.store');
+        Route::post('/{post:id}/comments', [PostCommentController::class, 'store'])->name('users.posts.comments.store');
 
 
     });

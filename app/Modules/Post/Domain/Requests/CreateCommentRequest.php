@@ -2,7 +2,6 @@
 
 namespace App\Modules\Post\Domain\Requests;
 
-use App\Modules\Post\App\Data\ValueObject\CommentVO;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
