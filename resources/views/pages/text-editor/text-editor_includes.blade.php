@@ -6,7 +6,7 @@
 
     <x-form class="w-auto mx-auto" enctype="multipart/form-data" method="POST" action=" {{ route('user.posts.store') }} ">
 
-        <input type="hidden" name="content" id="hiddenContent_input_tiptap">
+        <input value="{{ old('content', $post->content ?? 'null') }}" class="hidden" name="content" id="hiddenContent_input_tiptap">
         @include('includes.text-editor.text-editor_includes')
 
     </x-form>

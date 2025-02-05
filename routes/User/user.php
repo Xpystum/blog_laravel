@@ -15,7 +15,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
         {
                 /** PAGES START */
             //страница создание статьи
-            Route::get('/create', [PostController::class, 'create'] )->name('users.posts.view.create');
+            Route::get('/create/{id?}/', [PostController::class, 'create'] )->name('users.posts.view.create');
             //страница обновления статьи
             Route::get('/update/{id}', [PostController::class, 'update'])->name('users.posts.view.update');
                 //страница просмотра статьи

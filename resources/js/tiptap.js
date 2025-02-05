@@ -57,7 +57,12 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         const dataElement = document.getElementById('hiddenContent_input_tiptap');
-        const content = dataElement.getAttribute('data-content');
+        let content = dataElement.value;
+
+        if (content === "null") {
+            content = null;
+        }
+
 
         // tip tap editor setup
         const editor = new Editor({
