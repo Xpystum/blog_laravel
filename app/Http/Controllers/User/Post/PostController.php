@@ -44,8 +44,9 @@ class PostController extends Controller
     /** PAGES GET */
     public function update(int $postId)
     {
+
         /** @var ?Post */
-        $post = Post::find($postId)->where('user_id', Auth::user()->id)
+        $post = Post::where('id', $postId)->where('user_id', Auth::user()->id)
             ->first();
 
         abort_unless($post, 403, 'У вас нету доступа для редактирование этой статьи.');
@@ -54,7 +55,6 @@ class PostController extends Controller
     }
 
     public function create(?int $postId = null) {
-
 
 
         /** @var ?Post */

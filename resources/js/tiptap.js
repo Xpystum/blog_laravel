@@ -12,6 +12,7 @@ import FontFamily from 'https://esm.sh/@tiptap/extension-font-family@2.6.6';
 import { Color } from 'https://esm.sh/@tiptap/extension-color@2.6.6';
 import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'; // Import the Bold extension
 import { initFlowbite } from 'flowbite'
+import { Node, mergeAttributes } from '@tiptap/core'
 
 
 
@@ -59,14 +60,72 @@ window.addEventListener('DOMContentLoaded', function () {
         const dataElement = document.getElementById('hiddenContent_input_tiptap');
         let content = dataElement.value;
 
+        console.log(content);
+
         if (content === "null") {
+
             content = null;
+
         }
+
+        const initialContent = {
+            type: 'doc',
+            content: [
+                {
+                type: 'rawHTML',
+                attrs: {
+                    html: content, // убедитесь, что content безопасен!
+                },
+                },
+            ],
+        }
+
+
+
+        const RawHTML = Node.create({
+            name: 'rawHTML',
+            group: 'block',
+            atom: true,
+
+            // Определяем, как извлекать блоки raw HTML из DOM
+            parseHTML() {
+              return [
+                {
+                  tag: 'div[data-raw-html]',
+                },
+              ]
+            },
+
+            // При сохранении редактора определяем, как создать HTML-элемент
+            renderHTML({ node, HTMLAttributes }) {
+              return ['div', mergeAttributes(HTMLAttributes, { 'data-raw-html': true }), 0]
+            },
+
+            addAttributes() {
+              return {
+                html: {
+                  default: '',
+                },
+              }
+            },
+
+            // NodeView, который позволяет напрямую обновлять содержимое через innerHTML
+            addNodeView() {
+              return ({ node }) => {
+                const container = document.createElement('div')
+                container.setAttribute('data-raw-html', 'true')
+                // Используем innerHTML, чтобы вставить неэкранированный HTML
+                container.innerHTML = node.attrs.html
+                return { dom: container }
+              }
+            },
+        })
 
 
         // tip tap editor setup
         const editor = new Editor({
             element: document.querySelector('#wysiwyg-example'),
+            editable: true, //можно ли писать в редакторе
             extensions: [
                 StarterKit.configure({
                     textStyle: false,
@@ -92,13 +151,15 @@ window.addEventListener('DOMContentLoaded', function () {
                 }),
                 Image,
                 YouTube,
+                RawHTML,
             ],
-            content: content ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
+            content: initialContent ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
             editorProps: {
                 attributes: {
                     class: 'format lg:format-lg dark:format-invert focus:outline-none format-blue max-w-none',
                 },
-            }
+            },
+
         });
 
 
