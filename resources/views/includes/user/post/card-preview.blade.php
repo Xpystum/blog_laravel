@@ -42,14 +42,14 @@
                         <span class="flex items-center ml-1 text-white">950</span>
                     </div>
 
-                    <div class="flex flex-row ml-2">
+                    <div class="flex flex-row ml-3">
                         <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/>
                         <span class="flex items-center ml-1 text-white">35</span>
                     </div>
 
-                    <div class="flex flex-row ml-2">
-                        <x-icon-message class="svg-icon-message icon-blade-disable-hover"/>
-                        <span class="flex items-center ml-1 text-white">10+</span>
+                    <div class="flex flex-row ml-3 items-center">
+                        <x-icon-message class="svg-icon-message icon-blade-disable-hover w-5 h-5"/>
+                        <span class="flex items-center ml-1 text-white">{{ $post->comments->count() }}+</span>
                     </div>
 
                 </div>
@@ -57,9 +57,6 @@
             </div>
 
         </div>
-
-
-
 
     </div>
 </div>
