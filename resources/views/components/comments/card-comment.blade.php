@@ -15,7 +15,9 @@
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
+                @if(Auth::user()->id === $comment->user_id)
+                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
+                @endif
             </div>
 
             <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
@@ -67,6 +69,9 @@
         <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
+            @if(Auth::user()->id === $comment->user_id)
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
+            @endif
         </div>
         <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
             {{ $comment->value }}

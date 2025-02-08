@@ -58,7 +58,7 @@ class PostController extends Controller
 
 
         /** @var ?Post */
-        $post = Post::find($postId);
+        $post = Post::find($postId)->with(['comments', 'users']);
 
 
         return view('pages.text-editor.text-editor_includes', compact('post'));
@@ -67,7 +67,7 @@ class PostController extends Controller
 
     public function show(int $idPost)
     {
-        $post = Post::with('cover_img', 'comments')->find($idPost);
+        $post = Post::with('cover_img', 'comments.user')->find($idPost);
 
         abort_unless($post, 404);
 

@@ -1,5 +1,6 @@
 @php
     $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
+
 @endphp
 
 <div>
