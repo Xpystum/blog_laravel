@@ -7,17 +7,31 @@ use Illuminate\Support\Facades\Auth;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\App\Data\ValueObject\CommentVO;
 use App\Modules\Post\Domain\Services\CommentService;
-use App\Modules\Post\Domain\Requests\CreateCommentRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostCommentController extends Controller
 {
     public function store(
         Post $post,
-        CreateCommentRequest $request,
+        Request $request,
         CommentService $servComment,
     ) {
 
-        $validated = $request->validated();
+        //проверка валидации
+        $validated = Validator::make($request->all(), [
+           "value" => ['required', 'string' ,' min:1' ,'max:1000'],
+        ]);
+
+        if ($validated->fails()) {
+            //выкидываем кастомную ошибку alert_error
+            return redirect()->back()
+            ->withErrors($validated, 'value')
+            ->with('alert_error', ['exception_message' => 'Комментарий не должен превышать 1000 символов.']);
+        }
+
+        //получаем валидированные данные
+        $validated= $validated->validated();
 
 
         /** @var CommentVO */

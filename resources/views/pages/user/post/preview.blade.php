@@ -6,8 +6,14 @@
 
     @include('includes.user.post.card-preview')
     @include('includes.user.comments.chat-comments-includes')
-    
-    @pushIf(session()->has('alert_success') ? session()->get('alert_success') : null, 'scripts')
+
+    @php
+        //получаем значение из сессии, и если ошибка или успешно добавлен комментарий, скроллим страницу вниз
+        $alert_success = session()->has('alert_success') ? session()->get('alert_success') : null;
+        $alert_error = session()->has('alert_error') ? session()->get('alert_error') : null;
+    @endphp
+
+    @pushIf( ($alert_success||$alert_error) , 'scripts')
         <script>
 
             window.scrollTo({
