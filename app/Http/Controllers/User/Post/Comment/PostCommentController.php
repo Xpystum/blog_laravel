@@ -27,13 +27,18 @@ class PostCommentController extends Controller
             value: $validated['value'],
         );
 
-        //создаём комментарий
-        $servComment->createComment($commentVO);
+        /**
+         * создаём комментарий
+         * @var FunctionResult
+         */
+        $status = $servComment->createComment($commentVO);
 
         $post->load('comments');
 
-        // dd($post->comments);
+        $alert = $status->success ? ['alert_success' => $status->returnValue]  : ['alert_danger' => $status->errorMessage];
 
-        return redirect()->back()->with('success', 'Комментарий успешно добавлен');
+        // return redirect()->intended($default = '/')->with($alert);
+
+        return redirect()->back()->with($alert, 'Комментарий успешно добавлен');
     }
 }
