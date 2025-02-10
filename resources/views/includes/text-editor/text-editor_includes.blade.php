@@ -627,10 +627,12 @@
 
         </div>
 
+
+
         <div class="px-4 py-2 h-[50vh] bg-white rounded-b-lg dark:bg-gray-800 overflow-y-auto">
             <label for="wysiwyg-example" class="sr-only">Статья публикации</label>
             <div
-                id="wysiwyg-example"class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+                id="wysiwyg-example"class="h-[50vh] block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
             </div>
         </div>
 

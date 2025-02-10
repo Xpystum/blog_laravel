@@ -41,32 +41,36 @@ class CreatePostInteractor
         /** @var Post */
         $model = DB::transaction(function () use ($dto) {
 
-            /** @var array */
-            $array = $this->storageFileService->saveFile($dto->file, $this->keyValueSetting, $this->diskName);
-
-            /** @var UploadedFile */
-            $saveFile = $array['file'];
-
-            /** @var string */
-            $path = $array['path'];
-
             /** @var Post */
             $post = $this->createPost($dto->vo);
 
-            /** @var PostImageCover */
-            $postImageCover = $this->createPostImageCover(
-                PostImageCoverVO::make(
-                    post_id: $post->id,
-                    path_url: $path,
-                    original_name: $saveFile->getClientOriginalName(),
-                    formed_name: $saveFile->getClientOriginalName(),
-                    size: $saveFile->getSize(),
-                    mime_type: $saveFile->getMimeType(),
-                )
-            );
+            if($dto->file) {
 
-            //сохраняем связь
-            $post->cover_img()->save($postImageCover);
+                /** @var array */
+                $array = $this->storageFileService->saveFile($dto->file, $this->keyValueSetting, $this->diskName);
+
+                /** @var UploadedFile */
+                $saveFile = $array['file'];
+
+                /** @var string */
+                $path = $array['path'];
+
+                /** @var PostImageCover */
+                $postImageCover = $this->createPostImageCover(
+                    PostImageCoverVO::make(
+                        post_id: $post->id,
+                        path_url: $path,
+                        original_name: $saveFile->getClientOriginalName(),
+                        formed_name: $saveFile->getClientOriginalName(),
+                        size: $saveFile->getSize(),
+                        mime_type: $saveFile->getMimeType(),
+                    )
+                );
+
+                //сохраняем связь
+                $post->cover_img()->save($postImageCover);
+
+            }
 
             return $post;
         });

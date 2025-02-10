@@ -1,18 +1,21 @@
 
-import { Editor } from 'https://esm.sh/@tiptap/core@2.6.6';
-import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.6.6';
-import Highlight from 'https://esm.sh/@tiptap/extension-highlight@2.6.6';
-import Underline from 'https://esm.sh/@tiptap/extension-underline@2.6.6';
-import Link from 'https://esm.sh/@tiptap/extension-link@2.6.6';
-import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@2.6.6';
-import Image from 'https://esm.sh/@tiptap/extension-image@2.6.6';
-import YouTube from 'https://esm.sh/@tiptap/extension-youtube@2.6.6';
-import TextStyle from 'https://esm.sh/@tiptap/extension-text-style@2.6.6';
-import FontFamily from 'https://esm.sh/@tiptap/extension-font-family@2.6.6';
-import { Color } from 'https://esm.sh/@tiptap/extension-color@2.6.6';
-import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'; // Import the Bold extension
+import { Editor } from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import Highlight from '@tiptap/extension-highlight';
+import Underline from '@tiptap/extension-underline';
+import Link from '@tiptap/extension-link';
+import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
+import YouTube from '@tiptap/extension-youtube';
+import TextStyle from '@tiptap/extension-text-style';
+import FontFamily from '@tiptap/extension-font-family';
+import { Color } from '@tiptap/extension-color';
+import Bold from '@tiptap/extension-bold';
+import Document from '@tiptap/extension-document';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+
 import { initFlowbite } from 'flowbite'
-import { Node, mergeAttributes } from '@tiptap/core'
 
 
 
@@ -38,6 +41,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 };
             },
         });
+
         const CustomBold = Bold.extend({
             // Override the renderHTML method
             renderHTML({ mark, HTMLAttributes }) {
@@ -57,70 +61,18 @@ window.addEventListener('DOMContentLoaded', function () {
             },
         });
 
+        const setEditorContent = (editor, content) => {
+            editor.commands.setContent(content);
+        };
+
         const dataElement = document.getElementById('hiddenContent_input_tiptap');
         let content = dataElement.value;
 
         console.log(content);
 
         if (content === "null") {
-
             content = null;
-
         }
-
-        const initialContent = {
-            type: 'doc',
-            content: [
-                {
-                type: 'rawHTML',
-                attrs: {
-                    html: content, // убедитесь, что content безопасен!
-                },
-                },
-            ],
-        }
-
-        
-
-        const RawHTML = Node.create({
-            name: 'rawHTML',
-            group: 'block',
-            atom: true,
-
-            // Определяем, как извлекать блоки raw HTML из DOM
-            parseHTML() {
-              return [
-                {
-                  tag: 'div[data-raw-html]',
-                },
-              ]
-            },
-
-            // При сохранении редактора определяем, как создать HTML-элемент
-            renderHTML({ node, HTMLAttributes }) {
-              return ['div', mergeAttributes(HTMLAttributes, { 'data-raw-html': true }), 0]
-            },
-
-            addAttributes() {
-              return {
-                html: {
-                  default: '',
-                },
-              }
-            },
-
-            // NodeView, который позволяет напрямую обновлять содержимое через innerHTML
-            addNodeView() {
-              return ({ node }) => {
-                const container = document.createElement('div')
-                container.setAttribute('data-raw-html', 'true')
-                // Используем innerHTML, чтобы вставить неэкранированный HTML
-                container.innerHTML = node.attrs.html
-                return { dom: container }
-              }
-            },
-        })
-
 
         // tip tap editor setup
         const editor = new Editor({
@@ -151,9 +103,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 }),
                 Image,
                 YouTube,
-                RawHTML,
             ],
-            content: initialContent ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
+            content: content ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
             editorProps: {
                 attributes: {
                     class: 'format lg:format-lg dark:format-invert focus:outline-none format-blue max-w-none',
@@ -163,14 +114,10 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
 
-        //значение текстового редактора будет добавлять сюда
-        const inputContent = document.getElementById("hiddenContent_input_tiptap");
 
         const button = document.getElementById("text-editor__tiptap-button").addEventListener('click', (event) => {
 
-            inputContent.value = editor.getHTML();
-
-            console.log(inputContent.value, '123');
+            dataElement.value = editor.getHTML();
 
         })
 

@@ -13,13 +13,13 @@ class CreatePostDTO
 
     public function __construct(
         public PostVO $vo,
-        public UploadedFile $file,
+        public ?UploadedFile $file,
     ) {}
 
     public static function make(
 
         PostVO $vo,
-        UploadedFile $file,
+        ?UploadedFile $file,
 
     ) : self {
 
