@@ -11,7 +11,6 @@
 
     </x-form>
 
-
     @once
         @vite('resources/js/tiptap.js')
     @endonce

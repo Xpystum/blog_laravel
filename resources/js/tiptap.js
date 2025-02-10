@@ -1,6 +1,7 @@
-
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
+import Paragraph from '@tiptap/extension-paragraph'
+import Document from '@tiptap/extension-document'
 import Highlight from '@tiptap/extension-highlight';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
@@ -11,11 +12,11 @@ import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
 import { Color } from '@tiptap/extension-color';
 import Bold from '@tiptap/extension-bold';
-import Document from '@tiptap/extension-document';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
 
 import { initFlowbite } from 'flowbite'
+
+
+
 
 
 
@@ -41,7 +42,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 };
             },
         });
-
         const CustomBold = Bold.extend({
             // Override the renderHTML method
             renderHTML({ mark, HTMLAttributes }) {
@@ -61,18 +61,17 @@ window.addEventListener('DOMContentLoaded', function () {
             },
         });
 
-        const setEditorContent = (editor, content) => {
-            editor.commands.setContent(content);
-        };
-
         const dataElement = document.getElementById('hiddenContent_input_tiptap');
         let content = dataElement.value;
 
         console.log(content);
 
         if (content === "null") {
+
             content = null;
+
         }
+
 
         // tip tap editor setup
         const editor = new Editor({
@@ -88,10 +87,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 }),
                 // Include the custom Bold extension
                 CustomBold,
-                Color,
+                TextStyle,
                 FontSizeTextStyle,
                 FontFamily,
-                Highlight,
+                Highlight.configure({ multicolor: true }),
+                Document,
+                Paragraph,
+                TextStyle,
+                Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
                 Link.configure({
                     openOnClick: false,
@@ -114,6 +117,15 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
 
+
+
+        // if(content !== "null") {
+        //     console.log('вставка контента')
+        //     editor.commands.setContent(content);
+        //     // editor.commands.setContent("<p>suka</p>");
+
+        //     console.log('После вставки контента');
+        // }
 
         const button = document.getElementById("text-editor__tiptap-button").addEventListener('click', (event) => {
 
@@ -217,27 +229,33 @@ window.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Listen for color picker changes
+
+
+        // Слушаем изменения в color picker
         const colorPicker = document.getElementById('color');
         colorPicker.addEventListener('input', (event) => {
             const selectedColor = event.target.value;
 
-            // Apply the selected color to the selected text
+            // Применяем выбранный цвет к выделенному тексту
             editor.chain().focus().setColor(selectedColor).run();
-        })
+        });
 
+        // Обрабатываем нажатие на кнопки с цветами
         document.querySelectorAll('[data-hex-color]').forEach((button) => {
             button.addEventListener('click', () => {
                 const selectedColor = button.getAttribute('data-hex-color');
 
-                // Apply the selected color to the selected text
+                // Применяем выбранный цвет к выделенному тексту
                 editor.chain().focus().setColor(selectedColor).run();
             });
         });
 
+        // Сброс цвета
         document.getElementById('reset-color').addEventListener('click', () => {
-            editor.commands.unsetColor();
-        })
+            editor.chain().focus().unsetColor().run();
+        });
+
+
 
         const fontFamilyDropdown = FlowbiteInstances.getInstance('Dropdown', 'fontFamilyDropdown');
 
