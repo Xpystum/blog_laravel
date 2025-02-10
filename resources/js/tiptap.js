@@ -16,10 +16,6 @@ import Bold from '@tiptap/extension-bold';
 import { initFlowbite } from 'flowbite'
 
 
-
-
-
-
 window.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById("wysiwyg-example")) {
@@ -104,7 +100,13 @@ window.addEventListener('DOMContentLoaded', function () {
                 TextAlign.configure({
                     types: ['heading', 'paragraph'],
                 }),
-                Image,
+                Image.configure({
+                    inline: true,
+                    allowBase64: true,
+                    HTMLAttributes: {
+                        class: '!mt-1 !mb-1',
+                    },
+                }),
                 YouTube,
             ],
             content: content ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
