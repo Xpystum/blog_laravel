@@ -10,5 +10,4 @@
         {{ $slot }}
 
     </x-form>
-
 @endsection
