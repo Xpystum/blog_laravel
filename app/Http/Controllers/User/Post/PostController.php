@@ -10,13 +10,16 @@ use App\Modules\Post\App\Data\ValueObject\PostVO;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\Domain\Services\PostSerivce;
 use App\Modules\Post\Domain\Requests\CreatePostRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
 
+
     public function store(
         CreatePostRequest $request,
+        // Request $request,
         PostSerivce $postSerivce,
     ) {
 
@@ -54,11 +57,12 @@ class PostController extends Controller
         return view('pages.text-editor.text-editor-update_includes', compact('post'));
     }
 
-    public function create(?int $postId = null) {
+    //страничка
+    public function createView(?int $postId = null) {
 
 
         /** @var ?Post */
-        $post = Post::find($postId)->with(['comments', 'users']);
+        $post = Post::with(['comments', 'users'])->find($postId);
 
 
         return view('pages.text-editor.text-editor_includes', compact('post'));
