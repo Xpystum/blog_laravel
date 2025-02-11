@@ -232,7 +232,6 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
 
-
         // Слушаем изменения в color picker
         const colorPicker = document.getElementById('color');
         colorPicker.addEventListener('input', (event) => {
