@@ -38,7 +38,7 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'content'=> CleanHtmlInput::class, //очищаем от потенциального опасного кода от xss атак
+        // 'content'=> CleanHtmlInput::class, //очищаем от потенциального опасного кода от xss атак
     ];
 
     /**

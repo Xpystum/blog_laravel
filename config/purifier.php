@@ -24,11 +24,47 @@ return [
     'cacheFileMode'      => 0755,
     'settings'      => [
         'default' => [
-            'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+            // Разрешённые HTML-теги и атрибуты для стандартных элементов и tiptap-расширений (StarterKit, TextStyle, FontSizeTextStyle, FontFamily, Highlight, CustomBold, Underline, Link, TextAlign, Image, YouTube и пр.)
+            'HTML.Allowed' =>
+
+                // 'div[class|style],iframe[src],' .
+                // Базовые текстовые элементы и абзацы
+                'p,p[style],span,span[style],div,blockquote,pre,code, s,mark, mark[style],hr,blockquote,br,' .
+                // Форматирование текста: жирный (b, strong), курсив (em), подчёркнутый (u), зачёркнутый (del, ins)
+                'strong,b,em,u,del,ins,' .
+                // Заголовки (если используются)
+                'h1,h2,h3,h4,h5,h6,' .
+                // Списки
+                'ul,ol,li,' .
+                // Ссылки с разрешёнными атрибутами (Link)
+                'a[href|title|target|rel],' .
+                // Изображения с возможными классами и размерами (Image, FontSizeTextStyle, FontFamily)
+                'img[src|alt|class|width|height],' .
+                // Фреймы для YouTube, Vimeo и других плагинов
+                'iframe[src|width|height|frameborder|allowfullscreen],' .
+                // Таблицы (в случае использования в редакторе)
+                'table,thead,tbody,tr,th,td',
+
+            // Разрешённые CSS-свойства для встроенных стилей через атрибут style (TextStyle, FontSizeTextStyle, FontFamily, Highlight, Color и др.)
+            'CSS.AllowedProperties' =>
+                'font,font-size,font-weight,font-style,font-family,' .
+                'text-decoration,padding-left,color,background-color,text-align,background-image,' .
+                'line-height,margin',
+
+            // Автоматические форматирования и удаление пустых элементов
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
+            'CSS.Trusted' => true,
+
+            // Разрешённые значения для атрибута target у ссылок
+            'Attr.AllowedFrameTargets' => '_blank, _self, _parent, _top',
+
+
+            // Разрешение на использование iframe (например, для YouTube-видео)
+            "HTML.SafeIframe"      => 'true',
+
+            // Регулярное выражение для проверки корректных источников iframe (YouTube и Vimeo как пример)
+            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
         ],
         'test'    => [
             'Attr.EnableID' => 'true',

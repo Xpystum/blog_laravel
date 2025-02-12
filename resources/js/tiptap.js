@@ -60,25 +60,16 @@ window.addEventListener('DOMContentLoaded', function () {
         const dataElement = document.getElementById('hiddenContent_input_tiptap');
         let content = dataElement.value;
 
-        console.log(content);
-
-        if (content === "null") {
-
-            content = null;
-
-        }
-
-
         // tip tap editor setup
         const editor = new Editor({
             element: document.querySelector('#wysiwyg-example'),
             editable: true, //можно ли писать в редакторе
             extensions: [
                 StarterKit.configure({
-                    textStyle: false,
-                    bold: false,
+                    textStyle: true,
+                    bold: true,
                     marks: {
-                        bold: false,
+                        bold: true,
                     },
                 }),
                 // Include the custom Bold extension
@@ -104,12 +95,17 @@ window.addEventListener('DOMContentLoaded', function () {
                     inline: true,
                     allowBase64: true,
                     HTMLAttributes: {
-                        class: '!mt-1 !mb-1',
+                        class: '!mt-1 !mb-1 !inline',
                     },
                 }),
-                YouTube,
+                YouTube.configure({
+                    inline: true,
+                    nocookie: true,
+                    enableIFrameApi: true,
+                    interfaceLanguage: 'ru',
+                }),
             ],
-            content: content ?? '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
+            content: '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
             editorProps: {
                 attributes: {
                     class: 'format lg:format-lg dark:format-invert focus:outline-none format-blue max-w-none',
@@ -118,16 +114,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
         });
 
+        if(content !== "null") {
 
+            editor.commands.setContent(content);
 
-
-        // if(content !== "null") {
-        //     console.log('вставка контента')
-        //     editor.commands.setContent(content);
-        //     // editor.commands.setContent("<p>suka</p>");
-
-        //     console.log('После вставки контента');
-        // }
+        }
 
         const button = document.getElementById("text-editor__tiptap-button").addEventListener('click', (event) => {
 
@@ -149,7 +140,7 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         document.getElementById('toggleLinkButton').addEventListener('click', () => {
-            const url = window.prompt('Enter image URL:', 'https://flowbite.com');
+            const url = window.prompt('Enter image URL:', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
             editor.chain().focus().toggleLink({ href: url }).run();
         });
         document.getElementById('removeLinkButton').addEventListener('click', () => {
@@ -174,14 +165,13 @@ window.addEventListener('DOMContentLoaded', function () {
         document.getElementById('toggleOrderedListButton').addEventListener('click', () => {
             editor.chain().focus().toggleOrderedList().run();
         });
-        document.getElementById('toggleBlockquoteButton').addEventListener('click', () => {
-            editor.chain().focus().toggleBlockquote().run();
-        });
         document.getElementById('toggleHRButton').addEventListener('click', () => {
             editor.chain().focus().setHorizontalRule().run();
         });
+
+
         document.getElementById('addImageButton').addEventListener('click', () => {
-            const url = window.prompt('Enter image URL:', 'https://placehold.co/600x400');
+            const url = window.prompt('Enter image URL:', 'https://img-webcalypt.ru/uploads/admin/images/meme-templates/pdGiOwX5FxcORGiMFf6ZTwExLVG9MNUS.jpg');
             if (url) {
                 editor.chain().focus().setImage({ src: url }).run();
             }
@@ -196,7 +186,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 })
             }
         });
-
 
 
         // typography dropdown
@@ -278,6 +267,3 @@ window.addEventListener('DOMContentLoaded', function () {
 })
 
 
-
-
-console.log('Вызов tiptap');
