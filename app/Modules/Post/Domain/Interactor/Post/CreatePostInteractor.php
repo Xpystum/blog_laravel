@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Modules\Post\Domain\Interactor;
+namespace App\Modules\Post\Domain\Interactor\Post;
 
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\Data\ValueObject\PostVO;
-use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
-use App\Modules\Post\Domain\Actions\CreatePostImageCoverAction as ActionsCreatePostImageCoverAction;
-use App\Modules\Post\Domain\Actions\Post\CreatePostAction;
-use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
 use App\Modules\Post\Domain\Models\PostImageCover;
+use App\Modules\Post\Domain\Actions\Post\CreatePostAction;
+use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
 use App\Modules\StorageFile\Domain\Services\StorageFileService;
-use Illuminate\Http\UploadedFile;
+use App\Modules\Post\Domain\Actions\CreatePostImageCoverAction as ActionsCreatePostImageCoverAction;
+use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
 
 class CreatePostInteractor
 {
@@ -86,6 +86,6 @@ class CreatePostInteractor
 
     public function createPostImageCover(PostImageCoverVO $vo) : PostImageCover
     {
-        return ActionsCreatePostImageCoverAction::make($vo);
+        return CreatePostImageCoverAction::make($vo);
     }
 }

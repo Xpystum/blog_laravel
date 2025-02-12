@@ -2,11 +2,13 @@
 
 @php
 
-    if (file_exists($path_img)) {
-        $path_img = asset($path_img);
-    } else {
+    if ( is_null($path_img) || empty($path_img) ) {
+
         // аналогично onerror, но теперь у нас не будет ошибки в консоли
         $path_img = asset('storage/img/chilling_code.jpg');
+
+    } else {
+        $path_img = asset($path_img);
     }
 
 @endphp

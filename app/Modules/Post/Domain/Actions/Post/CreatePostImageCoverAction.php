@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Post\Domain\Actions;
+namespace App\Modules\Post\Domain\Actions\Post;
 
 use Exception;
 

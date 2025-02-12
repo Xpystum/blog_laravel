@@ -1,9 +1,17 @@
 @props(['post' => null])
 
 @php
-    $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
-    echo $path_img;
-    echo File::exists($path_img)  ? 'true' : 'false';
+    //получаем значение url
+    $path_img = $post?->cover_img?->path_url?? null;
+
+    if($path_img && Storage::disk('post_image_cover')->exists($path_img)){
+        //получаем полный путь вплоть до домена
+        $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
+    } else {
+        // устанавлвиаем null для нашего компонента blade <x-img>
+        $path_img = null;
+    }
+
 @endphp
 
 
@@ -24,8 +32,6 @@
             class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
             {!! $post->content_cover !!}
         </a>
-
-        patrik_a15cca58-1e5e-4f68-9e6d-2cde5b8c213f.png
 
 
         <span
