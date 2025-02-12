@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->id()->primary();
 
-            $table->foreignId('post_id')->constrained('posts')->unique()->comment('Изображение которое принадлежит статье');
+            $table->foreignId('post_id')->unique()->constrained('posts')->comment('Изображение которое принадлежит статье');
             $table->string('path_url')->comment('Путь к картинке');
             $table->string('original_name', 255)->comment('Оригинально название изображения');
             $table->string('formed_name', 255)->comment('Сформированное название картинки');

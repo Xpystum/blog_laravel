@@ -2,7 +2,7 @@
 
 @php
 
-    if (file_exists(public_path($path_img))) {
+    if (file_exists($path_img)) {
         $path_img = asset($path_img);
     } else {
         // аналогично onerror, но теперь у нас не будет ошибки в консоли

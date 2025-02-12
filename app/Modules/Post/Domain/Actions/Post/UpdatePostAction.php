@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Modules\Post\Domain\Actions;
+namespace App\Modules\Post\Domain\Actions\Post;
 
 use App\Modules\Post\App\Data\ValueObject\PostVO;
 use App\Modules\Post\Domain\Models\Post;
 use Exception;
 
-class CreatePostAction
+class UpdatePostAction
 {
 
-    public static function make(PostVO $vo) : Post
+    public static function make(PostVO $vo, Post $post) : bool
     {
-        return (new self())->run($vo);
+        return (new self())->run($vo, $post);
     }
 
 
-    private function run(PostVO $vo) : Post
+    private function run(PostVO $vo, Post $post) : bool
     {
 
         try {
 
-            $model = Post::create($vo->toArrayNotNull());
+            $status = $post->update($vo->updateModel());
 
         } catch (\Throwable $th) {
 
@@ -31,6 +31,6 @@ class CreatePostAction
 
         }
 
-        return $model;
+        return $status;
     }
 }

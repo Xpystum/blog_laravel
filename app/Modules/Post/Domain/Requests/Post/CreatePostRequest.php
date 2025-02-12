@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Post\Domain\Requests;
+namespace App\Modules\Post\Domain\Requests\Post;
 
 use App\Modules\Post\App\Data\ValueObject\PostVO;
 use Illuminate\Foundation\Http\FormRequest;

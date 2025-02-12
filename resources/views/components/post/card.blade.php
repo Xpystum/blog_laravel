@@ -2,7 +2,10 @@
 
 @php
     $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
+    echo $path_img;
+    echo File::exists($path_img)  ? 'true' : 'false';
 @endphp
+
 
 <div class="flex h-[500px] p-5 items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
 
@@ -21,6 +24,8 @@
             class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
             {!! $post->content_cover !!}
         </a>
+
+        patrik_a15cca58-1e5e-4f68-9e6d-2cde5b8c213f.png
 
 
         <span

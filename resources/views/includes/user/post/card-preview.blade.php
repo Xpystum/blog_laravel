@@ -1,7 +1,10 @@
 @php
     $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
 
+
 @endphp
+
+
 
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Post\Domain\Requests;
+namespace App\Modules\Post\Domain\Requests\Comments;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;

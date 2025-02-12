@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Modules\Post\Domain\Interactor;
+namespace App\Modules\Post\Domain\Interactor\Post;
 
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\Data\ValueObject\PostVO;
-use App\Modules\Post\Domain\Actions\CreatePostAction;
-use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
-use App\Modules\Post\Domain\Actions\CreatePostImageCoverAction;
 use App\Modules\Post\Domain\Models\PostImageCover;
+use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
+use App\Modules\Post\App\DTO\UpdatePostDTO;
 use App\Modules\StorageFile\Domain\Services\StorageFileService;
-use Illuminate\Http\UploadedFile;
+use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
+use App\Modules\Post\Domain\Actions\Post\UpdatePostAction;
 
-class CreatePostInteractor
+class UpdatePostInteractor
 {
 
     private string $keyValueSetting; //Значение ключа из табицы setting для указания папки при сохранения файла
@@ -30,19 +30,24 @@ class CreatePostInteractor
     }
 
 
-    public function execute(CreatePostDTO $dto) : Post
+    public function execute(UpdatePostDTO $dto) : bool
     {
         return $this->run($dto);
     }
 
-    private function run(CreatePostDTO $dto) : Post
+    private function run(UpdatePostDTO $dto) : bool
     {
 
-        /** @var Post */
-        $model = DB::transaction(function () use ($dto) {
+        /** @var bool */
+        $status = DB::transaction(function () use ($dto) {
 
+            /** @var bool */
+            $status = $this->updatePost($dto->vo, $dto->post);
+
+            #TODO Возможно надо обновить состояние - могут быть проблемы
             /** @var Post */
-            $post = $this->createPost($dto->vo);
+            $post = $dto->post;
+
 
             if($dto->file) {
 
@@ -54,6 +59,11 @@ class CreatePostInteractor
 
                 /** @var string */
                 $path = $array['path'];
+
+                if($saveFile && $path)
+                {
+                    $post->cover_img()->delete();
+                }
 
                 /** @var PostImageCover */
                 $postImageCover = $this->createPostImageCover(
@@ -67,20 +77,23 @@ class CreatePostInteractor
                     )
                 );
 
-                //сохраняем связь
-                $post->cover_img()->save($postImageCover);
+                $postImageCover = $post->cover_img()->save($postImageCover);
+
+                // //сохраняем связь
+                // $post->cover_img = $postImageCover;
 
             }
 
-            return $post;
+            return $status;
+
         });
 
-        return $model;
+        return $status;
     }
 
-    public function createPost(PostVO $vo) : Post
+    public function updatePost(PostVO $vo, Post $post) : bool
     {
-        return CreatePostAction::make($vo);
+        return UpdatePostAction::make($vo, $post);
     }
 
     public function createPostImageCover(PostImageCoverVO $vo) : PostImageCover

@@ -84,6 +84,19 @@ class PostVO implements Arrayable
         );
     }
 
+    public function updateModel() : array
+    {
+        return collect([
+            'title' => $this->title,
+            'content' => $this->content,
+            'content_cover' => $this->content_cover,
+            'post_img_cover_id' => $this->post_img_cover_id,
+        ])->filter(function($item) {
+            return $item !== null;
+        })->toArray();
+
+    }
+
     /**
      * Вырезаем ifarme () div[@data-youtube-video] - что бы потом вставить
      * делается это для того что бы Purifier - не удалял важные части, по которому потом фильтрует tiptap - и у нас выводился youtube

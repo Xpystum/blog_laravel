@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Mews\Purifier\Casts\CleanHtmlInput;
 
 class Post extends Model
 {
@@ -47,7 +46,7 @@ class Post extends Model
     */
     public function cover_img(): HasOne
     {
-        return $this->hasOne(PostImageCover::class);
+        return $this->hasOne(PostImageCover::class, 'post_id');
     }
 
     public function user() : BelongsTo

@@ -7,10 +7,11 @@ use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
 use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\Data\ValueObject\PostVO;
+use App\Modules\Post\App\DTO\UpdatePostDTO;
 use App\Modules\Post\Domain\Models\Post;
+use App\Modules\Post\Domain\Requests\Post\CreatePostRequest;
+use App\Modules\Post\Domain\Requests\Post\UpdatePostRequest;
 use App\Modules\Post\Domain\Services\PostSerivce;
-use App\Modules\Post\Domain\Requests\CreatePostRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -37,6 +38,7 @@ class PostController extends Controller
             )
         );
 
+        abort_unless($model, 'Ошибка на стороне сервера.', 500);
 
         $alert = 'Статья успешно создана.';
 
@@ -44,8 +46,37 @@ class PostController extends Controller
 
     }
 
+    public function update(
+        Post $post,
+        UpdatePostRequest $request,
+        PostSerivce $postSerivce,
+    ) {
+
+        /** @var PostVO */
+        $postVO = $request->createPostVO();
+
+        /** @var ?UploadedFile */
+        $file_img_cover = $request->getFile();
+
+        /** @var UpdatePostDTO */
+        $dto = UpdatePostDTO::make(
+            vo: $postVO,
+            post: $post,
+            file: $file_img_cover,
+        );
+
+        $status = $postSerivce->updatePost($dto);
+
+        abort_unless($status, 'Ошибка на стороне сервера.', 500);
+
+        $alert = 'Статья успешно обновлена.';
+
+        return redirect()->intended($default = '/')->with($alert);
+
+    }
+
     /** PAGES GET */
-    public function update(int $postId)
+    public function updateView(int $postId)
     {
 
         /** @var ?Post */
