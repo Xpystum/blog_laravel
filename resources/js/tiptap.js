@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 }),
                 YouTube.configure({
                     inline: true,
-                    nocookie: true,
+                    nocookie: false,
                     enableIFrameApi: true,
                     interfaceLanguage: 'ru',
                 }),
