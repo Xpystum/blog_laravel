@@ -5,8 +5,7 @@ namespace App\Modules\Post\App\Data\ValueObject;
 use App\Modules\Base\Traits\FilterArrayTrait;
 use DOMDocument;
 use DOMXPath;
-use HTMLPurifier;
-use HTMLPurifier_Config;
+use Exception;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Mews\Purifier\Facades\Purifier;
@@ -34,10 +33,13 @@ class PostVO implements Arrayable
 
     ) : self {
 
-        $content5 =  $content;
-
         // Выводим итоговый HTML
         $content = self::mappingIframe($content);
+
+        if($content === false) {
+            logError('Ошибка в PostVO, при мапинге iframe и DOC мы получаем false');
+            throw new Exception('Ошибка на стороне сервера.', 500);
+        }
 
         return new self(
             title: $title,
@@ -82,7 +84,15 @@ class PostVO implements Arrayable
         );
     }
 
-    private static function mappingIframe($content) : string
+    /**
+     * Вырезаем ifarme () div[@data-youtube-video] - что бы потом вставить
+     * делается это для того что бы Purifier - не удалял важные части, по которому потом фильтрует tiptap - и у нас выводился youtube
+     *
+     * @param string $content - html контент для проверки
+     *
+     * @return string|false
+     */
+    private static function mappingIframe(string $content) : string|false
     {
         libxml_use_internal_errors(true);
 
