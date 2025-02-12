@@ -41,7 +41,7 @@ return [
                 // Изображения с возможными классами и размерами (Image, FontSizeTextStyle, FontFamily)
                 'img[src|alt|class|width|height],' .
                 // Фреймы для YouTube, Vimeo и других плагинов
-                'iframe[src|width|height|frameborder|allowfullscreen],' .
+                'iframe[src|width|height|frameborder|allowfullscreen|autoplay|disablekbcontrols|enableiframeapi|endtime|ivloadpolicy|loop|modestbranding|origin|playlist],' .
                 // Таблицы (в случае использования в редакторе)
                 'table,thead,tbody,tr,th,td',
 
@@ -64,14 +64,14 @@ return [
             "HTML.SafeIframe"      => 'true',
 
             // Регулярное выражение для проверки корректных источников iframe (YouTube и Vimeo как пример)
-            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
+            "URI.SafeIframeRegexp" => "#^https://www\.youtube\.com/embed/#",
         ],
         'test'    => [
             'Attr.EnableID' => 'true',
         ],
         "youtube" => [
             "HTML.SafeIframe"      => 'true',
-            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
+            "URI.SafeIframeRegexp" => "#^https://www\.youtube\.com/embed/#",
         ],
         'custom_definition' => [
             'id'  => 'html5-definitions',

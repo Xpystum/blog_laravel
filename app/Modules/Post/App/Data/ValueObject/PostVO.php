@@ -3,6 +3,8 @@
 namespace App\Modules\Post\App\Data\ValueObject;
 
 use App\Modules\Base\Traits\FilterArrayTrait;
+use DOMDocument;
+use DOMXPath;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use Illuminate\Contracts\Support\Arrayable;
@@ -32,91 +34,10 @@ class PostVO implements Arrayable
 
     ) : self {
 
+        $content5 =  $content;
 
-       // Получаем дефолтный конфиг, например, для набора настроек "custom"
-        $settings = config('purifier.settings.default'); // Здесь ключ "custom" – именем вашего набора настроек
-
-        $config = HTMLPurifier_Config::createDefault();
-        // Применяем базовые настройки из конфигурационного файла
-        foreach ($settings as $key => $value) {
-            // Если в настройках задан массив (например, HTML.Allowed is an array),
-            // можно делать дополнительную обработку, но обычно это строка
-            $config->set($key, $value);
-        }
-
-        // Если нужно дополнительно модифицировать HTMLDefinition, получаем объект определения
-        if ($def = $config->getHTMLDefinition(true)) {
-            // Добавляем элемент video согласно спецификации WHATWG
-            $def->addElement(
-                'video',
-                'Block', // тип элемента
-                'Optional: (source, Flow) | (Flow, source) | Flow', // контент-модель
-                'Common', // набор общих атрибутов
-                [
-                    'src'      => 'URI',
-                    'type'     => 'Text',
-                    'width'    => 'Length',
-                    'height'   => 'Length',
-                    'poster'   => 'URI',
-                    'preload'  => 'Enum#auto,metadata,none',
-                    'controls' => 'Bool'
-                ]
-            );
-
-            // Добавляем элемент source для вложения в video
-            $def->addElement(
-                'source',
-                'Block',
-                'Flow',
-                'Common',
-                [
-                    'src'  => 'URI',
-                    'type' => 'Text'
-                ]
-            );
-
-            // Добавляем текстовые/стилистические элементы согласно спецификации
-            $def->addElement('s',    'Inline', 'Inline', 'Common');
-            $def->addElement('var',  'Inline', 'Inline', 'Common');
-            $def->addElement('sub',  'Inline', 'Inline', 'Common');
-            $def->addElement('sup',  'Inline', 'Inline', 'Common');
-            $def->addElement('mark', 'Inline', 'Inline', 'Common');
-            $def->addElement('wbr',  'Inline', 'Empty',  'Core');
-
-            // Добавляем элементы для разметки изменений (ins, del)
-            $def->addElement(
-                'ins',
-                'Block',
-                'Flow',
-                'Common',
-                [
-                    'cite'     => 'URI',
-                    'datetime' => 'CDATA'
-                ]
-            );
-            $def->addElement(
-                'del',
-                'Block',
-                'Flow',
-                'Common',
-                [
-                    'cite'     => 'URI',
-                    'datetime' => 'CDATA'
-                ]
-            );
-
-            // Если необходимо добавить или изменить атрибут, можно воспользоваться методом addAttribute.
-            // Например, для тега table добавляем атрибут height типа "Text"
-            $def->addAttribute('table', 'height', 'Text');
-            $def->addAttribute('td', 'border', 'Text');
-        }
-
-        // $purifier = new HTMLPurifier($config);
-
-        // $content = Purifier::clean($content, $config); //полностью очищаем контент от html
-        $content = Purifier::clean($content, 'youtube'); //полностью очищаем контент от html
-
-        // $content_cover = Purifier::clean($content, 'custom_not_html'); //полностью очищаем контент от html
+        // Выводим итоговый HTML
+        $content = self::mappingIframe($content);
 
         return new self(
             title: $title,
@@ -159,6 +80,66 @@ class PostVO implements Arrayable
             user_id: Arr::get($data, 'user_id'),
             post_img_cover_id: Arr::get($data, 'post_img_cover_id' , null),
         );
+    }
+
+    private static function mappingIframe($content) : string
+    {
+        libxml_use_internal_errors(true);
+
+        // Загружаем исходный HTML
+        $dom = new DOMDocument();
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+
+        // Шаг 2. Находим все блоки div с data-youtube-video и заменяем их на плейсхолдеры
+        $youtubePlaceholders = [];
+
+        // Используем XPath для поиска нужных div
+        $xpath = new DOMXPath($dom);
+        $youtubeNodes = $xpath->query("//div[@data-youtube-video]");
+
+        // Проходим по найденным блокам в обратном порядке, чтобы не нарушить структуру DOM
+        for ($i = $youtubeNodes->length - 1; $i >= 0; $i--) {
+            $node = $youtubeNodes->item($i);
+            // Генерация уникального плейсхолдера
+            $placeholder = "YOUTUBE_PLACEHOLDER_" . $i;
+            // Сохраняем исходный HTML блока
+            $youtubePlaceholders[$placeholder] = $dom->saveHTML($node);
+
+            // Создаем текстовый узел с плейсхолдером
+            $placeholderNode = $dom->createTextNode($placeholder);
+            // Заменяем текущий узел плейсхолдером
+            $node->parentNode->replaceChild($placeholderNode, $node);
+        }
+
+        // Получаем HTML с плейсхолдерами
+        $htmlWithPlaceholders = $dom->saveHTML();
+
+        // Шаг 3. Пропускаем HTML с плейсхолдерами через Purifier
+        $cleanHtml = Purifier::clean($htmlWithPlaceholders, 'youtube');
+
+        // Шаг 4. Загружаем очищенный HTML в новый DOMDocument
+        $domClean = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $domClean->loadHTML($cleanHtml, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+
+        // Шаг 5. С помощью XPath заменяем плейсхолдеры на исходные HTML блоков
+        $xpathClean = new DOMXPath($domClean);
+        foreach ($youtubePlaceholders as $placeholder => $youtubeHtml) {
+            // Ищем все текстовые узлы, содержащие текущий плейсхолдер
+            $nodes = $xpathClean->query("//text()[contains(., '$placeholder')]");
+            foreach ($nodes as $node) {
+                // Создаем документ-фрагмент и вставляем в него HTML блока
+                $fragment = $domClean->createDocumentFragment();
+                // appendXML вставляет HTML-разметку; если возникают проблемы, можно использовать loadHTML
+                $fragment->appendXML($youtubeHtml);
+                // Заменяем текстовый узел фрагментом
+                $node->parentNode->replaceChild($fragment, $node);
+            }
+        }
+
+        return $domClean->saveHTML();
     }
 
 

@@ -116,6 +116,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
         if(content !== "null") {
 
+            console.log(content);
+
             editor.commands.setContent(content);
 
         }
@@ -164,6 +166,9 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         document.getElementById('toggleOrderedListButton').addEventListener('click', () => {
             editor.chain().focus().toggleOrderedList().run();
+        });
+        document.getElementById('toggleBlockquoteButton').addEventListener('click', () => {
+            editor.commands.toggleBlockquote();
         });
         document.getElementById('toggleHRButton').addEventListener('click', () => {
             editor.chain().focus().setHorizontalRule().run();
@@ -265,5 +270,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 })
+
 
 
