@@ -2,10 +2,10 @@
 
 namespace App\Modules\Post\Domain\Actions\Post;
 
+use App\Modules\Post\App\Data\ValueObject\Post\PostImageCoverVO;
 use Exception;
 
 use App\Modules\Post\Domain\Models\PostImageCover;
-use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
 
 class CreatePostImageCoverAction
 {

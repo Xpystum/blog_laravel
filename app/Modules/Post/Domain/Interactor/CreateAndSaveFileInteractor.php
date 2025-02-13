@@ -2,13 +2,12 @@
 
 namespace App\Modules\Post\Domain\Interactor;
 
-
+use App\Modules\Post\App\Data\ValueObject\Post\PostImageCoverVO;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\Domain\Models\PostImageCover;
-use App\Modules\Post\App\Data\ValueObject\PostImageCoverVO;
 use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
+use App\Modules\Post\Domain\Models\PostImageCover;
 use App\Modules\StorageFile\Domain\Services\StorageFileService;
 
 

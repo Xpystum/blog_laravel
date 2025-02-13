@@ -3,20 +3,17 @@
 namespace App\Modules\Post\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\User\Domain\Models\User;
-use App\Modules\Post\Domain\Factories\CommentFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class LikeForComment extends Model
 {
     use HasFactory;
 
-    protected $table = 'comments';
+    protected $table = 'like_for_comments';
 
     protected static function newFactory()
     {
-        return CommentFactory::new();
+        // return CommentFactory::new();
     }
 
     protected $fillable = [
@@ -38,15 +35,5 @@ class Comment extends Model
     protected $casts = [
 
     ];
-
-    public function post() : BelongsTo
-    {
-        return $this->belongsTo(Post::class, 'post_id', 'id');
-    }
-
-    public function user() : BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
 
 }

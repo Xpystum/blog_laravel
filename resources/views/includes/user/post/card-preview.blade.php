@@ -4,8 +4,6 @@
 
 @endphp
 
-
-
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
         <div class="flex flex-col">

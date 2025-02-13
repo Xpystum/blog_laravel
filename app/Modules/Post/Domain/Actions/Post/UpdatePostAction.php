@@ -2,7 +2,7 @@
 
 namespace App\Modules\Post\Domain\Actions\Post;
 
-use App\Modules\Post\App\Data\ValueObject\PostVO;
+use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use App\Modules\Post\Domain\Models\Post;
 use Exception;
 

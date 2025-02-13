@@ -5,8 +5,8 @@ namespace App\Http\Controllers\User\Post;
 use Illuminate\Http\UploadedFile;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use App\Modules\Post\App\DTO\CreatePostDTO;
-use App\Modules\Post\App\Data\ValueObject\PostVO;
 use App\Modules\Post\App\DTO\UpdatePostDTO;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\Domain\Requests\Post\CreatePostRequest;

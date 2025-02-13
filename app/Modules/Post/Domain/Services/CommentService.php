@@ -3,7 +3,7 @@
 namespace App\Modules\Post\Domain\Services;
 
 use App\Modules\Base\Response\FunctionResult;
-use App\Modules\Post\App\Data\ValueObject\CommentVO;
+use App\Modules\Post\App\Data\ValueObject\Comment\CommentVO;
 use App\Modules\Post\Domain\Actions\CreateCommentAction;
 
 class CommentService

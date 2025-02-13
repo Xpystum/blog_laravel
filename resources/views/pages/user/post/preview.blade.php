@@ -21,8 +21,6 @@
             if (button) {
                 button.addEventListener('click', function(event) {
 
-                    console.log(1);
-
                     window.scrollTo({
                         top: document.body.scrollHeight,
                         behavior: "smooth"

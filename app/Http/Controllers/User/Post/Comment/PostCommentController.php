@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User\Post\Comment;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Post\App\Data\ValueObject\Comment\CommentVO;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\App\Data\ValueObject\CommentVO;
 use App\Modules\Post\Domain\Services\CommentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

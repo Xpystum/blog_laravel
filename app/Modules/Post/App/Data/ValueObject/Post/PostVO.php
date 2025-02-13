@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Post\App\Data\ValueObject;
+namespace App\Modules\Post\App\Data\ValueObject\Post;
 
 use App\Modules\Base\Traits\FilterArrayTrait;
 use DOMDocument;

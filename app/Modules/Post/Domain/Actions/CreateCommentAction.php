@@ -2,7 +2,7 @@
 
 namespace App\Modules\Post\Domain\Actions;
 
-use App\Modules\Post\App\Data\ValueObject\CommentVO;
+use App\Modules\Post\App\Data\ValueObject\Comment\CommentVO;
 use App\Modules\Post\Domain\Models\Comment;
 use Exception;
 

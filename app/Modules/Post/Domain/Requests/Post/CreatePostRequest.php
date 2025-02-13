@@ -2,7 +2,7 @@
 
 namespace App\Modules\Post\Domain\Requests\Post;
 
-use App\Modules\Post\App\Data\ValueObject\PostVO;
+use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;

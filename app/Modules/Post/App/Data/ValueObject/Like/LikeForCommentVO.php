@@ -1,37 +1,38 @@
 <?php
 
-namespace App\Modules\Post\App\Data\ValueObject;
+namespace App\Modules\Post\App\Data\ValueObject\Like;
 
 use Illuminate\Support\Arr;
-use Mews\Purifier\Facades\Purifier;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Modules\Base\Traits\FilterArrayTrait;
 
-readonly class CommentVO implements Arrayable
+readonly class LikeForCommentVO implements Arrayable
 {
 
     use FilterArrayTrait;
 
     public function __construct(
         public int $post_id,
-        public int $user_id,
-        public string $value,
+        public ?int $user_id,
+        public string $user_agent,
+        public string $ip,
     ) {}
 
     public static function make(
 
         int $post_id,
-        int $user_id,
-        string $value,
+        string $user_agent,
+        string $ip,
+        ?int $user_id = null,
+
 
     ) : self {
-
-        // $value = Purifier::clean($value); //очищаем контент из редактора от опасных значений от xss атаки
 
         return new self(
             post_id: $post_id,
             user_id: $user_id,
-            value: $value,
+            user_agent: $user_agent,
+            ip: $ip,
         );
 
     }
@@ -42,7 +43,8 @@ readonly class CommentVO implements Arrayable
         return [
             "post_id" => $this->post_id,
             "user_id" => $this->user_id,
-            "value" => $this->value,
+            "user_agent" => $this->user_agent,
+            "ip" => $this->ip,
         ];
     }
 
@@ -50,8 +52,9 @@ readonly class CommentVO implements Arrayable
     {
         return self::make(
             post_id: Arr::get($data, 'post_id'),
-            user_id: Arr::get($data, 'user_id'),
-            value: Arr::get($data, 'value'),
+            user_agent: Arr::get($data, 'user_agent'),
+            ip: Arr::get($data, 'ip'),
+            user_id: Arr::get($data, 'user_id', null),
         );
     }
 
