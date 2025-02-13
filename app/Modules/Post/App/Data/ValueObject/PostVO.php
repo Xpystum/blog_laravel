@@ -35,7 +35,7 @@ class PostVO implements Arrayable
 
         // Выводим итоговый HTML
         $content = self::mappingIframe($content);
-        $content_cover = Purifier::clean();
+        $content_cover = Purifier::clean($content, 'custom_not_html'); //полностью очищаем контент от html
 
         if($content === false) {
             logError('Ошибка в PostVO, при мапинге iframe и DOC мы получаем false');
