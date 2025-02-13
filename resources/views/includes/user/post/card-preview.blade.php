@@ -23,9 +23,9 @@
                     <a href="#" class="p-1 ml-2">
                         <x-icon-heart class="svg-icon-heart custom-icon-blade-heart" />
                     </a>
-                    <a href="#" class="p-1 ml-2">
+                    <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
-                    </a>
+                    </button>
                 </div>
             </div>
 

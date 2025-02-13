@@ -13,6 +13,26 @@
         $alert_error = session()->has('alert_error') ? session()->get('alert_error') : null;
     @endphp
 
+    @pushOnce('scripts')
+        <script>
+
+            const button = document.querySelector('.button_card-preview-comment');
+
+            if (button) {
+                button.addEventListener('click', function(event) {
+
+                    console.log(1);
+
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: "smooth"
+                    });
+                });
+            }
+
+        </script>
+    @endPushOnce
+
     @pushIf( ($alert_success||$alert_error) , 'scripts')
         <script>
 
