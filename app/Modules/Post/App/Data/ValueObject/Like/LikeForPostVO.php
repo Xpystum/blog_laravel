@@ -6,16 +6,18 @@ use Illuminate\Support\Arr;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Modules\Base\Traits\FilterArrayTrait;
 
-readonly class LikeForCommentVO implements Arrayable
+readonly class LikeForPostVO implements Arrayable
 {
 
     use FilterArrayTrait;
 
     public function __construct(
+
         public int $post_id,
         public ?int $user_id,
         public string $user_agent,
         public string $ip,
+
     ) {}
 
     public static function make(

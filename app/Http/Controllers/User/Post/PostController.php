@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Post;
 use Illuminate\Http\UploadedFile;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
 use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\DTO\UpdatePostDTO;
@@ -12,6 +13,7 @@ use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\Domain\Requests\Post\CreatePostRequest;
 use App\Modules\Post\Domain\Requests\Post\UpdatePostRequest;
 use App\Modules\Post\Domain\Services\PostSerivce;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -72,6 +74,25 @@ class PostController extends Controller
         $alert = 'Статья успешно обновлена.';
 
         return redirect()->intended($default = '/')->with($alert);
+
+    }
+
+    public function likePost(
+        Post $post,
+        Request $request,
+    ) {
+
+        // return response()->json(['success' => true]);
+
+        // dd($request->header('User-Agent'));
+
+        /** @var LikeForPostVO */
+        $vo = LikeForPostVO::make(
+            post_id: $post->id,
+            user_agent: '1',
+            ip: $request->ip(),
+            user_id: Auth::user() ?? null,
+        );
 
     }
 

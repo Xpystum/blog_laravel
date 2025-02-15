@@ -1,7 +1,5 @@
 @php
     $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
-
-
 @endphp
 
 <div>
@@ -17,10 +15,12 @@
             <div class="-mx-3 border-b border-gray-500 opacity-50 mb-3"></div>
 
             <div class="flex flex-row justify-end">
-                <div class="flex flex-row">
-                    <a href="#" class="p-1 ml-2">
+                <div x-data class="flex flex-row">
+
+                    <button x-on:click="sendRequestHeart" type="button" class="p-1 ml-2">
                         <x-icon-heart class="svg-icon-heart custom-icon-blade-heart" />
-                    </a>
+                    </button>
+
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
                     </button>

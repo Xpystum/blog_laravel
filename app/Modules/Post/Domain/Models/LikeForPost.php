@@ -5,7 +5,7 @@ namespace App\Modules\Post\Domain\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class LikeForComment extends Model
+class LikeForPost extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,8 @@ class LikeForComment extends Model
     protected $fillable = [
         "post_id",
         "user_id",
-        "value",
+        "user_agent",
+        "ip",
     ];
 
     protected $guarded = [

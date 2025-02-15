@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title.page', config('app.name'))</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @vite(['resources/css/app.sass', 'resources/js/app.js'])
 
     @stack('header')

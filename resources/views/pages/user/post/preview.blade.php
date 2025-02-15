@@ -16,6 +16,7 @@
     @pushOnce('scripts')
         <script>
 
+
             const button = document.querySelector('.button_card-preview-comment');
 
             if (button) {
@@ -27,6 +28,36 @@
                     });
                 });
             }
+
+            async function sendRequestHeart() {
+
+                try {
+
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    const url = @json( route('users.posts.like', $post->id) );
+
+
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        }
+                    });
+
+                    const data = await response.json();
+                    console.log(data);
+
+                    // Обновляем интерфейс
+                    this.liked = true;
+                    this.statusMessage = 'Пост добавлен в избранное!';
+
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    this.statusMessage = 'Произошла ошибка. Попробуйте позже!';
+                }
+            }
+
+
 
         </script>
     @endPushOnce

@@ -24,6 +24,8 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
             Route::patch('/{post:id}', [PostController::class, 'update'])->name('user.posts.update');
         }
 
+        Route::post('/{post:id}/like', [PostController::class, 'likePost'])->name('users.posts.like')->withoutMiddleware('auth');
+
         Route::post('/{post:id}/comments', [PostCommentController::class, 'store'])->name('users.posts.comments.store');
 
 
