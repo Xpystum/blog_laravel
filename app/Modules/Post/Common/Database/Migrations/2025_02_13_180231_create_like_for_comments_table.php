@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('user_agent');
             $table->ipAddress('ip');
 
-            $table->boolean('status')->comment('Активирован ли лайк или нет');
+            $table->boolean('status')->default(true)->comment('Активирован ли лайк или нет');
 
             $table->index('post_id');
             $table->index('ip');

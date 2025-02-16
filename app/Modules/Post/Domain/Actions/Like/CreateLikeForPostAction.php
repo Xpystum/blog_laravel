@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Post\Domain\Actions\Post;
+namespace App\Modules\Post\Domain\Actions\Like;
 
 use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
 use App\Modules\Post\Domain\Models\LikeForPost;
 use Exception;
 
-class FirstOrCreatePostAction
+class CreateLikeForPostAction
 {
 
     public static function make(LikeForPostVO $vo) : LikeForPost

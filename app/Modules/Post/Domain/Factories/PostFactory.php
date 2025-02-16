@@ -2,8 +2,8 @@
 
 namespace App\Modules\Post\Domain\Factories;
 
+use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\App\Data\ValueObject\PostVO;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory

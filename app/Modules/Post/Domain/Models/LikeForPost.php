@@ -21,6 +21,7 @@ class LikeForPost extends Model
         "post_id",
         "user_id",
         "user_agent",
+        "status",
         "ip",
     ];
 
@@ -40,7 +41,6 @@ class LikeForPost extends Model
 
     public function post() : BelongsTo
     {
-        return 
+        return $this->belongsTo(Post::class, 'post_id', 'id');
     }
-
 }
