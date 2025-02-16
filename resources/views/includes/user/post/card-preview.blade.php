@@ -2,6 +2,7 @@
     $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
 @endphp
 
+
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
         <div class="flex flex-col">
@@ -14,12 +15,12 @@
 
             <div class="-mx-3 border-b border-gray-500 opacity-50 mb-3"></div>
 
+            <livewire:post-like-component :post="$post"/>
+
+
             <div class="flex flex-row justify-end">
                 <div x-data class="flex flex-row">
 
-                    <button x-on:click="sendRequestHeart" type="button" class="p-1 ml-2">
-                        <x-icon-heart class="svg-icon-heart custom-icon-blade-heart" />
-                    </button>
 
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>

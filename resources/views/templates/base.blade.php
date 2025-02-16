@@ -12,6 +12,7 @@
     @vite(['resources/css/app.sass', 'resources/js/app.js'])
 
     @stack('header')
+    @livewireStyles
 
 
 </head>
@@ -39,6 +40,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     @stack('scripts')
     @vite('resources/js/alerts/alert.js')
-
+    @livewireScripts
 </body>
 </html>
