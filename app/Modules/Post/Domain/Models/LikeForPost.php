@@ -4,6 +4,7 @@ namespace App\Modules\Post\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LikeForPost extends Model
 {
@@ -36,5 +37,10 @@ class LikeForPost extends Model
     protected $casts = [
 
     ];
+
+    public function post() : BelongsTo
+    {
+        return 
+    }
 
 }

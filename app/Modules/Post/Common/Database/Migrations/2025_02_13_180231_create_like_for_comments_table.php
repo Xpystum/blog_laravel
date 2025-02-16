@@ -25,6 +25,8 @@ return new class extends Migration
             $table->index('post_id');
             $table->index('ip');
 
+            $table->primary(['post_id', 'user_id']);
+
             $table->timestamps();
         });
     }
