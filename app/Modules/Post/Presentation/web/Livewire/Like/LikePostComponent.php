@@ -2,37 +2,57 @@
 
 namespace App\Modules\Post\Presentation\web\Livewire\Like;
 
-use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
-use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\Domain\Services\LikeService;
+use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
+use App\Modules\Post\Domain\Models\Post;
+use App\Modules\Post\Domain\Services\LikeService;
+use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
+use App\Modules\Post\App\Repositories\PostRepository;
+use App\Modules\Post\Domain\Models\LikeForPost;
 
 class LikePostComponent extends Component
 {
-
     public Post $post;
+    public ?LikeForPost $likeModel = null; // Новое свойство
+
+
+    public function mount(PostRepository $postRepository, Request $request)
+    {
+        $model = $postRepository->findLikeForComment(
+            LikeForPostVO::make(
+                post_id: $this->post->id,
+                user_id: Auth::user()->id ?? null,
+                user_agent: $request->header('User-Agent'),
+                ip: $request->ip(),
+            )
+        );
+
+        $this->likeModel = $model ?? null;
+    }
+
+
 
     public function setLike(
         Request $request,
         LikeService $service,
     ) {
 
-        dd($request->header('User-Agent'));
-
         $vo = LikeForPostVO::make(
             post_id: $this->post->id,
-            user_id: Auth::user() ?? null,
+            user_id: Auth::user()->id ?? null,
             user_agent: $request->header('User-Agent'),
             ip: $request->ip(),
         );
 
-        dd($vo);
+        $this->likeModel = $service->setLike($vo); // Сохраните модель в свойстве
+
     }
 
     public function render()
     {
-        return view('livewire.post.like.like-post');
+        return view('livewire.post.like.like-post',[
+            'likeModel' => $this->likeModel
+        ]);
     }
 }

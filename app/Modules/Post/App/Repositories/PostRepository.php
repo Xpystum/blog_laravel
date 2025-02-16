@@ -20,9 +20,9 @@ class PostRepository extends CoreRepository
         return $this->query()->find($id);
     }
 
-    public function findLikeForComment(LikeForPostVO $vo) : ?Model
+    public function findLikeForComment(LikeForPostVO $vo) : ?LikeForPost
     {
-        return $this->query()->where('post_id', $vo->post_id)->where(function ($query) use ($vo) {
+        return LikeForPost::where('post_id', $vo->post_id)->where(function ($query) use ($vo) {
 
             #TODO Тут надо ещё делать условие, если user_agent - не изменился, но поменялся ip, то тоже возвращать null
             if ($vo->user_id) {

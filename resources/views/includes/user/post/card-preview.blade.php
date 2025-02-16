@@ -18,13 +18,17 @@
 
 
             <div class="flex flex-row justify-end">
-                <div x-data class="flex flex-row">
+                <div class="flex flex-row">
 
-                    <livewire:post-like-component :$post/>
+
+                    <livewire:post-like-component :$post />
+
+
 
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
                     </button>
+
                 </div>
             </div>
 

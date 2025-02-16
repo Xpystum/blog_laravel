@@ -101,9 +101,17 @@ $custom-height: 74px //высота header
 
     //работа с icons blade
 .custom-icon-blade-heart
+    transition: fill 0.2s ease-in-out, transform 0.1s ease-in-out
     &:hover
         path
             fill: #C0392B
+    &.animate-pulse
+        transform: scale(1.2)
+
+
+.custom-icon-blade-heart-active
+    path
+        fill: #C0392B
 
 .icon-blade-disable-hover
     &:hover
