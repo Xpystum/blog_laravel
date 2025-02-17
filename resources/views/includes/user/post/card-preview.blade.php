@@ -10,11 +10,16 @@
 
 @endphp
 
-{{ $post->cover_img }}
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
         <div class="flex flex-col">
-            <x-user.card.card-user class="flex justify-start"  src="{{ asset(Auth::user()->url_avatar) }}" span_name="{{ Auth::user()->login }}" alt="Аватар Пользователя">
+
+            <x-user.card.card-user class="flex justify-start"
+                src="{{ asset($post->user->url_avatar) }}"
+                span_name="{{ $post->user->login }}"
+                alt="Аватар Пользователя {{ $post->user->login }}"
+            >
+
                 <span class="ml-2 flex items-center block text-gray-500 dark:text-gray-400">{{ $post->created_at->translatedFormat('d F, H:i') }}</span>
             </x-user.card.card-user>
             <h1 class="h1 mt-3 text-2xl text-white dark:text-white mb-3 overflow-hidden max-w-full">
@@ -68,7 +73,7 @@
 
                 </div>
 
-                <a href="{{ route('users.posts.view.update', $post->id) }}" class="ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Редактировать</a>
+                <a href="{{ route('users.posts.view.update', $post->id) }}" class="{{ Auth::check() ? "" : 'pointer-events-none opacity-50' }} ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Редактировать</a>
             </div>
 
         </div>

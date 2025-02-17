@@ -51,7 +51,6 @@ class PostCommentController extends Controller
 
         $alert = $status->success ? ['alert_success' => $status->returnValue]  : ['alert_danger' => $status->errorMessage];
 
-
         return redirect()->back()->with($alert, 'Комментарий успешно добавлен');
     }
 }

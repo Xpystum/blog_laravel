@@ -17,6 +17,8 @@
 
     @endforeach
 
-    @include('includes.user.comments.post.post-comment-input')
+    @if(Auth::check())
+        @include('includes.user.comments.post.post-comment-input')
+    @endif
 
 </div>

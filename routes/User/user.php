@@ -17,7 +17,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
             //страница обновления статьи
             Route::get('/update/{id}', [PostController::class, 'updateView'])->name('users.posts.view.update');
                 //страница просмотра статьи
-            Route::get('/{id}', [PostController::class, 'show'])->name('users.posts.view.preview');
+            Route::get('/{id}', [PostController::class, 'show'])->name('users.posts.view.preview')->withoutMiddleware('auth');
             /** PAGES END */
 
             Route::post('/', [PostController::class, 'store'])->name('user.posts.store');
