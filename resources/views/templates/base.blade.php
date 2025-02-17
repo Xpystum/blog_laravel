@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
     <meta charset="UTF-8">
@@ -7,12 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title.page', config('app.name'))</title>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     @vite(['resources/css/app.sass', 'resources/js/app.js'])
 
     @stack('header')
-    @livewireStyles
+    @stack('livewire-css')
+    {{-- @livewireStyles --}}
 
 
 </head>
@@ -38,8 +37,10 @@
     <x-buttons.back-to-button />
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
     @stack('scripts')
+    @stack('livewire-js')
+
     @vite('resources/js/alerts/alert.js')
-    @livewireScripts
 </body>
 </html>

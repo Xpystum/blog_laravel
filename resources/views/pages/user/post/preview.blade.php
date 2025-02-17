@@ -13,9 +13,19 @@
         $alert_error = session()->has('alert_error') ? session()->get('alert_error') : null;
     @endphp
 
+    {{-- Если мы хотим юзать livewire для определённых шаблонов --}}
+    @pushOnce('livewire-js')
+        @livewireScripts
+    @endPushOnce
+
+    @pushOnce('livewire-css')
+        @livewireStyles
+    @endPushOnce
 
     @pushOnce('scripts')
         <script>
+
+        (function() {
 
             const button = document.querySelector('.button_card-preview-comment');
 
@@ -28,6 +38,8 @@
                     });
                 });
             }
+
+        })();
 
         </script>
     @endPushOnce

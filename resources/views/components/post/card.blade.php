@@ -41,9 +41,7 @@
             <x-user.card.card-user src="{{ asset(Auth::user()->url_avatar) }}" span_name="{{ Auth::user()->login }}" />
 
             <div class="flex flex-row">
-                <a href="#" class="p-1 ml-2">
-                    <x-icon-heart class="svg-icon-heart" />
-                </a>
+                <livewire:post-like-component :$post />
                 <a href="#" class="p-1 ml-2">
                     <x-icon-message class="svg-icon-message" />
                 </a>

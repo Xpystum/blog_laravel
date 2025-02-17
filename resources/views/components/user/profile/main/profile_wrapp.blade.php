@@ -9,4 +9,13 @@
         {{ $slot }}
     </div>
 
+   {{-- Если мы хотим юзать livewire для определённых шаблонов --}}
+    @pushOnce('livewire-js')
+        @livewireScripts
+    @endPushOnce
+
+    @pushOnce('livewire-css')
+        @livewireStyles
+    @endPushOnce
+
 @endsection

@@ -1,8 +1,16 @@
 @php
-    $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url);
+
+    $path_url_avatar = $post?->cover_img?->path_url ?? null;
+
+    if(!is_null($path_url_avatar)) { $path_img = Storage::disk('post_image_cover')->url($post?->cover_img?->path_url); }
+    else {
+        $path_img = null;
+    }
+
+
 @endphp
 
-
+{{ $post->cover_img }}
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
         <div class="flex flex-col">

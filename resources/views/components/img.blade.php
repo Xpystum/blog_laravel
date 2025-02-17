@@ -7,6 +7,8 @@
         // аналогично onerror, но теперь у нас не будет ошибки в консоли
         $path_img = asset('storage/img/chilling_code.jpg');
 
+        // dd(1);
+
     } else {
         $path_img = asset($path_img);
     }
