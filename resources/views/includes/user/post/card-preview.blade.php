@@ -24,7 +24,6 @@
                     <livewire:post-like-component :$post />
 
 
-
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
                     </button>
@@ -51,7 +50,7 @@
 
                     <div class="flex flex-row ml-3">
                         <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/>
-                        <span class="flex items-center ml-1 text-white">35</span>
+                        <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
                     </div>
 
                     <div class="flex flex-row ml-3 items-center">
