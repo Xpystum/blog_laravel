@@ -41,15 +41,24 @@
             <x-user.card.card-user src="{{ asset(Auth::user()->url_avatar) }}" span_name="{{ Auth::user()->login }}" />
 
             <div class="flex flex-row">
-                <livewire:post-like-component :$post />
 
-                <a href="{{ route('users.posts.view.preview', ['id' => $post->id, 'comment' => 'true']) }}" class="p-1 ml-2 button_card-preview-comment">
-                    <x-icon-message class="svg-icon-message"/>
-                </a>
+                {{-- <div class="flex flex-row mr-2 items-center">
+                    <livewire:post-like-component :$post :collection="$post->likes" />
+                    <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
+                </div> --}}
 
-                <a href="#" class="p-1 ml-2">
-                    <x-icon-observ class="svg-icon-observ" />
-                </a>
+                <div class="flex flex-row mr-2 items-center">
+                    <a href="{{ route('users.posts.view.preview', ['id' => $post->id, 'comment' => 'true']) }}" class="p-1 ml-2 button_card-preview-comment">
+                        <x-icon-message class="svg-icon-message"/>
+                    </a>
+                    <span class="flex items-center ml-1 text-white">{{ $post->comments_count }}+</span>
+                </div>
+
+                <div class="flex flex-row mr-2 items-center">
+                    <x-icon-observ class="svg-icon-observ icon-blade-disable-hover"/>
+                    <span class="flex items-center ml-1 text-white">950</span>
+                </div>
+
             </div>
 
         </div>

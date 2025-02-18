@@ -10,7 +10,7 @@ class LikeForPost extends Model
 {
     use HasFactory;
 
-    protected $table = 'like_for_comments';
+    protected $table = 'like_for_posts';
 
     protected static function newFactory()
     {

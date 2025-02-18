@@ -6,20 +6,26 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\Domain\Services\LikeService;
-use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
-use App\Modules\Post\App\Repositories\PostRepository;
 use App\Modules\Post\Domain\Models\LikeForPost;
+use App\Modules\Post\Domain\Services\LikeService;
+use App\Modules\Post\App\Repositories\PostRepository;
+use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
+use Illuminate\Database\Eloquent\Collection;
 
 class LikePostComponent extends Component
 {
     public Post $post;
     public ?LikeForPost $likeModel = null; // Новое свойство
 
+    public function mount(
+        PostRepository $postRepository,
+        Request $request,
+        Collection $collection
+    ) {
 
-    public function mount(PostRepository $postRepository, Request $request)
-    {
-        $model = $postRepository->findLikeForComment(
+        #TODO Нужно делать поиск заранее в blade, таким способом получается что на каждый компонент делается запрос в бд - нужно продумать по другому или потимизировать
+        $model = $postRepository->findLikeForCommentObject(
+            $collection,
             LikeForPostVO::make(
                 post_id: $this->post->id,
                 user_id: Auth::user()->id ?? null,

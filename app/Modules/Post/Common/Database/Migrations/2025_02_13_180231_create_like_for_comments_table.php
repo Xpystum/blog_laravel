@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('like_for_comments', function (Blueprint $table) {
+        Schema::create('like_for_posts', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('post_id')->constrained('posts')->comment('Указываем к какому посту был поставлен лайкн');
