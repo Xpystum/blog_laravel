@@ -6,7 +6,6 @@ use App\Modules\Base\CoreRepository;
 use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
 use App\Modules\Post\Domain\Models\LikeForPost;
 use App\Modules\Post\Domain\Models\Post as Model;
-use App\Modules\Post\Domain\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 
 class PostRepository extends CoreRepository
@@ -41,22 +40,15 @@ class PostRepository extends CoreRepository
 
     public function findLikeForCommentObject(Collection $collection, LikeForPostVO $vo) : ?LikeForPost
     {
-        if(is_null($collection) && $collection->isNotEmpty()) { return null; }
 
-        return $collection->where('post_id', $vo->post_id)->where(function ($query) use ($vo) {
-
-            #TODO Тут надо ещё делать условие, если user_agent - не изменился, но поменялся ip, то тоже возвращать null
-            if ($vo->user_id) {
-                $query->orWhere('user_id', $vo->user_id);
-            }
-            if ($vo->user_agent) {
-                $query->orWhere('user_agent', $vo->user_agent);
-            }
-            if ($vo->ip) {
-                $query->orWhere('ip', $vo->ip);
-            }
-
+        $filtered = $collection->filter(function ($item) use ($vo) {
+            return $item->post_id === $vo->post_id
+                || $item->user_id === $vo->user_id
+                || $item->user_agent === $vo->user_agent
+                || $item->ip === $vo->ip;
         })->first();
+
+        return $filtered;
     }
 
 

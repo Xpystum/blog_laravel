@@ -17,6 +17,8 @@ readonly class LikeForPostVO implements Arrayable
         public ?int $user_id,
         public string $user_agent,
         public string $ip,
+        public bool $status,
+
 
     ) {}
 
@@ -25,8 +27,8 @@ readonly class LikeForPostVO implements Arrayable
         int $post_id,
         string $user_agent,
         string $ip,
+        bool $status = true,
         ?int $user_id = null,
-
 
     ) : self {
 
@@ -35,6 +37,7 @@ readonly class LikeForPostVO implements Arrayable
             user_id: $user_id,
             user_agent: $user_agent,
             ip: $ip,
+            status: $status,
         );
 
     }
@@ -47,6 +50,7 @@ readonly class LikeForPostVO implements Arrayable
             "user_id" => $this->user_id,
             "user_agent" => $this->user_agent,
             "ip" => $this->ip,
+            "status" => $this->status,
         ];
     }
 
@@ -57,6 +61,7 @@ readonly class LikeForPostVO implements Arrayable
             user_agent: Arr::get($data, 'user_agent'),
             ip: Arr::get($data, 'ip'),
             user_id: Arr::get($data, 'user_id', null),
+            status: Arr::get($data, 'status', true),
         );
     }
 

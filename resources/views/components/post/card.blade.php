@@ -42,10 +42,10 @@
 
             <div class="flex flex-row">
 
-                {{-- <div class="flex flex-row mr-2 items-center">
+                <div class="flex flex-row mr-2 items-center">
                     <livewire:post-like-component :$post :collection="$post->likes" />
-                    <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
-                </div> --}}
+                    <span class="flex items-center ml-1 text-white">{{ $post->likes->where('status', true)->count() }}</span>
+                </div>
 
                 <div class="flex flex-row mr-2 items-center">
                     <a href="{{ route('users.posts.view.preview', ['id' => $post->id, 'comment' => 'true']) }}" class="p-1 ml-2 button_card-preview-comment">
