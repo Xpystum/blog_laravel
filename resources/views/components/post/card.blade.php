@@ -42,8 +42,9 @@
 
             <div class="flex flex-row">
                 <livewire:post-like-component :$post />
-                <a href="#" class="p-1 ml-2">
-                    <x-icon-message class="svg-icon-message" />
+
+                <a href="{{ route('users.posts.view.preview', ['id' => $post->id, 'comment' => 'true']) }}" class="p-1 ml-2 button_card-preview-comment">
+                    <x-icon-message class="svg-icon-message"/>
                 </a>
 
                 <a href="#" class="p-1 ml-2">

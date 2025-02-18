@@ -25,6 +25,14 @@
     @pushOnce('scripts')
         <script>
 
+            function scrollToComment()
+            {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+            }
+
         (function() {
 
             const button = document.querySelector('.button_card-preview-comment');
@@ -32,14 +40,33 @@
             if (button) {
                 button.addEventListener('click', function(event) {
 
-                    window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: "smooth"
-                    });
+                    scrollToComment();
+
                 });
             }
 
         })();
+
+        (function() {
+
+            document.addEventListener("DOMContentLoaded", function() {
+            var params = new URLSearchParams(window.location.search);
+                if (params.get("comment") === "true") {
+                    scrollToComment();
+                    
+                    const url = new URL(window.location);
+
+                    // Удаляем параметр comment
+                    url.searchParams.delete("comment");
+
+                    // Заменяем текущую историю без перезагрузки страницы
+                    window.history.replaceState({}, document.title, url.toString());
+                }
+            });
+
+        })();
+
+
 
         </script>
     @endPushOnce
