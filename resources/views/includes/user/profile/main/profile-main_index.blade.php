@@ -12,7 +12,7 @@
     <div class="w-full pl-2">
         <div class="px-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
 
-            @forelse (auth()->user()->posts()->with('likes', 'cover_img')->withCount('comments')->get() as $post)
+            @forelse (auth()->user()->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get() as $post)
                 <x-post.card :post="$post" />
             @empty
                 <p>Нет данных для отображения</p>

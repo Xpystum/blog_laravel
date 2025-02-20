@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
 use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
 use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
+use App\Modules\Post\App\Data\ValueObject\PostView\PostViewVO;
 use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\DTO\UpdatePostDTO;
 use App\Modules\Post\Domain\Models\Post;
@@ -82,10 +83,6 @@ class PostController extends Controller
         Request $request,
     ) {
 
-        // return response()->json(['success' => true]);
-
-        // dd($request->header('User-Agent'));
-
         /** @var LikeForPostVO */
         $vo = LikeForPostVO::make(
             post_id: $post->id,
@@ -121,11 +118,23 @@ class PostController extends Controller
     }
 
 
-    public function show(int $idPost)
-    {
-        $post = Post::with('cover_img', 'comments.user')->find($idPost);
+    public function show(
+        int $idPost,
+        Request $request ,
+        PostSerivce $postSerivce,
+    ) {
+        
+        $post = Post::with('cover_img', 'comments.user')->withCount('postViews')->find($idPost);
 
         abort_unless($post, 404);
+
+        //устанавливаем просмотр у стать для данного пользователя и данного девайса
+        $postSerivce->createOrFindPostView(
+            PostViewVO::make(
+                post_id: $post->id,
+                user_agent: $request->header('User-Agent'),
+            )
+        );
 
         return view('pages.user.post.preview', compact('post'));
     }

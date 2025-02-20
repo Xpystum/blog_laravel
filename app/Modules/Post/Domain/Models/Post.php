@@ -66,4 +66,9 @@ class Post extends Model
         return $this->hasMany(LikeForPost::class, 'post_id', 'id');
     }
 
+    public function postViews() : HasMany
+    {
+        return $this->hasMany(PostView::class, 'post_id', 'id');
+    }
+
 }

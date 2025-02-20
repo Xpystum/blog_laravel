@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->boolean('status')->default(true)->comment('Активирован ли лайк или нет');
 
-            $table->index('post_id');
+            $table->index('user_agent');
             $table->index('ip');
 
             $table->primary(['post_id', 'user_id']);

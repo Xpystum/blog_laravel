@@ -33,7 +33,6 @@
             {!! $post->content_cover !!}
         </a>
 
-
         <span
             class="mb-2 block text-white dark:text-white text-sm">{{ $post->created_at->translatedFormat('d F, H:i') }}</span>
         <div class="flex flex-row justify-between">
@@ -56,7 +55,7 @@
 
                 <div class="flex flex-row mr-2 items-center">
                     <x-icon-observ class="svg-icon-observ icon-blade-disable-hover"/>
-                    <span class="flex items-center ml-1 text-white">950</span>
+                    <span class="flex items-center ml-1 text-white">{{ $post->post_views_count }}</span>
                 </div>
 
             </div>

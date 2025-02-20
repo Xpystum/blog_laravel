@@ -33,8 +33,7 @@
             <div class="flex flex-row justify-end">
                 <div class="flex flex-row">
 
-
-                    <livewire:post-like-component :$post />
+                    <livewire:post-like-component :$post :collection="$post->likes" />
 
 
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
@@ -58,7 +57,7 @@
 
                     <div class="flex flex-row">
                         <x-icon-observ class="svg-icon-observ icon-blade-disable-hover"/>
-                        <span class="flex items-center ml-1 text-white">950</span>
+                        <span class="flex items-center ml-1 text-white">{{ $post->post_views_count }}</span>
                     </div>
 
                     <div class="flex flex-row ml-3">
