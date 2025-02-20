@@ -17,6 +17,13 @@ class LikePostComponent extends Component
     public Post $post;
     public ?LikeForPost $likeModel = null; // Новое свойство
 
+    /**
+    * Флаг, определяющий, должно ли быть отключено "сердечко".
+    *
+    * @var bool
+    */
+    public bool $disableHeart = false;
+
     public function mount(
         PostRepository $postRepository,
         Request $request,

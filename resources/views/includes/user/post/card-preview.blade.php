@@ -10,6 +10,7 @@
 
 @endphp
 
+
 <div>
     <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
         <div class="flex flex-col">
@@ -35,7 +36,6 @@
 
                     <livewire:post-like-component :$post :collection="$post->likes" />
 
-
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
                     </button>
@@ -55,17 +55,18 @@
             <div class="flex flex-row items-center justify-between">
                 <div class="flex flex-row">
 
-                    <div class="flex flex-row">
-                        <x-icon-observ class="svg-icon-observ icon-blade-disable-hover"/>
+                    <div class="flex flex-row justify-center items-center">
+                        <x-icon-observ class="svg-icon-observ icon-blade-disable-hover flex items-center"/>
                         <span class="flex items-center ml-1 text-white">{{ $post->post_views_count }}</span>
                     </div>
 
-                    <div class="flex flex-row ml-3">
-                        <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/>
+                    <div class="flex flex-row justify-center items-center">
+                        <livewire:post-like-component :$post :collection="$post->likes" :disableHeart="true" />
+                        {{-- <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/> --}}
                         <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
                     </div>
 
-                    <div class="flex flex-row ml-3 items-center">
+                    <div class="flex flex-row ml-3 justify-center items-center">
                         <x-icon-message class="svg-icon-message icon-blade-disable-hover w-5 h-5"/>
                         <span class="flex items-center ml-1 text-white">{{ $post->comments->count() }}+</span>
                     </div>
