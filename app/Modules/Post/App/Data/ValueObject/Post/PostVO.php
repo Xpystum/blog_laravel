@@ -2,13 +2,13 @@
 
 namespace App\Modules\Post\App\Data\ValueObject\Post;
 
-use App\Modules\Base\Traits\FilterArrayTrait;
-use DOMDocument;
 use DOMXPath;
 use Exception;
-use Illuminate\Contracts\Support\Arrayable;
+use DOMDocument;
 use Illuminate\Support\Arr;
 use Mews\Purifier\Facades\Purifier;
+use Illuminate\Contracts\Support\Arrayable;
+use App\Modules\Base\Traits\FilterArrayTrait;
 
 class PostVO implements Arrayable
 {

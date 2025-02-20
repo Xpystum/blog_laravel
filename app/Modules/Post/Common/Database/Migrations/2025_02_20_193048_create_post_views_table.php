@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts');
             $table->string('user_agent');
 
-            $table->unique(['unique', 'user_agent']);
+            $table->unique(['post_id', 'user_agent']);
 
             $table->timestamps();
 

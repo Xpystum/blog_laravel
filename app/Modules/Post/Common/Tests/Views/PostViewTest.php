@@ -55,7 +55,6 @@ class PostViewTest extends TestCase
 
         $post = Post::factory()
             ->has($user->factory(), 'user')
-            ->has(Comment::factory()->count(6), 'comments')
             ->create();
 
 

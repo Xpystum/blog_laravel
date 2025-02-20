@@ -74,7 +74,8 @@ class PostController extends Controller
 
         $alert = 'Статья успешно обновлена.';
 
-        return redirect()->intended($default = '/')->with($alert);
+        return redirect()->route('users.posts.view.preview')->with($alert);
+        // return redirect()->intended($default = '/')->with($alert);
 
     }
 
@@ -123,7 +124,7 @@ class PostController extends Controller
         Request $request ,
         PostSerivce $postSerivce,
     ) {
-        
+
         $post = Post::with('cover_img', 'comments.user')->withCount('postViews')->find($idPost);
 
         abort_unless($post, 404);

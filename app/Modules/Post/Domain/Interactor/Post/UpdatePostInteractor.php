@@ -33,15 +33,20 @@ class UpdatePostInteractor
             /** @var bool */
             $status = $this->updatePost($dto->vo, $dto->post);
 
+            // dd($dto->post);
+
             #TODO Возможно надо обновить состояние - могут быть проблемы
             /** @var Post */
             $post = $dto->post;
 
-            //запускаем логику интерактора для сохранения и создание файла
-            if($this->createAndSaveFileInteractor->execute($dto->file, $post) === false) {
-                logError("Ошибка сохранения и создание файла 'Обложка статьи' в UpdatePostInteractor");
-                throw new Exception('Ошибка на стороне сервера');
-            };
+            if($dto->file !== null)
+            {
+                //запускаем логику интерактора для сохранения и создание файла
+                if($this->createAndSaveFileInteractor->execute(file: $dto->file, post: $post) === false) {
+                    logError("Ошибка сохранения и создание файла 'Обложка статьи' в UpdatePostInteractor");
+                    throw new Exception('Ошибка на стороне сервера');
+                };
+            }
 
             return $status;
 

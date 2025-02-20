@@ -2,15 +2,15 @@
 
 namespace App\Modules\Post\Domain\Interactor;
 
-use App\Modules\Post\App\Data\ValueObject\Post\PostImageCoverVO;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Post\Domain\Models\Post;
-use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
 use App\Modules\Post\Domain\Models\PostImageCover;
 use App\Modules\StorageFile\Domain\Services\StorageFileService;
+use App\Modules\Post\App\Data\ValueObject\Post\PostImageCoverVO;
+use App\Modules\Post\Domain\Actions\Post\CreatePostImageCoverAction;
 
-
+//Создаём и сохраняем файл в storage
 class CreateAndSaveFileInteractor
 {
     private string $keyValueSetting; //Значение ключа из табицы setting для указания папки при сохранения файла
@@ -24,12 +24,12 @@ class CreateAndSaveFileInteractor
     }
 
 
-    public function execute(UploadedFile $file, Post $post) : bool
+    public function execute(Post $post, ?UploadedFile $file) : bool
     {
-        return $this->run($file, $post);
+        return $this->run($post ,$file);
     }
 
-    private function run(UploadedFile $file, Post $post) : bool
+    private function run(Post $post, ?UploadedFile $file) : bool
     {
         if($file) {
 
