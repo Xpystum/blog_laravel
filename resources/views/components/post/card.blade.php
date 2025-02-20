@@ -41,7 +41,7 @@
 
             <div class="flex flex-row">
 
-                <div class="flex flex-row mr-2 items-center">
+                <div class="flex flex-row items-center">
                     <livewire:post-like-component :$post :collection="$post->likes" />
                     <span class="flex items-center ml-1 text-white">{{ $post->likes->where('status', true)->count() }}</span>
                 </div>

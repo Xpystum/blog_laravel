@@ -38,7 +38,7 @@ class PostSerivce
     public function createOrFindPostView(PostViewVO $vo) : PostView
     {
         /** @var PostView */
-        $PostView = PostView::where('user_agent', $vo->user_agent)->first();
+        $PostView = PostView::where('user_agent', $vo->user_agent)->where('post_id', $vo->post_id)->first();
 
         if(is_null($PostView)) { return CreatePostViewAction::make($vo);  }
 

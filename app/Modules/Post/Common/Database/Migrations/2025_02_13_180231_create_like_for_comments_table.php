@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('like_for_posts', function (Blueprint $table) {
+
             $table->id();
 
             $table->foreignId('post_id')->constrained('posts')->comment('Указываем к какому посту был поставлен лайкн');
@@ -25,9 +26,10 @@ return new class extends Migration
             $table->index('user_agent');
             $table->index('ip');
 
-            $table->primary(['post_id', 'user_id']);
+            $table->unique(['post_id', 'user_id']);
 
             $table->timestamps();
+            
         });
     }
 
