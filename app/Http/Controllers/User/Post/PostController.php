@@ -74,7 +74,7 @@ class PostController extends Controller
 
         $alert = 'Статья успешно обновлена.';
 
-        return redirect()->route('users.posts.view.preview')->with($alert);
+        return redirect()->route('users.posts.view.preview', ['id' => $post->id])->with($alert);
         // return redirect()->intended($default = '/')->with($alert);
 
     }

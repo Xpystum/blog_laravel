@@ -42,5 +42,6 @@
     @stack('livewire-js')
 
     @vite('resources/js/alerts/alert.js')
+    @vite('resources/js/Tiptap/codeBlockCopy.js')
 </body>
 </html>

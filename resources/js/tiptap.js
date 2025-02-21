@@ -12,13 +12,19 @@ import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
 import { Color } from '@tiptap/extension-color';
 import Bold from '@tiptap/extension-bold';
+import HorizontalRule from '@tiptap/extension-horizontal-rule'
+import Blockquote from '@tiptap/extension-blockquote'
+import CodeBlock from '@tiptap/extension-code-block'
 
 import { initFlowbite } from 'flowbite'
 
 
 window.addEventListener('DOMContentLoaded', function () {
 
+
     if (document.getElementById("wysiwyg-example")) {
+
+
 
         initFlowbite();
 
@@ -38,6 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 };
             },
         });
+
         const CustomBold = Bold.extend({
             // Override the renderHTML method
             renderHTML({ mark, HTMLAttributes }) {
@@ -83,10 +90,32 @@ window.addEventListener('DOMContentLoaded', function () {
                 TextStyle,
                 Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
+                Blockquote,
+                HorizontalRule.configure({
+                    HTMLAttributes: {
+                      class: 'border-t border-gray-700 my-4'
+                    },
+                }),
+                Blockquote.configure({
+                    HTMLAttributes: {
+                      class: "border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4"
+                    }
+                }),
                 Link.configure({
-                    openOnClick: false,
+                    openOnClick: true,
                     autolink: true,
-                    defaultProtocol: 'https',
+                    HTMLAttributes: {
+                        class: 'font-medium underline text-[#3b82f6] hover:no-underline',
+                    },
+                }),
+                CodeBlock.configure({
+                    languageClassPrefix: 'language-',
+                    // exitOnArrowDown: true,
+                    // exitOnTripleEnter: true,
+                    HTMLAttributes: {
+                        style: 'white-space: pre-wrap; overflow-x: hidden;',
+                        class: 'pre-tiptap text-gray-300 bg-gray-700 font-normal text-sm leading-relaxed my-7 rounded-md py-3.5 px-5',
+                    },
                 }),
                 TextAlign.configure({
                     types: ['heading', 'paragraph'],
@@ -149,9 +178,8 @@ window.addEventListener('DOMContentLoaded', function () {
             editor.chain().focus().unsetLink().run()
         });
         document.getElementById('toggleCodeButton').addEventListener('click', () => {
-            editor.chain().focus().toggleCode().run();
+            editor.commands.setCodeBlock();
         })
-
         document.getElementById('toggleLeftAlignButton').addEventListener('click', () => {
             editor.chain().focus().setTextAlign('left').run();
         });
@@ -171,7 +199,8 @@ window.addEventListener('DOMContentLoaded', function () {
             editor.commands.toggleBlockquote();
         });
         document.getElementById('toggleHRButton').addEventListener('click', () => {
-            editor.chain().focus().setHorizontalRule().run();
+            editor.commands.setHorizontalRule();
+            // editor.chain().focus().setHorizontalRule().run();
         });
 
 
