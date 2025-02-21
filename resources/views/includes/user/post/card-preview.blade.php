@@ -43,7 +43,6 @@
                 </div>
             </div>
 
-
             <x-img path_img="{{ $path_img }}" alt="Обложка Статьи" class="flex self-center h-1/2 w-1/2 mt-3 mb-3"/>
 
             <div class="p-3 bg-white text-gray-300 rounded-b-lg dark:bg-gray-800 overflow-y-auto">
