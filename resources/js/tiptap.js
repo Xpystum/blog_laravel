@@ -15,6 +15,9 @@ import Bold from '@tiptap/extension-bold';
 import HorizontalRule from '@tiptap/extension-horizontal-rule'
 import Blockquote from '@tiptap/extension-blockquote'
 import CodeBlock from '@tiptap/extension-code-block'
+import ListItem from '@tiptap/extension-list-item'
+import OrderedList from '@tiptap/extension-ordered-list'
+import BulletList from '@tiptap/extension-bullet-list'
 
 import { initFlowbite } from 'flowbite'
 
@@ -91,6 +94,18 @@ window.addEventListener('DOMContentLoaded', function () {
                 Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
                 Blockquote,
+                BulletList,
+                ListItem,
+                // ListItem.configure({
+                //     HTMLAttributes: {
+                //         class: '',
+                //     },
+                // }),
+                OrderedList.configure({
+                    HTMLAttributes: {
+                      class: 'ol-tip-tap',
+                    },
+                }),
                 HorizontalRule.configure({
                     HTMLAttributes: {
                       class: 'border-t border-gray-700 my-4'
@@ -111,7 +126,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 CodeBlock.configure({
                     languageClassPrefix: 'language-',
                     // exitOnArrowDown: true,
-                    // exitOnTripleEnter: true,
+                    exitOnTripleEnter: true,
                     HTMLAttributes: {
                         style: 'white-space: pre-wrap; overflow-x: hidden;',
                         class: 'pre-tiptap text-gray-300 bg-gray-700 font-normal text-sm leading-relaxed my-7 rounded-md py-3.5 px-5',

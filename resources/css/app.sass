@@ -149,6 +149,38 @@ $custom-height: 74px //высота header
     &:hover::before
         opacity: 1 !important
 
+.ol-tip-tap
+    counter-reset: item
+    padding: 0
+    margin: 0
+    padding-left: 1rem
+
+    li
+        counter-increment: item
+        position: relative
+        padding-left: 0.5rem  // отступ для размещения номера слева
+
+        &::marker
+            content: counter(item) "."
+            position: absolute !important
+            left: 40%
+            top: 0
+            width: 2rem
+            text-align: start
+            font-weight: bold
+            display: inline-block
+            text-indent: 0.5rem
+            color: #9ca3af
+            unicode-bidi: isolate
+            font-variant-numeric: tabular-nums
+            text-transform: none
+            text-indent: 0px !important
+            text-align: start !important
+            text-align-last: auto !important
+
+
+
+
 
 
 

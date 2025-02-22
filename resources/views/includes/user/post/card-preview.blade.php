@@ -12,8 +12,8 @@
 
 
 <div>
-    <div class="flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
-        <div class="flex flex-col">
+    <div class="overflow-visible flex flex-col w-full h-full rounded bg-gray-50 dark:bg-gray-800 p-4">
+        <div class="overflow-visible flex flex-col">
 
             <x-user.card.card-user class="flex justify-start"
                 src="{{ asset($post->user->url_avatar) }}"
