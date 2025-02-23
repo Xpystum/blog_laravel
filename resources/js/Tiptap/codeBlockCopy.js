@@ -1,8 +1,18 @@
+
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+
+function showSuccessToast() {
+    const text = 'Блок кода скопирован в буфер обмена';
+    toastr.success(text, 'Успешно');
+}
+
 // Кнопка копирование из pre + code
 function copyTextToClipboard(text) {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(function () {
 
+            showSuccessToast()
 
         }, function (err) {
 
@@ -16,7 +26,9 @@ function copyTextToClipboard(text) {
         textArea.focus();
         textArea.select();
         try {
+
             document.execCommand('copy');
+
         } catch (err) {
 
         }

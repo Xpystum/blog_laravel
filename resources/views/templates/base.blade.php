@@ -9,10 +9,11 @@
 
     @vite(['resources/css/app.sass', 'resources/js/app.js'])
 
+    {{-- подключение js по необходимости --}}
     @stack('header')
-    @stack('livewire-css')
-    {{-- @livewireStyles --}}
 
+    {{-- подключение livewire при необходимости --}}
+    @stack('livewire-css')
 
 </head>
 <body class="dark flex flex-col h-screen">

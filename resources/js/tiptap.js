@@ -27,8 +27,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById("wysiwyg-example")) {
 
-
-
         initFlowbite();
 
         const FontSizeTextStyle = TextStyle.extend({
@@ -94,11 +92,17 @@ window.addEventListener('DOMContentLoaded', function () {
                 Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
                 Blockquote,
-                BulletList,
+                BulletList.configure({
+                    HTMLAttributes: {
+                      class: 'ul-tip-tap',
+                    },
+                    keepAttributes: true,
+                    keepMarks: true,
+                }),
                 ListItem,
                 // ListItem.configure({
                 //     HTMLAttributes: {
-                //         class: '',
+                //         class: 'ul-tip-tap',
                 //     },
                 // }),
                 OrderedList.configure({
@@ -147,6 +151,9 @@ window.addEventListener('DOMContentLoaded', function () {
                     nocookie: false,
                     enableIFrameApi: true,
                     interfaceLanguage: 'ru',
+                    HTMLAttributes: {
+                        class: '!mt-1 !mb-1 !inline',
+                    },
                 }),
             ],
             content: '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
