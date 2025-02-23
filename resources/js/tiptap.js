@@ -18,6 +18,7 @@ import CodeBlock from '@tiptap/extension-code-block'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import BulletList from '@tiptap/extension-bullet-list'
+import Text from '@tiptap/extension-text'
 
 import { initFlowbite } from 'flowbite'
 
@@ -73,25 +74,24 @@ window.addEventListener('DOMContentLoaded', function () {
             element: document.querySelector('#wysiwyg-example'),
             editable: true, //можно ли писать в редакторе
             extensions: [
-                StarterKit.configure({
-                    textStyle: true,
-                    bold: true,
-                    marks: {
-                        bold: true,
-                    },
-                }),
+                // StarterKit.configure({
+                //     textStyle: true,
+                //     bold: true,
+                //     marks: {
+                //         bold: true,
+                //     },
+                // }),
                 // Include the custom Bold extension
+                Text,
                 CustomBold,
-                TextStyle,
                 FontSizeTextStyle,
                 FontFamily,
                 Highlight.configure({ multicolor: true }),
                 Document,
                 Paragraph,
-                TextStyle,
+                // TextStyle,
                 Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
-                Blockquote,
                 BulletList.configure({
                     HTMLAttributes: {
                       class: 'ul-tip-tap',
@@ -100,11 +100,6 @@ window.addEventListener('DOMContentLoaded', function () {
                     keepMarks: true,
                 }),
                 ListItem,
-                // ListItem.configure({
-                //     HTMLAttributes: {
-                //         class: 'ul-tip-tap',
-                //     },
-                // }),
                 OrderedList.configure({
                     HTMLAttributes: {
                       class: 'ol-tip-tap',
@@ -129,7 +124,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 }),
                 CodeBlock.configure({
                     languageClassPrefix: 'language-',
-                    // exitOnArrowDown: true,
                     exitOnTripleEnter: true,
                     HTMLAttributes: {
                         style: 'white-space: pre-wrap; overflow-x: hidden;',
@@ -167,8 +161,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
         if(content !== "null") {
 
-            console.log(content);
-
             editor.commands.setContent(content);
 
         }
@@ -176,6 +168,8 @@ window.addEventListener('DOMContentLoaded', function () {
         const button = document.getElementById("text-editor__tiptap-button").addEventListener('click', (event) => {
 
             dataElement.value = editor.getHTML();
+
+            console.log(dataElement.value);
 
         })
 

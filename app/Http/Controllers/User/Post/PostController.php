@@ -58,6 +58,8 @@ class PostController extends Controller
         /** @var PostVO */
         $postVO = $request->createPostVO();
 
+        dd($postVO);
+
         /** @var ?UploadedFile */
         $file_img_cover = $request->getFile();
 
