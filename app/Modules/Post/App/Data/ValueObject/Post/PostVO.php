@@ -35,10 +35,10 @@ class PostVO implements Arrayable
 
 
         // Выводим итоговый HTML
+
+        #TODO видео youtube не будет выводится по цетнрированию если указано через редактор, html чистит код из-за того что <p style="aligh:center:"> <div></div> </p> - считается не валидным кодом, нужно что-то придумывать
         $content = self::mappingIframe($content);
         $content_cover = Purifier::clean($content, 'custom_not_html'); //полностью очищаем контент от html
-
-        dd($content);
 
 
         if($content === false) {
