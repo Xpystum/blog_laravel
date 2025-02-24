@@ -23,8 +23,8 @@
     @endPushOnce
 
     @pushOnce('scripts')
-        <script>
 
+        <script>
             function scrollToComment()
             {
                 window.scrollTo({
@@ -33,42 +33,42 @@
                 });
             }
 
-        (function() {
+            (function() {
 
-            const button = document.querySelector('.button_card-preview-comment');
+                const button = document.querySelector('.button_card-preview-comment');
 
-            if (button) {
-                button.addEventListener('click', function(event) {
+                if (button) {
+                    button.addEventListener('click', function(event) {
 
-                    scrollToComment();
+                        scrollToComment();
 
-                });
-            }
-
-        })();
-
-        (function() {
-
-            document.addEventListener("DOMContentLoaded", function() {
-            var params = new URLSearchParams(window.location.search);
-                if (params.get("comment") === "true") {
-                    scrollToComment();
-                    
-                    const url = new URL(window.location);
-
-                    // Удаляем параметр comment
-                    url.searchParams.delete("comment");
-
-                    // Заменяем текущую историю без перезагрузки страницы
-                    window.history.replaceState({}, document.title, url.toString());
+                    });
                 }
-            });
 
-        })();
+            })();
 
+            (function() {
 
+                document.addEventListener("DOMContentLoaded", function() {
+                var params = new URLSearchParams(window.location.search);
+                    if (params.get("comment") === "true") {
+                        scrollToComment();
+
+                        const url = new URL(window.location);
+
+                        // Удаляем параметр comment
+                        url.searchParams.delete("comment");
+
+                        // Заменяем текущую историю без перезагрузки страницы
+                        window.history.replaceState({}, document.title, url.toString());
+                    }
+                });
+
+            })();
 
         </script>
+        @vite('resources/js/Tiptap/codeBlockCopy.js')
+
     @endPushOnce
 
     @pushIf( ($alert_success||$alert_error) , 'scripts')

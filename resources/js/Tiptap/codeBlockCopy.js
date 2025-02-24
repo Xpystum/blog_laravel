@@ -28,6 +28,7 @@ function copyTextToClipboard(text) {
         try {
 
             document.execCommand('copy');
+            showSuccessToast()
 
         } catch (err) {
 

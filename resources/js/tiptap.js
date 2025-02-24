@@ -145,9 +145,9 @@ window.addEventListener('DOMContentLoaded', function () {
                     nocookie: false,
                     enableIFrameApi: true,
                     interfaceLanguage: 'ru',
-                    HTMLAttributes: {
-                        class: '!mt-1 !mb-1 !inline',
-                    },
+                    // HTMLAttributes: {
+                    //     class: '!mt-1 !mb-1 !inline',
+                    // },
                 }),
             ],
             content: '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>',
@@ -168,8 +168,6 @@ window.addEventListener('DOMContentLoaded', function () {
         const button = document.getElementById("text-editor__tiptap-button").addEventListener('click', (event) => {
 
             dataElement.value = editor.getHTML();
-
-            console.log(dataElement.value);
 
         })
 
