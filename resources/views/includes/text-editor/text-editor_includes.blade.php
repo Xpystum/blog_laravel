@@ -107,7 +107,7 @@
                     </button>
                     <div id="tooltip-code" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Format code
+                        Выделить код
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleLinkButton" data-tooltip-target="tooltip-link" type="button"
@@ -122,7 +122,7 @@
                     </button>
                     <div id="tooltip-link" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Add link
+                        Добавить ссылку
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="removeLinkButton" data-tooltip-target="tooltip-remove-link" type="button"
@@ -136,7 +136,7 @@
                     </button>
                     <div id="tooltip-remove-link" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Remove link
+                        Удалить ссылку
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleTextSizeButton" data-dropdown-toggle="textSizeDropdown" type="button"
@@ -151,7 +151,7 @@
                     </button>
                     <div id="tooltip-text-size" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Text size
+                        Размер текста
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <div id="textSizeDropdown" class="z-10 hidden w-72 rounded bg-white p-2 shadow dark:bg-gray-700">
@@ -206,7 +206,7 @@
                     </button>
                     <div id="tooltip-text-color" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Text color
+                        Цветной текст
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <div id="textColorDropdown" class="z-10 hidden w-48 rounded bg-white p-2 shadow dark:bg-gray-700">
@@ -309,7 +309,7 @@
                     </button>
                     <div id="tooltip-font-family" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Font Family
+                        Шрифт
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <div id="fontFamilyDropdown"
@@ -384,7 +384,7 @@
                     </button>
                     <div id="tooltip-left-align" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Align left
+                        Выровнять слева
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleCenterAlignButton" type="button" data-tooltip-target="tooltip-center-align"
@@ -398,7 +398,7 @@
                     </button>
                     <div id="tooltip-center-align" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Align center
+                        Выровнять по центру
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button id="toggleRightAlignButton" type="button" data-tooltip-target="tooltip-right-align"
@@ -412,7 +412,7 @@
                     </button>
                     <div id="tooltip-right-align" role="tooltip"
                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Align right
+                        Выровнять справа
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                 </div>
@@ -421,7 +421,7 @@
                 <button id="typographyDropdownButton" data-dropdown-toggle="typographyDropdown"
                     class="flex items-center justify-center rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-200 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white dark:focus:ring-gray-600"
                     type="button">
-                    Format
+                    Формат
                     <svg class="-me-0.5 ms-1.5 h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -503,34 +503,6 @@
                                 </div>
                             </button>
                         </li>
-                        <li>
-                            <button data-heading-level="5" type="button"
-                                class="flex justify-between items-center w-full text-base rounded px-3 py-2 hover:bg-gray-100 text-gray-900 dark:hover:bg-gray-600 dark:text-white">Heading
-                                5
-                                <div class="space-x-1.5">
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">Cmd</kbd>
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">Alt</kbd>
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">5</kbd>
-                                </div>
-                            </button>
-                        </li>
-                        <li>
-                            <button data-heading-level="6" type="button"
-                                class="flex justify-between items-center w-full text-base rounded px-3 py-2 hover:bg-gray-100 text-gray-900 dark:hover:bg-gray-600 dark:text-white">Heading
-                                6
-                                <div class="space-x-1.5">
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">Cmd</kbd>
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">Alt</kbd>
-                                    <kbd
-                                        class="px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-400 dark:border-gray-500">6</kbd>
-                                </div>
-                            </button>
-                        </li>
                     </ul>
                 </div>
                 <button id="addImageButton" type="button" data-tooltip-target="tooltip-image"
@@ -576,7 +548,7 @@
                 </button>
                 <div id="tooltip-list" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Toggle list
+                    Переключаемый список
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="toggleOrderedListButton" type="button" data-tooltip-target="tooltip-ordered-list"
@@ -590,7 +562,7 @@
                 </button>
                 <div id="tooltip-ordered-list" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Toggle ordered list
+                    Переключаемый нумерованный список
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="toggleBlockquoteButton" type="button" data-tooltip-target="tooltip-blockquote-list"
@@ -605,7 +577,7 @@
                 </button>
                 <div id="tooltip-blockquote-list" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Toggle blockquote
+                    Цитата
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="toggleHRButton" type="button" data-tooltip-target="tooltip-hr-list"
@@ -620,7 +592,7 @@
                 </button>
                 <div id="tooltip-hr-list" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Toggle Horizontal Rule
+                    Горизонтальная разделительная полоса
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
             </div>

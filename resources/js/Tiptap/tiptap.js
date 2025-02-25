@@ -1,5 +1,4 @@
 import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
 import Paragraph from '@tiptap/extension-paragraph'
 import Document from '@tiptap/extension-document'
 import Highlight from '@tiptap/extension-highlight';
@@ -22,9 +21,9 @@ import Text from '@tiptap/extension-text'
 
 import { initFlowbite } from 'flowbite'
 
+export let editor = null;
 
 window.addEventListener('DOMContentLoaded', function () {
-
 
     if (document.getElementById("wysiwyg-example")) {
 
@@ -70,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let content = dataElement.value;
 
         // tip tap editor setup
-        const editor = new Editor({
+        editor = new Editor({
             element: document.querySelector('#wysiwyg-example'),
             editable: true, //можно ли писать в редакторе
             extensions: [
@@ -158,6 +157,9 @@ window.addEventListener('DOMContentLoaded', function () {
             },
 
         });
+
+        //что бы получат editor все этого файла
+        window.dispatchEvent(new CustomEvent("tiptap-editor-ready", { detail: editor }));
 
         if(content !== "null") {
 

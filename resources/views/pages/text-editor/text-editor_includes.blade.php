@@ -11,7 +11,8 @@
 
     </x-form>
 
-    @once
-        @vite('resources/js/tiptap.js')
-    @endonce
+    @pushOnce('scripts')
+        {{-- @vite('resources/js/tiptap/tiptap.js') --}}
+        @vite('resources/js/tiptap/save-storage-input-tiptap.js')
+    @endPushOnce
 @endsection
