@@ -1,7 +1,7 @@
 import { editor } from "./tiptap.js"; //нужно для загрузки tiptap
 
 const defaultContent = '<p><strong>Начни писать статью, ведь великое начинается с малого...</strong></p>';
-const key = 'tiptap_editor';
+export const key = 'tiptap_editor';
 let editorInstance = null;
 
 window.addEventListener("tiptap-editor-ready", (event) => {
@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', function () {
     setTiptapForLocalStorage(editorInstance);
 
 });
-
 
 function debounce(func, delay) {
     let timerId;
@@ -41,18 +40,22 @@ function startCheckLocalStorage(editor, key)
 
         const tiptapInput = document.getElementById("wysiwyg-example");
 
-
-        tiptapInput.addEventListener('input', () => {
+        tiptapInput.addEventListener('keyup', () => {
 
             let value = editor.getHTML();
 
-            compareLocalStorage(value);
+            //устанавливаем delay для установки значений в local storage
+            const debouncedCompareLocalStorage = debounce(compareLocalStorage, 3000);
+
+            //передаём значение для функции
+            debouncedCompareLocalStorage(value);
+
         });
 
     }
 }
 
-function getLocalStorage(key)
+export function getLocalStorage(key)
 {
     return localStorage.getItem(key)
 }

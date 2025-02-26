@@ -18,6 +18,8 @@ import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import BulletList from '@tiptap/extension-bullet-list'
 import Text from '@tiptap/extension-text'
+import Italic from '@tiptap/extension-italic'
+import Strike from '@tiptap/extension-strike'
 
 import { initFlowbite } from 'flowbite'
 
@@ -82,13 +84,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 // }),
                 // Include the custom Bold extension
                 Text,
+                Strike,
                 CustomBold,
                 FontSizeTextStyle,
                 FontFamily,
                 Highlight.configure({ multicolor: true }),
                 Document,
                 Paragraph,
-                // TextStyle,
+                Italic,
                 Color.configure({ types: ['textStyle'] }), // Добавляем расширение для цветов
                 Underline,
                 BulletList.configure({

@@ -13,6 +13,7 @@
 
     @pushOnce('scripts')
         {{-- @vite('resources/js/tiptap/tiptap.js') --}}
-        @vite('resources/js/tiptap/save-storage-input-tiptap.js')
+        @vite('resources/js/tiptap/save-storage-input-tiptap.js')  {{-- Логика сохранения контента из редактора в контейнер  local storage --}}
+        @vite('resources/js/tiptap/button-deleted-content.js')  {{--  --}}
     @endPushOnce
 @endsection

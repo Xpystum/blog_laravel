@@ -36,7 +36,6 @@ class CreatePostInteractor
             //запускаем логику интерактора для сохранения и создание файла
             if($dto->file !== null)
             {
-                dd(1);
                 if($this->createAndSaveFileInteractor->execute(file: $dto->file, post: $post) === false) {
                     logError("Ошибка сохранения и создание файла 'Обложка статьи' в CreatePostInteractor");
                     throw new Exception('Ошибка на стороне сервера');
