@@ -118,7 +118,6 @@ class PostController extends Controller
         return view('pages.text-editor.text-editor_includes', compact('post'));
     }
 
-
     public function show(
         int $idPost,
         Request $request ,
@@ -138,6 +137,14 @@ class PostController extends Controller
         );
 
         return view('pages.user.post.preview', compact('post'));
+    }
+
+    public function index()
+    {
+        /** @var Post */
+        $posts = auth()->user()->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
+
+        return view('includes.user.profile.main.profile-main_index', compact('posts'));
     }
 
 }

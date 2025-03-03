@@ -6,6 +6,6 @@ class ProfileController
 {
     public function index()
     {
-        return view('includes.user.profile.main.profile-main_index');
+        return view('pages/user/profile/prewie-profile');
     }
 }

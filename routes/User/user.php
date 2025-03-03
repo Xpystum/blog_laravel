@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/users')->middleware(['auth'])->group(function () {
 
     Route::prefix('/posts')->group(function() {
-
         {
                 /** PAGES START */
+                //страница просмотр статей у user
+            Route::get('/', [PostController::class, 'index'])->name('users.posts');
             //страница создание статьи
             Route::get('/create', [PostController::class, 'createView'] )->name('users.posts.view.create');
             //страница обновления статьи
@@ -29,17 +30,14 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
         Route::post('/{post:id}/comments', [PostCommentController::class, 'store'])->name('users.posts.comments.store');
 
 
-
     });
 
     Route::prefix('/profiles')->group(function () {
 
-        Route::get('/', [ProfileController::class, 'index'])->name('user.profiles');
+        //страница просмотра профиля
+        Route::get('/', [ProfileController::class, 'index'])->name('users.profiles');
 
     });
-
-
-
 
 
 });
