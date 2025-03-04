@@ -7,7 +7,6 @@
         $path_img = null;
     }
 
-
 @endphp
 
 
@@ -60,7 +59,7 @@
                     </div>
 
                     <div class="flex flex-row justify-center items-center">
-                        <livewire:post-like-component :$post :collection="$post->likes" :disableHeart="true" />
+                        <livewire:post-like-component :$post :collection="$post->likes" :disableHeartButton="true" />
                         {{-- <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/> --}}
                         <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
                     </div>

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LikePostComponent extends Component
 {
-    public Post $post;
+    public ?Post $post;
     public ?LikeForPost $likeModel = null; // Новое свойство
 
     /**
@@ -22,26 +22,40 @@ class LikePostComponent extends Component
     *
     * @var bool
     */
-    public bool $disableHeart = false;
+    public bool $disableHeartButton = false;
+
+
+    /**
+    * Флаг, определяющий, должен ли быть отключен hover.
+    *
+    * @var bool
+    */
+    public bool $disableHeartHover = false;
+
 
     public function mount(
         PostRepository $postRepository,
         Request $request,
-        Collection $collection
+        ?Collection $collection
     ) {
 
         #TODO Нужно делать поиск заранее в blade, таким способом получается что на каждый компонент делается запрос в бд - нужно продумать по другому или потимизировать
-        $model = $postRepository->findLikeForCommentObject(
-            $collection,
-            LikeForPostVO::make(
-                post_id: $this->post->id,
-                user_id: Auth::user()->id ?? null,
-                user_agent: $request->header('User-Agent'),
-                ip: $request->ip(),
-            )
-        );
+        if(!is_null($this->post) && !is_null($collection)){
+
+            $model = $postRepository->findLikeForCommentObject(
+                $collection,
+                LikeForPostVO::make(
+                    post_id: $this->post->id,
+                    user_id: Auth::user()->id ?? null,
+                    user_agent: $request->header('User-Agent'),
+                    ip: $request->ip(),
+                )
+            );
+
+        }
 
         $this->likeModel = $model ?? null;
+
     }
 
 
