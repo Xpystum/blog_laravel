@@ -26,11 +26,11 @@ class LikePostComponent extends Component
 
 
     /**
-    * Флаг, определяющий, должен ли быть отключен hover.
+    * Дополнительные переданные классы в кнопку
     *
-    * @var bool
+    * @var string
     */
-    public bool $disableHeartHover = false;
+    public string $buttonClass = '';
 
 
     public function mount(

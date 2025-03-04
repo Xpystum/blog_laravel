@@ -29,12 +29,11 @@
 
                     <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
 
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5">
+                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
                             <span class="text-lg font-bold text-white">100</span>
                             <span class="text-lg text-gray-400">Просмотр статей</span>
-
-                            <div class="flex flex-row justify-center items-center">
-                                <x-icon-observ class="svg-icon-observ icon-blade-disable-hover flex items-center"/>
+                            <div class="absolute top-1 right-1">
+                                <x-icon-observ class="svg-icon-observ icon-blade-disable-hover "/>
                             </div>
                         </div>
 
@@ -42,14 +41,12 @@
 
                     <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
 
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5">
+                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
                             <span class="text-lg font-bold text-white">500</span>
                             <span class="text-lg text-gray-400">Лайков</span>
 
-                            <div class="flex flex-row justify-center items-center">
+                            <div class="absolute top-1 right-1">
                                 <livewire:post-like-component :post="null" :collection="null" :disableHeartButton="true"/>
-                                {{-- <livewire:post-like-component :$post :collection="$post->likes" :disableHeart="true" /> --}}
-                                {{-- <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/> --}}
                             </div>
                         </div>
 
@@ -57,13 +54,13 @@
 
                     <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
 
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5">
+                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
                             <span class="text-lg font-bold text-white">50</span>
                             <span class="text-lg text-gray-400">Статей</span>
-                        </div>
 
-                        <div class="flex flex-row ml-3 justify-center items-center">
-                            <x-icon-message class="svg-icon-message icon-blade-disable-hover w-5 h-5"/>
+                            <div class="absolute top-1 right-1">
+                                <x-icon-message class="svg-icon-message icon-blade-disable-hover "/>
+                            </div>
                         </div>
 
                     </div>
