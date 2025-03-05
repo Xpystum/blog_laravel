@@ -17,9 +17,19 @@
                 <div class="flex">
                     <img class="w-28 h-28" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
                     <div class="flex flex-col justify-center ml-2">
-                        <x-user.type.type-div class="mt-1">Разработчик</x-user.type.type-div>
-                        <div>
+                        <x-user.type.type-div class="mt-2">Разработчик</x-user.type.type-div>
+                        <div class="mt-2">
                             <span class="block text-lg text-gray-900 dark:text-white font-medium">{{ Auth::user()->login }}</span>
+                        </div>
+                        <div class="mt-2 flex flex">
+                            <x-svg.telegram />
+                            <x-svg.github/>
+                            <x-svg.vkontakte />
+                            <x-svg.behance />
+                            <x-svg.dprofile />
+                            <x-svg.mysite />
+                            <x-svg.instagram />
+                            <x-svg.linkedin />
                         </div>
                     </div>
                 </div>
