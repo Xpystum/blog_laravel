@@ -11,15 +11,15 @@
 
     <x-user.navigation.sidebar-menu />
 
-    <div class="flex h-[500px] ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full h-85vh">
+    <div class="flex flex-col h-[500px] ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full h-85vh">
 
         <div class="w-full">
             {{-- <h2>Информация пользователя</h2> --}}
-            <div class="flex justify-between items-center w-full h-[160px]">
+            <div class="flex justify-between items-center w-full">
 
                 <div class="flex flex-col">
 
-                    <h2 class="text-white h2 font-bold my-2">Основная информация</h2>
+                    <h1 class="text-white h1 font-bold mb-2">Основная информация профиля</h1>
 
                     <div class="flex w-1/3">
                         <img class="w-28 h-28" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
@@ -39,115 +39,152 @@
                         </div>
                     </div>
 
-                    {{-- <button type="button" class="my-3 w-1/2 text-white bg-blue-700
-                    hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-                    font-medium rounded-lg text-sm px-5 py-1.5 me-2
-                    mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-                    dark:focus:ring-blue-800">
-                    Редактировать
-                    </button> --}}
+                    <button type="button"
+                        class="mt-5 w-[140px] text-white bg-blue-700
+                        hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                        font-medium rounded-lg text-sm px-5 py-1.5
+                        dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                        dark:focus:ring-blue-800">
+                        Редактировать
+                    </button>
+
+
+
+                </div>
+
+
+                {{-- <div class="border-l border-gray-500 opacity-50 h-full mx-3 -my-4"></div> --}}
+
+                <div class="h-48 border-l border-gray-500 opacity-50"></div>
+
+
+                <div class="flex flex-col h-full">
+
+                    <h2 class="flex mb-4 items-center justify-center text-white text-center tex h2 font-bold mx-2">Статистика блога</h2>
+
+                    <div class="flex">
+
+                        <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
+
+                            <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
+                                <span class="text-lg font-bold text-white">100</span>
+                                <span class="text-lg text-gray-400">Просмотр статей</span>
+                                <div class="absolute top-1 right-1">
+                                    <x-icon-observ class="svg-icon-observ icon-blade-disable-hover " />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
+
+                            <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
+                                <span class="text-lg font-bold text-white">500</span>
+                                <span class="text-lg text-gray-400">Лайков</span>
+
+                                <div class="absolute top-1 right-1">
+                                    <livewire:post-like-component :post="null" :collection="null"
+                                        :disableHeartButton="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
+
+                            <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
+                                <span class="text-lg font-bold text-white">50</span>
+                                <span class="text-lg text-gray-400">Статей</span>
+
+                                <div class="absolute top-1 right-1">
+                                    <x-icon-message class="svg-icon-message icon-blade-disable-hover " />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="border-l border-gray-500 opacity-50 h-full mx-3 my-4"></div>
-
-
-                <div class="flex">
-
-                    <h2 class="text-white h2 font-bold my-2 text-center">Статистика блога</h2>
-
-                    <div
-                        class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
-
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                            <span class="text-lg font-bold text-white">100</span>
-                            <span class="text-lg text-gray-400">Просмотр статей</span>
-                            <div class="absolute top-1 right-1">
-                                <x-icon-observ class="svg-icon-observ icon-blade-disable-hover " />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
-
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                            <span class="text-lg font-bold text-white">500</span>
-                            <span class="text-lg text-gray-400">Лайков</span>
-
-                            <div class="absolute top-1 right-1">
-                                <livewire:post-like-component :post="null" :collection="null" :disableHeartButton="true" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
-
-                        <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                            <span class="text-lg font-bold text-white">50</span>
-                            <span class="text-lg text-gray-400">Статей</span>
-
-                            <div class="absolute top-1 right-1">
-                                <x-icon-message class="svg-icon-message icon-blade-disable-hover " />
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
 
             </div>
 
-
-
-            <div class="-mx-3 border-b border-gray-500 opacity-50 my-4"></div>
-
-            <div class="my-4">
-
-                <div class="mb-4 border-b border-gray-200 dark:border-gray-700 w-full">
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
-                        data-tabs-toggle="#default-tab-content" role="tablist">
-                        <li class="me-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
-                                data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                aria-selected="false">Персональная информация</button>
-                        </li>
-                        <li class="me-2" role="presentation">
-                            <button
-                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                                aria-controls="dashboard" aria-selected="false">Статьи</button>
-                        </li>
-                    </ul>
-                </div>
-
-                <div id="default-tab-content">
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-                        aria-labelledby="profile-tab">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                                class="font-medium text-gray-800 dark:text-white">Profile tab's associated
-                                content</strong>. Clicking another tab will toggle the visibility of this one for the
-                            next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-                    </div>
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
-                        aria-labelledby="dashboard-tab">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                                class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated
-                                content</strong>. Clicking another tab will toggle the visibility of this one for the
-                            next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-            {{-- Блок профиля и редактирование аватарки --}}
         </div>
 
+
+        <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
+
+        <div class="my-4">
+
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-700 w-full">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
+                    data-tabs-toggle="#default-tab-content" role="tablist">
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+                            data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">Персональная информация</button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button
+                            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                            id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
+                            aria-controls="dashboard" aria-selected="false">Статьи</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="default-tab-content">
+
+
+                <div class="flex flex-col hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <h3 class="text-white h3 font-bold mb-2">Основная информация профиля</h3>
+
+                    <div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
+                    aria-labelledby="dashboard-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
+                            class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated
+                            content</strong>. Clicking another tab will toggle the visibility of this one for the
+                        next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        {{-- Блок профиля и редактирование аватарки --}}
     </div>
+
+</div>
 
 </div>
