@@ -17,12 +17,13 @@
             {{-- <h2>Информация пользователя</h2> --}}
             <div class="flex justify-between items-center w-full">
 
-                <div class="flex flex-col">
+                <div class="flex flex-col w-1/3">
 
                     <h1 class="text-white h1 font-bold mb-2">Основная информация профиля</h1>
 
-                    <div class="flex w-1/3">
-                        <img class="w-28 h-28" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
+                    <div class="flex w-1/2">
+                        <img class="w-32 h-auto object-cover rounded-full" src="{{ asset(Auth::user()->url_avatar) }}" alt="Фото пользователя">
+                        {{-- <img class="w-full h-auto object-cover" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя"> --}}
                         <div class="flex flex-col justify-center ml-2">
                             <x-user.type.type-div class="mt-2">Разработчик</x-user.type.type-div>
                             <div class="mt-2">
