@@ -11,7 +11,7 @@
 
     <x-user.navigation.sidebar-menu />
 
-    <div class="flex flex-col h-[500px] ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full h-85vh">
+    <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full">
 
         <div class="w-full">
             {{-- <h2>Информация пользователя</h2> --}}
@@ -143,29 +143,7 @@
 
                 <div class="flex flex-col hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-                    <h3 class="text-white h3 font-bold mb-2">Основная информация профиля</h3>
-
-                    <div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
-
+                    <livewire:profile-info-user-component />
 
                 </div>
 

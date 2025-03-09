@@ -1,5 +1,6 @@
-<a data-tooltip-target="tooltip-svg-adobeillustrator" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
-    <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+@props(['width' => 24, 'height' => 24])
+<div data-tooltip-target="tooltip-svg-adobeillustrator" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
+    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_1_85)">
             <path
                 d="M20.498 0H4.082C1.82868 0 0.00199986 1.82668 0.00199986 4.08V19.8816C0.00199986 22.1349 1.82868 23.9616 4.082 23.9616H20.498C22.7513 23.9616 24.578 22.1349 24.578 19.8816V4.08C24.578 1.82668 22.7513 0 20.498 0Z"
@@ -20,5 +21,5 @@
         class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
         Adobe Illustrator
         <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>  
-</a>
+    </div>
+</div>
