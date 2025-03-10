@@ -1,5 +1,6 @@
-<a data-tooltip-target="tooltip-svg-figma" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
-    <svg width="24" height="24" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc" aria-hidden="true" viewBox="0 0 12 17" fill="none"
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Figma'])
+<div data-tooltip-target="tooltip-svg-figma" class="relative p-1 block hover:bg-gray-700 rounded-md">
+    <svg width="{{ $width }}" height="{{ $height }}" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc" aria-hidden="true" viewBox="0 0 12 17" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
             d="M3.07953 16.9342C4.61287 16.9342 5.85731 15.6877 5.85731 14.1517V11.3691H3.07953C1.5462 11.3691 0.301758 12.6157 0.301758 14.1517C0.301758 15.6877 1.5462 16.9342 3.07953 16.9342Z"
@@ -25,7 +26,7 @@
 
     <div id="tooltip-svg-figma" role="tooltip"
         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        Figma
+        {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
-</a>
+</div>

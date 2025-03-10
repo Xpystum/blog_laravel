@@ -1,5 +1,6 @@
-<a data-tooltip-target="tooltip-svg-telegram" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
-    <svg data-tooltip-trigger="hover" width="24" height="24" viewBox="0 0 16 16" fill="none"
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Telegram', 'href' => '#'])
+<a data-tooltip-target="tooltip-svg-telegram" href="{{ $href }}" class="relative p-1 block hover:bg-gray-700 rounded-md">
+    <svg data-tooltip-trigger="hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 16 16" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_238_28)">
             <path
@@ -23,7 +24,7 @@
 
     <div id="tooltip-svg-telegram" role="tooltip"
         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        Telegram
+        {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </a>

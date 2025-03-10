@@ -1,5 +1,6 @@
-<a data-tooltip-target="tooltip-svg-instagram" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 512 512" fill="none">
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Instagram', 'href' => '#'])
+<a data-tooltip-target="tooltip-svg-instagram" href="{{ $href }}" class="relative p-1 block hover:bg-gray-700 rounded-md">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 512 512" fill="none">
         <rect width="512" height="512" fill="url(#pattern0_26832_868)"/>
         <defs>
         <pattern id="pattern0_26832_868" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -11,7 +12,7 @@
 
     <div id="tooltip-svg-instagram" role="tooltip"
         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        Instagram
+        {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </a>

@@ -12,12 +12,13 @@
                 <header>
                     <h3 class="text-white font-bold">Обо мне</h3>
                 </header>
-                <p class="text-gray-400">
+                <p class="text-gray-400 max-h-[170px] overflow-hidden">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam nesciunt mollitia accusamus
                     quibusdam accusantium?
                     Repellat, laboriosam vitae adipisci eos consequuntur repudiandae ut obcaecati impedit eligendi,
                     animi illo nesciunt vero sunt aliquid
                     quaerat accusamus ea fuga quas voluptatem? Unde voluptas tenetur facilis ut similique, enim
+                    reiciendis fugiat nihil quae perspiciatis!    quaerat accusamus ea fuga quas voluptatem? Unde voluptas tenetur facilis ut similique, enim
                     reiciendis fugiat nihil quae perspiciatis!
                 </p>
             </section>
@@ -64,6 +65,7 @@
         <div class="flex flex-row">
 
             <div class="flex flex-col w-1/2">
+
                 <div class="flex flex-row mt-2 items-center">
                     <x-svg.adobeillustrator :width='56' :height='56'/>
                     <div class="ml-2 w-2/3">
@@ -73,19 +75,24 @@
                             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
                         </div>
                     </div>
-
                 </div>
+                
 
             </div>
 
             <div class="flex flex-col w-1/2">
-                <div class="flex flex-row mt-2">
-                    <x-svg.adobeafteraffects :width='56' :height='56'/>
 
-                    <div class="w-1/2 bg-gray-200 rounded-full dark:bg-gray-700">
-                        <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+                <div class="flex flex-row mt-2 items-center">
+                    <x-svg.adobeafteraffects :width='56' :height='56'/>
+                    <div class="ml-2 w-2/3">
+                        {{-- TODO Для spana сделать описание базовости и т.д --}}
+                        <span class="mb-1 text-[#A8C8EE] text-lg">Базовый</span>
+                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+                        </div>
                     </div>
                 </div>
+
                 <div>
 
                 </div>

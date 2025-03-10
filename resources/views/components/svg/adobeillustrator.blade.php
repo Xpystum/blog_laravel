@@ -1,5 +1,5 @@
-@props(['width' => 24, 'height' => 24])
-<div data-tooltip-target="tooltip-svg-adobeillustrator" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Adobe Illustrator'])
+<div data-tooltip-target="tooltip-svg-adobeillustrator" class="relative p-1 block hover:bg-gray-700 rounded-md">
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_1_85)">
             <path
@@ -19,7 +19,7 @@
 
     <div id="tooltip-svg-adobeillustrator" role="tooltip"
         class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        Adobe Illustrator
+        {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </div>

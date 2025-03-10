@@ -1,5 +1,6 @@
-<a data-tooltip-target="tooltip-svg-dprofile" href="#" class="relative p-1 block hover:bg-gray-700 rounded-md">
-    <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Dprofile', 'href' => '#'])
+<a data-tooltip-target="tooltip-svg-dprofile" href="{{ $href }}" class="relative p-1 block hover:bg-gray-700 rounded-md">
+    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         class="logo__icon" data-v-14be08e2="" data-darkreader-inline-invert="">
         <path fill-rule="evenodd" clip-rule="evenodd"
             d="M28.327 3.45l8.224 8.223c4.599 4.599 4.599 12.055 0 16.654l-8.224 8.224c-4.599 4.599-12.055 4.599-16.654 0l-8.224-8.224c-4.599-4.599-4.599-12.055 0-16.654l8.224-8.224c4.599-4.599 12.055-4.599 16.654 0zM5.5 24.792v-9.586C5.5 9.846 9.846 5.5 15.207 5.5h9.586c5.361 0 9.707 4.346 9.707 9.707v9.586c0 5.361-4.346 9.707-9.707 9.707h-9.586c-5.361 0-9.707-4.346-9.707-9.707z">
@@ -12,7 +13,7 @@
 
     <div id="tooltip-svg-dprofile" role="tooltip"
         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        Dprofile
+        {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </a>

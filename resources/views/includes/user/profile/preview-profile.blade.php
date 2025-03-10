@@ -31,11 +31,21 @@
                                     class="block text-lg text-gray-900 dark:text-white font-medium">{{ Auth::user()->login }}</span>
                             </div>
                             <div class="flex mt-2 flex flex">
-                                <x-svg.telegram />
+                                {{-- <x-svg.telegram />
                                 <x-svg.github />
                                 <x-svg.behance />
-                                <x-svg.dprofile />
-                                <x-svg.mysite />
+                                <x-svg.dprofile /> --}}
+                                {{-- <x-svg.mysite />
+                                <x-svg.developer.php />
+                                <x-svg.developer.typescript />
+                                <x-svg.developer.javascript />
+                                <x-svg.developer.react />
+                                <x-svg.developer.next-js /> --}}
+                                <x-svg.developer.laravel />
+                                <x-svg.developer.docker />
+                                <x-svg.developer.linux />
+                                <x-svg.developer.postgres />
+                                <x-svg.developer.sql />
                             </div>
                         </div>
                     </div>
