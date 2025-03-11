@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Modules\Base\Response\FunctionResult;
-use App\Modules\Email\Domain\Models\EmailAccesToken;
-use App\Modules\Email\Domain\Services\EmailService;
-use App\Modules\User\Domain\Models\User;
 use Illuminate\Http\Request;
+use App\Modules\User\Domain\Models\User;
+use App\Modules\Base\Response\FunctionResult;
+use App\Modules\Email\Domain\Services\EmailService;
+use App\Modules\Email\Domain\Models\EmailAccesToken;
 
 class EmailController extends Controller
 {

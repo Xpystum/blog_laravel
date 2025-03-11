@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers\User\Post;
 
-use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Request;
 
+use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
-use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
-use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
-use App\Modules\Post\App\Data\ValueObject\PostView\PostViewVO;
+use Illuminate\Support\Facades\Auth;
+use App\Modules\Post\Domain\Models\Post;
 use App\Modules\Post\App\DTO\CreatePostDTO;
 use App\Modules\Post\App\DTO\UpdatePostDTO;
-use App\Modules\Post\Domain\Models\Post;
+use App\Modules\Post\Domain\Services\PostSerivce;
+use App\Modules\Post\App\Data\ValueObject\Post\PostVO;
 use App\Modules\Post\Domain\Requests\Post\CreatePostRequest;
 use App\Modules\Post\Domain\Requests\Post\UpdatePostRequest;
-use App\Modules\Post\Domain\Services\PostSerivce;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
+use App\Modules\Post\App\Data\ValueObject\PostView\PostViewVO;
 
 class PostController extends Controller
 {
-
 
     public function store(
         CreatePostRequest $request,
@@ -142,7 +141,7 @@ class PostController extends Controller
     public function index()
     {
         /** @var Post */
-        $posts = auth()->user()->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
+        $posts = Auth::user()->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
 
         return view('includes.user.profile.main.profile-main_index', compact('posts'));
     }

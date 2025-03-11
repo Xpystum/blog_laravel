@@ -11,19 +11,19 @@ import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
 import { Color } from '@tiptap/extension-color';
 import Bold from '@tiptap/extension-bold';
-import HorizontalRule from '@tiptap/extension-horizontal-rule'
-import Blockquote from '@tiptap/extension-blockquote'
-import CodeBlock from '@tiptap/extension-code-block'
-import ListItem from '@tiptap/extension-list-item'
-import OrderedList from '@tiptap/extension-ordered-list'
-import BulletList from '@tiptap/extension-bullet-list'
-import Text from '@tiptap/extension-text'
-import Italic from '@tiptap/extension-italic'
-import Strike from '@tiptap/extension-strike'
+import HorizontalRule from '@tiptap/extension-horizontal-rule';
+import Blockquote from '@tiptap/extension-blockquote';
+import CodeBlock from '@tiptap/extension-code-block';
+import ListItem from '@tiptap/extension-list-item';
+import OrderedList from '@tiptap/extension-ordered-list';
+import BulletList from '@tiptap/extension-bullet-list';
+import Text from '@tiptap/extension-text';
+import Italic from '@tiptap/extension-italic';
+import Strike from '@tiptap/extension-strike';
 
 import { initFlowbite } from 'flowbite'
 
-export let editor = null;
+export const editor = null;
 
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -75,14 +75,6 @@ window.addEventListener('DOMContentLoaded', function () {
             element: document.querySelector('#wysiwyg-example'),
             editable: true, //можно ли писать в редакторе
             extensions: [
-                // StarterKit.configure({
-                //     textStyle: true,
-                //     bold: true,
-                //     marks: {
-                //         bold: true,
-                //     },
-                // }),
-                // Include the custom Bold extension
                 Text,
                 Strike,
                 CustomBold,
@@ -315,7 +307,6 @@ window.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
 
 })
 
