@@ -6,12 +6,12 @@
 
 ])  }}>
 
-    <option value="" {{ old($name) ? '' : 'selected' }} hidden>Кто вы?</option>
+    <option class="text-gray-400" value="" {{ old($name) ? '' : 'selected' }} hidden>Кто вы?</option>
 
     @foreach($options as $key => $_value)
 
 
-        <option value="{{ $key }}" {{ (old($name) == $key || $value == $key) ? 'selected' : '' }} >
+        <option  value="{{ $key }}" {{ (old($name) == $key || $value == $key) ? 'selected' : '' }} >
 
             {{ $_value }}
 

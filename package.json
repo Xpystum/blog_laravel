@@ -49,6 +49,7 @@
         "@tiptap/extension-youtube": "^2.6.6",
         "@tiptap/pm": "^2.11.0",
         "@tiptap/starter-kit": "^2.6.6",
+        "@yaireo/tagify": "^4.33.2",
         "alpinejs": "^3.14.5",
         "toastr": "^2.1.4"
     }

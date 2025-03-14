@@ -188,14 +188,14 @@
 
 
     <!-- Main modal -->
-    <div id="crud-modal-profile" tabindex="-1" aria-hidden="true"
-        class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="crud-modal-profile" tabindex="-1" aria-hidden="true" {{-- hidden --}}
+        class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                 <!-- Modal header -->
                 <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         Обновление информации
                     </h3>
@@ -211,23 +211,163 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5">
+                <form class="p-4 md:p-5 bg-[#1f2937]">
                     <div>
-                        <h4 class="text-md h5 text-white text-bold font-semibold text-gray-900 dark:text-white mb-2">Загрузка Аватара</h4>
+                        <h4 class="text-sm h5 text-white text-bold font-semibold text-gray-900 dark:text-white mb-2">
+                            Загрузка Аватара</h4>
                         <div class="flex flex-row">
-                            <img class="aspect-square object-cover w-20 h-20 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
+                            <img class="aspect-square object-cover w-20 h-20 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500"
+                                src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
                             <div class="flex flex-col flex-1 ml-2">
-                                <x-input.input-file name="profile_avatar" value_text='' class="w-full"/>
-                                <button type="button"
-                                    class="mt-2 w-[140px] text-white bg-blue-700
-                                    hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-                                    font-medium rounded-lg text-sm px-5 py-1.5
-                                    dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-                                    dark:focus:ring-blue-800">
-                                    Редактировать
-                                </button>
+                                <div>
+                                    <x-input.input-file name="profile_avatar" value_text='' class="w-full" />
+                                    <p class="text-gray-400 text-xs my-1 ">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                                </div>
+
+                                <div class="">
+                                    <button type="button"
+                                        class="mt-2 w-[140px] text-white bg-blue-700
+                                            hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                                            font-medium rounded-lg text-sm px-5 py-1.5
+                                            dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                                            dark:focus:ring-blue-800">
+                                        Загрузить
+                                    </button>
+
+                                    <button type="button"
+                                        class="py-1.5 px-2 me-2 mb-2 ml-1 text-sm font-medium
+                                        text-gray-900 focus:outline-none bg-white rounded-lg border
+                                        border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
+                                        focus:ring-gray-100 dark:focus:ring-gray-700
+                                        dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
+                                        dark:hover:text-white dark:hover:bg-gray-700">
+                                        Очистить
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex flex-row w-full">
+                            <div class="flex flex-col w-1/2">
+                                <x-union.form.union-label-input
+                                    default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                    placeholder="Полное имя" name="full_name" type="text"
+                                    label="{{ __('Полное имя') }}" />
+                                <x-union.form.union-label-input
+                                    default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
+                                    placeholder="Ваша почта" name="email" type="email" label="Email" />
+                            </div>
+                            <div class="flex flex-col w-1/2 ml-3">
+
+                                <div class="flex flex-col">
+                                    <x-label for="typeSelectActivities"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        {{ __('Сфера деятельности') }}
+                                    </x-label>
+
+                                    <x-select id="typeSelectActivities" placeholder="Кто вы?" name="type"
+                                        :options="[
+                                            'Разработчик' => 'Разработчик',
+                                            'Дизайнер' => 'Дизайнер',
+                                            'Другое' => 'Другое',
+                                        ]"
+                                        class="placeholder-gray-400     h-[42px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full
+                                            p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+
+                                <div class="flex flex-col">
+
+                                    <x-label for="typeSelectActivities"
+                                        class="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white">
+                                        {{ __('Ваши контакты') }}
+                                    </x-label>
+
+                                    <button id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover"
+                                        class="flex flex-row justify-between h-[42px] text-gray-400
+                                        focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500
+                                        border-gray-300 dark:border-gray-600 block
+                                        font-medium text-sm rounded-lg text-sm px-2.5 py-2.5 text-center inline-flex border
+                                        items-center text-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        type="button">Укажите контакты
+                                    <svg class="w-2.5 h-2.5 ms-3"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                    </button>
+
+                                    <!-- Dropdown menu -->
+                                    <div id="dropdownBgHover"
+                                        class="z-10 bg-gray-500 border dark:border-gray-400 hidden w-96 bg-white rounded-lg shadow-sm dark:bg-gray-700 ">
+                                        <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                                            aria-labelledby="dropdownBgHoverButton">
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                placeholder="Полное имя" name="full_name" type="text"
+                                                label="{{ __('Полное имя') }}" />
+                                                {{-- <div
+                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <input id="checkbox-item-4" type="checkbox" value=""
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="checkbox-item-4"
+                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Default
+                                                        checkbox</label>
+                                                </div> --}}
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <input checked id="checkbox-item-5" type="checkbox"
+                                                        value=""
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="checkbox-item-5"
+                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Checked
+                                                        state</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <input id="checkbox-item-6" type="checkbox" value=""
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="checkbox-item-6"
+                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Default
+                                                        checkbox</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="w-full mt-2">
+                            <x-union.form.union-label-input placeholder="{{ __('Укажите ссылки через Enter') }}"
+                                name="my_project_tagify" type="text" label="{{ __('Мои проекты') }}"
+                                default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
+                        </div>
+
+                        <div class="flex mt-2 flex-row">
+                            <div class="w-1/2">
+                                <x-union.form.union-label-input placeholder="••••••••" name="my_project_tagify"
+                                    type="password" label="{{ __('Новый пароль') }}"
+                                    default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
+                            </div>
+                            <div class="ml-3 w-1/2">
+                                <x-union.form.union-label-input placeholder="••••••••" name="my_project_tagify"
+                                    type="password" label="{{ __('Повторите пароль') }}"
+                                    default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </form>

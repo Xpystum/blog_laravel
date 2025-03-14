@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('login')->unique();
             $table->string('email')->unique();
             $table->string('type')->comment('Кем является пользователь: Разработчик/Дизайнер/Другое');
+            $table->string('full_name')->nullable()->comment('Полное имя');
 
             $table->string('url_avatar')->comment('ссылка на автара');
 
