@@ -1,6 +1,6 @@
 
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Linux'])
-<div data-tooltip-target="tooltip-svg-linux" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<div data-tooltip-target="tooltip-svg-linux" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
 
 
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

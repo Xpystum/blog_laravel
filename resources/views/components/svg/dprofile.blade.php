@@ -1,5 +1,5 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Dprofile', 'href' => '#'])
-<a data-tooltip-target="tooltip-svg-dprofile" href="{{ $href }}" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<a data-tooltip-target="tooltip-svg-dprofile" href="{{ $href }}" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         class="logo__icon" data-v-14be08e2="" data-darkreader-inline-invert="">
         <path fill-rule="evenodd" clip-rule="evenodd"

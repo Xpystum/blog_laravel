@@ -42,8 +42,9 @@
                                 <x-svg.developer.javascript />
                                 <x-svg.developer.react />
                                 <x-svg.developer.next-js /> --}}
-                                <x-svg.laravel />
+                                <x-svg.github />
                                 <x-svg.docker />
+                                <x-svg.laravel />
                                 <x-svg.linux />
                                 <x-svg.postgres />
                                 <x-svg.sql />
@@ -175,7 +176,8 @@
 
         <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
 
-        <button type="button"
+        <button data-modal-target="crud-modal-profile-additionally" data-modal-toggle="crud-modal-profile-additionally"
+            type="button"
             class="mt-2 w-[140px] text-white bg-blue-700
             hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
             font-medium rounded-lg text-sm px-5 py-1.5
@@ -188,12 +190,12 @@
 
 
     <!-- Main modal -->
-    <div id="crud-modal-profile" tabindex="-1" aria-hidden="true" {{-- hidden --}}
-        class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="crud-modal-profile" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                <!-- Modal header -->
+
                 <div
                     class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -201,7 +203,7 @@
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="crud-modal">
+                        data-modal-toggle="crud-modal-profile">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -210,8 +212,10 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <!-- Modal body -->
+
+                <!-- Modal profile body -->
                 <form class="p-4 md:p-5 bg-[#1f2937]">
+
                     <div>
                         <h4 class="text-sm h5 text-white text-bold font-semibold text-gray-900 dark:text-white mb-2">
                             Загрузка Аватара</h4>
@@ -258,8 +262,7 @@
                                 <x-union.form.union-label-input
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
                                     placeholder="Ваша почта" name="email" type="email" label="Email"
-                                    statusReadonly="readonly"
-                                />
+                                    statusReadonly="readonly" />
                             </div>
                             <div class="flex flex-col w-1/2 ml-3">
 
@@ -275,7 +278,7 @@
                                             'Дизайнер' => 'Дизайнер',
                                             'Другое' => 'Другое',
                                         ]"
-                                        class="placeholder-gray-400     h-[42px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full
+                                        class="placeholder-gray-400 h-[42px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full
                                             p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
@@ -295,12 +298,11 @@
                                         font-medium text-sm rounded-lg text-sm px-2.5 py-2.5 text-center inline-flex border
                                         items-center text-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                         type="button">Укажите контакты
-                                    <svg class="w-2.5 h-2.5 ms-3"
-                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 10 6">
+                                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                             <path stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
+                                        </svg>
                                     </button>
 
                                     <!-- Dropdown menu -->
@@ -315,12 +317,12 @@
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку Telegam') }}" name="full_name" type="text"
-                                                    label="false">
-                                                    <x-svg.telegram class="mr-2 pointer-events-none cursor-default"/>
+                                                    placeholder="{{ __('Укажите ссылку Telegam') }}" name="full_name"
+                                                    type="text" label="false">
+                                                    <x-svg.telegram data_tooltip_target="tooltip-svg-telegram-modal-profile" class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
 
-                                            </li >
+                                            </li>
 
                                             <li>
                                                 <x-union.form.union-label-input
@@ -329,9 +331,9 @@
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку на Behance') }}" name="full_name" type="text"
-                                                    label="false">
-                                                    <x-svg.behance class="mr-2 pointer-events-none cursor-default"/>
+                                                    placeholder="{{ __('Укажите ссылку на Behance') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.behance data_tooltip_target="tooltip-svg-behance-modal-profile" class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -342,9 +344,9 @@
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку на Vk') }}" name="full_name" type="text"
-                                                    label="false">
-                                                    <x-svg.vkontakte class="mr-2 pointer-events-none cursor-default"/>
+                                                    placeholder="{{ __('Укажите ссылку на Vk') }}" name="full_name"
+                                                    type="text" label="false">
+                                                    <x-svg.vkontakte data_tooltip_target="tooltip-svg-vkontakte-modal-profile" class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -355,9 +357,9 @@
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку на Github') }}" name="full_name" type="text"
-                                                    label="false">
-                                                    <x-svg.github class="mr-2 pointer-events-none cursor-default"/>
+                                                    placeholder="{{ __('Укажите ссылку на Github') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.github data_tooltip_target="tooltip-svg-github-modal-profile" class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -368,9 +370,22 @@
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку на linkedin') }}" name="full_name" type="text"
-                                                    label="false">
-                                                    <x-svg.linkedin class="mr-2 pointer-events-none cursor-default"/>
+                                                    placeholder="{{ __('Укажите ссылку на linkedin') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.linkedin data_tooltip_target="tooltip-svg-linkedin-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                </x-union.form.union-label-input>
+                                            </li>
+
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на Instagram') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.instagram data_tooltip_target="tooltip-svg-instagram-modal-profile" class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -403,7 +418,146 @@
 
                     </div>
 
+                    <button type="button" disabled
+                        class="mt-4 w-[140px] text-white bg-blue-700
+                        hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                        font-medium rounded-lg text-sm px-5 py-1.5
+                        dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                        dark:focus:ring-blue-800">
+                        Сохранить
+                    </button>
+
                 </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Main modal -->
+    <div id="crud-modal-profile-additionally" tabindex="-1" aria-hidden="true" {{-- hidden --}}
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+
+                <!-- Modal profile body -->
+                <form class="p-4 md:p-5 bg-[#1f2937]">
+                    <div
+                        class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 mb-4 border-b rounded-t dark:border-gray-600 border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Обновление дополнительной информации
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="crud-modal-profile-additionally">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+
+
+                    <div id="accordion-arrow-icon" data-accordion="open">
+                        <h2 id="accordion-arrow-icon-heading-1">
+                            <button type="button"
+                                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 bg-gray-100 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                                data-accordion-target="#accordion-arrow-icon-body-1" aria-expanded="true"
+                                aria-controls="accordion-arrow-icon-body-1">
+                                <span>Расскажите о себе</span>
+                                <x-svg.pen width="22" height="22" class=" -me-0.5" />
+                            </button>
+                        </h2>
+                        <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
+                            <div class="border border-b-0 border-gray-200 dark:border-gray-700">
+                                <div class="w-full flex flex-col justify-center items-center w-full border-gray-200 dark:border-gray-700">
+                                    <div class="w-full border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                        <div class="w-full bg-white dark:bg-gray-800">
+                                            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Напишите кратко о себе"></textarea>
+
+                                            {{-- <label for="comment" class="sr-only">Ваш комменатрий</label>
+                                            <textarea id="comment" name="value" rows="4"
+                                                class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                                placeholder="Написать комментарий..." required></textarea> --}}
+                                        </div>
+
+                                        {{-- <div
+                                            class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 border-gray-200">
+                                            <button type="submit"
+                                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                                                Опубликовать
+                                            </button>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="accordion-arrow-icon-heading-2">
+                            <button type="button"
+                                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                                data-accordion-target="#accordion-arrow-icon-body-2" aria-expanded="false"
+                                aria-controls="accordion-arrow-icon-body-2">
+                                <span>Отметьте ваши умения</span>
+                                <x-svg.skill width="22" height="22" class=" -me-0.5" />
+                            </button>
+                        </h2>
+                        <div id="accordion-arrow-icon-body-2" class="hidden"
+                            aria-labelledby="accordion-arrow-icon-heading-2">
+                            <div class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                                <div class="flex flex-col w-1/2">
+                                    <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
+                                        <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col w-1/2 ml-3">
+                                    <div class=" flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
+
+                                        <x-svg.laravel data_tooltip_target="tooltip-svg-laravel-skill" class="mr-2"/>
+                                        <input checked id="bordered-checkbox-2" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="bordered-checkbox-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Laravel</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="accordion-arrow-icon-heading-3">
+                            <button type="button"
+                                class="rounded-bl-xl rounded-br-xl flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                                data-accordion-target="#accordion-arrow-icon-body-3" aria-expanded="false"
+                                aria-controls="accordion-arrow-icon-body-3">
+                                <span>Accordion without arrow rotation</span>
+                                <x-svg.skill width="24" height="24" class=" -me-0.5" />
+                            </button>
+                        </h2>
+                        <div id="accordion-arrow-icon-body-3" class="hidden"
+                            aria-labelledby="accordion-arrow-icon-heading-3">
+                            <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core
+                                    components from Flowbite are open source under the MIT license, whereas Tailwind UI
+                                    is a paid product. Another difference is that Flowbite relies on smaller and
+                                    standalone components, whereas Tailwind UI offers sections of pages.</p>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using
+                                    both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason
+                                    stopping you from using the best of two worlds.</p>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:
+                                </p>
+                                <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                                    <li><a href="https://flowbite.com/pro/"
+                                            class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a>
+                                    </li>
+                                    <li><a href="https://tailwindui.com/" rel="nofollow"
+                                            class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

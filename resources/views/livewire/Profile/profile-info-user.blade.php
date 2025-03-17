@@ -45,12 +45,13 @@
 
             <div class="flex flex-col mt-2">
                 <header>
-                    <h3 class="text-white font-bold">Социальные сети</h3>
+                    <h3 class="text-white font-bold">Мои навыки</h3>
                 </header>
                 <div class="flex flex-row">
-                    <x-svg.telegram />
-                    <x-svg.behance />
-                    <x-svg.github />
+                    <x-svg.laravel />
+                    <x-svg.figma />
+                    <x-svg.html />
+                    <x-svg.css />
                 </div>
             </div>
         </article>

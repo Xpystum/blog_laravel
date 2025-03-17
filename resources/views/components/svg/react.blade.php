@@ -1,5 +1,5 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'React'])
-<div data-tooltip-target="tooltip-svg-react" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<div data-tooltip-target="tooltip-svg-react" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
 
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 10.65C12.9631 10.65 13.7438 9.86929 13.7438 8.90625C13.7438 7.9432 12.9631 7.1625 12 7.1625C11.037 7.1625 10.2563 7.9432 10.2563 8.90625C10.2563 9.86929 11.037 10.65 12 10.65Z" fill="#61DAFB"/>

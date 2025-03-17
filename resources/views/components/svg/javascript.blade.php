@@ -1,5 +1,5 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Typescript'])
-<div data-tooltip-target="tooltip-svg-javascript" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<div data-tooltip-target="tooltip-svg-javascript" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
 
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_3_17)">

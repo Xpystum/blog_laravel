@@ -1,5 +1,6 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'HTML 5'])
-<div data-tooltip-target="tooltip-svg-html" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<div data-tooltip-target="tooltip-svg-html" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
+
     <svg width="{{ $width }}" height="{{ $height }}" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc" aria-hidden="true" viewBox="0 0 13 18" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -22,7 +23,7 @@
     </svg>
 
     <div id="tooltip-svg-html" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+        class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
         {{ $description_toll_tip }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
