@@ -1,4 +1,5 @@
-@props(['value'  => '', 'autofocus' => ''])
+
+@props(['value'  => '', 'autofocus' => '', 'statusReadonly'])
 
 
 @php
@@ -14,14 +15,19 @@
 @endphp
 
 
-<input {{ $attributes->class([
+<input
+
+    {{ $statusReadonly }}
+
+{{ $attributes->class([
 
     $classAttribute,
 
 ])->merge([
 
     'type' => 'text',
+
     //Возврат старых введёных данных
     'value' => ( $value ? $value : (old($attributes->get('name'))) ),
 
-])  }} {{ $autofocus ? 'autofocus' : '' }}>
+])  }} {{ $autofocus ? 'autofocus' : '' }} >

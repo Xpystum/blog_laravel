@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title.page', config('app.name'))</title>
 
-    @vite(['resources/css/app.sass', 'resources/js/app.js'])
+    @vite(['resources/css/app.sass', 'resources/js/app.js', 'resources/css/app.scss'])
 
     {{-- подключение js по необходимости --}}
     @stack('header')

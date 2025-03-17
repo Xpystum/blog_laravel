@@ -3,9 +3,12 @@
     'default_class_input' => 'flex flex-nowrap w-full h-[42px] max-h-[53px] overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+    'default_div_class' => 'w-full',
+    'statusReadonly' => '',
 ])
 
-<div class="w-full">
+
+<div class="{{ $default_div_class }}">
 
     @if ($label != 'false')
         <x-label :for="$name" class="{{ $default_class_label }}">
@@ -13,6 +16,18 @@
         </x-label>
     @endif
 
-    <x-input.input placeholder="{{ $attributes->get('placeholder') }}" :autofocus="$autofocus" :type="$type" :name="$name" :id="$name" class="{{ $default_class_input }}" required/>
+    {{ $slot }}
+
+    <x-input.input
+        placeholder="{{ $attributes->get('placeholder') }}"
+        :autofocus="$autofocus"
+        :type="$type"
+        :name="$name"
+        :id="$name"
+        class="{{ $default_class_input }}"
+
+        statusReadonly="{{ $statusReadonly }}"
+
+        required />
 </div>
 

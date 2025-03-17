@@ -257,7 +257,9 @@
                                     label="{{ __('Полное имя') }}" />
                                 <x-union.form.union-label-input
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
-                                    placeholder="Ваша почта" name="email" type="email" label="Email" />
+                                    placeholder="Ваша почта" name="email" type="email" label="Email"
+                                    statusReadonly="readonly"
+                                />
                             </div>
                             <div class="flex flex-col w-1/2 ml-3">
 
@@ -308,39 +310,70 @@
                                             aria-labelledby="dropdownBgHoverButton">
                                             <li>
                                                 <x-union.form.union-label-input
-                                                default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                placeholder="Полное имя" name="full_name" type="text"
-                                                label="{{ __('Полное имя') }}" />
-                                                {{-- <div
-                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                    <input id="checkbox-item-4" type="checkbox" value=""
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="checkbox-item-4"
-                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Default
-                                                        checkbox</label>
-                                                </div> --}}
-                                            </li>
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку Telegam') }}" name="full_name" type="text"
+                                                    label="false">
+                                                    <x-svg.telegram class="mr-2 pointer-events-none cursor-default"/>
+                                                </x-union.form.union-label-input>
+
+                                            </li >
+
                                             <li>
-                                                <div
-                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                    <input checked id="checkbox-item-5" type="checkbox"
-                                                        value=""
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="checkbox-item-5"
-                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Checked
-                                                        state</label>
-                                                </div>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на Behance') }}" name="full_name" type="text"
+                                                    label="false">
+                                                    <x-svg.behance class="mr-2 pointer-events-none cursor-default"/>
+                                                </x-union.form.union-label-input>
                                             </li>
+
                                             <li>
-                                                <div
-                                                    class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                    <input id="checkbox-item-6" type="checkbox" value=""
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="checkbox-item-6"
-                                                        class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300">Default
-                                                        checkbox</label>
-                                                </div>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на Vk') }}" name="full_name" type="text"
+                                                    label="false">
+                                                    <x-svg.vkontakte class="mr-2 pointer-events-none cursor-default"/>
+                                                </x-union.form.union-label-input>
                                             </li>
+
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на Github') }}" name="full_name" type="text"
+                                                    label="false">
+                                                    <x-svg.github class="mr-2 pointer-events-none cursor-default"/>
+                                                </x-union.form.union-label-input>
+                                            </li>
+
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на linkedin') }}" name="full_name" type="text"
+                                                    label="false">
+                                                    <x-svg.linkedin class="mr-2 pointer-events-none cursor-default"/>
+                                                </x-union.form.union-label-input>
+                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>

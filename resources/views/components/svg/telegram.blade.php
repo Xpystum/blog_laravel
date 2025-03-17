@@ -1,5 +1,5 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Telegram', 'href' => '#'])
-<a data-tooltip-target="tooltip-svg-telegram" href="{{ $href }}" class="relative p-1 block hover:bg-gray-700 rounded-md">
+<a {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }} data-tooltip-target="tooltip-svg-telegram" href="{{ $href }}" >
     <svg data-tooltip-trigger="hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 16 16" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_238_28)">
