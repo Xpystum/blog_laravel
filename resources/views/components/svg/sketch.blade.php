@@ -1,7 +1,18 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Sketch'])
-<div data-tooltip-target="tooltip-svg-sketch" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
-    <svg width="{{ width }}" height="{{ height }}" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc" aria-hidden="true" viewBox="0 0 18 17" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+@props([
+    'width' => 24,
+    'height' => 24,
+    'description_toll_tip' => 'Sketch',
+    'data_tooltip_target' => 'tooltip-svg-sketch',
+    'workTooltip' => 'true',
+])
+<div data-tooltip-target="{{ $data_tooltip_target }}"
+    {{ $attributes->merge([
+        'class' =>
+            'flex justify-center items-center relative p-1 block rounded-md' .
+            ($workTooltip === 'true' ? 'hover:bg-gray-700' : ''),
+    ]) }}>
+    <svg width="{{ $width }}" height="{{ $height }}" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc"
+        aria-hidden="true" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M4.29749 1.44122L8.98499 0.9375L13.6725 1.44122L17.3015 6.39306L8.98499 16.237L0.668457 6.39306L4.29749 1.44122Z"
             fill="#FDB300" data-darkreader-inline-fill=""
@@ -32,9 +43,11 @@
     </svg>
 
 
-    <div id="tooltip-svg-sketch" role="tooltip"
-        class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        {{ $description_toll_tip }}
-        <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    @if ($workTooltip === 'true')
+        <div id="{{ $data_tooltip_target }}" role="tooltip"
+            class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+            {{ $description_toll_tip }}
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    @endif
 </div>

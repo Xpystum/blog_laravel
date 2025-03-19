@@ -1,5 +1,7 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Dprofile', 'href' => '#'])
-<a data-tooltip-target="tooltip-svg-dprofile" href="{{ $href }}" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Dprofile', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-dprofile', 'workTooltip' => 'true'])
+<a data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}" {{ $attributes->merge([
+    'class' => 'flex justify-center items-center relative p-1 block rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+    ]) }}>
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         class="logo__icon" data-v-14be08e2="" data-darkreader-inline-invert="">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -11,9 +13,11 @@
     </svg>
 
 
-    <div id="tooltip-svg-dprofile" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        {{ $description_toll_tip }}
-        <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    @if ($workTooltip === 'true')
+        <div id="{{ $data_tooltip_target }}" role="tooltip"
+            class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+            {{ $description_toll_tip }}
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    @endif
 </a>

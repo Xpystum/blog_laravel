@@ -1,7 +1,20 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Telegram', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-telegram'])
-<a data-tooltip-target="{{ $data_tooltip_target }}" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}  href="{{ $href }}" >
-    <svg data-tooltip-trigger="hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 16 16" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+@props([
+    'width' => 24,
+    'height' => 24,
+    'description_toll_tip' => 'Telegram',
+    'href' => '#',
+    'data_tooltip_target' => 'tooltip-svg-telegram',
+    'workTooltip' => 'true',
+])
+<a data-tooltip-target="{{ $data_tooltip_target }}"
+    {{ $attributes->merge([
+        'class' =>
+            'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md' .
+            ($workTooltip === 'true' ? 'hover:bg-gray-700' : ''),
+    ]) }}
+    href="{{ $href }}">
+    <svg data-tooltip-trigger="hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 16 16"
+        fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_238_28)">
             <path
                 d="M8 0C5.87875 0 3.8425 0.843375 2.34375 2.34313C0.843465 3.84348 0.000429311 5.87823 0 8C0 10.1209 0.84375 12.1571 2.34375 13.6569C3.8425 15.1566 5.87875 16 8 16C10.1213 16 12.1575 15.1566 13.6562 13.6569C15.1562 12.1571 16 10.1209 16 8C16 5.87913 15.1562 3.84288 13.6562 2.34313C12.1575 0.843375 10.1213 0 8 0Z"
@@ -22,9 +35,11 @@
         </defs>
     </svg>
 
-    <div id="{{ $data_tooltip_target }}" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-        {{ $description_toll_tip }}
-        <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    @if ($workTooltip === 'true')
+        <div id="{{ $data_tooltip_target }}" role="tooltip"
+            class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+            {{ $description_toll_tip }}
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    @endif
 </a>

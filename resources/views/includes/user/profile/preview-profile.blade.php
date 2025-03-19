@@ -44,7 +44,6 @@
                                 <x-svg.developer.next-js /> --}}
                                 <x-svg.github />
                                 <x-svg.docker />
-                                <x-svg.laravel />
                                 <x-svg.linux />
                                 <x-svg.postgres />
                                 <x-svg.sql />
@@ -319,7 +318,9 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку Telegam') }}" name="full_name"
                                                     type="text" label="false">
-                                                    <x-svg.telegram data_tooltip_target="tooltip-svg-telegram-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.telegram
+                                                        data_tooltip_target="tooltip-svg-telegram-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
 
                                             </li>
@@ -333,7 +334,24 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Behance') }}"
                                                     name="full_name" type="text" label="false">
-                                                    <x-svg.behance data_tooltip_target="tooltip-svg-behance-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.behance
+                                                        data_tooltip_target="tooltip-svg-behance-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
+                                                </x-union.form.union-label-input>
+                                            </li>
+
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на Dprofile') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.dprofile
+                                                        data_tooltip_target="tooltip-svg-behance-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -346,7 +364,9 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Vk') }}" name="full_name"
                                                     type="text" label="false">
-                                                    <x-svg.vkontakte data_tooltip_target="tooltip-svg-vkontakte-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.vkontakte
+                                                        data_tooltip_target="tooltip-svg-vkontakte-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -359,7 +379,9 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Github') }}"
                                                     name="full_name" type="text" label="false">
-                                                    <x-svg.github data_tooltip_target="tooltip-svg-github-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.github
+                                                        data_tooltip_target="tooltip-svg-github-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -372,7 +394,9 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на linkedin') }}"
                                                     name="full_name" type="text" label="false">
-                                                    <x-svg.linkedin data_tooltip_target="tooltip-svg-linkedin-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.linkedin
+                                                        data_tooltip_target="tooltip-svg-linkedin-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -385,7 +409,25 @@
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Instagram') }}"
                                                     name="full_name" type="text" label="false">
-                                                    <x-svg.instagram data_tooltip_target="tooltip-svg-instagram-modal-profile" class="mr-2 pointer-events-none cursor-default" />
+                                                    <x-svg.instagram
+                                                        data_tooltip_target="tooltip-svg-instagram-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
+                                                </x-union.form.union-label-input>
+                                            </li>
+
+
+                                            <li>
+                                                <x-union.form.union-label-input
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                        text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    default_div_class="mb-2 flex flex-row justify-center align-content-center"
+                                                    default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                                    placeholder="{{ __('Укажите ссылку на ваш сайт') }}"
+                                                    name="full_name" type="text" label="false">
+                                                    <x-svg.mysite
+                                                        data_tooltip_target="tooltip-svg-instagram-modal-profile"
+                                                        class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
@@ -436,7 +478,7 @@
 
     <!-- Main modal -->
     <div id="crud-modal-profile-additionally" tabindex="-1" aria-hidden="true" {{-- hidden --}}
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -473,10 +515,14 @@
                         </h2>
                         <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
                             <div class="border border-b-0 border-gray-200 dark:border-gray-700">
-                                <div class="w-full flex flex-col justify-center items-center w-full border-gray-200 dark:border-gray-700">
-                                    <div class="w-full border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                <div
+                                    class="w-full flex flex-col justify-center items-center w-full border-gray-200 dark:border-gray-700">
+                                    <div
+                                        class="w-full border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                                         <div class="w-full bg-white dark:bg-gray-800">
-                                            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Напишите кратко о себе"></textarea>
+                                            <textarea id="message" rows="4"
+                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Напишите кратко о себе"></textarea>
 
                                             {{-- <label for="comment" class="sr-only">Ваш комменатрий</label>
                                             <textarea id="comment" name="value" rows="4"
@@ -506,21 +552,161 @@
                         </h2>
                         <div id="accordion-arrow-icon-body-2" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-2">
-                            <div class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                            <div
+                                class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                                 <div class="flex flex-col w-1/2">
-                                    <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
-                                        <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Php" for_label="tooltip-svg-php-skill-label">
+                                            <x-svg.php data_tooltip_target="tooltip-svg-php-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
                                     </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Adobe After Affects"
+                                            for_label="tooltip-svg-adobeafteraffects-skill-label">
+                                            <x-svg.adobeafteraffects
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Adobe Illustrator"
+                                            for_label="tooltip-svg-adobeillustrator-skill-label">
+                                            <x-svg.adobeillustrator
+                                                data_tooltip_target="tooltip-svg-adobeillustrator-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Adobe Photoshop"
+                                            for_label="tooltip-svg-adobephotoshop-skill-label">
+                                            <x-svg.adobephotoshop
+                                                data_tooltip_target="tooltip-svg-adobephotoshop-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="AdobeXd"
+                                            for_label="tooltip-svg-adobexd-skill-label">
+                                            <x-svg.adobexd data_tooltip_target="tooltip-svg-adobexd-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    {{--  --}}
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Javascript"
+                                            for_label="tooltip-svg-javascript-skill-label">
+                                            <x-svg.javascript data_tooltip_target="tooltip-svg-javascript-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Linux"
+                                            for_label="tooltip-svg-linux-skill-label">
+                                            <x-svg.linux data_tooltip_target="tooltip-svg-linux-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Next Js"
+                                            for_label="tooltip-svg-nextjs-skill-label">
+                                            <x-svg.next-js data_tooltip_target="tooltip-svg-nextjs-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Sql" for_label="tooltip-svg-sql-skill-label">
+                                            <x-svg.sql data_tooltip_target="tooltip-svg-sql-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+
                                 </div>
+
                                 <div class="flex flex-col w-1/2 ml-3">
-                                    <div class=" flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
 
-                                        <x-svg.laravel data_tooltip_target="tooltip-svg-laravel-skill" class="mr-2"/>
-                                        <input checked id="bordered-checkbox-2" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="bordered-checkbox-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Laravel</label>
-
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Laravel">
+                                            <x-svg.laravel data_tooltip_target="tooltip-svg-laravel-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
                                     </div>
+
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Css" for_label="tooltip-svg-css-label">
+                                            <x-svg.css data_tooltip_target="tooltip-svg-css" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Docker"
+                                            for_label="tooltip-svg-docker-skill-label">
+                                            <x-svg.docker data_tooltip_target="tooltip-svg-docker-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Figma"
+                                            for_label="tooltip-svg-figma-skill-label">
+                                            <x-svg.figma data_tooltip_target="tooltip-svg-figma-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Html" for_label="tooltip-svg-html-skill-label">
+                                            <x-svg.html data_tooltip_target="tooltip-svg-html-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Postgres"
+                                            for_label="tooltip-svg-postgres-skill-label">
+                                            <x-svg.postgres data_tooltip_target="tooltip-svg-postgres-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="React"
+                                            for_label="tooltip-svg-react-skill-label">
+                                            <x-svg.react data_tooltip_target="tooltip-svg-react-skill" class="mr-2"
+                                                workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Sketch"
+                                            for_label="tooltip-svg-sketch-skill-label">
+                                            <x-svg.sketch data_tooltip_target="tooltip-svg-sketch-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <x-input.input-svg name_label="Typescript"
+                                            for_label="tooltip-svg-typescript-skill-label">
+                                            <x-svg.typescript data_tooltip_target="tooltip-svg-typescript-skill"
+                                                class="mr-2" workTooltip=false />
+                                        </x-input.input-svg>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

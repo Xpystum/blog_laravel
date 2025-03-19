@@ -1,5 +1,7 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Behance', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-behance'])
-<a {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }} data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}" >
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Behance', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-behance', 'workTooltip' => 'true'])
+<a {{ $attributes->merge([
+    'class' => 'flex justify-center items-center relative p-1 block rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+]) }} data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}" >
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M9.456 10.772C9.204 10.9573 8.88267 11.05 8.492 11.05L6.273 11.052V8.72H8.324C8.51467 8.72 8.70333 8.73633 8.89 8.769C9.07133 8.801 9.232 8.859 9.372 8.943C9.512 9.02633 9.62367 9.143 9.707 9.293C9.79033 9.44167 9.83233 9.632 9.833 9.864C9.833 10.2827 9.70733 10.585 9.456 10.771M9.232 15.218C9.03004 15.2601 8.82429 15.2812 8.618 15.281H6.273V12.545H8.66C9.13533 12.545 9.517 12.6543 9.805 12.873C10.093 13.0917 10.2373 13.457 10.238 13.969C10.238 14.229 10.1937 14.443 10.105 14.611C10.017 14.7777 9.89833 14.9103 9.749 15.009C9.59132 15.1107 9.41595 15.181 9.232 15.218ZM16.347 10.883C16.831 10.883 17.192 11.013 17.43 11.273C17.6667 11.5343 17.832 11.916 17.926 12.418H14.701C14.7103 12.278 14.7403 12.12 14.791 11.944C14.8486 11.7484 14.9467 11.5672 15.079 11.4121C15.2114 11.257 15.3749 11.1316 15.559 11.044C15.7677 10.9373 16.0303 10.883 16.347 10.883Z"

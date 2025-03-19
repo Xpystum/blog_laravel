@@ -1,5 +1,7 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Docker'])
-<div data-tooltip-target="tooltip-svg-docker" {{ $attributes->merge(['class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md']) }}>
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Docker', 'data_tooltip_target' => 'tooltip-svg-docker', 'workTooltip' => 'true'])
+<div data-tooltip-target="{{ $data_tooltip_target }}" {{ $attributes->merge([
+    'class' => 'flex justify-center items-center relative p-1 block rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+]) }}>
 
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8375 9.525H15.9563V11.6812H17.025C17.5125 11.6812 18.0188 11.5875 18.4875 11.4375C18.7125 11.3625 18.975 11.25 19.2 11.1187C18.9 10.725 18.75 10.2375 18.7125 9.75C18.6563 9.09375 18.7875 8.23125 19.2375 7.725L19.4625 7.4625L19.725 7.66875C20.4 8.2125 20.9438 8.94375 21.0563 9.80625C21.8625 9.5625 22.8 9.61875 23.5125 10.0312L23.7938 10.2L23.6438 10.5C23.0438 11.6625 21.7875 12.0375 20.5688 11.9625C18.7313 16.5187 14.7563 18.675 9.91875 18.675C7.425 18.675 5.1375 17.7375 3.825 15.525L3.80625 15.4875L3.61875 15.0937C3.16875 14.1187 3.0375 13.05 3.13125 11.9813L3.16875 11.6625H4.96875V9.525H7.0875V7.425H11.3063V5.30625H13.8375V9.525Z" fill="#3A4D54"/>
@@ -21,14 +23,13 @@
     </svg>
 
 
-    <div id="tooltip-svg-docker" role="tooltip"
-        class="text-center absolute z-10 invisible inline-block px-3 py-2
-        text-sm font-medium text-white transition-opacity duration-300 bg-gray-900
-        rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700"
-    >
-        {{ $description_toll_tip }}
-        <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    @if ($workTooltip === 'true')
+        <div id="{{ $data_tooltip_target }}" role="tooltip"
+            class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+            {{ $description_toll_tip }}
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    @endif
 </div>
 
 
