@@ -1,6 +1,6 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Github', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-github', 'workTooltip' => 'true'])
 <a data-tooltip-target="{{ $data_tooltip_target }}" {{ $attributes->merge([
-    'class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+    'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
 ]) }}  href="{{ $href }}" >
 
     <svg data-tooltip-trigger="hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

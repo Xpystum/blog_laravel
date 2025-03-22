@@ -5,20 +5,11 @@ var slider = document.getElementById('progres_slider_skill');
 
 
 
-console.log('wefwe');
 
-// noUiSlider.create(slider, {
-//     start: [20, 80],
-//     connect: true,
-//     range: {
-//         'min': 0,
-//         'max': 100
-//     }
-// });
 
 noUiSlider.create(slider, {
     start: 0,
-    step: 20,
+    step: 25,
     behaviour: 'lower',
     tooltips: [
         // { to: function(value) { return '❤️ ' + value; } }
@@ -26,27 +17,24 @@ noUiSlider.create(slider, {
                 // Проверка: если значение больше порога - добавляем описание
 
                 if (value == 0) {
-                    return 'В процессе обучения ' + value + " %";
+                    return '📚 В процессе обучения ' + value + " %";
                 }
-                if (value == 20) {
-                    return 'Базовые навыки Junior' + value + " %";
+                if (value == 25) {
+                    return '🌱 Базовые навыки ' + value + " %";
                 }
-                else if(value == 40)
+                else if(value == 50)
                 {
-                    return 'Junior -> Middle ' + value + " %";
+                    return '💡 Продвинутый ' + value + " %";
                 }
-                else if(value == 60)
+                else if(value == 75)
                 {
-                    return 'Middle' + value + " %";
+                    return '💎 Знаток ' + value + " %";
                 }
-                else if(value >= 80)
+                else if(value == 100)
                 {
-                    return 'Профессионал ' + value + " %";
+                    return '💼 Профессионал ' + value + " %";
                 }
-                else if(value >= 100)
-                {
-                    return 'Профессионал ' + value + " %";
-                }
+
             }
         }
     ],
@@ -54,6 +42,11 @@ noUiSlider.create(slider, {
     range: {
         'min': 0,
         'max': 100
+    },
+    pips: {
+        mode: 'values',
+        values: [0, 25, 50, 75, 100],
+        density: 25
     }
 });
 

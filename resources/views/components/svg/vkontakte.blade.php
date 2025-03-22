@@ -7,9 +7,7 @@
     'workTooltip' => 'true',
 ])
 <a {{ $attributes->merge([
-    'class' =>
-        'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md' .
-        ($workTooltip === 'true' ? 'hover:bg-gray-700' : ''),
+'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
 ]) }}
     data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}">
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none"

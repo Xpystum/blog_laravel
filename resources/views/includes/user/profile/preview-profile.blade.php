@@ -77,8 +77,7 @@
 
                     <div class="flex">
 
-                        <div
-                            class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
+                        <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
 
                             <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
                                 <span class="text-lg font-bold text-white">100</span>
@@ -195,8 +194,7 @@
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
 
-                <div
-                    class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                <div class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         Обновление информации
                     </h3>
@@ -485,8 +483,8 @@
 
                 <!-- Modal profile body -->
                 <form class="p-4 md:p-5 bg-[#1f2937]">
-                    <div
-                        class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 mb-4 border-b rounded-t dark:border-gray-600 border-gray-200">
+
+                    <div class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 mb-4 border-b rounded-t dark:border-gray-600 border-gray-200">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                             Обновление дополнительной информации
                         </h3>
@@ -720,10 +718,30 @@
                         <div id="accordion-arrow-icon-body-3" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-3">
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                                <div id="progres_slider_skill"></div>
+                                <div class="flex flex-col">
+
+                                    <div class="mb-4">
+                                        <x-union.union-skill-progress-svg>
+                                            <x-svg.php
+                                                id="tooltip-svg-php-skill-progress_id"
+                                                data_tooltip_target="tooltip-svg-php-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div>
+                                        <x-union.union-skill-progress-svg>
+                                            <x-svg.adobeafteraffects
+                                                id="tooltip-svg-adobeafteraffects-skill-progress_id"
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
                 </form>
 
             </div>

@@ -1,6 +1,6 @@
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Dprofile', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-dprofile', 'workTooltip' => 'true'])
 <a data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}" {{ $attributes->merge([
-    'class' => 'flex justify-center items-center relative p-1 block rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+    'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
     ]) }}>
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         class="logo__icon" data-v-14be08e2="" data-darkreader-inline-invert="">
