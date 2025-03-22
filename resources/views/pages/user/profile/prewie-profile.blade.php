@@ -7,6 +7,7 @@
     @include('includes.user.profile.preview-profile')
 
     @pushOnce('scripts')
+        @vite('resources/js/sliderProgress/sliderProgress.js')
         @vite('resources/js/tagify/tagify.js')
     @endPushOnce
 
