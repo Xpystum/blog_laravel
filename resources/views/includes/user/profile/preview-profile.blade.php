@@ -521,20 +521,9 @@
                                             <textarea id="message" rows="4"
                                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Напишите кратко о себе"></textarea>
-
-                                            {{-- <label for="comment" class="sr-only">Ваш комменатрий</label>
-                                            <textarea id="comment" name="value" rows="4"
-                                                class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                                placeholder="Написать комментарий..." required></textarea> --}}
                                         </div>
 
-                                        {{-- <div
-                                            class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 border-gray-200">
-                                            <button type="submit"
-                                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                                                Опубликовать
-                                            </button>
-                                        </div> --}}
+
                                     </div>
                                 </div>
                             </div>
@@ -720,18 +709,16 @@
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
                                 <div class="flex flex-col">
 
-                                    <div class="mb-4">
-                                        <x-union.union-skill-progress-svg>
+                                    <div>
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="ml-5 mb-10 mt-4" >
                                             <x-svg.php
-                                                id="tooltip-svg-php-skill-progress_id"
                                                 data_tooltip_target="tooltip-svg-php-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
-                                    <div>
-                                        <x-union.union-skill-progress-svg>
+                                    <div class="mt-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="ml-6" >
                                             <x-svg.adobeafteraffects
-                                                id="tooltip-svg-adobeafteraffects-skill-progress_id"
                                                 data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
