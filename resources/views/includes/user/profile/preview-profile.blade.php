@@ -40,8 +40,8 @@
                                 <x-svg.developer.php />
                                 <x-svg.developer.typescript />
                                 <x-svg.developer.javascript />
-                                <x-svg.developer.react />
-                                <x-svg.developer.next-js /> --}}
+                                <x-svg.developer.react /> --}}
+                                {{-- <x-svg.next-js /> --}}
                                 <x-svg.github />
                                 <x-svg.docker />
                                 <x-svg.linux />
@@ -476,7 +476,7 @@
 
     <!-- Main modal -->
     <div id="crud-modal-profile-additionally" tabindex="-1" aria-hidden="true" {{-- hidden --}}
-        class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -534,13 +534,15 @@
                                 data-accordion-target="#accordion-arrow-icon-body-2" aria-expanded="false"
                                 aria-controls="accordion-arrow-icon-body-2">
                                 <span>Отметьте ваши умения</span>
-                                <x-svg.skill width="22" height="22" class=" -me-0.5" />
+                                <x-svg.check-box width="24" height="24" class=" -me-0.5" />
                             </button>
                         </h2>
                         <div id="accordion-arrow-icon-body-2" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-2">
                             <div
-                                class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                                {{-- class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700" --}}
+                                class="w-full flex flex-row p-5 border border-b- border-gray-200 dark:border-gray-700"
+                                >
                                 <div class="flex flex-col w-1/2">
 
                                     <div class="mb-2">
@@ -700,25 +702,153 @@
                                 class="rounded-bl-xl rounded-br-xl flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
                                 data-accordion-target="#accordion-arrow-icon-body-3" aria-expanded="false"
                                 aria-controls="accordion-arrow-icon-body-3">
-                                <span>Accordion without arrow rotation</span>
-                                <x-svg.skill width="24" height="24" class=" -me-0.5" />
+                                <span>Уровень умений</span>
+                                <x-svg.skill-progress width="24" height="24" class=" -me-0.5" />
                             </button>
                         </h2>
                         <div id="accordion-arrow-icon-body-3" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-3">
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+
                                 <div class="flex flex-col">
 
-                                    <div>
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="ml-5 mb-10 mt-4" >
-                                            <x-svg.php
+                                    <div class="mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.php width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-php-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
-                                    <div class="mt-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="ml-6" >
-                                            <x-svg.adobeafteraffects
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.adobeafteraffects width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.adobeillustrator width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeillustrator-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.adobephotoshop width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.adobexd width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.css width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.html width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.docker width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.figma width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.javascript width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.laravel width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.linux width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-linux-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.next-js width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-next-js-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.php width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.postgres width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.react width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.sketch width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.typescript width='36' height='36'
+                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                        </x-union.union-skill-progress-svg>
+                                    </div>
+
+
+                                    <div class="mt-6 mb-2">
+                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                            <x-svg.sql width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>

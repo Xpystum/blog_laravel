@@ -24,7 +24,7 @@ sliders.forEach(function(slider) {
                     }
                     else if(value == 50)
                     {
-                        return '💡 Продвинутый ' + value + " %";
+                        return '🧠 Продвинутый ' + value + " %";
                     }
                     else if(value == 75)
                     {
@@ -48,7 +48,7 @@ sliders.forEach(function(slider) {
             values: [1,2],
             // values: [1],
             density: 25
-        }
+        },
     });
 
     // Пример: обработчик события update для вывода текущего значения каждого слайдера

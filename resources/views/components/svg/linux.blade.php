@@ -1,11 +1,11 @@
 
 @props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Linux', 'data_tooltip_target' => 'tooltip-svg-linux', 'workTooltip' => 'true'])
-<div data-tooltip-target="{{ $data_tooltip_target }}" {{ $attributes->merge([
+<div data-tooltip-target="{{ $data_tooltip_target }}" data-tooltip-trigger="hover" {{ $attributes->merge([
     'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
 ]) }}>
 
 
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_5_792)">
         <path d="M18.375 0H5.625C2.5184 0 0 2.5184 0 5.625V18.375C0 21.4816 2.5184 24 5.625 24H18.375C21.4816 24 24 21.4816 24 18.375V5.625C24 2.5184 21.4816 0 18.375 0Z" fill="#F4F2ED"/>
         <path d="M8.05781 18.7431L10.3575 20.0199H13.8353L17.0886 17.5773L18.5469 13.7467L15.1814 9.69422L14.2279 7.41816L9.57225 7.58466L9.62831 8.86153L8.73084 10.5269L7.32853 13.2472L7.04813 15.5232L8.05781 18.7431Z" fill="#ECEFF1"/>

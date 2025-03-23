@@ -68,14 +68,9 @@
             <div class="flex flex-col w-1/2">
 
                 <div class="flex flex-row mt-2 items-center">
-                    <x-svg.adobeillustrator :width='56' :height='56'/>
-                    <div class="ml-2 w-2/3">
-                        {{-- TODO Для spana сделать описание базовости и т.д --}}
-                        <span class="mb-1 text-[#A8C8EE] text-lg">Базовый</span>
-                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
-                        </div>
-                    </div>
+                    <x-union.union-skill-progress-svg-flowbite value_skill="75" >
+                        <x-svg.adobeillustrator :width='56' :height='56' />
+                    </x-union.union-skill-progress-svg-flowbite>
                 </div>
 
 
@@ -84,14 +79,9 @@
             <div class="flex flex-col w-1/2">
 
                 <div class="flex flex-row mt-2 items-center">
-                    <x-svg.adobeafteraffects :width='56' :height='56'/>
-                    <div class="ml-2 w-2/3">
-                        {{-- TODO Для spana сделать описание базовости и т.д --}}
-                        <span class="mb-1 text-[#A8C8EE] text-lg">Базовый</span>
-                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
-                        </div>
-                    </div>
+                    <x-union.union-skill-progress-svg-flowbite value_skill="100" >
+                        <x-svg.adobeillustrator :width='56' :height='56' />
+                    </x-union.union-skill-progress-svg-flowbite>
                 </div>
 
                 <div>

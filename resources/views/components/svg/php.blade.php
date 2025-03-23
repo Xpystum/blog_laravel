@@ -5,11 +5,11 @@
     'data_tooltip_target' => 'tooltip-svg-php',
     'workTooltip' => 'true',
 ])
-<div data-tooltip-target="{{ $data_tooltip_target }}"
+<div data-tooltip-target="{{ $data_tooltip_target }}" data-tooltip-trigger="hover"
     {{ $attributes->merge([
         'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
     ]) }}>
-    <svg class="" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none"
+    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_1_64)">
             <path
