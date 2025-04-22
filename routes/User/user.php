@@ -36,6 +36,8 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
 
         //страница просмотра профиля
         Route::get('/', [ProfileController::class, 'index'])->name('users.profiles');
+        Route::patch('/update-main', [ProfileController::class, 'mainInfoUpdate'])->name('users.profiles.update.main');
+
 
     });
 

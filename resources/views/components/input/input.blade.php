@@ -1,5 +1,5 @@
 
-@props(['value'  => '', 'autofocus' => '', 'statusReadonly'])
+@props(['value'  => '' , 'autofocus' => '', 'statusReadonly', 'requiredTrue' => true, 'name' => ''])
 
 
 @php
@@ -17,6 +17,9 @@
 
 <input
 
+    name="{{ $name }}"
+    @if($requiredTrue) required @endif
+
     {{ $statusReadonly }}
 
 {{ $attributes->class([
@@ -28,6 +31,6 @@
     'type' => 'text',
 
     //Возврат старых введёных данных
-    'value' => ( $value ? $value : (old($attributes->get('name'))) ),
+    'value' => ($value ? $value : old($name)),
 
 ])  }} {{ $autofocus ? 'autofocus' : '' }} >

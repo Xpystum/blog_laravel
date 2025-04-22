@@ -2,7 +2,6 @@
 @if(isset($errors) && $errors?->any())
 
 
-
     <div class="alert alert-danger small p-2">
         <ul class="mb-0">
 

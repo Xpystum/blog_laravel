@@ -17,4 +17,8 @@ enum ContactEnums : string
     case instagram = 'instagram';
 
     case website = 'website';
+
+    case mysite = 'mysite';
+
+    case dprofile = 'dprofile';
 }

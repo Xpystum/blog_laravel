@@ -8,6 +8,7 @@
 
     "text-green-500 border-green-500" => $slot == 'Дизайнер',
     "text-cyan-500 border-cyan-500" => $slot == 'Разработчик',
+    "text-gray-300 bg-gray-300 border-gray-300" => $slot == 'Другое',
 
 
 ]) }}>

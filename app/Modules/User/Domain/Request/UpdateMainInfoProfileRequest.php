@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Modules\User\App\Data\Enums\Contact;
+namespace App\Modules\User\Domain\Request;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
+use App\Modules\User\App\Data\Enums\Contact\ContactEnums;
 
 class UpdateMainInfoProfileRequest extends FormRequest
 {
@@ -22,14 +23,15 @@ class UpdateMainInfoProfileRequest extends FormRequest
         return [
 
             "full_name" => ["nullable", "string"],
-            "type" => ["nullable", "string", [Rule::enum(UserTypeEnum::class)] ],
+            "email" => ["nullable", "email"],
+            "type" => ["nullable", Rule::enum(UserTypeEnum::class) ],
 
             "contact" => ["nullable", "array"],
-            "contact.*.name"  => ["required", "string", [Rule::enum(ContactEnums::class)]],
-            "contact.*.url"  => ["required", "string"],
+            "contact.*.name"  => ["required", "required_with:contact.*.url", Rule::enum(ContactEnums::class)],
+            "contact.*.url"  => ["nullable" , "string"],
 
-            "projects" => ["nullable", "json"],
-            "url_avatar" => ['nullable', File::types(['jpeg' , 'png', 'jpg', 'gif', 'svg', 'WebP'])->max(8192)],
+            "project" => ["nullable", "json"],
+            // "profile_avatar" => ['nullable', File::types(['jpeg' , 'png', 'jpg', 'gif', 'svg', 'WebP'])->max(8192)],
 
             "password" => ["nullable", "string", "min:5", "max:50", "confirmed"],
 

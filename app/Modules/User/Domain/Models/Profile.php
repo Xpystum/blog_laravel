@@ -4,6 +4,7 @@ namespace App\Modules\User\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Modules\Post\Domain\Models\Contact;
+use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Modules\User\Domain\Factories\ProfileFactory;
@@ -39,7 +40,7 @@ class Profile extends Model
     ];
 
     protected $casts = [
-
+        "type" => UserTypeEnum::class,
     ];
 
     protected static function booted(): void

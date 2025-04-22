@@ -1,8 +1,8 @@
-@props(['method' => 'GET', 'enctype' => null])
+@props(['method' => 'GET', 'enctype' => null, 'method_other' => false])
 
 @php
     $method = strtoupper($method);
-    $_method = in_array($method , ['GET' , 'POST' ]);
+    $_method = in_array($method , ['GET' , 'POST']);
 @endphp
 
 <form {{ $attributes }}
@@ -13,11 +13,11 @@
 
     method="{{  $_method ? $method : "POST"  }}">
 
-    @unless($_method)
-
-        @method($method)
-
+    @if($method_other)
+        @method($method_other)
     @endunless
+
+
 
     @if($method !== 'GET')
 

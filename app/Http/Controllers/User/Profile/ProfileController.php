@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User\Profile;
 
-use App\Modules\User\App\Data\Enums\Contact\UpdateMainInfoProfileRequest;
+use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
 
 class ProfileController
 {
@@ -14,6 +14,9 @@ class ProfileController
     public function mainInfoUpdate(
         UpdateMainInfoProfileRequest $request
     ) {
+
+        $validated = $request->validated();
+        dd($validated);
 
     }
 }

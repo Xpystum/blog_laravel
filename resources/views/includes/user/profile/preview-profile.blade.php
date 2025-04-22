@@ -1,3 +1,4 @@
+
 <div class="w-full flex flex-row">
     {{-- <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
         class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -8,6 +9,8 @@
             </path>
         </svg>
     </button> --}}
+
+    <x-errors></x-errors>
 
     <x-user.navigation.sidebar-menu />
 
@@ -26,7 +29,7 @@
                             alt="Фото пользователя">
                         {{-- <img class="w-full h-auto object-cover" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя"> --}}
                         <div class="flex flex-col justify-center ml-2">
-                            <x-user.type.type-div class="mt-2">Разработчик</x-user.type.type-div>
+                            <x-user.type.type-div class="mt-2">{{ Auth::user()->profile->type }}</x-user.type.type-div>
                             <div class="mt-2">
                                 <span
                                     class="block text-lg text-gray-900 dark:text-white font-medium">{{ Auth::user()->login }}</span>
@@ -211,7 +214,12 @@
                 </div>
 
                 <!-- Modal profile body -->
-                <form class="p-4 md:p-5 bg-[#1f2937]">
+                <x-form
+                    class="p-4 md:p-5 bg-[#1f2937]"
+                    action="{{ route('users.profiles.update.main') }}"
+                    method="POST"
+                    method_other="PATCH"
+                >
 
                     <div>
                         <h4 class="text-sm h5 text-white text-bold font-semibold text-gray-900 dark:text-white mb-2">
@@ -220,6 +228,7 @@
                             <img class="aspect-square object-cover w-20 h-20 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500"
                                 src={{ asset(Auth::user()->profile->url_avatar) }} alt="Фото пользователя">
                             <div class="flex flex-col flex-1 ml-2">
+
                                 <div>
                                     <x-input.input-file name="profile_avatar" value_text='' class="w-full" />
                                     <p class="text-gray-400 text-xs my-1 ">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
@@ -257,15 +266,26 @@
                             <div class="flex flex-col w-1/2">
 
                                 <x-union.form.union-label-input
-                                    default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                    placeholder="Полное имя" name="full_name" type="text"
-                                    label="{{ __('Полное имя') }}" />
 
-                                    {{-- #TODO Вернуть сюда название почты --}}
+                                    name="full_name"
+                                    value="{{ Auth::user()->profile->full_name }}"
+                                    :requiredTrue="false"
+                                    default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
+                                    placeholder="Полное имя"
+                                    type="text"
+                                    label="{{ __('Полное имя') }}"
+                                />
+
                                 <x-union.form.union-label-input
+                                    value="{{ Auth::user()->email }}"
+                                    name="email"
+                                    :requiredTrue="false"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
-                                    placeholder="Ваша почта" name="email" type="email" label="Email"
-                                    statusReadonly="readonly" />
+                                    placeholder="Ваша почта"
+                                    type="email"
+                                    label="Email"
+                                    {{-- statusReadonly="readonly" --}}
+                                />
 
                             </div>
 
@@ -278,6 +298,7 @@
                                     </x-label>
 
                                     <x-select id="typeSelectActivities" placeholder="Кто вы?" name="type"
+                                        value="{{ old('type') ? old('type') : Auth::user()->profile->type }}"
                                         :options="[
                                             'Разработчик' => 'Разработчик',
                                             'Дизайнер' => 'Дизайнер',
@@ -315,31 +336,41 @@
                                         class="z-10 bg-gray-500 border dark:border-gray-400 hidden w-96 bg-white rounded-lg shadow-sm dark:bg-gray-700 ">
                                         <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="dropdownBgHoverButton">
+
                                             <li>
+
+                                                <input name="contact[0][name]" value="telegram" class="hidden" />
                                                 <x-union.form.union-label-input
+                                                    name="contact[0][url]"
+                                                    :requiredTrue="false"
                                                     default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку Telegam') }}" name="full_name"
-                                                    type="text" label="false">
-                                                    <x-svg.telegram
-                                                        data_tooltip_target="tooltip-svg-telegram-modal-profile"
-                                                        class="mr-2 pointer-events-none cursor-default" />
+                                                    placeholder="{{ __('Укажите ссылку Telegam') }}"
+                                                    type="text" label="false"
+                                                >
+
+                                                <x-svg.telegram
+                                                    data_tooltip_target="tooltip-svg-telegram-modal-profile"
+                                                    class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
 
                                             </li>
 
                                             <li>
+                                                <input name="contact[1][name]" value="behance" class="hidden" />
                                                 <x-union.form.union-label-input
-                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                    name="contact[1][url]"
+                                                    :requiredTrue="false"
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Behance') }}"
-                                                    name="full_name" type="text" label="false">
+                                                     type="text" label="false">
                                                     <x-svg.behance
                                                         data_tooltip_target="tooltip-svg-behance-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
@@ -347,28 +378,34 @@
                                             </li>
 
                                             <li>
+                                                <input name="contact[2][name]" value="dprofile" class="hidden" />
                                                 <x-union.form.union-label-input
-                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                    name="contact[2][url]"
+                                                    :requiredTrue="false"
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Dprofile') }}"
-                                                    name="full_name" type="text" label="false">
+                                                     type="text" label="false">
                                                     <x-svg.dprofile
-                                                        data_tooltip_target="tooltip-svg-behance-modal-profile"
+                                                        data_tooltip_target="tooltip-svg-dprofile-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
 
                                             <li>
+                                                <input name="contact[3][name]" value="vkontakte" class="hidden" />
                                                 <x-union.form.union-label-input
-                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
+                                                    name="contact[3][url]"
+                                                    :requiredTrue="false"
+                                                    default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
-                                                    placeholder="{{ __('Укажите ссылку на Vk') }}" name="full_name"
+                                                    placeholder="{{ __('Укажите ссылку на Vk') }}"
                                                     type="text" label="false">
                                                     <x-svg.vkontakte
                                                         data_tooltip_target="tooltip-svg-vkontakte-modal-profile"
@@ -377,14 +414,17 @@
                                             </li>
 
                                             <li>
+                                                <input name="contact[4][name]" value="github" class="hidden" />
                                                 <x-union.form.union-label-input
+                                                    name="contact[4][url]"
+                                                    :requiredTrue="false"
                                                     default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Github') }}"
-                                                    name="full_name" type="text" label="false">
+                                                    type="text" label="false">
                                                     <x-svg.github
                                                         data_tooltip_target="tooltip-svg-github-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
@@ -392,14 +432,17 @@
                                             </li>
 
                                             <li>
+                                                <input name="contact[5][name]" value="linkedin" class="hidden" />
                                                 <x-union.form.union-label-input
+                                                    name="contact[5][url]"
+                                                    :requiredTrue="false"
                                                     default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на linkedin') }}"
-                                                    name="full_name" type="text" label="false">
+                                                    type="text" label="false">
                                                     <x-svg.linkedin
                                                         data_tooltip_target="tooltip-svg-linkedin-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
@@ -407,14 +450,17 @@
                                             </li>
 
                                             <li>
+                                                <input name="contact[6][name]" value="instagram" class="hidden" />
                                                 <x-union.form.union-label-input
+                                                    name="contact[6][url]"
+                                                    :requiredTrue="false"
                                                     default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на Instagram') }}"
-                                                    name="full_name" type="text" label="false">
+                                                    type="text" label="false">
                                                     <x-svg.instagram
                                                         data_tooltip_target="tooltip-svg-instagram-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
@@ -423,16 +469,19 @@
 
 
                                             <li>
+                                                <input name="contact[7][name]" value="mysite" class="hidden" />
                                                 <x-union.form.union-label-input
+                                                    name="contact[7][url]"
+                                                    :requiredTrue="false"
                                                     default_class_input="h-[38px] max-h-[38px] flex flex-nowrap w-full  overflow-y-hidden bg-gray-50 border border-gray-300 text-gray-900
                                                         text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
                                                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     default_div_class="mb-2 flex flex-row justify-center align-content-center"
                                                     default_class_label="flex flex-row text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                                     placeholder="{{ __('Укажите ссылку на ваш сайт') }}"
-                                                    name="full_name" type="text" label="false">
+                                                    type="text" label="false">
                                                     <x-svg.mysite
-                                                        data_tooltip_target="tooltip-svg-instagram-modal-profile"
+                                                        data_tooltip_target="tooltip-svg-mysite-modal-profile"
                                                         class="mr-2 pointer-events-none cursor-default" />
                                                 </x-union.form.union-label-input>
                                             </li>
@@ -447,19 +496,33 @@
                         </div>
 
                         <div class="w-full mt-2">
-                            <x-union.form.union-label-input placeholder="{{ __('Укажите ссылки через Enter') }}"
-                                name="my_project_tagify" type="text" label="{{ __('Мои проекты') }}"
+                            <x-union.form.union-label-input
+                                name="project"
+                                :requiredTrue="false"
+                                placeholder="{{ __('Укажите ссылки через Enter') }}"
+                                type="text"
+                                label="{{ __('Мои проекты') }}"
                                 default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
+
                         </div>
 
                         <div class="flex mt-2 flex-row">
+
                             <div class="w-1/2">
-                                <x-union.form.union-label-input placeholder="••••••••" name="my_project_tagify"
+                                <x-union.form.union-label-input
+                                    name="password"
+                                    :requiredTrue="false"
+                                    placeholder="••••••••"
+                                    name="my_project_tagify"
                                     type="password" label="{{ __('Новый пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
                             <div class="ml-3 w-1/2">
-                                <x-union.form.union-label-input placeholder="••••••••" name="my_project_tagify"
+                                <x-union.form.union-label-input
+                                    name="confirm_password"
+                                    :requiredTrue="false"
+                                    placeholder="••••••••"
+                                    name="my_project_tagify"
                                     type="password" label="{{ __('Повторите пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
@@ -468,16 +531,17 @@
 
                     </div>
 
-                    <button type="button" disabled
+                    <button type="submit"
                         class="mt-4 w-[140px] text-white bg-blue-700
                         hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
                         font-medium rounded-lg text-sm px-5 py-1.5
                         dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-                        dark:focus:ring-blue-800">
+                        dark:focus:ring-blue-800"
+                    >
                         Сохранить
                     </button>
 
-                </form>
+                </x-form>
 
 
             </div>
@@ -492,7 +556,7 @@
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
 
                 <!-- Modal profile body -->
-                <form class="p-4 md:p-5 bg-[#1f2937]">
+                <x-form class="p-4 md:p-5 bg-[#1f2937]" >
 
                     <div class="bg-[#1f2937] flex items-center justify-between p-4 md:p-5 mb-4 border-b rounded-t dark:border-gray-600 border-gray-200">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -862,7 +926,7 @@
                         </div>
                     </div>
 
-                </form>
+                </x-form>
 
             </div>
         </div>
