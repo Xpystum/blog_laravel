@@ -9,5 +9,9 @@ class ProfileController
         return view('pages/user/profile/prewie-profile');
     }
 
-    // public function 
+    public function store(
+        UpdateProfileRequest $request
+    ) {
+
+    }
 }

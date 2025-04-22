@@ -25,6 +25,7 @@ class Profile extends Model
         "full_name",
         "url_avatar",
         "type",
+        "user_id",
     ];
 
     protected $guarded = [
@@ -44,6 +45,7 @@ class Profile extends Model
     protected static function booted(): void
     {
         static::creating(function (Profile $model) {
+
 
             //устанавливаем аватар для пользователя поумолчанию
             $model->url_avatar = GetAvatarAction::make();

@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Modules\User\Domain\Request;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateProfileRequest extends FormRequest
+{
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+
+    public function rules(): array
+    {
+        return [
+            "password" => ['required', 'string' ,'confirmed', 'min:5', 'max:50'],
+        ];
+    }
+}

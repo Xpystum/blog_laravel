@@ -22,7 +22,7 @@
                     <h1 class="text-white h1 font-bold mb-2">Основная информация профиля</h1>
 
                     <div class="flex w-1/2">
-                        <img class="w-32 h-auto object-cover rounded-full" src="{{ asset(Auth::user()->url_avatar) }}"
+                        <img class="w-32 h-auto object-cover rounded-full" src="{{ asset(Auth::user()->profile->url_avatar) }}"
                             alt="Фото пользователя">
                         {{-- <img class="w-full h-auto object-cover" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя"> --}}
                         <div class="flex flex-col justify-center ml-2">
