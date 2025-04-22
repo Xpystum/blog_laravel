@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User\Profile;
 
+use App\Modules\User\App\Data\Enums\Contact\UpdateMainInfoProfileRequest;
+
 class ProfileController
 {
     public function index()
@@ -9,8 +11,8 @@ class ProfileController
         return view('pages/user/profile/prewie-profile');
     }
 
-    public function store(
-        UpdateProfileRequest $request
+    public function mainInfoUpdate(
+        UpdateMainInfoProfileRequest $request
     ) {
 
     }

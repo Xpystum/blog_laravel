@@ -218,7 +218,7 @@
                             Загрузка Аватара</h4>
                         <div class="flex flex-row">
                             <img class="aspect-square object-cover w-20 h-20 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500"
-                                src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя">
+                                src={{ asset(Auth::user()->profile->url_avatar) }} alt="Фото пользователя">
                             <div class="flex flex-col flex-1 ml-2">
                                 <div>
                                     <x-input.input-file name="profile_avatar" value_text='' class="w-full" />
