@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Tender\Domain\Services;
+namespace App\Modules\StorageFile\Domain\Models;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
@@ -44,16 +44,14 @@ final class StorageFile
                 }
 
                 break;
+
             }
         }
-
     }
 
 
     private function saveStorageFile(UploadedFile $file, string $nameDocument, string $disk) : string
     {
-
-        dd($disk);
 
         $originalName = $file->getClientOriginalName(); // Например, "document.pdf"
 
@@ -70,15 +68,11 @@ final class StorageFile
 
             $status = $file->storeAs($nameDocument, $uniqueName , $disk);
 
-            dd($status);
-
             if($status == false) { throw new Exception(); }
 
         } catch (\Throwable $th) {
 
             $nameClass = self::class;
-
-            dd(1);
 
             logError("Ошибка в {$nameClass} при сохранения файла в storage: " . $th);
             throw new Exception('Ошибка в классе: ' . $nameClass, 500);

@@ -3,10 +3,12 @@
 namespace App\Modules\User\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\Post\Domain\Models\Contract;
+use App\Modules\Post\Domain\Models\Contact;
+use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Modules\User\Domain\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Profile extends Model
 {
@@ -14,10 +16,10 @@ class Profile extends Model
 
     protected $table = 'profiles';
 
-    // protected static function newFactory()
-    // {
-    //     return PostFactory::new();
-    // }
+    protected static function newFactory()
+    {
+        return ProfileFactory::new();
+    }
 
     protected $fillable = [
         "full_name",
@@ -39,6 +41,16 @@ class Profile extends Model
 
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (Profile $model) {
+
+            //устанавливаем аватар для пользователя поумолчанию
+            $model->url_avatar = GetAvatarAction::make();
+
+        });
+    }
+
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class, 'profile_id', 'id');
@@ -49,9 +61,9 @@ class Profile extends Model
         return $this->hasMany(Skill::class, 'profile_id', 'id');
     }
 
-    public function contracts() : HasMany
+    public function contacts() : HasMany
     {
-        return $this->hasMany(Contract::class, 'profile_id', 'id');
+        return $this->hasMany(Contact::class, 'profile_id', 'id');
     }
 
     public function projects() : HasMany

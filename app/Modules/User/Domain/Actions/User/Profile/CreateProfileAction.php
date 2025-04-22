@@ -3,6 +3,8 @@
 namespace App\Modules\User\Domain\Actions\User;
 
 use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
+use App\Modules\User\App\Data\ValueObject\ProfileVO;
+use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Models\User;
 use Exception;
 
@@ -10,25 +12,25 @@ class CreateUserAction
 {
 
     /**
-     * @param UserCreateDTO $dto
+     * @param ProfileVO $dto
      *
-     * @return User
+     * @return Profile
      */
-    public static function make(UserCreateDTO $dto) : ?User
+    public static function make(ProfileVO $dto) : Profile
     {
         return (new self)->run($dto);
     }
 
     /**
-     * @param UserCreateDTO $data
+     * @param ProfileVO $data
      *
-     * @return ?User
+     * @return Profile
      */
-    public static function run(UserCreateDTO $data) : ?User
+    public static function run(ProfileVO $data) : Profile
     {
         try {
 
-            $model = User::query()->create($data->toArrayNotNull());
+            $model = Profile::query()->create($data->toArrayNotNull());
 
             return $model;
 

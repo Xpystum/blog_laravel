@@ -23,12 +23,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     protected $fillable = [
+
         'login',
         'email',
-        'type',
         'password',
-        'url_avatar',
-        'full_name'
+
     ];
 
     protected $guarded = [
@@ -43,20 +42,10 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $casts = [
-        'type' => UserTypeEnum::class,
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
-    protected static function booted(): void
-    {
-        static::creating(function (User $user) {
-
-            //устанавливаем аватар для пользователя поумолчанию
-            $user->url_avatar = GetAvatarAction::make();
-
-        });
-    }
 
     public function posts() : HasMany
     {
