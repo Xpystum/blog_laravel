@@ -249,18 +249,26 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="flex flex-col">
+
                         <div class="flex flex-row w-full">
+
                             <div class="flex flex-col w-1/2">
+
                                 <x-union.form.union-label-input
                                     default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                     placeholder="Полное имя" name="full_name" type="text"
                                     label="{{ __('Полное имя') }}" />
+
+                                    {{-- #TODO Вернуть сюда название почты --}}
                                 <x-union.form.union-label-input
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
                                     placeholder="Ваша почта" name="email" type="email" label="Email"
                                     statusReadonly="readonly" />
+
                             </div>
+
                             <div class="flex flex-col w-1/2 ml-3">
 
                                 <div class="flex flex-col">
@@ -435,7 +443,9 @@
 
 
                             </div>
+
                         </div>
+
                         <div class="w-full mt-2">
                             <x-union.form.union-label-input placeholder="{{ __('Укажите ссылки через Enter') }}"
                                 name="my_project_tagify" type="text" label="{{ __('Мои проекты') }}"
@@ -633,7 +643,7 @@
 
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Css" for_label="tooltip-svg-css-label">
-                                            <x-svg.css data_tooltip_target="tooltip-svg-css" class="mr-2"
+                                            <x-svg.css data_tooltip_target="tooltip-svg-css-skill-label" class="mr-2"
                                                 workTooltip=false />
                                         </x-input.input-svg>
                                     </div>
@@ -710,14 +720,7 @@
                             aria-labelledby="accordion-arrow-icon-heading-3">
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 
-                                <div class="flex flex-col">
-
-                                    <div class="mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
-                                            <x-svg.php width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-php-skill-progress"/>
-                                        </x-union.union-skill-progress-svg>
-                                    </div>
+                                <div class="flex flex-col mb-3">
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
@@ -737,7 +740,7 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.adobephotoshop width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-adobephotoshop-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -745,7 +748,7 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.adobexd width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-adobexd-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -753,14 +756,14 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.css width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-css-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.html width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-html-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -768,14 +771,14 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.docker width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-docker-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.figma width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-figma-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -783,14 +786,14 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.javascript width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-javascript-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.laravel width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-laravel-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -812,28 +815,28 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.php width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-php-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.postgres width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-postgres-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.react width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-react-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.sketch width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-sketch-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -841,7 +844,7 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.typescript width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-typescript-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
@@ -849,7 +852,7 @@
                                     <div class="mt-6 mb-2">
                                         <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
                                             <x-svg.sql width='36' height='36'
-                                                data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
+                                                data_tooltip_target="tooltip-svg-sql-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 

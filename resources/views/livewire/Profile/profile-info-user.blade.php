@@ -51,7 +51,7 @@
                     <x-svg.laravel />
                     <x-svg.figma />
                     <x-svg.html />
-                    <x-svg.css />
+                    <x-svg.css/>
                 </div>
             </div>
         </article>
@@ -78,21 +78,13 @@
 
             <div class="flex flex-col w-1/2">
 
-                <div class="flex flex-row mt-2 items-center">
+                <div class="flex flex-row mt-2 items-center mb-4">
                     <x-union.union-skill-progress-svg-flowbite value_skill="100" >
                         <x-svg.adobeillustrator :width='56' :height='56' />
                     </x-union.union-skill-progress-svg-flowbite>
                 </div>
 
-                <div>
 
-                </div>
-                <div>
-
-                </div>
-                <div>
-
-                </div>
             </div>
         </div>
 

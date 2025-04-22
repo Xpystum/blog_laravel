@@ -13,7 +13,7 @@
     $currentSkill = $skillLevels[$value_skill] ?? ['title' => '❔ Неизвестный уровень', 'progress' => '0%'];
 @endphp
 
-<div class="flex flex-row w-6/7 items-center">
+<div class="flex flex-row w-[80%] items-center">
     {{ $slot }}
 
     <div class="flex-1 ml-2">

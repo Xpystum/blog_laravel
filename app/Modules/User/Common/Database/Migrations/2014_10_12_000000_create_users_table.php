@@ -6,19 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+
             $table->string('login')->unique();
             $table->string('email')->unique();
-            $table->string('type')->comment('Кем является пользователь: Разработчик/Дизайнер/Другое');
-            $table->string('full_name')->nullable()->comment('Полное имя');
 
-            $table->string('url_avatar')->comment('ссылка на автара');
+            // $table->string('type')->comment('Кем является пользователь: Разработчик/Дизайнер/Другое');
+            // $table->string('full_name')->nullable()->comment('Полное имя');
+
+            // $table->string('url_avatar')->comment('ссылка на автара');
+
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

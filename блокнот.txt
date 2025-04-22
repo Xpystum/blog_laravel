@@ -1,3 +1,0 @@
-. (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
-'data_tooltip_target' => 'tooltip-svg-laravel',
-'workTooltip' => 'true'
