@@ -219,7 +219,10 @@
                     action="{{ route('users.profiles.update.main') }}"
                     method="POST"
                     method_other="PATCH"
+                    @submit.prevent="submitForm()"
                 >
+
+
 
                     <div>
                         <h4 class="text-sm h5 text-white text-bold font-semibold text-gray-900 dark:text-white mb-2">
@@ -502,7 +505,8 @@
                                 placeholder="{{ __('Укажите ссылки через Enter') }}"
                                 type="text"
                                 label="{{ __('Мои проекты') }}"
-                                default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
+                                default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
+                            />
 
                         </div>
 
@@ -531,12 +535,13 @@
 
                     </div>
 
-                    <button type="submit"
+                    <button type="button"
                         class="mt-4 w-[140px] text-white bg-blue-700
                         hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
                         font-medium rounded-lg text-sm px-5 py-1.5
                         dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
                         dark:focus:ring-blue-800"
+                        {{-- onkeydown="if(event.key === 'Enter') { event.preventDefault(); }" --}}
                     >
                         Сохранить
                     </button>

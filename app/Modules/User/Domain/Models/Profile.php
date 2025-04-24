@@ -47,7 +47,7 @@ class Profile extends Model
     {
         static::creating(function (Profile $model) {
 
-
+          
             //устанавливаем аватар для пользователя поумолчанию
             $model->url_avatar = GetAvatarAction::make();
 
