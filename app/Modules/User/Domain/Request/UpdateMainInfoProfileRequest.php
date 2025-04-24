@@ -30,7 +30,7 @@ class UpdateMainInfoProfileRequest extends FormRequest
             "contact.*.name"  => ["required", "required_with:contact.*.url", Rule::enum(ContactEnums::class)],
             "contact.*.url"  => ["nullable" , "string"],
 
-            "project" => ["nullable", "json"],
+            "my_project_tagify" => ["nullable", "json"],
             // "profile_avatar" => ['nullable', File::types(['jpeg' , 'png', 'jpg', 'gif', 'svg', 'WebP'])->max(8192)],
 
             "password" => ["nullable", "string", "min:5", "max:50", "confirmed"],

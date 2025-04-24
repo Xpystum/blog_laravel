@@ -500,7 +500,7 @@
 
                         <div class="w-full mt-2">
                             <x-union.form.union-label-input
-                                name="project"
+                                name="my_project_tagify"
                                 :requiredTrue="false"
                                 placeholder="{{ __('Укажите ссылки через Enter') }}"
                                 type="text"
@@ -517,7 +517,7 @@
                                     name="password"
                                     :requiredTrue="false"
                                     placeholder="••••••••"
-                                    name="my_project_tagify"
+                                    name="password"
                                     type="password" label="{{ __('Новый пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
@@ -526,7 +526,7 @@
                                     name="confirm_password"
                                     :requiredTrue="false"
                                     placeholder="••••••••"
-                                    name="my_project_tagify"
+                                    name="confirm_password"
                                     type="password" label="{{ __('Повторите пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
