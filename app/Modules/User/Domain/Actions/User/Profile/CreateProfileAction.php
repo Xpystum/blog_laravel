@@ -2,11 +2,9 @@
 
 namespace App\Modules\User\Domain\Actions\User;
 
-use App\Modules\User\App\Data\DTO\User\UserCreateDTO;
-use App\Modules\User\App\Data\ValueObject\ProfileVO;
-use App\Modules\User\Domain\Models\Profile;
-use App\Modules\User\Domain\Models\User;
 use Exception;
+use App\Modules\User\Domain\Models\Profile;
+use App\Modules\User\App\Data\ValueObject\ProfileVO;
 
 class CreateUserAction
 {

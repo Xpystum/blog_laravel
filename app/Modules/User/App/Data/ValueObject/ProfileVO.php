@@ -13,10 +13,12 @@ readonly class ProfileVO implements Arrayable
     use FilterArrayTrait;
 
     public function __construct(
+
         public ?string $full_name,
         public string $url_avatar,
         public UserTypeEnum $type,
         public int $user_id,
+
     ) {}
 
     public static function make(
@@ -52,7 +54,7 @@ readonly class ProfileVO implements Arrayable
     {
         return self::make(
             full_name: Arr::get($data, 'full_name', null),
-            url_avatar: Arr::get($data, 'userurl_avatar_id'),
+            url_avatar: Arr::get($data, 'userurl_avatar_id', null),
             type: Arr::get($data, 'type'),
             user_id: Arr::get($data, 'user_id'),
         );

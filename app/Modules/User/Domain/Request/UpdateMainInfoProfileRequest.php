@@ -3,10 +3,10 @@
 namespace App\Modules\User\Domain\Request;
 
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use App\Modules\User\App\Data\Enums\Contact\ContactEnums;
+use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
 
 class UpdateMainInfoProfileRequest extends FormRequest
 {
@@ -37,4 +37,10 @@ class UpdateMainInfoProfileRequest extends FormRequest
 
         ];
     }
+
+    public function createUpdateProfileDTO() : UpdateProfileDTO
+    {
+        return UpdateProfileDTO::arrayToObject($this->validated());
+    }
+
 }

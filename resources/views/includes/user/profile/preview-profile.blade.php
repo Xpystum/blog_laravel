@@ -517,17 +517,17 @@
                                     name="password"
                                     :requiredTrue="false"
                                     placeholder="••••••••"
-                                    name="password"
-                                    type="password" label="{{ __('Новый пароль') }}"
+                                    type="password"
+                                    label="{{ __('Новый пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
                             <div class="ml-3 w-1/2">
                                 <x-union.form.union-label-input
-                                    name="confirm_password"
+                                    name="password_confirmation"
                                     :requiredTrue="false"
                                     placeholder="••••••••"
-                                    name="confirm_password"
-                                    type="password" label="{{ __('Повторите пароль') }}"
+                                    type="password"
+                                    label="{{ __('Повторите пароль') }}"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white" />
                             </div>
 
@@ -535,7 +535,7 @@
 
                     </div>
 
-                    <button type="button"
+                    <button type="submit"
                         class="mt-4 w-[140px] text-white bg-blue-700
                         hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
                         font-medium rounded-lg text-sm px-5 py-1.5
