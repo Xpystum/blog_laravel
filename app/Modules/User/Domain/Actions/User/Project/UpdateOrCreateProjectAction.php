@@ -6,6 +6,7 @@ use Exception;
 
 use App\Modules\User\Domain\Models\Project;
 use App\Modules\User\App\Data\ValueObject\ProjectVO;
+use App\Modules\User\Domain\Models\Profile;
 
 class UpdateOrCreateProjectAction
 {
@@ -16,9 +17,9 @@ class UpdateOrCreateProjectAction
      *
      * @return Project
      */
-    public static function make(ProjectVO $vo, int $profile_id) : Project
+    public static function make(?ProjectVO $vo, Profile $profile) : ?Project
     {
-        return (new self)->run($vo, $profile_id);
+        return (new self)->run($vo, $profile);
     }
 
     /**
@@ -27,22 +28,29 @@ class UpdateOrCreateProjectAction
      *
      * @return Project
      */
-    public static function run(ProjectVO $vo, int $profile_id) : Project
+    public static function run(?ProjectVO $vo, Profile $profile) : ?Project
     {
 
         try {
 
-            $model = Project::updateOrCreate(
-                ['profile_id' => $profile_id],
-                [
-                    'project_json' => $vo->project_json,
-                    'profile_id' => $vo->profile_id,
-                ],
-            );
+            //очищаем запись полностью что бы переобновить, или полностью удалить.
+            $profile->project()->delete();
 
-            return $model;
+            if(!is_null($vo))
+            {
+                $model = Project::create(
+                    [
+                        'project_json' => $vo->project_json,
+                        'profile_id' => $vo->profile_id,
+                    ],
+                );
+            }
+
+            return $model ?? null;
 
         } catch (\Throwable $th) {
+
+            dd($th);
 
             $nameClass = self::class;
 

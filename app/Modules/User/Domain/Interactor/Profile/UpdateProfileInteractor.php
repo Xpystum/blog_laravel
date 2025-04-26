@@ -36,7 +36,10 @@ class UpdateProfileInteractor
             /** @var Profile */
             $profile = $this->updateProfileAction($user->profile, $profileVO);
 
-            /** @var Project */
+            /** @var ?ProjectVO */
+            $projectVO = $this->createProjectVO($dto, $profile->id);
+
+            /** @var ?Project */
             $project = $this->UpdateOrCreateProjectAction($profile, $this->createProjectVO($dto, $profile->id));
 
             /** @var ?array */
@@ -69,8 +72,11 @@ class UpdateProfileInteractor
         );
     }
 
-    private function createProjectVO(UpdateProfileDTO $dto, int $profile_id) : ProjectVO
+    private function createProjectVO(UpdateProfileDTO $dto, int $profile_id) : ?ProjectVO
     {
+
+        if($dto->my_project_tagify === null) { return null; }
+
         return ProjectVO::make(
             project_json: $dto->my_project_tagify,
             profile_id: $profile_id,
@@ -83,9 +89,9 @@ class UpdateProfileInteractor
         return ContactVO::arrayToObject($dto->contacts, $profile_id);
     }
 
-    private function updateOrCreateProjectAction(Profile $profile, ProjectVO $vo) : Project
+    private function updateOrCreateProjectAction(Profile $profile, ?ProjectVO $vo) : ?Project
     {
-        return UpdateOrCreateProjectAction::make($vo, $profile->id);
+        return UpdateOrCreateProjectAction::make($vo, $profile);
     }
 
     private function updateProfileAction(Profile $profile, ProfileVO $vo) : Profile

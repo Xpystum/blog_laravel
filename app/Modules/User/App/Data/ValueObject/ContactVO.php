@@ -49,6 +49,9 @@ readonly class ContactVO implements Arrayable
         $arrayNew = [];
 
         foreach ($data as $value) {
+
+            if(is_null($value['url'])) { continue; }
+
             $arrayNew[] = ContactVO::make(
                 name: $value['name'],
                 url: $value['url'],
