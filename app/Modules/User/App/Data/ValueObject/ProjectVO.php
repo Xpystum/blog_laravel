@@ -2,7 +2,6 @@
 
 namespace App\Modules\User\App\Data\ValueObject;
 
-use Illuminate\Support\Arr;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Modules\Base\Traits\FilterArrayTrait;
 
@@ -19,8 +18,7 @@ readonly class ProjectVO implements Arrayable
     public static function make(
 
         string $project_json,
-        string $profile_id,
-
+        int $profile_id,
 
     ) : self {
 
@@ -41,12 +39,21 @@ readonly class ProjectVO implements Arrayable
         ];
     }
 
-    public static function arrayToObject(array $data) : self
+    public static function arrayToObject(string $data, int $profile_id) : array
     {
-        return self::make(
-            project_json: Arr::get($data, 'project_json'),
-            profile_id: Arr::get($data, 'profile_id'),
-        );
+
+        $array = json_decode($data['my_project_tagify']);
+
+        $arrayReturn = [];
+
+        foreach ($array as $value) {
+            $arrayReturn[] = ProjectVO::make(
+                project_json: $value->value,
+                profile_id: $profile_id,
+            );
+        }
+
+        return $arrayReturn;
     }
 
 }

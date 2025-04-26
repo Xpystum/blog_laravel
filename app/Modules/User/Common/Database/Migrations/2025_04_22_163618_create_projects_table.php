@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
 
             $table->json('project_json');
-            $table->foreignId('profile_id')->index()
+            $table->foreignId('profile_id')->unique()
                 ->constrained('profiles');
 
 

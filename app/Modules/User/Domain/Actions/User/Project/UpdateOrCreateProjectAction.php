@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Modules\User\Domain\Actions\User\Project;
+
+use Exception;
+
+use App\Modules\User\Domain\Models\Project;
+use App\Modules\User\App\Data\ValueObject\ProjectVO;
+
+class UpdateOrCreateProjectAction
+{
+
+    /**
+     * @param ProjectVO $vo
+     * @param int $profile_id
+     *
+     * @return Project
+     */
+    public static function make(ProjectVO $vo, int $profile_id) : Project
+    {
+        return (new self)->run($vo, $profile_id);
+    }
+
+    /**
+     * @param ProjectVO $vo
+     * @param int $profile_id
+     *
+     * @return Project
+     */
+    public static function run(ProjectVO $vo, int $profile_id) : Project
+    {
+
+        try {
+
+            $model = Project::updateOrCreate(
+                ['profile_id' => $profile_id],
+                [
+                    'project_json' => $vo->project_json,
+                    'profile_id' => $vo->profile_id,
+                ],
+            );
+
+            return $model;
+
+        } catch (\Throwable $th) {
+
+            $nameClass = self::class;
+
+            logError("Ошибка в {$nameClass} при создании записи: " . $th);
+            throw new Exception('Ошибка в классе: ' . $nameClass, 500);
+
+        }
+
+        return $model;
+    }
+
+}

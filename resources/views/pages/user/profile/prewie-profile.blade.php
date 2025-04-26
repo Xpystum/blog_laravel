@@ -4,7 +4,7 @@
 
 @section('auth.content')
 
-    @include('includes.user.profile.preview-profile')
+    @include('includes.user.profile.preview-profile', $profile)
 
     @pushOnce('scripts')
         @vite('resources/js/sliderProgress/sliderProgress.js')

@@ -43,13 +43,21 @@ readonly class ContactVO implements Arrayable
         ];
     }
 
-    public static function arrayToObject(array $data) : self
+    public static function arrayToObject(array $data, int $profile_id) : array
     {
-        return self::make(
-            name: Arr::get($data, 'name'),
-            url: Arr::get($data, 'url'),
-            profile_id: Arr::get($data, 'profile_id'),
-        );
+
+        $arrayNew = [];
+
+        foreach ($data as $value) {
+            $arrayNew[] = ContactVO::make(
+                name: $value['name'],
+                url: $value['url'],
+                profile_id: $profile_id,
+            );
+        }
+
+
+       return $arrayNew;
     }
 
 }

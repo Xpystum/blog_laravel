@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\User\Profile;
 
-use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
-use App\Modules\User\Domain\Models\Profile;
-use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
-use App\Modules\User\Domain\Services\ProfileService;
 use Illuminate\Support\Facades\Auth;
+use App\Modules\User\Domain\Models\Profile;
+use App\Modules\User\Domain\Services\ProfileService;
+use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
+use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
 
 class ProfileController
 {
     public function index()
     {
-        return view('pages/user/profile/prewie-profile');
+        $user = Auth::user();
+
+        $profile = Auth::user()->profile;
+
+        return view('pages/user/profile/prewie-profile', ['profile' => $profile]);
     }
 
     public function mainInfoUpdate(
@@ -21,15 +25,13 @@ class ProfileController
 
     ) {
 
-        $validated = $request->validated();
-
         /** @var UpdateProfileDTO */
         $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
 
         /** @var Profile */
         $profile = $profileService->updateProfile($updateProfileDTO);
 
-        dd($profile);
+        return redirect()->back()->with(compact('profile'));
 
     }
 }

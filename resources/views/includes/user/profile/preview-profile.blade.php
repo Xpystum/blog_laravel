@@ -498,8 +498,11 @@
 
                         </div>
 
+                        @json( json_decode($profile->project->project_json, true) )
+
                         <div class="w-full mt-2">
                             <x-union.form.union-label-input
+                                {{-- value="{{ !empty($profile->project->project_json) ? json_encode($profile->project->project_json) : '' }}" --}}
                                 name="my_project_tagify"
                                 :requiredTrue="false"
                                 placeholder="{{ __('Укажите ссылки через Enter') }}"

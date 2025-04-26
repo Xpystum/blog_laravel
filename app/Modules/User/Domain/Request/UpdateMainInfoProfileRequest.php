@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use App\Modules\User\App\Data\Enums\Contact\ContactEnums;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
+use App\Modules\User\App\Data\ValueObject\ContactVO;
+use App\Modules\User\App\Data\ValueObject\ProjectVO;
 
 class UpdateMainInfoProfileRequest extends FormRequest
 {

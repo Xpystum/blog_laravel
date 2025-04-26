@@ -3,13 +3,13 @@
 namespace App\Modules\User\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\Post\Domain\Models\Contact;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
-use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Modules\User\Domain\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profile extends Model
 {
@@ -47,7 +47,7 @@ class Profile extends Model
     {
         static::creating(function (Profile $model) {
 
-          
+
             //устанавливаем аватар для пользователя поумолчанию
             $model->url_avatar = GetAvatarAction::make();
 
@@ -69,9 +69,9 @@ class Profile extends Model
         return $this->hasMany(Contact::class, 'profile_id', 'id');
     }
 
-    public function projects() : HasMany
+    public function project() : HasOne
     {
-        return $this->hasMany(Project::class, 'profile_id', 'id');
+        return $this->hasOne(Project::class, 'profile_id', 'id');
     }
 
 }

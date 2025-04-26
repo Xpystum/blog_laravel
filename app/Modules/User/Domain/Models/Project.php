@@ -17,7 +17,7 @@ class Project extends Model
     // }
 
     protected $fillable = [
-        "projects_json",
+        "project_json",
         "profile_id",
     ];
 
