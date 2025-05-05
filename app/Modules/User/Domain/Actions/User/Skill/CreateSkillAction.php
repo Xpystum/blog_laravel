@@ -35,7 +35,7 @@ class CreateSkillAction
         } catch (\Throwable $th) {
 
             logError($th, [$vo]);
-            throw new Exception('Ошибка при создании User в CreateUserAction.', 500);
+            throw new Exception('Ошибка при создании User в CreateSkillAction.', 500);
 
         }
     }

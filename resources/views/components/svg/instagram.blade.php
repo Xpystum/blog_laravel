@@ -1,6 +1,10 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Instagram', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-instagram', 'workTooltip' => 'true'])
-<a data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}" {{ $attributes->merge([
-    'class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md' . (($workTooltip === 'true') ? "hover:bg-gray-700" : "")
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Instagram', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-instagram', 'workTooltip' => true])
+<a @if($workTooltip)
+    @if($workTooltip)
+        data-tooltip-target="{{ $data_tooltip_target }}"
+    @endif
+@endif href="{{ $href }}" {{ $attributes->merge([
+    'class' => 'flex justify-center items-center relative p-1 block hover:bg-gray-700 rounded-md' . (($workTooltip) ? "hover:bg-gray-700" : "")
 ]) }}>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 512 512" fill="none">
         <rect width="512" height="512" fill="url(#pattern0_26832_868)"/>
@@ -13,7 +17,7 @@
     </svg>
 
 
-    @if ($workTooltip === 'true')
+    @if ($workTooltip)
         <div id="{{ $data_tooltip_target }}" role="tooltip"
             class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
             {{ $description_toll_tip }}

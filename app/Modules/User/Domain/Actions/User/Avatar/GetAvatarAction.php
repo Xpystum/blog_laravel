@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain\Actions\User\Avatar;
 
+use App\Modules\Base\Errors\ActionException;
 use App\Modules\User\Domain\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -46,7 +47,7 @@ class GetAvatarAction
         } else {
 
             logError('Ошибка при установке в GetAvatarAction (Storage Аватара был пустой) ');
-            throw new Exception('Ошибка при возврате avatar в GetAvatarAction' , 500);
+            throw new ActionException('Ошибка при возврате avatar в GetAvatarAction' , 500);
 
         }
 

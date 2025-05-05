@@ -1,55 +1,36 @@
-
+@php
+    $contacts = Auth::user()->profile->contacts;
+@endphp
 <div class="w-full flex flex-row">
-    {{-- <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
-        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        <span class="sr-only">Открыть меню профиля</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" fill-rule="evenodd"
-                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-            </path>
-        </svg>
-    </button> --}}
 
     <x-errors></x-errors>
 
     <x-user.navigation.sidebar-menu />
 
-    <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full">
+    <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full lg:w-xl">
 
-        <div class="w-full">
+        <div class="w-full flex-1">
 
             <div class="flex justify-between items-center w-full">
 
                 <div class="flex flex-col w-1/3">
 
-                    <h1 class="text-white h1 font-bold mb-2">Основная информация профиля</h1>
+                    <h1 class="text-white h1 font-bold mb-2 w-full">Основная информация профиля</h1>
 
-                    <div class="flex w-1/2">
+                    <div class="flex flex-colum max-w-full">
                         <img class="w-32 h-auto object-cover rounded-full" src="{{ asset(Auth::user()->profile->url_avatar) }}"
                             alt="Фото пользователя">
-                        {{-- <img class="w-full h-auto object-cover" src={{ asset(Auth::user()->url_avatar) }} alt="Фото пользователя"> --}}
-                        <div class="flex flex-col justify-center ml-2">
+                    <div class="flex flex-col justify-center ml-2 max-w-full overflow-hidden">
                             <x-user.type.type-div class="mt-2">{{ Auth::user()->profile->type }}</x-user.type.type-div>
-                            <div class="mt-2">
-                                <span
-                                    class="block text-lg text-gray-900 dark:text-white font-medium">{{ Auth::user()->login }}</span>
+                            <div class="mt-2 max-w-full">
+                                <span class="block w-full truncate text-lg text-gray-900 dark:text-white font-medium overflow-hidden">
+                                  {{ Auth::user()->login }}
+                                </span>
                             </div>
-                            <div class="flex mt-2 flex flex">
-                                {{-- <x-svg.telegram />
-                                <x-svg.github />
-                                <x-svg.behance />
-                                <x-svg.dprofile /> --}}
-                                {{-- <x-svg.mysite />
-                                <x-svg.developer.php />
-                                <x-svg.developer.typescript />
-                                <x-svg.developer.javascript />
-                                <x-svg.developer.react /> --}}
-                                {{-- <x-svg.next-js /> --}}
-                                <x-svg.github />
-                                <x-svg.docker />
-                                <x-svg.linux />
-                                <x-svg.postgres />
-                                <x-svg.sql />
+                            <div class="flex mt-2 flex-wrap max-w-full">
+                                @foreach ($contacts as $value)
+                                    <x-dynamic-component :href="$value->url" :component=" 'svg.' . $value->name" />
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -501,13 +482,17 @@
 
                         <div class="w-full mt-2">
                             <x-union.form.union-label-input
-                            :value=" !empty($profile->project->project_json) ? json_encode(json_decode($profile->project->project_json, true), JSON_UNESCAPED_UNICODE) : ''"
+                                :value=" !empty($profile->project->project_json) ? json_encode(json_decode($profile->project->project_json, true), JSON_UNESCAPED_UNICODE) : ''"
                                 name="my_project_tagify"
                                 :requiredTrue="false"
                                 placeholder="{{ __('Укажите ссылки через Enter') }}"
                                 type="text"
                                 label="{{ __('Мои проекты') }}"
                                 default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
+                                default_class_input="flex flex-nowrap w-full h-[125px] max-h-[180px] overflow-y-auto bg-gray-50 border border-gray-300 text-gray-900
+                                text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
                             />
 
                         </div>
@@ -628,8 +613,11 @@
 
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Php" for_label="tooltip-svg-php-skill-label">
-                                            <x-svg.php data_tooltip_target="tooltip-svg-php-skill" class="mr-2"
-                                                workTooltip=false />
+                                            <x-svg.php
+                                                data_tooltip_target="tooltip-svg-php-skill"
+                                                class="mr-2"
+                                                :workTooltip="false"
+                                            />
                                         </x-input.input-svg>
                                     </div>
 
@@ -638,7 +626,7 @@
                                             for_label="tooltip-svg-adobeafteraffects-skill-label">
                                             <x-svg.adobeafteraffects
                                                 data_tooltip_target="tooltip-svg-adobeafteraffects-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -647,7 +635,7 @@
                                             for_label="tooltip-svg-adobeillustrator-skill-label">
                                             <x-svg.adobeillustrator
                                                 data_tooltip_target="tooltip-svg-adobeillustrator-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -656,7 +644,7 @@
                                             for_label="tooltip-svg-adobephotoshop-skill-label">
                                             <x-svg.adobephotoshop
                                                 data_tooltip_target="tooltip-svg-adobephotoshop-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -664,7 +652,7 @@
                                         <x-input.input-svg name_label="AdobeXd"
                                             for_label="tooltip-svg-adobexd-skill-label">
                                             <x-svg.adobexd data_tooltip_target="tooltip-svg-adobexd-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -672,7 +660,7 @@
                                         <x-input.input-svg name_label="Javascript"
                                             for_label="tooltip-svg-javascript-skill-label">
                                             <x-svg.javascript data_tooltip_target="tooltip-svg-javascript-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -680,7 +668,7 @@
                                         <x-input.input-svg name_label="Linux"
                                             for_label="tooltip-svg-linux-skill-label">
                                             <x-svg.linux data_tooltip_target="tooltip-svg-linux-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -688,14 +676,14 @@
                                         <x-input.input-svg name_label="Next Js"
                                             for_label="tooltip-svg-nextjs-skill-label">
                                             <x-svg.next-js data_tooltip_target="tooltip-svg-nextjs-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Sql" for_label="tooltip-svg-sql-skill-label">
                                             <x-svg.sql data_tooltip_target="tooltip-svg-sql-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -707,7 +695,7 @@
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Laravel">
                                             <x-svg.laravel data_tooltip_target="tooltip-svg-laravel-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -715,7 +703,7 @@
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Css" for_label="tooltip-svg-css-label">
                                             <x-svg.css data_tooltip_target="tooltip-svg-css-skill-label" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -723,7 +711,7 @@
                                         <x-input.input-svg name_label="Docker"
                                             for_label="tooltip-svg-docker-skill-label">
                                             <x-svg.docker data_tooltip_target="tooltip-svg-docker-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -731,14 +719,14 @@
                                         <x-input.input-svg name_label="Figma"
                                             for_label="tooltip-svg-figma-skill-label">
                                             <x-svg.figma data_tooltip_target="tooltip-svg-figma-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
                                     <div class="mb-2">
                                         <x-input.input-svg name_label="Html" for_label="tooltip-svg-html-skill-label">
                                             <x-svg.html data_tooltip_target="tooltip-svg-html-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -746,7 +734,7 @@
                                         <x-input.input-svg name_label="Postgres"
                                             for_label="tooltip-svg-postgres-skill-label">
                                             <x-svg.postgres data_tooltip_target="tooltip-svg-postgres-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -754,7 +742,7 @@
                                         <x-input.input-svg name_label="React"
                                             for_label="tooltip-svg-react-skill-label">
                                             <x-svg.react data_tooltip_target="tooltip-svg-react-skill" class="mr-2"
-                                                workTooltip=false />
+                                                :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -762,7 +750,7 @@
                                         <x-input.input-svg name_label="Sketch"
                                             for_label="tooltip-svg-sketch-skill-label">
                                             <x-svg.sketch data_tooltip_target="tooltip-svg-sketch-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -770,7 +758,7 @@
                                         <x-input.input-svg name_label="Typescript"
                                             for_label="tooltip-svg-typescript-skill-label">
                                             <x-svg.typescript data_tooltip_target="tooltip-svg-typescript-skill"
-                                                class="mr-2" workTooltip=false />
+                                                class="mr-2" :workTooltip="false" />
                                         </x-input.input-svg>
                                     </div>
 
@@ -794,14 +782,22 @@
                                 <div class="flex flex-col mb-3">
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="adobeafteraffects"
+                                        >
                                             <x-svg.adobeafteraffects width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="adobeillustrator"
+                                        >
                                             <x-svg.adobeillustrator width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-adobeillustrator-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -809,7 +805,11 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="adobephotoshop"
+                                        >
                                             <x-svg.adobephotoshop width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-adobephotoshop-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -817,7 +817,11 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="adobexd"
+                                        >
                                             <x-svg.adobexd width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-adobexd-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -825,14 +829,22 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="css"
+                                        >
                                             <x-svg.css width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-css-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="html"
+                                        >
                                             <x-svg.html width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-html-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -840,14 +852,22 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="docker"
+                                        >
                                             <x-svg.docker width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-docker-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="figma"
+                                        >
                                             <x-svg.figma width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-figma-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -855,14 +875,22 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="javascript"
+                                            >
                                             <x-svg.javascript width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-javascript-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="laravel"
+                                        >
                                             <x-svg.laravel width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-laravel-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -870,42 +898,66 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="linux"
+                                            >
                                             <x-svg.linux width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-linux-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                            class_name="progres_slider_skill"
+                                            class_value_progress_bar="mx-6"
+                                            input_name="next-js"
+                                        >
                                             <x-svg.next-js width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-next-js-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="php"
+                                            >
                                             <x-svg.php width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-php-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="postgres"
+                                            >
                                             <x-svg.postgres width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-postgres-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="react"
+                                            >
                                             <x-svg.react width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-react-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
                                     </div>
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="sketch"
+                                            >
                                             <x-svg.sketch width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-sketch-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -913,7 +965,11 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="typescript"
+                                            >
                                             <x-svg.typescript width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-typescript-skill-progress"/>
                                         </x-union.union-skill-progress-svg>
@@ -921,7 +977,11 @@
 
 
                                     <div class="mt-6 mb-2">
-                                        <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6" >
+                                        <x-union.union-skill-progress-svg
+                                                class_name="progres_slider_skill"
+                                                class_value_progress_bar="mx-6"
+                                                input_name="sql"
+                                            >
                                             <x-svg.sql width='36' height='36'
                                                 data_tooltip_target="tooltip-svg-sql-skill-progress"/>
                                         </x-union.union-skill-progress-svg>

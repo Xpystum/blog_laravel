@@ -11,6 +11,7 @@ use App\Modules\User\App\Data\ValueObject\ContactVO;
 use App\Modules\User\App\Data\ValueObject\ProfileVO;
 use App\Modules\User\App\Data\ValueObject\ProjectVO;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
+use App\Modules\User\Domain\Actions\User\UpdateUserPasswordAction;
 use App\Modules\User\Domain\Actions\User\Profile\UpdateProfileAction;
 use App\Modules\User\Domain\Actions\User\Contact\UpdateOrCreateContactAction;
 use App\Modules\User\Domain\Actions\User\Project\UpdateOrCreateProjectAction;
@@ -33,14 +34,21 @@ class UpdateProfileInteractor
             /** @var User */
             $user = $dto->user;
 
+            /**
+             * Обновляем пароль у User
+             * @var bool
+            */
+            $status = $this->updateUserPassword($user, $dto->password);
+
+
             /** @var Profile */
-            $profile = $this->updateProfileAction($user->profile, $profileVO);
+            $profile = $this->updateProfile($user->profile, $profileVO);
 
             /** @var ?ProjectVO */
             $projectVO = $this->createProjectVO($dto, $profile->id);
 
             /** @var ?Project */
-            $project = $this->UpdateOrCreateProjectAction($profile, $this->createProjectVO($dto, $profile->id));
+            $project = $this->UpdateOrCreateProject($profile, $this->createProjectVO($dto, $profile->id));
 
             /** @var ?array */
             $array = $this->createContactVOArray($dto, $profile->id);
@@ -48,7 +56,7 @@ class UpdateProfileInteractor
             if($array && !empty($array))
             {
                 foreach ($this->createContactVOArray($dto, $profile->id) as $value) {
-                    $contacts[] = $this->updateOrCreateContactAction($profile, $value);
+                    $contacts[] = $this->updateOrCreateContact($profile, $value);
                 }
             }
 
@@ -89,19 +97,25 @@ class UpdateProfileInteractor
         return ContactVO::arrayToObject($dto->contacts, $profile_id);
     }
 
-    private function updateOrCreateProjectAction(Profile $profile, ?ProjectVO $vo) : ?Project
+    private function updateOrCreateProject(Profile $profile, ?ProjectVO $vo) : ?Project
     {
         return UpdateOrCreateProjectAction::make($vo, $profile);
     }
 
-    private function updateProfileAction(Profile $profile, ProfileVO $vo) : Profile
+    private function updateProfile(Profile $profile, ProfileVO $vo) : Profile
     {
         return UpdateProfileAction::make($profile, $vo);
     }
 
-    private function updateOrCreateContactAction(Profile $profile, ContactVO $vo) : Contact
+    private function updateOrCreateContact(Profile $profile, ContactVO $vo) : Contact
     {
         return UpdateOrCreateContactAction::make($vo, $profile->id);
+    }
+
+    private function updateUserPassword(User $user, ?string $password) : bool
+    {
+        if(is_null($password)) { return false; }
+        return UpdateUserPasswordAction::make($user, $password);
     }
 
 }

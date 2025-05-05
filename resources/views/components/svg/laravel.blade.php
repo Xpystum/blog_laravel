@@ -3,11 +3,17 @@
     'height' => 24,
     'description_toll_tip' => 'Laravel',
     'data_tooltip_target' => 'tooltip-svg-laravel',
-    'workTooltip' => 'true',
+    'workTooltip' => true,
 ])
-<div data-tooltip-target="{{ $data_tooltip_target }}" data-tooltip-trigger="hover"
+<div @if($workTooltip)
+        @if($workTooltip)
+    @if($workTooltip)
+        data-tooltip-target="{{ $data_tooltip_target }}"
+    @endif
+@endif data-tooltip-trigger="hover"
+    @endif
     {{ $attributes->merge([
-        'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
+        'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
     ]) }}>
 
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none"
@@ -25,7 +31,7 @@
     </svg>
 
 
-    @if ($workTooltip === 'true')
+    @if ($workTooltip)
         <div id="{{ $data_tooltip_target }}" role="tooltip"
             class="text-center absolute z-10 invisible inline-block px-3 py-2
             text-sm font-medium text-white transition-opacity duration-300 bg-gray-900

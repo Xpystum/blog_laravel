@@ -3,8 +3,9 @@
 namespace App\Modules\User\Domain\Actions\User\Contact;
 
 use Exception;
-use App\Modules\Post\Domain\Models\Contact;
+use App\Modules\Base\Errors\ActionException;
 use App\Modules\User\App\Data\ValueObject\ContactVO;
+use App\Modules\User\Domain\Models\Contact;
 
 class CreateContactAction
 {
@@ -35,7 +36,7 @@ class CreateContactAction
         } catch (\Throwable $th) {
 
             logError($th, [$data]);
-            throw new Exception('Ошибка при создании User в CreateUserAction.', 500);
+            throw new ActionException('Ошибка при создании User в CreateUserAction.', 500);
 
         }
     }

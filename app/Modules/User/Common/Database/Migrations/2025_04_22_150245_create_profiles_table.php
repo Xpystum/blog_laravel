@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('full_name')->nullable()->comment('Полное имя');
             $table->string('url_avatar')->comment('ссылка на автара');
             $table->string('type')->comment('Кем является пользователь: Разработчик/Дизайнер/Другое');
+            $table->text('about')->nullable()->comment('Обо мне');
             $table->foreignId('user_id')->index()
                 ->constrained('users');
 

@@ -1,7 +1,11 @@
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'LinkedIn', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-linkedin', 'workTooltip' => 'true'])
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'LinkedIn', 'href' => '#', 'data_tooltip_target' => 'tooltip-svg-linkedin', 'workTooltip' => true])
 <a {{ $attributes->merge([
-    'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
-]) }} data-tooltip-target="{{ $data_tooltip_target }}" href="{{ $href }}">
+    'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
+]) }} @if($workTooltip)
+    @if($workTooltip)
+        data-tooltip-target="{{ $data_tooltip_target }}"
+    @endif
+@endif href="{{ $href }}">
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_1_69)">
             <path
@@ -18,7 +22,7 @@
         </defs>
     </svg>
 
-    @if ($workTooltip === 'true')
+    @if ($workTooltip)
         <div id="{{ $data_tooltip_target }}" role="tooltip"
             class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
             {{ $description_toll_tip }}

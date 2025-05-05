@@ -13,7 +13,6 @@ window.addEventListener("tiptap-editor-ready", (event) => {
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    console.log('Страница загружена');
     setTiptapForLocalStorage(editorInstance);
 
 });
@@ -73,7 +72,6 @@ function compareLocalStorage(value)
     if( (value !== defaultContent) && (value !== valueLocalStorage) )
     {
         valueLocalStorage = setLocalStorage(key, value);
-        console.log('Установка в local storage');
     }
 
 }

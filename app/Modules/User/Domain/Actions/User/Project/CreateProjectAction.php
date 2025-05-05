@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain\Actions\User\Project;
 
+use App\Modules\Base\Errors\ActionException;
 use Exception;
 use App\Modules\User\Domain\Models\Project;
 use App\Modules\User\App\Data\ValueObject\ProjectVO;
@@ -35,7 +36,7 @@ class CreateProjectAction
         } catch (\Throwable $th) {
 
             logError($th, [$data]);
-            throw new Exception('Ошибка при создании User в CreateUserAction.', 500);
+            throw new ActionException('Ошибка при создании User в CreateUserAction.', 500);
 
         }
     }

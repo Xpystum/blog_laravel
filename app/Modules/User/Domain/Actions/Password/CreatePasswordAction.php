@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain\Actions\Password;
 
+use App\Modules\Base\Errors\ActionException;
 use App\Modules\User\Domain\Models\PasswordReset;
 use App\Modules\User\Domain\Models\User;
 use Exception;
@@ -42,7 +43,7 @@ class CreatePasswordAction
         } catch (\Throwable $th) {
 
             logError($th, ['Ошибка при создании PasswordReset в CreatePasswordAction.']);
-            throw new Exception('Ошибка при создании PasswordReset в CreatePasswordAction.', 500);
+            throw new ActionException('Ошибка при создании PasswordReset в CreatePasswordAction.', 500);
 
         }
     }

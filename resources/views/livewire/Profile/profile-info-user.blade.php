@@ -1,3 +1,7 @@
+@php
+    $projectArray = json_decode(Auth::user()->profile?->project?->project_json);
+@endphp
+
 <section class="flex flex-col">
     <div class="flex flex-row">
 
@@ -6,20 +10,14 @@
             <header>
                 <h3 class="text-white font-bold h3">Полное Имя</h3>
             </header>
-            <p class="text-gray-400">Женя Кузьмина</p>
+            <p class="text-gray-400">{{ Auth::user()->profile->full_name }}</p>
 
             <section class="about mt-2">
                 <header>
                     <h3 class="text-white font-bold">Обо мне</h3>
                 </header>
                 <p class="text-gray-400 max-h-[170px] overflow-hidden">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam nesciunt mollitia accusamus
-                    quibusdam accusantium?
-                    Repellat, laboriosam vitae adipisci eos consequuntur repudiandae ut obcaecati impedit eligendi,
-                    animi illo nesciunt vero sunt aliquid
-                    quaerat accusamus ea fuga quas voluptatem? Unde voluptas tenetur facilis ut similique, enim
-                    reiciendis fugiat nihil quae perspiciatis!    quaerat accusamus ea fuga quas voluptatem? Unde voluptas tenetur facilis ut similique, enim
-                    reiciendis fugiat nihil quae perspiciatis!
+                    {{ Auth::user()->profile->about ?? "Описание не заполнено." }}
                 </p>
             </section>
         </article>
@@ -30,17 +28,24 @@
                 <header>
                     <h3 class="text-white font-bold">Email Address</h3>
                 </header>
-                <p class="text-gray-400">test@mail.ru</p>
+                <p class="text-gray-400">{{ Auth::user()->email }}</p>
             </div>
 
             <div class="flex flex-col mt-2">
                 <header>
                     <h3 class="text-white font-bold">Мои проекты</h3>
                 </header>
-                <p class="text-gray-400">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ссылка 1</a>
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ссылка 2</a>
-                </p>
+                <div class="text-gray-400 text-wrap overflow-hidden max-h-[100px]">
+                    @foreach ($projectArray as $value)
+                        <div class="inline-flex flex-row items-center">
+                            <a href="{{ $value->value }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Проект-{{ $loop->index+1 }}</a>
+                            @if (!$loop->last)
+
+                            @endif
+                            <div class="mx-2 h-5 border-l border-gray-500 opacity-50"></div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
             <div class="flex flex-col mt-2">

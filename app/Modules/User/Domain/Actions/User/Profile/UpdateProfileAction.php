@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain\Actions\User\Profile;
 
+use App\Modules\Base\Errors\ActionException;
 use Exception;
 use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\App\Data\ValueObject\ProfileVO;
@@ -39,7 +40,7 @@ class UpdateProfileAction
             $nameClass = self::class;
 
             logError("Ошибка в {$nameClass} при создании записи: " . $th);
-            throw new Exception('Ошибка в классе: ' . $nameClass, 500);
+            throw new ActionException('Ошибка в классе: ' . $nameClass, 500);
 
         }
 

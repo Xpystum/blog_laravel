@@ -1,6 +1,6 @@
-@props(['width' => 24, 'height' => 24, 'workTooltip' => 'true'])
+@props(['width' => 24, 'height' => 24, 'workTooltip' => true])
 <div {{ $attributes->merge([
-    'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
+    'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
 ]) }} >
     <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.921 9.64L20.848 8.713C21.5854 7.97557 21.9997 6.97539 21.9997 5.9325C21.9997 4.88961 21.5854 3.88943 20.848 3.152C20.1106 2.41457 19.1104 2.00028 18.0675 2.00028C17.0246 2.00028 16.0244 2.41457 15.287 3.152L14.36 4.079L5.838 12.599C5.261 13.177 4.972 13.466 4.724 13.784C4.43139 14.1595 4.18026 14.5655 3.975 14.995C3.802 15.359 3.673 15.747 3.415 16.521L2.321 19.802M19.921 9.64C19.921 9.64 17.952 9.524 16.214 7.786C14.476 6.049 14.361 4.079 14.361 4.079M19.921 9.64L11.4 18.16C10.823 18.737 10.534 19.026 10.216 19.274C9.84052 19.5666 9.4345 19.8177 9.005 20.023C8.641 20.196 8.254 20.325 7.479 20.583L4.198 21.677M4.198 21.677L3.396 21.945C3.20905 22.0077 3.00833 22.017 2.81639 21.9719C2.62445 21.9267 2.4489 21.829 2.30947 21.6895C2.17005 21.5501 2.07227 21.3746 2.02714 21.1826C1.98201 20.9907 1.99131 20.7899 2.054 20.603L2.322 19.801L4.198 21.677Z" stroke="#0D99FF" stroke-width="1.5"/>

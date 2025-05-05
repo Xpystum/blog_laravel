@@ -19,10 +19,27 @@ class ProfileController
         return view('pages/user/profile/prewie-profile', ['profile' => $profile]);
     }
 
+    //обновляем значение которые находятся на вверху страницы у user
     public function mainInfoUpdate(
         UpdateMainInfoProfileRequest $request,
         ProfileService $profileService,
 
+    ) {
+
+        /** @var UpdateProfileDTO */
+        $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
+
+        /** @var Profile */
+        $profile = $profileService->updateProfile($updateProfileDTO);
+
+        return redirect()->back()->with(compact('profile'));
+
+    }
+
+    //обновляем персональную информацию user - skill, about и т.д
+    public function personalInfoUpdate(
+        UpdatePersonalInfoUpdate $request,
+        ProfileService $profileService,
     ) {
 
         /** @var UpdateProfileDTO */

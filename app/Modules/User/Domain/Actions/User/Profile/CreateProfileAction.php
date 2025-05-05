@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain\Actions\User;
 
+use App\Modules\Base\Errors\ActionException;
 use Exception;
 use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\App\Data\ValueObject\ProfileVO;
@@ -35,7 +36,7 @@ class CreateUserAction
         } catch (\Throwable $th) {
 
             logError($th, [$data]);
-            throw new Exception('Ошибка при создании User в CreateUserAction.', 500);
+            throw new ActionException('Ошибка при создании User в CreateUserAction.', 500);
 
         }
     }

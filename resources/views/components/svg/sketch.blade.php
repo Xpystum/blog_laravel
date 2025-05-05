@@ -3,11 +3,15 @@
     'height' => 24,
     'description_toll_tip' => 'Sketch',
     'data_tooltip_target' => 'tooltip-svg-sketch',
-    'workTooltip' => 'true',
+    'workTooltip' => true,
 ])
-<div data-tooltip-target="{{ $data_tooltip_target }}"
+<div @if($workTooltip)
+    @if($workTooltip)
+        data-tooltip-target="{{ $data_tooltip_target }}"
+    @endif
+@endif
     {{ $attributes->merge([
-        'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
+        'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
     ]) }}>
     <svg width="{{ $width }}" height="{{ $height }}" class="_o2IXcpM0qnG3JPReKus E9GV5sZJIbfO_GEQ_moc"
         aria-hidden="true" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +45,7 @@
     </svg>
 
 
-    @if ($workTooltip === 'true')
+    @if ($workTooltip)
         <div id="{{ $data_tooltip_target }}" role="tooltip"
             class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
             {{ $description_toll_tip }}

@@ -14,19 +14,22 @@ readonly class ProfileVO implements Arrayable
 
     public function __construct(
 
-        public ?string $full_name,
         public string $url_avatar,
         public UserTypeEnum $type,
         public int $user_id,
+
+        public ?string $full_name,
+        public ?string $about,
 
     ) {}
 
     public static function make(
 
-        ?string $full_name = null,
         string $url_avatar,
         string $type,
         string $user_id,
+        ?string $full_name = null,
+        ?string $about = null,
 
     ) : self {
 
@@ -36,6 +39,7 @@ readonly class ProfileVO implements Arrayable
             url_avatar: $url_avatar,
             type: UserTypeEnum::stringToEnum($type),
             user_id: $user_id,
+            about: $about,
         );
 
     }
@@ -44,6 +48,7 @@ readonly class ProfileVO implements Arrayable
     {
         return [
             "full_name" => $this->full_name,
+            "about" => $this->about,
             "url_avatar" => $this->url_avatar,
             "type" => $this->type,
             "user_id" => $this->user_id,
@@ -54,6 +59,7 @@ readonly class ProfileVO implements Arrayable
     {
         return self::make(
             full_name: Arr::get($data, 'full_name', null),
+            about: Arr::get($data, 'about', null),
             url_avatar: Arr::get($data, 'userurl_avatar_id', null),
             type: Arr::get($data, 'type'),
             user_id: Arr::get($data, 'user_id'),

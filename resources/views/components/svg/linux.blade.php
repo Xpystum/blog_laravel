@@ -1,7 +1,13 @@
 
-@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Linux', 'data_tooltip_target' => 'tooltip-svg-linux', 'workTooltip' => 'true'])
-<div data-tooltip-target="{{ $data_tooltip_target }}" data-tooltip-trigger="hover" {{ $attributes->merge([
-    'class' => ($workTooltip === 'true') ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
+@props(['width' => 24, 'height' => 24, 'description_toll_tip' => 'Linux', 'data_tooltip_target' => 'tooltip-svg-linux', 'workTooltip' => true])
+<div @if($workTooltip)
+        @if($workTooltip)
+    @if($workTooltip)
+        data-tooltip-target="{{ $data_tooltip_target }}"
+    @endif
+@endif data-tooltip-trigger="hover"
+    @endif {{ $attributes->merge([
+    'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
 ]) }}>
 
 
@@ -26,7 +32,7 @@
 
 
 
-    @if ($workTooltip === 'true')
+    @if ($workTooltip)
         <div id="{{ $data_tooltip_target }}" role="tooltip"
             class="text-center absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
             {{ $description_toll_tip }}

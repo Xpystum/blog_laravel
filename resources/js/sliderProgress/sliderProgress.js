@@ -1,11 +1,15 @@
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
+
+
 var sliders = document.querySelectorAll('.progres_slider_skill');
 
 
-
 sliders.forEach(function(slider) {
+
+    let input = slider.querySelector("input");
+
     // Инициализируем noUiSlider для текущего элемента
     noUiSlider.create(slider, {
         start: 0,
@@ -51,12 +55,16 @@ sliders.forEach(function(slider) {
         },
     });
 
+
     // Пример: обработчик события update для вывода текущего значения каждого слайдера
     slider.noUiSlider.on('update', function(values, handle) {
-      console.log("Значение слайдера:", values[handle]);
-      // Можно также обновлять значение в DOM, если необходимо, например:
-      // slider.parentElement.querySelector('.slider-value').innerText = values[handle];
+        if(input) {
+            input.value = values[handle];
+        }
     });
-  });
+
+});
+
+
 
 

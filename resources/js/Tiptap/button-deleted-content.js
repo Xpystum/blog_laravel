@@ -10,7 +10,5 @@ if(myButton)
         if(getLocalStorage(key)){
             localStorage.removeItem(key);
         }
-
-        console.log('Кнопка нажата');
     });
 }
