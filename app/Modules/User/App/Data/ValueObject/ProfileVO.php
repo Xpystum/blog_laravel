@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Modules\Base\Traits\FilterArrayTrait;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
+use App\Modules\User\Domain\Models\Profile;
 
 readonly class ProfileVO implements Arrayable
 {
@@ -44,6 +45,19 @@ readonly class ProfileVO implements Arrayable
 
     }
 
+    public function setAbout(string $about) : self
+    {
+
+        return new self(
+            full_name: $this->full_name,
+            url_avatar: $this->url_avatar,
+            type: $this->type,
+            user_id: $this->user_id,
+            about: $about,
+        );
+
+    }
+
     public function toArray() : array
     {
         return [
@@ -63,6 +77,17 @@ readonly class ProfileVO implements Arrayable
             url_avatar: Arr::get($data, 'userurl_avatar_id', null),
             type: Arr::get($data, 'type'),
             user_id: Arr::get($data, 'user_id'),
+        );
+    }
+
+    public static function toValueObject(Profile $profile) : self
+    {
+        return new self(
+            full_name: $profile->full_name,
+            url_avatar: $profile->url_avatar,
+            type: $profile->type,
+            user_id: $profile->user_id,
+            about: $profile->about,
         );
     }
 

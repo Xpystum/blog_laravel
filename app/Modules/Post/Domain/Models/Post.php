@@ -2,15 +2,16 @@
 
 namespace App\Modules\Post\Domain\Models;
 
-use App\Modules\Post\Domain\Factories\PostFactory;
-use App\Modules\User\Domain\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Livewire\Wireable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Modules\User\Domain\Models\User;
+use App\Modules\Post\Domain\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model
+class Post extends Model implements Wireable
 {
     use HasFactory;
 
@@ -69,6 +70,27 @@ class Post extends Model
     public function postViews() : HasMany
     {
         return $this->hasMany(PostView::class, 'post_id', 'id');
+    }
+
+    public function toLivewire()
+    {
+        return [
+            "id" => $this->id,
+            "title" => $this->title,
+            "content" => $this->content,
+            "content_cover" => $this->content_cover,
+            "user_id" => $this->user_id,
+            'name' => $this->name,
+            'age' => $this->age,
+        ];
+    }
+
+    public static function fromLivewire($value)
+    {
+
+        dd($value);
+
+        return static::findOrFail($value['id']);
     }
 
 }

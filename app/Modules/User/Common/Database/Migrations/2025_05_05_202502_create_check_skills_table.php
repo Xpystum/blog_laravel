@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('check_skills', function (Blueprint $table) {
+            
             $table->id();
 
             $table->string('name')->index();
@@ -20,6 +21,7 @@ return new class extends Migration
                 ->constrained('profiles');
 
             $table->timestamps();
+
         });
     }
 
