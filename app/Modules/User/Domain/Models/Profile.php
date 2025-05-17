@@ -2,16 +2,17 @@
 
 namespace App\Modules\User\Domain\Models;
 
+use Livewire\Wireable;
 use Illuminate\Database\Eloquent\Model;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Modules\User\Domain\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Profile extends Model
+class Profile extends Model 
 {
     use HasFactory;
 
@@ -74,5 +75,6 @@ class Profile extends Model
     {
         return $this->hasOne(Project::class, 'profile_id', 'id');
     }
+
 
 }

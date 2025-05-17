@@ -17,7 +17,7 @@
                     <h3 class="text-white font-bold">Обо мне</h3>
                 </header>
                 <p class="text-gray-400 max-h-[170px] overflow-hidden">
-                    {{ Auth::user()->profile->about ?? "Описание не заполнено." }}
+                      {{ $about }}
                 </p>
             </section>
         </article>

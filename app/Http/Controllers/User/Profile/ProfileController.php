@@ -7,6 +7,7 @@ use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Services\ProfileService;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
 use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
+use App\Modules\User\Domain\Request\UpdatePersonalInfoUpdate;
 
 class ProfileController
 {
@@ -30,25 +31,25 @@ class ProfileController
         $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
 
         /** @var Profile */
-        $profile = $profileService->updateProfile($updateProfileDTO);
+        $profile = $profileService->updateProfileGeneral($updateProfileDTO);
 
         return redirect()->back()->with(compact('profile'));
 
     }
 
     //обновляем персональную информацию user - skill, about и т.д
-    public function personalInfoUpdate(
-        UpdatePersonalInfoUpdate $request,
-        ProfileService $profileService,
-    ) {
+    // public function personalInfoUpdate(
+    //     UpdatePersonalInfoUpdate $request,
+    //     ProfileService $profileService,
+    // ) {
 
-        /** @var UpdateProfileDTO */
-        $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
+    //     /** @var UpdateProfileDTO */
+    //     $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
 
-        /** @var Profile */
-        $profile = $profileService->updateProfile($updateProfileDTO);
+    //     /** @var Profile */
+    //     $profile = $profileService->updateProfile($updateProfileDTO);
 
-        return redirect()->back()->with(compact('profile'));
+    //     return redirect()->back()->with(compact('profile'));
 
-    }
+    // }
 }

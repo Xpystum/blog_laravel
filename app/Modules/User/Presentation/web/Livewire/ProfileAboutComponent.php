@@ -2,31 +2,36 @@
 
 namespace App\Modules\User\Presentation\web\Livewire;
 
-use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
-use App\Modules\User\Domain\Models\Profile;
-use App\Modules\User\Domain\Services\ProfileService;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use App\Modules\User\Domain\Models\Profile;
+use App\Modules\User\App\Data\ValueObject\ProfileVO;
+use App\Modules\User\Domain\Services\ProfileService;
 
 class ProfileAboutComponent extends Component
 {
 
-    public $message;
-
+    public ?string $message;
     public Profile $profile;
+
+    public function mount($message, $profile)
+    {
+
+        $this->message = $message;
+        $this->profile = $profile;
+    }
 
     public function updatedMessage(ProfileService $profileSerivce)
     {
 
-        dd($this->profile);
+        /** @var ProfileVO */
+        $profileVO = ProfileVO::toValueObject($this->profile)->setAbout($this->message);
 
-        // $status = $profileSerivce->updateProfile(UpdateProfileDTO::make(
+        $status = $profileSerivce->updateProfile($this->profile, $profileVO);
 
-        // ));
+        if($status) {
+            $this->dispatch('messageChangedProfile', $this->message);
+        }
 
-
-        // Сохраняет сразу, когда $message обновлён
-        // Пример: $this->user->update(['message' => $this->message]);
     }
 
 

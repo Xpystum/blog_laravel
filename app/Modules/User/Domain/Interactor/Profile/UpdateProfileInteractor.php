@@ -16,6 +16,9 @@ use App\Modules\User\Domain\Actions\User\Profile\UpdateProfileAction;
 use App\Modules\User\Domain\Actions\User\Contact\UpdateOrCreateContactAction;
 use App\Modules\User\Domain\Actions\User\Project\UpdateOrCreateProjectAction;
 
+/**
+ * Общее обновление профиля + его связей
+ */
 class UpdateProfileInteractor
 {
     public function execute(UpdateProfileDTO $dto) : Profile

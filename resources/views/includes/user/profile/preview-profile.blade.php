@@ -579,7 +579,10 @@
                         </h2>
                         <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
 
-                            @livewire('profile-about-component', ['profile' => Auth::user()->profile])
+                            @livewire('profile-about-component', [
+                                'profile' => Auth::user()->profile,
+                                'message' => Auth::user()->profile?->about,
+                            ])
 
                         </div>
                         <h2 id="accordion-arrow-icon-heading-2">
