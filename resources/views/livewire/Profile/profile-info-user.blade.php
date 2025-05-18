@@ -3,7 +3,7 @@
 @endphp
 
 <section class="flex flex-col">
-    <div class="flex flex-row">
+    <div class="full-w flex flex-row">
 
         <!-- Основная информация о пользователе -->
         <article class="flex w-1/2 flex-col">
@@ -16,14 +16,14 @@
                 <header>
                     <h3 class="text-white font-bold">Обо мне</h3>
                 </header>
-                <p class="text-gray-400 max-h-[170px] overflow-hidden">
+                <p class="text-gray-400 max-h-[170px] overflow-hidden whitespace-normal break-words">
                       {{ $about }}
                 </p>
             </section>
         </article>
 
         <!-- Контактная информация и проекты -->
-        <article class="flex w-1/2 flex-col ml-2">
+        <article class="ml-4 flex w-1/2 flex-col ml-2">
             <div class="flex flex-col">
                 <header>
                     <h3 class="text-white font-bold">Email Address</h3>
@@ -62,6 +62,7 @@
         </article>
 
     </div>
+
 
     <article class="mt-4">
 

@@ -2,13 +2,13 @@
     <div class="flex flex-col w-1/2">
 
         <div class="mb-2">
-            <x-input.input-svg name_label="Php" for_label="tooltip-svg-php-skill-label">
+            <x-input.input-svg wire:model.live.debounce.500ms="selectedItems.php" name_label="Php" for_label="tooltip-svg-php-skill-label">
                 <x-svg.php data_tooltip_target="tooltip-svg-php-skill" class="mr-2" :workTooltip="false" />
             </x-input.input-svg>
         </div>
 
         <div class="mb-2">
-            <x-input.input-svg name_label="Adobe After Affects" for_label="tooltip-svg-adobeafteraffects-skill-label">
+            <x-input.input-svg wire:model.live.debounce.500ms="selectedItems.adobeafteraffects" name_label="Adobe After Affects" for_label="tooltip-svg-adobeafteraffects-skill-label">
                 <x-svg.adobeafteraffects data_tooltip_target="tooltip-svg-adobeafteraffects-skill" class="mr-2"
                     :workTooltip="false" />
             </x-input.input-svg>
