@@ -1,5 +1,8 @@
 @php
+
     $projectArray = json_decode(Auth::user()->profile?->project?->project_json);
+    $checkSkills = $checkSkills;
+
 @endphp
 
 <section class="flex flex-col">
@@ -58,11 +61,20 @@
                 <header>
                     <h3 class="text-white font-bold">Мои навыки</h3>
                 </header>
-                <div class="flex flex-row">
-                    <x-svg.laravel />
-                    <x-svg.figma />
-                    <x-svg.html />
-                    <x-svg.css/>
+                <div class="flex flex-row flex-wrap">
+
+                    @if($checkSkills)
+
+                        @foreach ($checkSkills as $item)
+
+                            @if($item->status)
+                                <x-dynamic-component :component="'svg.' . $item->name" />
+                            @endif
+                            
+                        @endforeach
+
+                    @endif
+
                 </div>
             </div>
         </article>

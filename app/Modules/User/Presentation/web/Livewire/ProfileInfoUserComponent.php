@@ -11,6 +11,7 @@ class ProfileInfoUserComponent extends Component
     public string $statusCheck;
 
     public $about;
+    public $checkSkills;
 
 
     protected $listeners = ['messageChangedProfile' => 'refreshData'];

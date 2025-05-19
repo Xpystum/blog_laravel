@@ -1,5 +1,10 @@
 @php
-    $contacts = Auth::user()->profile->contacts;
+
+    $user = Auth::user();
+    $profile = $user->profile;
+    $contacts = $profile->contacts;
+    $checkSkills = $profile->checkSkills;
+
 @endphp
 <div class="w-full flex flex-row">
 
@@ -8,7 +13,6 @@
     <x-user.navigation.sidebar-menu />
 
     <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full lg:w-xl">
-
         <div class="w-full flex-1">
 
             <div class="flex justify-between items-center w-full">
@@ -18,13 +22,13 @@
                     <h1 class="text-white h1 font-bold mb-2 w-full">Основная информация профиля</h1>
 
                     <div class="flex flex-colum max-w-full">
-                        <img class="w-32 h-auto object-cover rounded-full" src="{{ asset(Auth::user()->profile->url_avatar) }}"
+                        <img class="w-32 h-auto object-cover rounded-full" src="{{ asset($profile->url_avatar) }}"
                             alt="Фото пользователя">
                     <div class="flex flex-col justify-center ml-2 max-w-full overflow-hidden">
-                            <x-user.type.type-div class="mt-2">{{ Auth::user()->profile->type }}</x-user.type.type-div>
+                            <x-user.type.type-div class="mt-2">{{ $profile->type }}</x-user.type.type-div>
                             <div class="mt-2 max-w-full">
                                 <span class="block w-full truncate text-lg text-gray-900 dark:text-white font-medium overflow-hidden">
-                                  {{ Auth::user()->login }}
+                                  {{ $user->login }}
                                 </span>
                             </div>
                             <div class="flex mt-2 flex-wrap max-w-full">
@@ -140,7 +144,9 @@
                 <div class="flex flex-col hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile"
                     role="tabpanel" aria-labelledby="profile-tab">
 
-                    @livewire("profile-info-user-component")
+                    @livewire("profile-info-user-component", [
+                        'checkSkills' => $checkSkills,
+                    ])
 
                 </div>
 
@@ -210,7 +216,7 @@
                             Загрузка Аватара</h4>
                         <div class="flex flex-row">
                             <img class="aspect-square object-cover w-20 h-20 md:w-12 md:h-12 p-0.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-500"
-                                src={{ asset(Auth::user()->profile->url_avatar) }} alt="Фото пользователя">
+                                src={{ asset($profile->url_avatar) }} alt="Фото пользователя">
                             <div class="flex flex-col flex-1 ml-2">
 
                                 <div>
@@ -252,7 +258,7 @@
                                 <x-union.form.union-label-input
 
                                     name="full_name"
-                                    value="{{ Auth::user()->profile->full_name }}"
+                                    value="{{ $profile->full_name }}"
                                     :requiredTrue="false"
                                     default_class_label="text-sm w-full block mb-2 font-medium text-gray-900 dark:text-white"
                                     placeholder="Полное имя"
@@ -261,7 +267,7 @@
                                 />
 
                                 <x-union.form.union-label-input
-                                    value="{{ Auth::user()->email }}"
+                                    value="{{ $user->email }}"
                                     name="email"
                                     :requiredTrue="false"
                                     default_class_label="text-sm w-full block mb-2 mt-2 font-medium text-gray-900 dark:text-white"
@@ -282,7 +288,7 @@
                                     </x-label>
 
                                     <x-select id="typeSelectActivities" placeholder="Кто вы?" name="type"
-                                        value="{{ old('type') ? old('type') : Auth::user()->profile->type }}"
+                                        value="{{ old('type') ? old('type') : $profile->type }}"
                                         :options="[
                                             'Разработчик' => 'Разработчик',
                                             'Дизайнер' => 'Дизайнер',
@@ -580,8 +586,8 @@
                         <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
 
                             @livewire('profile-about-component', [
-                                'profile' => Auth::user()->profile,
-                                'message' => Auth::user()->profile?->about,
+                                'profile' => $profile,
+                                'message' => $profile?->about,
                             ])
 
                         </div>
@@ -598,8 +604,8 @@
                             aria-labelledby="accordion-arrow-icon-heading-2">
 
                             @livewire('profile-skill-check', [
-                                'profileId' => Auth::user()->profile->id,
-                                'checkSkills' => Auth::user()->profile->checkSkills,
+                                'profileId' => $profile->id,
+                                'checkSkills' => $checkSkills,
                             ])
                         </div>
                         <h2 id="accordion-arrow-icon-heading-3">
