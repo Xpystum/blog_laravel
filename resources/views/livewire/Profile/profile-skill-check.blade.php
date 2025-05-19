@@ -1,4 +1,4 @@
-<div {{-- class="w-full flex flex-row p-5 border border-b-0 border-gray-200 dark:border-gray-700" --}} class="w-full flex flex-row p-5 border border-b- border-gray-200 dark:border-gray-700">
+<div class="w-full flex flex-row p-5 border border-b- border-gray-200 dark:border-gray-700">
     <div class="flex flex-col w-1/2">
 
         <div class="mb-2">

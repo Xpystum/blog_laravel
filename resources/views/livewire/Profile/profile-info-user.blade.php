@@ -1,7 +1,6 @@
 @php
 
     $projectArray = json_decode(Auth::user()->profile?->project?->project_json);
-    $checkSkills = $checkSkills;
 
 @endphp
 
@@ -57,20 +56,22 @@
                 </div>
             </div>
 
+
+
             <div class="flex flex-col mt-2">
                 <header>
                     <h3 class="text-white font-bold">Мои навыки</h3>
                 </header>
                 <div class="flex flex-row flex-wrap">
 
-                    @if($checkSkills)
+                    @if($selectedItems)
 
-                        @foreach ($checkSkills as $item)
+                        @foreach ($selectedItems as $key => $item)
 
-                            @if($item->status)
-                                <x-dynamic-component :component="'svg.' . $item->name" />
+                            @if($item)
+                                <x-dynamic-component :component="'svg.' . $key" />
                             @endif
-                            
+
                         @endforeach
 
                     @endif

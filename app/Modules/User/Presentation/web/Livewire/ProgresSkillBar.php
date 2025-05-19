@@ -10,16 +10,21 @@ class ProgresSkillBar extends Component
 
     public $inputValue;
 
-    // public function updatedInputValue()
+
+    protected $listeners = ['updateValueProgressBar'];
+
+
+    public function updateProgress($property)
+    {
+        dd($property);
+    }
+
+    // public function updated($property)
     // {
-    //     Log::info(123);
+    //     dd(123);
     // }
 
-    public function updateInput($value)
-    {
-        dd($value);
-        // Дополнительная логика
-    }
+
 
     public function render()
     {

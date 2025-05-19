@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Presentation\web\Livewire;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -11,12 +12,20 @@ class ProfileInfoUserComponent extends Component
     public string $statusCheck;
 
     public $about;
-    public $checkSkills;
+    public array $selectedItems = [];
 
 
-    protected $listeners = ['messageChangedProfile' => 'refreshData'];
+    protected $listeners = [
+        'messageChangedProfile' => 'refreshAbout',
+        'skillcheckUpdate' => 'skillcheckUpdate',
+    ];
 
-    public function refreshData($newValue)
+    public function skillcheckUpdate(array $selectedItems)
+    {
+        $this->selectedItems = $selectedItems;
+    }
+
+    public function refreshAbout($newValue)
     {
         // Можно обновить данные напрямую, либо повторно получить их из БД
         $this->about = $newValue;

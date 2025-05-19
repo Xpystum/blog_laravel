@@ -6,11 +6,10 @@
     'data_tooltip_target' => 'tooltip-svg-telegram',
     'workTooltip' => true,
 ])
-<a @if($workTooltip)
+<a
     @if($workTooltip)
         data-tooltip-target="{{ $data_tooltip_target }}"
     @endif
-@endif
     {{ $attributes->merge([
         'class' => ($workTooltip) ? "flex justify-center items-center relative p-1 block rounded-md hover:bg-gray-700" : "flex justify-center items-center relative p-1 block rounded-md" ,
     ]) }}

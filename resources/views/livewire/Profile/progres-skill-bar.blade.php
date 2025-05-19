@@ -1,12 +1,13 @@
-<div>
+<div id="progres-skill-bar-component-livewire">
+    
     <div id="accordion-arrow-icon-body-3" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
         <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 
             <div class="flex flex-col mb-3">
 
                 <div class="mt-6 mb-2">
-                    <x-union.union-skill-progress-svg class_name="progres_slider_skill" class_value_progress_bar="mx-6"
-                        input_name="adobeafteraffects">
+                    <x-union.union-skill-progress-svg wire:model.live.debounce.500ms="inputValue"
+                        class_name="progres_slider_skill" class_value_progress_bar="mx-6" input_name="adobeafteraffects">
                         <x-svg.adobeafteraffects width='36' height='36'
                             data_tooltip_target="tooltip-svg-adobeafteraffects-skill-progress" />
                     </x-union.union-skill-progress-svg>
@@ -158,4 +159,5 @@
 
         </div>
     </div>
+
 </div>

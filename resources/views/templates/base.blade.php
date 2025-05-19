@@ -34,15 +34,17 @@
 
     </div>
 
+    @stack('livewire-js')
+
     {{-- кнопка back_to_top/back_to_down --}}
     <x-buttons.back-to-button />
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 
     @stack('scripts')
-    @stack('livewire-js')
 
     @vite('resources/js/alerts/alert.js')
     @vite('resources/js/Tiptap/codeBlockCopy.js')
+
 </body>
 </html>

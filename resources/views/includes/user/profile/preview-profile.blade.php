@@ -12,6 +12,7 @@
 
     <x-user.navigation.sidebar-menu />
 
+
     <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full lg:w-xl">
         <div class="w-full flex-1">
 
@@ -607,6 +608,7 @@
                                 'profileId' => $profile->id,
                                 'checkSkills' => $checkSkills,
                             ])
+
                         </div>
                         <h2 id="accordion-arrow-icon-heading-3">
                             <button type="button"
@@ -617,7 +619,11 @@
                                 <x-svg.skill-progress width="24" height="24" class=" -me-0.5" />
                             </button>
                         </h2>
-                        <div id="accordion-arrow-icon-body-3" class="hidden"
+                        @livewire('progres-skill-bar', [
+                                'profileId' => $profile->id,
+                                'checkSkills' => $checkSkills,
+                        ])
+                        {{-- <div id="accordion-arrow-icon-body-3" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-3">
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 
@@ -832,7 +838,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </x-form>
