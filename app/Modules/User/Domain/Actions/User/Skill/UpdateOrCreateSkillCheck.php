@@ -28,16 +28,20 @@ class UpdateOrCreateSkillCheck
     {
         try {
 
-            $model = CheckSkill::find($vo->profile_id);
+            $model = CheckSkill::where('profile_id', $vo->profile_id)->where('name', $vo->name)->first();
 
             if (!is_null($model)) {
 
-                $model->update($vo->toArrayNotNull());
+                //обновляем атрибуты модели через fill
+                $model->fill($vo->toArrayNotNull());
+
+                //проверяем данные на 'грязь' - если данные отличаются от старого состояние модели, то обновляем сущность
+                if ($model->isDirty()) { $model->save(); $model->refresh(); }
 
             } else {
 
                 // Если запись не найдена, создаем её
-                CheckSkill::create($vo->toArrayNotNull());
+                $model = CheckSkill::create($vo->toArrayNotNull());
 
             }
 

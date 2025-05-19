@@ -58,10 +58,12 @@ if (!function_exists('logError')) {
     function logError(string $message, $exception = null, array $context = []): void
     {
 
+        dd($message);
+
         Log::error('Произошла ошибка:', array_merge($context, [
             'message' => $message,
-            'file' => $exception?->getFile(),
-            'line' => $exception?->getLine(),
+            'file' => $exception?->getFile() ?? null,
+            'line' => $exception?->getLine() ?? null,
             // Если нужен один уровень стека, добавьте только конкретный вызов
             'trace' => collect($exception?->getTrace())->take(1) ?? null
         ]));

@@ -1,4 +1,4 @@
-@props(['name_label' => 'name_label', 'for_label' => 'bordered-checkbox'])
+@props(['name_label' => 'name_label', 'for_label' => 'bordered-checkbox', 'value' => ""])
 <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
 
     {{ $slot }}

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Modules\User\Domain\Actions\User\Avatar\GetAvatarAction;
 
-class Profile extends Model 
+class Profile extends Model
 {
     use HasFactory;
 
@@ -64,6 +64,11 @@ class Profile extends Model
     public function skills() : HasMany
     {
         return $this->hasMany(Skill::class, 'profile_id', 'id');
+    }
+
+    public function checkSkills() : HasMany
+    {
+        return $this->hasMany(CheckSkill::class, 'profile_id', 'id');
     }
 
     public function contacts() : HasMany

@@ -596,7 +596,11 @@
                         </h2>
                         <div id="accordion-arrow-icon-body-2" class="hidden"
                             aria-labelledby="accordion-arrow-icon-heading-2">
-                            @livewire('profile-skill-check')
+
+                            @livewire('profile-skill-check', [
+                                'profileId' => Auth::user()->profile->id,
+                                'checkSkills' => Auth::user()->profile->checkSkills,
+                            ])
                         </div>
                         <h2 id="accordion-arrow-icon-heading-3">
                             <button type="button"

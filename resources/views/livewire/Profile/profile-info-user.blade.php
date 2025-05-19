@@ -36,15 +36,21 @@
                     <h3 class="text-white font-bold">Мои проекты</h3>
                 </header>
                 <div class="text-gray-400 text-wrap overflow-hidden max-h-[100px]">
-                    @foreach ($projectArray as $value)
-                        <div class="inline-flex flex-row items-center">
-                            <a href="{{ $value->value }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Проект-{{ $loop->index+1 }}</a>
-                            @if (!$loop->last)
 
-                            @endif
-                            <div class="mx-2 h-5 border-l border-gray-500 opacity-50"></div>
-                        </div>
-                    @endforeach
+                    @if ($projectArray)
+                        @foreach ($projectArray as $value)
+                            <div class="inline-flex flex-row items-center">
+                                <a href="{{ $value->value }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Проект-{{ $loop->index+1 }}</a>
+                                @if (!$loop->last)
+
+                                @endif
+                                <div class="mx-2 h-5 border-l border-gray-500 opacity-50"></div>
+                            </div>
+                        @endforeach
+                    @else
+                        Проекты не указаны.
+                    @endif
+
                 </div>
             </div>
 
