@@ -13,14 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let component = Livewire.find(generatedId);
 
 
-
     sliders.forEach(function (slider) {
 
         let input = slider.querySelector("input");
 
+        let arrLivewire = component.get('inputValue');
+        let percent = 0;
+
+
+        arrLivewire.forEach(element => {
+            if(input.name === element.name){
+                percent = element.percent;
+            }
+        });
+
+
         // Инициализируем noUiSlider для текущего элемента
         noUiSlider.create(slider, {
-            start: 0,
+            start: percent,
             step: 25,
             behaviour: 'lower',
             tooltips: [
@@ -62,20 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
+
         // Пример: обработчик события update для вывода текущего значения каждого слайдера
-        slider.noUiSlider.on('update', function (values, handle) {
+        slider.noUiSlider.on('change', function (values, handle) {
 
             if (input) {
                 input.value = values[handle];
 
-                console.log(values, handle, input);
+                if(component){
+                    component.call('updateProgress', input.name, values[handle]);
+                }
 
-                component.call('updateProgress', "прикол");
+
+
             }
 
         });
 
     });
+
+
 
 });
 

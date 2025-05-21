@@ -2,29 +2,78 @@
 
 namespace App\Modules\User\Presentation\web\Livewire;
 
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+
+use Illuminate\Support\Collection;
+use App\Modules\User\Domain\Models\Skill;
+use App\Modules\User\Domain\Models\Profile;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class ProgresSkillBar extends Component
 {
 
-    public $inputValue;
+    public Collection $inputValue;
+    public int $profileId;
 
 
-    protected $listeners = ['updateValueProgressBar'];
-
-
-    public function updateProgress($property)
+    /**
+     * @param int $profileId
+     * @param EloquentCollection $inputValue
+     *
+     * @return [type]
+     */
+    public function mount(int $profileId, EloquentCollection $inputValue)
     {
-        dd($property);
+
+        $arr = collect([]);
+
+        $this->profileId = $profileId;
+        $this->inputValue = collect([]);
+
+        foreach ($inputValue as $item) {
+            $this->mappingArrayForDB($item->name, $item->percent, $profileId);
+        }
+
+
     }
 
-    // public function updated($property)
-    // {
-    //     dd(123);
-    // }
+
+    public function updateProgress(string $name, string $procent)
+    {
+        //устанавливаем новое значение, формируем массив
+        $this->mappingArrayForDB($name, $procent, $this->profileId);
+
+        Skill::upsert(
+            $this->inputValue->toArray(),                  // Массив данных для вставки/обновления
+            ['name'],    // Поле или набор полей для определения уникальности
+            ['percent', 'profile_id'] // Поля, которые необходимо обновлять
+        );
+    }
+
+    /**
+     * Формироуем массив для массовой вставки в бд
+     * @return array
+     */
+    public function mappingArrayForDB(string $name, string $procent, int $profileId) : Collection
+    {
+
+        $key = $this->inputValue->search(function ($item) use ($name) {
+            return $item['name'] === $name;
+        });
+
+        if ($key !== false) {
+            $this->inputValue->put($key, [
+                'name' => $name,
+                'percent' => (int) $procent,
+                'profile_id' => $profileId,
+            ]);
+        } else {
+            $this->inputValue->push(["name" => $name, "percent" => (int) $procent, "profile_id" => $profileId]);
+        }
 
 
+        return $this->inputValue;
+    }
 
     public function render()
     {

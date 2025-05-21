@@ -1,5 +1,5 @@
-<div id="progres-skill-bar-component-livewire">
-    
+<div wire:ignore id="progres-skill-bar-component-livewire">
+
     <div id="accordion-arrow-icon-body-3" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
         <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 
