@@ -8,7 +8,7 @@
 
     <div class="flex items-start gap-2.5 mb-5">
         <a class="">
-            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->url_avatar) }}" alt="{{ $comment->user->login }}">
+            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->profile->url_avatar) }}" alt="{{ $comment->user->login }}">
         </a>
         <div class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
 
@@ -65,7 +65,7 @@
 
     <div class="flex flex-row-reverse gap-2.5">
         <a class="">
-            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->url_avatar) }}" alt="{{ $comment->user->login }}">
+            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->profile->url_avatar) }}" alt="{{ $comment->user->login }}">
         </a>
         <div class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-se-xl rounded-tr-none rounded-br-xl dark:bg-gray-700">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">

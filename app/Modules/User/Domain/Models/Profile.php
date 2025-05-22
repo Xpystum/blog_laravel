@@ -2,7 +2,6 @@
 
 namespace App\Modules\User\Domain\Models;
 
-use Livewire\Wireable;
 use Illuminate\Database\Eloquent\Model;
 use App\Modules\User\App\Data\Enums\UserTypeEnum;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -58,7 +57,7 @@ class Profile extends Model
 
     public function user() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'profile_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function skills() : HasMany
@@ -80,6 +79,5 @@ class Profile extends Model
     {
         return $this->hasOne(Project::class, 'profile_id', 'id');
     }
-
 
 }

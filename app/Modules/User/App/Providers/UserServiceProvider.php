@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use Illuminate\Support\ServiceProvider;
 use App\Modules\User\Presentation\web\Livewire\ProfileAboutComponent;
 use App\Modules\User\Presentation\web\Livewire\ProfileInfoUserComponent;
+use App\Modules\User\Presentation\web\Livewire\ProfileInfoUserPostsComponent;
 use App\Modules\User\Presentation\web\Livewire\ProfileSkillCheck;
 use App\Modules\User\Presentation\web\Livewire\ProgresSkillBar;
 
@@ -15,6 +16,9 @@ class UserServiceProvider extends ServiceProvider
     {
 
         Livewire::component('profile-info-user-component', ProfileInfoUserComponent::class);
+        Livewire::component('profile-info-user-posts-component', ProfileInfoUserPostsComponent::class);
+
+
         Livewire::component('profile-about-component', ProfileAboutComponent::class);
         Livewire::component('profile-skill-check', ProfileSkillCheck::class);
         Livewire::component('progres-skill-bar', ProgresSkillBar::class);

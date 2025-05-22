@@ -37,7 +37,7 @@
             class="mb-2 block text-white dark:text-white text-sm">{{ $post->created_at->translatedFormat('d F, H:i') }}</span>
         <div class="flex flex-row justify-between">
 
-            <x-user.card.card-user src="{{ asset(Auth::user()->url_avatar) }}" span_name="{{ Auth::user()->login }}" />
+            <x-user.card.card-user src="{{ asset(Auth::user()->profile->url_avatar) }}" span_name="{{ Auth::user()->login }}" />
 
             <div class="flex flex-row">
 

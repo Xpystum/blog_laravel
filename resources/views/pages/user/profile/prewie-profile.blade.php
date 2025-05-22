@@ -4,8 +4,10 @@
 
 @section('auth.content')
 
-    @include('includes.user.profile.preview-profile', $profile)
-
+    @include('includes.user.profile.preview-profile', [
+        'profile' => $profile,
+        'user' => $user,
+    ])
 
     @pushOnce('livewire-js')
         @livewireScripts

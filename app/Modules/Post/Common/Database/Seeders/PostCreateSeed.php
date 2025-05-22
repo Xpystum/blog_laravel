@@ -2,12 +2,12 @@
 
 namespace App\Modules\Post\Common\Database\Seeders;
 
-use App\Modules\Post\Domain\Models\Comment;
-use App\Modules\Post\Domain\Models\Post;
-use App\Modules\User\Domain\Models\Profile;
-use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Modules\Post\Domain\Models\Post;
+use App\Modules\User\Domain\Models\User;
+use App\Modules\Post\Domain\Models\Comment;
+use App\Modules\User\Domain\Models\Profile;
 
 class PostCreateSeed extends Seeder
 {
@@ -34,7 +34,7 @@ class PostCreateSeed extends Seeder
             for ($о=0; $о < 6; $о++) {
 
                 $comments = Comment::factory()
-                    ->for(User::factory()->create(), 'user')
+                    ->for(User::factory()->has(Profile::factory())->create(), 'user')
                     ->for($post, 'post')
                     ->create();
 

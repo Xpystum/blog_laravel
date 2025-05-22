@@ -2,8 +2,10 @@
 
 namespace App\Modules\User\Presentation\web\Livewire;
 
+use App\Modules\User\Domain\Models\Profile;
+use App\Modules\User\Domain\Models\Skill;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as SupportCollection;
 use Livewire\Component;
 
 class ProfileInfoUserComponent extends Component
@@ -14,18 +16,45 @@ class ProfileInfoUserComponent extends Component
     public $about;
     public array $selectedItems = [];
 
+    public Profile $profile;
+
+    /**
+     * skill bar
+     * @var array
+     */
+    public array $skills;
+
+    /**
+     * Json проектов пользователя
+     * @var string
+    */
+    public ?string $projectArray;
+
+    // /**
+    //  * Профессиональные навыки
+    //  * @var SupportCollection
+    //  */
+    // public SupportCollection $inputValue;
+
+
 
     protected $listeners = [
-        'messageChangedProfile' => 'refreshAbout',
+        'messageChangedProfile' => 'aboutUpdate',
         'skillcheckUpdate' => 'skillcheckUpdate',
+        'skillBar' => 'skillBarUpdate',
     ];
+
+    public function skillBarUpdate($inputValue)
+    {
+        $this->skills = $inputValue;
+    }
 
     public function skillcheckUpdate(array $selectedItems)
     {
         $this->selectedItems = $selectedItems;
     }
 
-    public function refreshAbout($newValue)
+    public function aboutUpdate($newValue)
     {
         // Можно обновить данные напрямую, либо повторно получить их из БД
         $this->about = $newValue;
@@ -40,13 +69,14 @@ class ProfileInfoUserComponent extends Component
         $this->statusCheck = self::DEFAULT_TABS;
     }
 
-    public function mount(
-
-    ) {
-
+    public function mount(Profile $profile)
+    {
         //устанавливаем дейолтный выбор для таба
         $this->statusCheck = 'personal_info_user';
-        $this->about = Auth::user()->profile->about ?? "Описание не заполнено.";
+        $this->about = $profile->about ?? "Описание не заполнено.";
+        $this->profile = $profile;
+        $this->skills = $profile->skills->toArray();
+        $this->projectArray = $profile->project?->project_json ?? null;
 
     }
 
@@ -54,6 +84,10 @@ class ProfileInfoUserComponent extends Component
 
     public function render()
     {
-        return view('livewire.profile.profile-info-user');
+        return view('livewire.profile.profile-info-user', [
+            'profile' => $this->profile,
+            'skills' => $this->skills,
+            // 'projectArray' => $this->projectArray,
+        ]);
     }
 }

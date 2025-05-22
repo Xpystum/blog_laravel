@@ -15,7 +15,7 @@
         <div class="overflow-visible flex flex-col">
 
             <x-user.card.card-user class="flex justify-start"
-                src="{{ asset($post->user->url_avatar) }}"
+                src="{{ asset($post->user->profile->url_avatar) }}"
                 span_name="{{ $post->user->login }}"
                 alt="Аватар Пользователя {{ $post->user->login }}"
             >

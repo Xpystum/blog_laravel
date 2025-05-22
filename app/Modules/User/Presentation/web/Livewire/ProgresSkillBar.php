@@ -41,17 +41,21 @@ class ProgresSkillBar extends Component
     public function updateProgress(string $name, string $procent)
     {
         //устанавливаем новое значение, формируем массив
-        $this->mappingArrayForDB($name, $procent, $this->profileId);
+        $collect = $this->mappingArrayForDB($name, $procent, $this->profileId);
+
+        $this->dispatch('skillBar', $collect);
 
         Skill::upsert(
             $this->inputValue->toArray(),                  // Массив данных для вставки/обновления
             ['name'],    // Поле или набор полей для определения уникальности
             ['percent', 'profile_id'] // Поля, которые необходимо обновлять
         );
+
+
     }
 
     /**
-     * Формироуем массив для массовой вставки в бд
+     * Формируем массив для массовой вставки в бд
      * @return array
      */
     public function mappingArrayForDB(string $name, string $procent, int $profileId) : Collection

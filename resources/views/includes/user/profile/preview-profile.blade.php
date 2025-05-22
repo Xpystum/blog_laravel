@@ -1,14 +1,13 @@
 @php
 
-    $user = Auth::user();
-    $profile = $user->profile;
+    // $user = Auth::user();
     $contacts = $profile->contacts;
     $checkSkills = $profile->checkSkills;
 
 @endphp
 <div class="w-full flex flex-row">
 
-    <x-errors></x-errors>
+    {{-- <x-errors></x-errors> --}}
 
     <x-user.navigation.sidebar-menu />
 
@@ -53,8 +52,6 @@
 
                 </div>
 
-
-                {{-- <div class="border-l border-gray-500 opacity-50 h-full mx-3 -my-4"></div> --}}
 
                 <div class="h-48 border-l border-gray-500 opacity-50"></div>
 
@@ -147,16 +144,18 @@
 
                     @livewire("profile-info-user-component", [
                         'checkSkills' => $checkSkills,
+                        'profile' => $profile,
                     ])
 
                 </div>
 
                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
                     aria-labelledby="dashboard-tab">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                            class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated
-                            content</strong>. Clicking another tab will toggle the visibility of this one for the
-                        next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+
+                    @livewire("profile-info-user-posts-component", [
+                        // 'profile' => $profile,
+                    ])
+
                 </div>
 
             </div>
@@ -619,6 +618,7 @@
                                 <x-svg.skill-progress width="24" height="24" class=" -me-0.5" />
                             </button>
                         </h2>
+
                         @livewire('progres-skill-bar', [
                                 'profileId' => $profile->id,
                                 'inputValue' => $profile->skills,

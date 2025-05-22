@@ -7,7 +7,6 @@ use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Services\ProfileService;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
 use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
-use App\Modules\User\Domain\Request\UpdatePersonalInfoUpdate;
 
 class ProfileController
 {
@@ -15,9 +14,19 @@ class ProfileController
     {
         $user = Auth::user();
 
-        $profile = Auth::user()->profile;
+        /** @var Profile */
+        $profile = Auth::user()->profile->load(
+            'skills',
+            'checkSkills',
+            'contacts',
+            'project',
+            'user'
+        );
 
-        return view('pages/user/profile/prewie-profile', ['profile' => $profile]);
+
+
+
+        return view('pages/user/profile/prewie-profile', ['profile' => $profile, 'user' => $profile->user]);
     }
 
     //обновляем значение которые находятся на вверху страницы у user
@@ -33,23 +42,15 @@ class ProfileController
         /** @var Profile */
         $profile = $profileService->updateProfileGeneral($updateProfileDTO);
 
+        $profile = $profile->load(
+            'skills',
+            'checkSkills',
+            'contacts',
+            'project',
+        );
+
         return redirect()->back()->with(compact('profile'));
 
     }
 
-    //обновляем персональную информацию user - skill, about и т.д
-    // public function personalInfoUpdate(
-    //     UpdatePersonalInfoUpdate $request,
-    //     ProfileService $profileService,
-    // ) {
-
-    //     /** @var UpdateProfileDTO */
-    //     $updateProfileDTO = $request->createUpdateProfileDTO()->setUser(Auth::user());
-
-    //     /** @var Profile */
-    //     $profile = $profileService->updateProfile($updateProfileDTO);
-
-    //     return redirect()->back()->with(compact('profile'));
-
-    // }
 }

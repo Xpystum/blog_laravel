@@ -1,6 +1,10 @@
 @php
 
-    $projectArray = json_decode(Auth::user()->profile?->project?->project_json);
+    $projectArray = json_decode($projectArray);
+
+    $countSkills = count($skills);
+
+    $half = ceil($countSkills / 2);
 
 @endphp
 
@@ -12,14 +16,14 @@
             <header>
                 <h3 class="text-white font-bold h3">Полное Имя</h3>
             </header>
-            <p class="text-gray-400">{{ Auth::user()->profile->full_name }}</p>
+            <p class="text-gray-400">{{ $profile->full_name }}</p>
 
             <section class="about mt-2">
                 <header>
                     <h3 class="text-white font-bold">Обо мне</h3>
                 </header>
                 <p class="text-gray-400 max-h-[170px] overflow-hidden whitespace-normal break-words">
-                      {{ $about }}
+                    {{ $about }}
                 </p>
             </section>
         </article>
@@ -90,29 +94,35 @@
         </header>
         <div class="flex flex-row">
 
-            <div class="flex flex-col w-1/2">
+            @if ($skills)
 
-                <div class="flex flex-row mt-2 items-center">
-                    <x-union.union-skill-progress-svg-flowbite value_skill="75" >
-                        <x-svg.adobeillustrator :width='56' :height='56' />
-                    </x-union.union-skill-progress-svg-flowbite>
+                <div class="flex flex-col w-1/2 mt-6">
+                    @foreach (array_slice($skills, 0, $half) as $item)
+                        <div class="flex flex-row mt-2 items-center mb-4">
+                            <x-union.union-skill-progress-svg-flowbite :value_skill="$item['percent']" >
+                                <x-dynamic-component :component="'svg.' . $item['name']" :width='56' :height='56'/>
+                            </x-union.union-skill-progress-svg-flowbite>
+                        </div>
+                    @endforeach
                 </div>
 
 
-            </div>
-
-            <div class="flex flex-col w-1/2">
-
-                <div class="flex flex-row mt-2 items-center mb-4">
-                    <x-union.union-skill-progress-svg-flowbite value_skill="100" >
-                        <x-svg.adobeillustrator :width='56' :height='56' />
-                    </x-union.union-skill-progress-svg-flowbite>
+                <div class="flex flex-col w-1/2 mt-6">
+                    @foreach (array_slice($skills, $half) as $item)
+                        <div class="flex flex-row mt-2 items-center mb-4">
+                            <x-union.union-skill-progress-svg-flowbite :value_skill="$item['percent']" >
+                                <x-dynamic-component :component="'svg.' . $item['name']" :width='56' :height='56'/>
+                            </x-union.union-skill-progress-svg-flowbite>
+                        </div>
+                    @endforeach
                 </div>
 
-
-            </div>
+            @else
+                <p class="text-gray-400 max-h-[170px] overflow-hidden whitespace-normal break-words">
+                    Профессиональных навыки не указаны.
+                </p>
+            @endif
         </div>
-
 
     </article>
 </section>
