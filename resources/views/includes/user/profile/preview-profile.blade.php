@@ -63,7 +63,7 @@
                         <div class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md">
 
                             <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                                <span class="text-lg font-bold text-white">100</span>
+                                <span class="text-lg font-bold text-white">{{ $totalViews }}</span>
                                 <span class="text-lg text-gray-400">Просмотр статей</span>
                                 <div class="absolute top-1 right-1">
                                     <x-icon-observ class="svg-icon-observ icon-blade-disable-hover " />
@@ -76,12 +76,14 @@
                             class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
 
                             <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                                <span class="text-lg font-bold text-white">500</span>
-                                <span class="text-lg text-gray-400">Лайков</span>
+                                <span class="text-lg font-bold text-white">{{ $totalLikes }}</span>
+                                <span class="text-lg text-gray-400">Лайки</span>
 
-                                <div class="absolute top-1 right-1">
-                                    <livewire:post-like-component :post="null" :collection="null"
-                                        :disableHeartButton="true" />
+                                  <div class="absolute top-1 right-1">
+
+                                   <x-icon-heart  class="svg-icon-heart icon-blade-disable-hover" />
+
+                                 
                                 </div>
                             </div>
 
@@ -91,7 +93,7 @@
                             class="flex border border-gray-500 max-w-[160px] min-w-[180px] bg-gray-50 dark:bg-gray-800 p-1 rounded-md ml-3">
 
                             <div class="flex flex-col flex-nowrap justify-center p-1.5 relative w-full">
-                                <span class="text-lg font-bold text-white">50</span>
+                                <span class="text-lg font-bold text-white">{{ $totalPosts }}</span>
                                 <span class="text-lg text-gray-400">Статей</span>
 
                                 <div class="absolute top-1 right-1">
@@ -150,7 +152,7 @@
                     aria-labelledby="dashboard-tab">
 
                     @livewire("profile-info-user-posts-component", [
-                        'posts' => $profile,
+                        'posts' => $posts,
                     ])
 
                 </div>

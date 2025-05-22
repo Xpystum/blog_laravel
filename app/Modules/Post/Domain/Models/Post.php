@@ -74,12 +74,14 @@ class Post extends Model
 
 
     /**
-     * Вернуть общее количество лайков
+     * Вернуть общее количество лайков поста
      * @return int
     */
     public function like_count() : int
     {
-        return LikeForPost::where('user_id', $this->user_id)->where('post_id', $this->post_id)->count();
+        $count = LikeForPost::where('user_id', $this->user_id)->where('post_id', $this->id)->count();
+
+        return $count;
     }
 
     /**
@@ -88,7 +90,7 @@ class Post extends Model
     */
     public function view_count() : int
     {
-        return PostView::where('post_id', $this->post_id)->count();
+        return PostView::where('post_id', $this->id)->count();
     }
 
 }

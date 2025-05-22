@@ -6,7 +6,11 @@
 
     @include('includes.user.profile.preview-profile', [
         'profile' => $profile,
-        'user' => $user,
+        'user' => $profile->user,
+        'posts' => $posts,
+        'totalLikes' => $totalLikes,
+        'totalViews' => $totalViews,
+        'totalPosts' => $totalPosts,
     ])
 
     @pushOnce('livewire-js')

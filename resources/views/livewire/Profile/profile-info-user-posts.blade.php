@@ -1,5 +1,6 @@
 <div>
     @forelse ($posts as $post)
+
         <x-post.card :post="$post" />
 
         @if (!$loop->last)
