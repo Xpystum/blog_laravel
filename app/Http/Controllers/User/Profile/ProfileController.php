@@ -23,10 +23,13 @@ class ProfileController
             'user'
         );
 
+        $posts = $user->posts()->limit(10)->get();
+
+        // $posts = $user->posts()->limit(10)->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
 
 
 
-        return view('pages/user/profile/prewie-profile', ['profile' => $profile, 'user' => $profile->user]);
+        return view('pages/user/profile/prewie-profile', ['profile' => $profile, 'user' => $profile->user, 'posts' => $posts]);
     }
 
     //обновляем значение которые находятся на вверху страницы у user

@@ -1,6 +1,12 @@
 <div>
-     <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                            class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated
-                            content</strong>. Clicking another tab will toggle the visibility of this one for the
-                        next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+    @forelse ($posts as $post)
+        <x-post.card :post="$post" />
+
+        @if (!$loop->last)
+            <div class="w-full border-t border-gray-300 my-4"></div>
+        @endif
+
+    @empty
+        <p>Нет данных для отображения</p>
+    @endforelse
 </div>

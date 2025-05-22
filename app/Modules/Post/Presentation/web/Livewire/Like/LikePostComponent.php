@@ -32,8 +32,22 @@ class LikePostComponent extends Component
     */
     public string $buttonClass = '';
 
+    /**
+     * Количество лайков на пост
+     * @var int
+     */
+    public int $likesCount = 0;
+
+    protected $listeners = ['syncEdit' => 'updateSyncEdit'];
+
+    public function updateSyncEdit(int $likesCount)
+    {
+        $this->likesCount = $likesCount;
+    }
+
 
     public function mount(
+        Post $post,
         PostRepository $postRepository,
         Request $request,
         ?Collection $collection
@@ -56,6 +70,9 @@ class LikePostComponent extends Component
 
         $this->likeModel = $model ?? null;
 
+        $this->post = $post;
+        $this->likesCount = $post->likes->where('status', true)->count();
+
     }
 
 
@@ -73,6 +90,14 @@ class LikePostComponent extends Component
         );
 
         $this->likeModel = $service->setLike($vo); // Сохраните модель в свойстве
+
+        if($this->likeModel->status) {
+            $this->likesCount++;
+        } else {
+            $this->likesCount--;
+        }
+
+        $this->dispatch('syncEdit', $this->likesCount);
 
     }
 

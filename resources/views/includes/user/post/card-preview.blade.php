@@ -33,7 +33,12 @@
             <div class="flex flex-row justify-end">
                 <div class="flex flex-row">
 
-                    <livewire:post-like-component :$post :collection="$post->likes" />
+                    @livewire('post-like-component', [
+                        'post' => $post,
+                        'collection' => $post->likes,
+                        'buttonClass' => "pl-1 ml-2",
+                        'key' => $post->id,
+                    ])
 
                     <button type="button" class="p-1 ml-2 button_card-preview-comment">
                         <x-icon-message class="svg-icon-message"/>
@@ -59,9 +64,15 @@
                     </div>
 
                     <div class="flex flex-row justify-center items-center">
-                        <livewire:post-like-component :$post :collection="$post->likes" :disableHeartButton="true" ButtonClass="p-1 ml-2"/>
-                        {{-- <x-icon-heart class="svg-icon-heart icon-blade-disable-hover"/> --}}
-                        <span class="flex items-center ml-1 text-white">{{ $post->likes()->where('status', true)->count() }}</span>
+
+                        @livewire('post-like-component', [
+                            'post' => $post,
+                            'disableHeartButton' => true,
+                            'collection' => $post->likes,
+                            'buttonClass' => "pl-1 ml-2",
+                            'key' => $post->id,
+                        ])
+
                     </div>
 
                     <div class="flex flex-row ml-3 justify-center items-center">

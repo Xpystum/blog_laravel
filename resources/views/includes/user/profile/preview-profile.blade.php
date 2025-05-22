@@ -1,13 +1,10 @@
 @php
 
-    // $user = Auth::user();
     $contacts = $profile->contacts;
     $checkSkills = $profile->checkSkills;
 
 @endphp
 <div class="w-full flex flex-row">
-
-    {{-- <x-errors></x-errors> --}}
 
     <x-user.navigation.sidebar-menu />
 
@@ -153,7 +150,7 @@
                     aria-labelledby="dashboard-tab">
 
                     @livewire("profile-info-user-posts-component", [
-                        // 'profile' => $profile,
+                        'posts' => $profile,
                     ])
 
                 </div>

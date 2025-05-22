@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model implements Wireable
+class Post extends Model
 {
     use HasFactory;
 
@@ -72,25 +72,23 @@ class Post extends Model implements Wireable
         return $this->hasMany(PostView::class, 'post_id', 'id');
     }
 
-    public function toLivewire()
+
+    /**
+     * Вернуть общее количество лайков
+     * @return int
+    */
+    public function like_count() : int
     {
-        return [
-            "id" => $this->id,
-            "title" => $this->title,
-            "content" => $this->content,
-            "content_cover" => $this->content_cover,
-            "user_id" => $this->user_id,
-            'name' => $this->name,
-            'age' => $this->age,
-        ];
+        return LikeForPost::where('user_id', $this->user_id)->where('post_id', $this->post_id)->count();
     }
 
-    public static function fromLivewire($value)
+    /**
+     * Вернуть общее количество просмотров
+     * @return int
+    */
+    public function view_count() : int
     {
-
-        dd($value);
-
-        return static::findOrFail($value['id']);
+        return PostView::where('post_id', $this->post_id)->count();
     }
 
 }
