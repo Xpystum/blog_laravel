@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Modules\Post\Domain\Models\Post;
+use App\Modules\User\Domain\Models\User;
 use Illuminate\Console\Command;
 
 
@@ -25,17 +27,9 @@ class go extends Command
 
     public function handle()
     {
-        $root = new TreeNode(
-                1,
-                new TreeNode(
-                    2,
-                    new TreeNode(4),
-                    new TreeNode(5)
-                ),
-                new TreeNode(3)
-            );
+        $user = User::find(1);
 
-        $this->diameterOfTree($root);
+        Post::factory()->count(50)->create(['user_id' => $user->id]);
     }
 
     private function getHeight($node, &$maxDiameter) {
