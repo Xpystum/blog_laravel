@@ -1,4 +1,4 @@
-@props(['post' => null])
+@props(['post', 'profile'])
 
 @php
     //получаем значение url
@@ -12,6 +12,8 @@
         $path_img = null;
     }
 
+    $user = $profile->user;
+
 @endphp
 
 
@@ -19,7 +21,7 @@
 
     <div class="flex flex-col justify-between h-full w-1/2 pr-3">
 
-        <a href="{{ route('users.posts.view.preview', $post->id) }}"
+        <a target="_blank" rel="noopener noreferrer" href="{{ route('users.posts.view.preview', $post->id) }}"
             class="no-underline hover:underline hover:text-white">
             <h2
                 class="text-xl text-white dark:text-white pb-3 overflow-hidden whitespace-nowrap text-ellipsis max-w-full">
@@ -28,7 +30,7 @@
         </a>
 
 
-        <a href="{{ route('users.posts.view.preview', $post->id) }}"
+        <a target="_blank" rel="noopener noreferrer" href="{{ route('users.posts.view.preview', $post->id) }}"
             class="leading-snug grid place-items-center h-full text-lg text-gray-400 dark:text-gray-500 mb-5 overflow-hidden text-ellipsis">
             {!! $post->content_cover !!}
         </a>
@@ -37,7 +39,11 @@
             class="mb-2 block text-white dark:text-white text-sm">{{ $post->created_at->translatedFormat('d F, H:i') }}</span>
         <div class="flex flex-row justify-between">
 
-            <x-user.card.card-user src="{{ asset(Auth::user()->profile->url_avatar) }}" span_name="{{ Auth::user()->login }}" />
+            <x-user.card.card-user
+                src="{{ asset($profile->url_avatar) }}"
+                span_name="{{ $user->login }}"
+                :user="$post->user"
+            />
 
             <div class="flex flex-row">
 

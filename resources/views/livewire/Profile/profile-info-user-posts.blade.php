@@ -1,7 +1,7 @@
 <div>
     @forelse ($posts as $post)
 
-        <x-post.card :post="$post" />
+        <x-post.card :post="$post" :profile="$profile" />
 
         @if (!$loop->last)
             <div class="w-full border-t border-gray-300 my-4"></div>

@@ -6,16 +6,18 @@ use Illuminate\Support\Facades\Auth;
 use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Services\ProfileService;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
+use App\Modules\User\Domain\Models\User;
 use App\Modules\User\Domain\Request\UpdateMainInfoProfileRequest;
 
 class ProfileController
 {
-    public function index()
-    {
-        $user = Auth::user();
+    public function index(
+        User $user
+    ) {
+
 
         /** @var Profile */
-        $profile = Auth::user()->profile->load(
+        $profile = $user->profile->load(
             'skills',
             'checkSkills',
             'contacts',

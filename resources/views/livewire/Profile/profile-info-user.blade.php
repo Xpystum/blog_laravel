@@ -34,7 +34,7 @@
                 <header>
                     <h3 class="text-white font-bold">Email Address</h3>
                 </header>
-                <p class="text-gray-400">{{ Auth::user()->email }}</p>
+                <p class="text-gray-400">{{ $user->email }}</p>
             </div>
 
             <div class="flex flex-col mt-2">

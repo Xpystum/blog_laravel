@@ -18,6 +18,7 @@
                 src="{{ asset($post->user->profile->url_avatar) }}"
                 span_name="{{ $post->user->login }}"
                 alt="Аватар Пользователя {{ $post->user->login }}"
+                :user="$post->user"
             >
 
                 <span class="ml-2 flex items-center block text-gray-500 dark:text-gray-400">{{ $post->created_at->translatedFormat('d F, H:i') }}</span>

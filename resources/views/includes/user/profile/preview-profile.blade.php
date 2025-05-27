@@ -6,7 +6,10 @@
 @endphp
 <div class="w-full flex flex-row">
 
-    <x-user.navigation.sidebar-menu />
+    @auth
+        <x-user.navigation.sidebar-menu />
+    @endauth
+
 
 
     <div class="flex flex-col ml-2 p-5 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full lg:w-xl">
@@ -36,15 +39,16 @@
                         </div>
                     </div>
 
-                    <button data-modal-target="crud-modal-profile" data-modal-toggle="crud-modal-profile" type="button"
-                        class="mt-5 w-[140px] text-white bg-blue-700
-                        hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-                        font-medium rounded-lg text-sm px-5 py-1.5
-                        dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-                        dark:focus:ring-blue-800">
-                        Редактировать
-                    </button>
-
+                    @auth
+                        <button data-modal-target="crud-modal-profile" data-modal-toggle="crud-modal-profile" type="button"
+                            class="mt-5 w-[140px] text-white bg-blue-700
+                            hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                            font-medium rounded-lg text-sm px-5 py-1.5
+                            dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                            dark:focus:ring-blue-800">
+                            Редактировать
+                        </button>
+                    @endauth
 
 
                 </div>
@@ -83,7 +87,7 @@
 
                                    <x-icon-heart  class="svg-icon-heart icon-blade-disable-hover" />
 
-                                 
+
                                 </div>
                             </div>
 
@@ -116,7 +120,7 @@
 
         <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
 
-        <div class="">
+        <div>
 
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700 w-full">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
@@ -144,6 +148,7 @@
                     @livewire("profile-info-user-component", [
                         'checkSkills' => $checkSkills,
                         'profile' => $profile,
+                        'user' => $user,
                     ])
 
                 </div>
@@ -153,6 +158,7 @@
 
                     @livewire("profile-info-user-posts-component", [
                         'posts' => $posts,
+                        'profile' => $profile,
                     ])
 
                 </div>
@@ -163,15 +169,18 @@
 
         <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
 
-        <button data-modal-target="crud-modal-profile-additionally" data-modal-toggle="crud-modal-profile-additionally"
-            type="button"
-            class="mt-2 w-[140px] text-white bg-blue-700
-            hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-            font-medium rounded-lg text-sm px-5 py-1.5
-            dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-            dark:focus:ring-blue-800">
-            Редактировать
-        </button>
+        @auth
+            <button data-modal-target="crud-modal-profile-additionally" data-modal-toggle="crud-modal-profile-additionally"
+                type="button"
+                class="mt-2 w-[140px] text-white bg-blue-700
+                hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                font-medium rounded-lg text-sm px-5 py-1.5
+                dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                dark:focus:ring-blue-800">
+                Редактировать
+            </button>
+        @endauth
+
         {{-- Блок профиля и редактирование аватарки --}}
     </div>
 

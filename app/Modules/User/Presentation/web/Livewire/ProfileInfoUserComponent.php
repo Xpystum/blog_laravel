@@ -4,6 +4,7 @@ namespace App\Modules\User\Presentation\web\Livewire;
 
 use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Models\Skill;
+use App\Modules\User\Domain\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as SupportCollection;
 use Livewire\Component;
@@ -17,6 +18,7 @@ class ProfileInfoUserComponent extends Component
     public array $selectedItems = [];
 
     public Profile $profile;
+    public User $user;
 
     /**
      * skill bar
@@ -69,12 +71,13 @@ class ProfileInfoUserComponent extends Component
         $this->statusCheck = self::DEFAULT_TABS;
     }
 
-    public function mount(Profile $profile)
+    public function mount(Profile $profile, User $user)
     {
         //устанавливаем дейолтный выбор для таба
         $this->statusCheck = 'personal_info_user';
         $this->about = $profile->about ?? "Описание не заполнено.";
         $this->profile = $profile;
+        $this->user = $user;
         $this->skills = $profile->skills->toArray();
         $this->projectArray = $profile->project?->project_json ?? null;
 

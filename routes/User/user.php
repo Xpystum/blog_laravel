@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/users')->middleware(['auth'])->group(function () {
 
     Route::prefix('/posts')->group(function() {
+
         {
                 /** PAGES START */
                 //страница просмотр статей у user
@@ -32,10 +33,12 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
 
     });
 
+    Route::get('/{user}/profiles', [ProfileController::class, 'index'])->name('users.profiles')->withoutMiddleware(['auth']);
+
     Route::prefix('/profiles')->group(function () {
 
         //страница просмотра профиля
-        Route::get('/', [ProfileController::class, 'index'])->name('users.profiles');
+        // Route::get('/{profile}', [ProfileController::class, 'index'])->name('users.profiles')->withoutMiddleware(['auth']);
         Route::patch('/update-main', [ProfileController::class, 'mainInfoUpdate'])->name('users.profiles.update.main');
 
 
