@@ -10,7 +10,11 @@ use App\Modules\User\Domain\Actions\User\Skill\UpdateOrCreateSkillCheck;
 class ProfileSkillCheck extends Component
 {
     public Collection $checkSkills;
+
+    //прослойка пустого массива - для вызова метода при отправке на сервер данных
     public array $selectedItems = [];
+
+    public $toggleItem = [];
     public int $profileId;
 
     public function mount(int $profileId)
@@ -29,33 +33,34 @@ class ProfileSkillCheck extends Component
         $this->profileId = $profileId;
     }
 
-    public function updatedSelectedItems($value, $key)
+    public function updatedSelectedItems()
     {
 
-        if(!empty($this->selectedItems))
+        // dd($this->toggleItem);
+
+        if(!empty($this->toggleItem))
         {
-            foreach ($this->selectedItems as $key => $value) {
+            foreach ($this->toggleItem as $itemKey => $itemValue) {
                 UpdateOrCreateSkillCheck::make(CheckSkillVO::make(
-                    name: $key,
-                    status: $value,
+                    name: $itemKey,
+                    status: $itemValue,
                     profile_id: $this->profileId,
                 ));
             }
 
-            $this->dispatch('skillcheckUpdate', $this->selectedItems);
+            $this->dispatch('skillcheckUpdate', $this->toggleItem);
         }
 
     }
 
-    public function setValue(?string $key) {
 
-        if(is_null($key)) { return ""; }
+    public function setValue(string $key) {
+
 
         $result = $this->selectedItems[$key] ?? null;
 
         if(is_null($result)) { return ""; }
 
-        return $result;
     }
 
     public function render()

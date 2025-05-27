@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Profile;
 
 use Illuminate\Support\Facades\Auth;
-use App\Modules\Post\Domain\Models\Post;
 use App\Modules\User\Domain\Models\Profile;
 use App\Modules\User\Domain\Services\ProfileService;
 use App\Modules\User\App\Data\DTO\Profile\UpdateProfileDTO;
