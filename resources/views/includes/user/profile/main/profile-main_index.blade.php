@@ -13,7 +13,7 @@
         <div class="px-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
 
             @forelse ($posts as $post)
-                <x-post.card :post="$post" />
+                <x-post.card :post="$post" :profile="$profile" />
             @empty
                 <p>Нет данных для отображения</p>
             @endforelse

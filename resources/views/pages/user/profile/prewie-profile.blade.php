@@ -1,6 +1,6 @@
 @extends('templates.auth')
 
-@section('title.page', 'Страница Создание Поста')
+@section('title.page', 'Профиль пользователя')
 
 @section('auth.content')
 

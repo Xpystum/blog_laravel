@@ -20,7 +20,7 @@
             <a href="{{ route('users.profiles', $user->id) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Профиль</a>
         </li>
         <li>
-            <a href="{{ route('users.posts') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Мои Статьи</a>
+            <a href="{{ route('users.posts', $user->id) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Мои Статьи</a>
         </li>
         <li>
             <a href="{{ route('users.posts.view.create') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Создать статью</a>

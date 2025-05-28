@@ -167,20 +167,6 @@
 
         </div>
 
-        <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
-
-        @auth
-            <button data-modal-target="crud-modal-profile-additionally" data-modal-toggle="crud-modal-profile-additionally"
-                type="button"
-                class="mt-2 w-[140px] text-white bg-blue-700
-                hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-                font-medium rounded-lg text-sm px-5 py-1.5
-                dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-                dark:focus:ring-blue-800">
-                Редактировать
-            </button>
-        @endauth
-
         {{-- Блок профиля и редактирование аватарки --}}
     </div>
 
@@ -554,8 +540,9 @@
         </div>
     </div>
 
+
     <!-- Main modal -->
-    <div id="crud-modal-profile-additionally" tabindex="-1" aria-hidden="true" {{-- hidden --}}
+    <div id="crud-modal-profile-additionally" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->

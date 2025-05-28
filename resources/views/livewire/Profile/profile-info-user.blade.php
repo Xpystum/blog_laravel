@@ -125,4 +125,20 @@
         </div>
 
     </article>
+
+    <div class="-mx-3 border-b border-gray-500 opacity-50 mt-8 mb-2"></div>
+
+    @auth
+        <button data-modal-target="crud-modal-profile-additionally" data-modal-toggle="crud-modal-profile-additionally"
+            type="button"
+            class="mt-2 w-[140px] text-white bg-blue-700
+            hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+            font-medium rounded-lg text-sm px-5 py-1.5
+            dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+            dark:focus:ring-blue-800">
+            Редактировать
+        </button>
+    @endauth
+
+
 </section>

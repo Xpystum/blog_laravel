@@ -11,9 +11,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
     Route::prefix('/posts')->group(function() {
 
         {
-                /** PAGES START */
-                //страница просмотр статей у user
-            Route::get('/', [PostController::class, 'index'])->name('users.posts');
+            /** PAGES START */
             //страница создание статьи
             Route::get('/create', [PostController::class, 'createView'] )->name('users.posts.view.create');
             //страница обновления статьи
@@ -34,6 +32,9 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
     });
 
     Route::get('/{user}/profiles', [ProfileController::class, 'index'])->name('users.profiles')->withoutMiddleware(['auth']);
+
+        //страница просмотра статей у user
+        Route::get('/{user}/posts', [PostController::class, 'index'])->name('users.posts');
 
     Route::prefix('/profiles')->group(function () {
 

@@ -16,6 +16,8 @@ use App\Modules\Post\Domain\Requests\Post\CreatePostRequest;
 use App\Modules\Post\Domain\Requests\Post\UpdatePostRequest;
 use App\Modules\Post\App\Data\ValueObject\Like\LikeForPostVO;
 use App\Modules\Post\App\Data\ValueObject\PostView\PostViewVO;
+use App\Modules\User\Domain\Models\Profile;
+use App\Modules\User\Domain\Models\User;
 
 class PostController extends Controller
 {
@@ -138,12 +140,16 @@ class PostController extends Controller
         return view('pages.user.post.preview', compact('post'));
     }
 
-    public function index()
+    public function index(User $user)
     {
         /** @var Post */
-        $posts = Auth::user()->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
+        $posts = $user->posts()->with('likes', 'cover_img')->withCount('comments', 'postViews')->get();
 
-        return view('includes.user.profile.main.profile-main_index', compact('posts'));
+        /** @var Profile */
+        $profile = $user->profile;
+
+
+        return view('includes.user.profile.main.profile-main_index', compact(['posts', 'profile']));
     }
 
 }
