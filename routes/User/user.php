@@ -22,6 +22,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
             /** PAGES END */
 
             Route::post('/', [PostController::class, 'store'])->name('user.posts.store');
+
             Route::patch('/{post:id}', [PostController::class, 'update'])->name('user.posts.update');
         }
 
@@ -33,6 +34,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
     Route::prefix('/messages')->group(function() {
 
         Route::get('/', [MessageController::class, 'index'])->name('users.posts.like')->withoutMiddleware('auth');
+        Route::get('/messages', [MessageController::class, 'index'])->name('users.posts.like')->withoutMiddleware('auth');
 
     });
 
@@ -40,7 +42,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
     Route::get('/{user}/profiles', [ProfileController::class, 'index'])->name('users.profiles')->withoutMiddleware(['auth']);
 
     //страница просмотра статей у user
-    Route::get('/{user}/posts', [PostController::class, 'index'])->name('users.posts');
+    Route::get('/{user}/posts', [PostController::class, 'index'])->name('users.posts')->withoutMiddleware(['auth']);
 
     Route::prefix('/profiles')->group(function () {
 

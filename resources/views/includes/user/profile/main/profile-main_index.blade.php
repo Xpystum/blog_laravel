@@ -7,7 +7,9 @@
         </svg>
     </button>
 
-    <x-user.navigation.sidebar-menu />
+    @auth
+        <x-user.navigation.sidebar-menu />
+    @endauth
 
     <div class="w-full pl-2">
         <div class="px-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
