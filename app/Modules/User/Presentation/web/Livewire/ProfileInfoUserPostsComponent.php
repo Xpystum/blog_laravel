@@ -2,19 +2,17 @@
 
 namespace App\Modules\User\Presentation\web\Livewire;
 
+use Livewire\Component;
 use App\Modules\Post\Domain\Models\Post;
 use App\Modules\User\Domain\Models\Profile;
-use Livewire\Component;
 
 class ProfileInfoUserPostsComponent extends Component
 {
-
     public $posts;
 
     public Profile $profile;
     public int $postsCount;
-
-
+    
     public bool $hasButtonMorePost;
 
     public function mount(Profile $profile, $posts)

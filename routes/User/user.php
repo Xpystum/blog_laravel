@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\User\Post\Comment\PostCommentController;
-use App\Http\Controllers\User\Post\PostController;
-use App\Http\Controllers\User\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Post\PostController;
+use App\Http\Controllers\User\Message\MessageController;
+use App\Http\Controllers\User\Profile\ProfileController;
+use App\Http\Controllers\User\Post\Comment\PostCommentController;
 
 
 Route::prefix('/users')->middleware(['auth'])->group(function () {
@@ -25,16 +26,21 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
         }
 
         Route::post('/{post:id}/like', [PostController::class, 'likePost'])->name('users.posts.like')->withoutMiddleware('auth');
-
         Route::post('/{post:id}/comments', [PostCommentController::class, 'store'])->name('users.posts.comments.store');
-
 
     });
 
+    Route::prefix('/messages')->group(function() {
+
+        Route::get('/', [MessageController::class, 'index'])->name('users.posts.like')->withoutMiddleware('auth');
+
+    });
+
+    //профиль пользователя
     Route::get('/{user}/profiles', [ProfileController::class, 'index'])->name('users.profiles')->withoutMiddleware(['auth']);
 
-        //страница просмотра статей у user
-        Route::get('/{user}/posts', [PostController::class, 'index'])->name('users.posts');
+    //страница просмотра статей у user
+    Route::get('/{user}/posts', [PostController::class, 'index'])->name('users.posts');
 
     Route::prefix('/profiles')->group(function () {
 
