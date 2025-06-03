@@ -15,13 +15,13 @@ return new class extends Migration
 
             $table->id();
 
-            $table->foreignId('other_profile_id')->comment('пользователь с кем создан чат')->index()
+            $table->foreignId('user2_id')->comment('пользователь с кем создан чат')->index()
                 ->constrained('profiles');
 
-            $table->foreignId('me_profile_id')->index()
+            $table->foreignId('user1_id')->index()
                 ->constrained('profiles');
 
-            $table->unique(['send_user_id', 'accept_user_id']);
+            $table->unique(['user2_id', 'user1_id']);
 
             $table->timestamps();
 

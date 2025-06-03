@@ -15,8 +15,11 @@ return new class extends Migration
 
             $table->id();
 
-            $table->foreignId('chat_personal_id')->comment('пользователь с кем создан чат')->index()
+            $table->foreignId('chat_personal_id')->index()
                 ->constrained('chat_personal');
+
+            $table->foreignId('user_id')->index()
+                ->constrained('users');
 
             $table->text('message')->comment('пользователь с кем создан чат');
 

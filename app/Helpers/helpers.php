@@ -1,10 +1,11 @@
 <?php
 
-use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
-use App\Modules\User\Domain\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
+use App\Modules\User\Domain\Models\User;
+use App\Modules\Auth\Domain\Services\Adapter\AdapterSanctumCookie;
 
 if( ! function_exists('active_link') ){
 
@@ -20,6 +21,17 @@ if( ! function_exists('alert') ){
     function alert(string $text): void
     {
         session(['alert' => $text ]);
+    }
+
+}
+
+if( ! function_exists('translate_ru_format_date') ){
+
+    function translate_ru_format_date(string $date): string
+    {
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $date);
+        $formattedDate = $date->format('d-m-Y H:i:s');
+        return $formattedDate;
     }
 
 }
@@ -57,8 +69,6 @@ if (!function_exists('logError')) {
      */
     function logError(string $message, $exception = null, array $context = []): void
     {
-
-        dd($message);
 
         Log::error('Произошла ошибка:', array_merge($context, [
             'message' => $message,

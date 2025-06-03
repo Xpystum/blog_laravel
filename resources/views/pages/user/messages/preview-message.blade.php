@@ -4,6 +4,6 @@
 
 @section('auth.content')
 
-    @include('includes.user.message.message')
+    @include('includes.user.message.message', $messages)
 
 @endsection

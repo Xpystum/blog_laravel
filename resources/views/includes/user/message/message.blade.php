@@ -1,120 +1,73 @@
-@props(['orientation' => 'left', 'comment' => null, 'dropdownDotsNumber' => null, 'last' => false])
-
 @php
-    $status = 'Доставлено';
+    $user = Auth::user();
 @endphp
+<div class="max-w-2lg bg-[#1f2937] mx-auto mt-10 shadow-lg rounded-lg h-[80vh]">
 
-@if($orientation === 'left')
+    <div class="bg-[#0e131f] h-[80%] min-h-[200px] p-4 overflow-y-auto scrollbar-thin overflow-y-scroll h-64">
 
-    <div class="flex items-start gap-2.5 mb-5">
-        <a class="">
-            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->profile->url_avatar) }}" alt="{{ $comment->user->login }}">
-        </a>
-        <div class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-
-            <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
-                @if(Auth::user()?->id === $comment->user_id)
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
-                @endif
-            </div>
-
-            <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
-                {{ $comment->value }}
-            </p>
-            @if(Auth::user()?->id === $comment->user_id)
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{ $status }} </span>
-            @endif
-        </div>
-        <button id="dropdownMenuIconButton" data-dropdown-toggle={{ "dropdownDots" . $dropdownDotsNumber }} data-dropdown-placement="bottom-start" class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600" type="button">
-        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-            <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-        </svg>
-        </button>
-        <div id={{ "dropdownDots" . $dropdownDotsNumber }} class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-40 dark:bg-gray-700 dark:divide-gray-600">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ответить</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Копировать</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Жалоба</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Удалить</a>
-            </li>
-        </ul>
-        </div>
-
-        @if (!$last)
-            <div class="relative self-center w-5/6">
-                <div class="relative w-full h-1 border-b border-gray-500 opacity-50">
+        @foreach ($messages as $message)
+            @if ($message->user->id == $user->id)
+                <div class="flex items-start mb-4">
+                    <x-message.message-card :message="$message" />
                 </div>
-
-                <div class="absolute right-0 top-1 w-1 h-10 border-r border-gray-500 opacity-50"></div>
-            </div>
-        @endif
+            @else
+                <div class="flex items-end mb-4 justify-end">
+                    <x-message.message-card :message="$message" :orientation="'right'" />
+                    {{-- <div>
+                    <div class="bg-blue-500 rounded-lg px-4 py-2">
+                        <p class="text-white text-sm">Все отлично, спасибо!</p>
+                    </div>
+                    <span class="text-xs text-gray-600 block text-right">12:35</span>
+                </div> --}}
+                </div>
+            @endif
+        @endforeach
 
     </div>
 
-
-@elseif ($orientation === 'right')
-
-    <div class="flex flex-row-reverse gap-2.5">
-        <a class="">
-            <img class="w-12 min-w-12 max-w-12 h-12 rounded-full flex-shrink-0" src="{{ asset($comment->user->profile->url_avatar) }}" alt="{{ $comment->user->login }}">
-        </a>
-        <div class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-se-xl rounded-tr-none rounded-br-xl dark:bg-gray-700">
-            <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
-                @if(Auth::user()?->id === $comment->user_id)
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
-                @endif
+    <form class="h-[20%]">
+        <div class="h-full w-full border border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div class="px-4 py-4 bg-white  dark:bg-gray-800">
+                <label for="comment" class="sr-only">Your comment</label>
+                <textarea id="comment" rows="4"
+                    class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                    placeholder="Write a comment..." required></textarea>
             </div>
-            <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
-                {{ $comment->value }}
-            </p>
-            @if(Auth::user()?->id === $comment->user_id)
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{ $status }} </span>
-            @endif
-        </div>
-        <button id="dropdownMenuIconButton" data-dropdown-toggle={{ "dropdownDots" . $dropdownDotsNumber }} data-dropdown-placement="bottom-start" class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600" type="button">
-        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-            <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-        </svg>
-        </button>
-        <div id={{ "dropdownDots" . $dropdownDotsNumber }} class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-40 dark:bg-gray-700 dark:divide-gray-600">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ответить</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Копировать</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Жалоба</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Удалить</a>
-            </li>
-        </ul>
-        </div>
-
-        @if (!$last)
-            <div class="relative self-center w-5/6">
-                <div class="relative w-full h-1 border-b border-gray-500 opacity-50">
+            <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 border-gray-200">
+                <button type="submit"
+                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                    Post comment
+                </button>
+                <div class="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+                    <button type="button"
+                        class="inline-flex justify-center items-center p-2 text-gray-500 rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 12 20">
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6" />
+                        </svg>
+                        <span class="sr-only">Attach file</span>
+                    </button>
+                    <button type="button"
+                        class="inline-flex justify-center items-center p-2 text-gray-500 rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 16 20">
+                            <path
+                                d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+                        </svg>
+                        <span class="sr-only">Set location</span>
+                    </button>
+                    <button type="button"
+                        class="inline-flex justify-center items-center p-2 text-gray-500 rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 18">
+                            <path
+                                d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                        </svg>
+                        <span class="sr-only">Upload image</span>
+                    </button>
                 </div>
-
-                <div class="absolute left-0 top-1 w-1 h-10 border-l border-gray-500 opacity-50"></div>
             </div>
-        @endif
-
-    </div>
-
-@endif
-
-
+        </div>
+    </form>
+</div>

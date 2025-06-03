@@ -3,24 +3,33 @@
 namespace App\Http\Controllers\User\Message;
 
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
+use App\Modules\User\Domain\Models\ChatPersonal;
 
 class MessageController extends Controller
 {
     /**
      * Список всех чатов с пользователями
-     * @return [type]
      */
     public function chats()
     {
-        return view('pages/user/messages/preview-messages');
+        $chatPersonals = ChatPersonal::where('user1_id', Auth::user()->id)->orWhere('user2_id', Auth::user()->id)->get();
+
+
+        $chatPersonals = $chatPersonals->load('userOne', 'userTwo', 'lastMessage');
+
+
+        return view('pages/user/messages/preview-messages', compact('chatPersonals') );
     }
 
     /**
-     * @return [type]
+     * Получаем все сообщение у чата
      */
-    public function message()
+    public function private(ChatPersonal $chatPersonal)
     {
-        return view('pages/user/messages/preview-messages');
+
+        $messages = $chatPersonal->messagePersonal;
+
+        return view('pages/user/messages/preview-message', compact('messages'));
     }
 }

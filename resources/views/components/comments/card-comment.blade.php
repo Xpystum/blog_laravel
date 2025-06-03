@@ -14,7 +14,7 @@
 
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ translate_ru_format_date($comment->created_at) }}</span>
                 @if(Auth::user()?->id === $comment->user_id)
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
                 @endif
@@ -70,7 +70,7 @@
         <div class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-se-xl rounded-tr-none rounded-br-xl dark:bg-gray-700">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ $comment->user->login }}</span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $comment->created_at }}</span>
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ translate_ru_format_date($comment->created_at) }}</span>
                 @if(Auth::user()?->id === $comment->user_id)
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400 flex-grow text-right">Вы</span>
                 @endif

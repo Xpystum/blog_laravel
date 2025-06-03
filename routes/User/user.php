@@ -33,8 +33,8 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
 
     Route::prefix('/messages')->group(function() {
 
-        Route::get('/', [MessageController::class, 'index'])->name('users.posts.like')->withoutMiddleware('auth');
-        Route::get('/messages', [MessageController::class, 'index'])->name('users.posts.like')->withoutMiddleware('auth');
+        Route::get('/', [MessageController::class, 'chats'])->name('users.messages');
+        Route::get('/private/{chatPersonal:id}', [MessageController::class, 'private'])->name('users.messages.private');
 
     });
 

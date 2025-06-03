@@ -4,6 +4,7 @@
 
 @section('auth.content')
 
-    @include('includes.user.message.messages')
+
+    @include('includes.user.message.messages', $chatPersonals)
 
 @endsection
