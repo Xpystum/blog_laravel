@@ -44,24 +44,24 @@
 
 /* SCROLLING */
     /* Стилизация скроллбара */
-    .scrollbar-thin {
+.scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: #6B7280 #F3F4F6;
-    }
+}
 
-    /* Для Chrome/Edge/Safari */
-    .scrollbar-thin::-webkit-scrollbar {
+/* Для Chrome/Edge/Safari */
+.scrollbar-thin::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-    }
-    .scrollbar-thin::-webkit-scrollbar-thumb {
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
     background: #6B7280;
     border-radius: 4px;
-    }
-    .scrollbar-thin::-webkit-scrollbar-track {
+}
+.scrollbar-thin::-webkit-scrollbar-track {
     background: #F3F4F6;
     border-radius: 4px;
-    }
+}
 
 
 
