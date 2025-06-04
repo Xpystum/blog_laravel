@@ -2,21 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Modules\Post\Domain\Models\Post;
-use App\Modules\User\Domain\Models\User;
 use Illuminate\Console\Command;
-
-
-class TreeNode {
-    public $val = null;
-    public $left = null;
-    public $right = null;
-    function __construct($val = 0, $left = null, $right = null) {
-        $this->val = $val;
-        $this->left = $left;
-        $this->right = $right;
-    }
-}
+use App\Modules\User\Domain\Async\Event\SendMessagePersonalEvent;
 
 
 class go extends Command
@@ -27,9 +14,7 @@ class go extends Command
 
     public function handle()
     {
-        $user = User::find(1);
-
-        Post::factory()->count(50)->create(['user_id' => $user->id]);
+        SendMessagePersonalEvent::dispatch(1);
     }
 
     private function getHeight($node, &$maxDiameter) {

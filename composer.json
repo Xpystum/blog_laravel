@@ -15,7 +15,8 @@
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
-        "mews/purifier": "^3.4"
+        "mews/purifier": "^3.4",
+        "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

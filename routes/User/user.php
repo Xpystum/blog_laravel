@@ -35,6 +35,7 @@ Route::prefix('/users')->middleware(['auth'])->group(function () {
 
         Route::get('/', [MessageController::class, 'chats'])->name('users.messages');
         Route::get('/private/{chatPersonal:id}', [MessageController::class, 'private'])->name('users.messages.private');
+        Route::post('/private/{chatPersonal:id}/send', [MessageController::class, 'sendMessage'])->name('users.messages.private.send');
 
     });
 

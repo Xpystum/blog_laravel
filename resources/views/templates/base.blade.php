@@ -34,6 +34,7 @@
 
     </div>
 
+    {{-- подключение livewire при необходимости --}}
     @stack('livewire-js')
 
     {{-- кнопка back_to_top/back_to_down --}}
