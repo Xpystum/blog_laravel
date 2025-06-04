@@ -1,29 +1,56 @@
 @php
-    $user = Auth::user();
+    $user = $userAuth;
+    $userOther = $userOther;
+
 @endphp
-<div class="flex flex-col max-w-2lg mx-auto">
-    <div class="">
-        <x-user.card.card-user :user="$user"/>
+<div class="border border-gray-600 border-opacity-50 flex flex-col max-w-2lg mx-auto">
+    <div class="flex flex-row justify-between p-2.5 bg-[#19212c] items-center">
+
+        <x-user.card.card-user :user="$user">
+
+            <div>
+                <a href="{{ route('users.profiles', $user->id) }}" class="text-sm font-semibold text-gray-900 dark:text-white">
+                    {{ $user->login }}
+                </a>
+                <div class="flex items-center">
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> <span class="text-green-500">Online</span>
+                </div>
+            </div>
+
+        </x-user.card.card-user>
+
+        <div class="h-px w-3/4 my-4 bg-gray-600"></div>
+
+        <x-user.card.card-user :orientation="'right'" :user="$userOther">
+
+            <div class="flex flex-col mr-2">
+                <a href="{{ route('users.profiles', $user->id) }}" class="ml-auto text-sm font-semibold text-gray-900 dark:text-white">{{ $user->login }}</a>
+                <div class="flex flex-row items-center">
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500  me-2"></div>
+                    <span class="text-green-500">Online</span>
+                </div>
+            </div>
+
+        </x-user.card.card-user>
+
     </div>
-    <div class="max-w-2lg bg-[#1f2937] mt-10 shadow-lg rounded-lg h-[80vh]">
+    <div class="max-w-2lg bg-[#1f2937] shadow-lg rounded-lg h-[80vh]">
 
         <div class="bg-[#0e131f] h-[80%] min-h-[200px] p-4 overflow-y-auto scrollbar-thin">
 
             @foreach ($messages as $message)
                 @if ($message->user->id == $user->id)
+                
                     <div class="flex items-start mb-4">
                         <x-message.message-card :message="$message" />
                     </div>
+
                 @else
+
                     <div class="flex items-end mb-4 justify-end">
                         <x-message.message-card :message="$message" :orientation="'right'" />
-                        {{-- <div>
-                    <div class="bg-blue-500 rounded-lg px-4 py-2">
-                        <p class="text-white text-sm">Все отлично, спасибо!</p>
                     </div>
-                    <span class="text-xs text-gray-600 block text-right">12:35</span>
-                </div> --}}
-                    </div>
+
                 @endif
             @endforeach
 

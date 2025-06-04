@@ -4,6 +4,6 @@
 
 @section('auth.content')
 
-    @include('includes.user.message.message', $messages)
+    @include('includes.user.message.message', [ 'messages' => $messages, 'userAuth' => $userAuth, 'userOther' => $userOther])
 
 @endsection

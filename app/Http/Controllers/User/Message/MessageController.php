@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Message;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\User\Domain\Models\ChatPersonal;
+use App\Modules\User\Domain\Models\User;
 
 class MessageController extends Controller
 {
@@ -30,6 +31,24 @@ class MessageController extends Controller
 
         $messages = $chatPersonal->messagePersonal;
 
-        return view('pages/user/messages/preview-message', compact('messages'));
+        /**
+         * Авторзиированный пользователь
+         * @var User
+        */
+        $userAuth = Auth::user();
+
+        /**
+         * Профиль Пользователь с кем ведётся чат
+         * @var Profile
+        */
+        $profileOther = ($chatPersonal->user1_id === $userAuth->id) ? $chatPersonal->userOne->user : $chatPersonal->userTwo->user;
+
+        /**
+         * Пользователь с кем ведётся чат
+         * @var User
+        */
+        $userOther = $profileOther->load('profile');
+
+        return view('pages/user/messages/preview-message', compact('messages', 'userAuth', 'userOther'));
     }
 }
