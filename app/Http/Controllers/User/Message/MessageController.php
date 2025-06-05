@@ -56,41 +56,40 @@ class MessageController extends Controller
         return view('pages/user/messages/preview-message', compact('messages', 'userAuth', 'userOther', 'chatPersonalId'));
     }
 
-    public function sendMessage(ChatPersonal $chatPersonal)
-    {
+    // public function sendMessage(ChatPersonal $chatPersonal)
+    // {
 
-        $user = Auth::user();
+    //     $user = Auth::user();
 
-        $message = MessagePersonal::factory()->create([
-            'user_id' => $user->id,
-            'chat_personal_id' => $chatPersonal->id,
-        ]);
+    //     $message = MessagePersonal::factory()->create([
+    //         'user_id' => $user->id,
+    //         'chat_personal_id' => $chatPersonal->id,
+    //     ]);
 
+    //     SendMessagePersonalEvent::dispatch($message->id);
 
-        SendMessagePersonalEvent::dispatch($message->id);
+    //     $messages = $chatPersonal->messagePersonal;
 
-        $messages = $chatPersonal->messagePersonal;
+    //     $chatPersonalId = $chatPersonal->id;
 
-        $chatPersonalId = $chatPersonal->id;
+    //     /**
+    //      * Авторзиированный пользователь
+    //      * @var User
+    //     */
+    //     $userAuth = Auth::user();
 
-        /**
-         * Авторзиированный пользователь
-         * @var User
-        */
-        $userAuth = Auth::user();
+    //     /**
+    //      * Профиль Пользователь с кем ведётся чат
+    //      * @var Profile
+    //     */
+    //     $profileOther = ($chatPersonal->user1_id === $userAuth->id) ? $chatPersonal->userOne->user : $chatPersonal->userTwo->user;
 
-        /**
-         * Профиль Пользователь с кем ведётся чат
-         * @var Profile
-        */
-        $profileOther = ($chatPersonal->user1_id === $userAuth->id) ? $chatPersonal->userOne->user : $chatPersonal->userTwo->user;
+    //     /**
+    //      * Пользователь с кем ведётся чат
+    //      * @var User
+    //     */
+    //     $userOther = $profileOther->load('profile');
 
-        /**
-         * Пользователь с кем ведётся чат
-         * @var User
-        */
-        $userOther = $profileOther->load('profile');
-
-        return view('pages/user/messages/preview-message', compact('messages', 'userAuth', 'userOther', 'chatPersonalId'));
-    }
+    //     return view('pages/user/messages/preview-message', compact('messages', 'userAuth', 'userOther', 'chatPersonalId'));
+    // }
 }

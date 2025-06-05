@@ -21,8 +21,18 @@ class PostCreateSeed extends Seeder
             "password" => Hash::make('password'),
         ]);
 
-        $profile = Profile::factory()->create([
+        Profile::factory()->create([
             "user_id" => $user->id,
+        ]);
+
+
+        $userOther = User::factory()->create([
+                    "email" => 'qjq4@mail.ru',
+                    "login" => 'Oleg',
+                    "password" => Hash::make('password'),]);
+
+        Profile::factory()->create([
+            "user_id" => $userOther->id,
         ]);
 
         for ($i = 0; $i < 4; $i++) {
@@ -34,7 +44,7 @@ class PostCreateSeed extends Seeder
             for ($о=0; $о < 6; $о++) {
 
                 $comments = Comment::factory()
-                    ->for(User::factory()->has(Profile::factory())->create(), 'user')
+                    ->for($userOther, 'user')
                     ->for($post, 'post')
                     ->create();
 

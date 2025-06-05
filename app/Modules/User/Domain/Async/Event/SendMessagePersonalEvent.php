@@ -12,11 +12,13 @@ class SendMessagePersonalEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public int $messagePersonalId;
+    public int $chatPersonalId;
+    public string $messageTextarea;
 
-    public function __construct($messagePersonalId)
+    public function __construct(int $chatPersonalId, string $messageTextarea)
     {
-        $this->messagePersonalId = $messagePersonalId;
+        $this->chatPersonalId = $chatPersonalId;
+        $this->messageTextarea = $messageTextarea;
     }
 
     public function broadcastOn(): Channel
@@ -26,7 +28,7 @@ class SendMessagePersonalEvent implements ShouldBroadcast
 
       public function broadcastAs()
     {
-        return 'my-event';
+        return 'message-private-event';
     }
 
 }

@@ -15,11 +15,10 @@
                 <span
                     class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ translate_ru_format_date($message->created_at) }}</span>
             </div>
-            <div
-                class="flex flex-col w-full max-md:max-w-[320px] max-w-[420px] leading-1.5 p-2.5 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+            <div class="flex w-full flex-col max-md:max-w-[320px] max-w-[420px] leading-1.5 p-2.5 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
 
-                <p
-                    class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
+                {{-- <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words"> --}}
+                <p class="inline-block w-auto min-w-0 text-sm font-normal py-0.5 text-gray-900 dark:text-white overflow-x-hidden whitespace-normal break-words">
                     {{ $message->message }}
                 </p>
 
